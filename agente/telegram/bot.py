@@ -62,17 +62,50 @@ def _answer_callback(callback_id: str, texto: str = ""):
 
 
 def _descargar_archivo(file_id: str, extension: str, tipo: str = "media") -> Optional[Path]:
-    """Descarga un archivo de Telegram con nombre limpio (sin UUIDs)."""
+    """Descarga un archivo de Telegram con nombre limpio (sin UUIDs).
+
+    Límite Telegram Bot API: 20MB. Si el archivo es mayor, retorna None
+    y envía un mensaje explicativo al chat.
+    """
     try:
         r = requests.get(f"{BASE_URL}/getFile", params={"file_id": file_id}, timeout=15)
-        file_path = r.json()["result"]["file_path"]
+        data = r.json()
+
+        # Telegram retorna ok=False cuando el archivo supera 20MB
+        if not data.get("ok"):
+            desc = data.get("description", "")
+            logger.warning("getFile falló: %s", desc)
+            if "file is too big" in desc.lower() or "too large" in desc.lower():
+                _enviar_mensaje(
+                    "⚠️ <b>Archivo demasiado grande</b>\n\n"
+                    "Telegram limita la descarga de archivos a <b>20MB</b> por bot.\n\n"
+                    "Opciones:\n"
+                    "• Comprime el video antes de enviarlo\n"
+                    "• Recórtalo en clips más cortos\n"
+                    "• Envía la foto/video desde la app de Telegram (no como archivo)"
+                )
+            else:
+                _enviar_mensaje(f"❌ No se pudo obtener el archivo de Telegram: {desc}")
+            return None
+
+        file_path = data["result"]["file_path"]
+        # Verificar tamaño si viene en la respuesta
+        file_size = data["result"].get("file_size", 0)
+        if file_size and file_size > 20 * 1024 * 1024:
+            _enviar_mensaje(
+                f"⚠️ <b>Archivo demasiado grande</b> ({file_size // (1024*1024)}MB)\n\n"
+                "El límite de Telegram Bot API es <b>20MB</b>.\n"
+                "Comprime el video o recórtalo en clips más cortos."
+            )
+            return None
+
         url = f"https://api.telegram.org/file/bot{settings.TELEGRAM_BOT_TOKEN}/{file_path}"
-        contenido = requests.get(url, timeout=60).content
-        # Nombre limpio: salsas_bestial_post_20260428_143022.jpg
+        contenido = requests.get(url, timeout=120).content
         from datetime import datetime
         nombre = f"salsas_bestial_{tipo}_{datetime.now().strftime('%Y%m%d_%H%M%S')}{extension}"
         ruta = Path(tempfile.gettempdir()) / nombre
         ruta.write_bytes(contenido)
+        logger.info("Archivo descargado: %s (%.1fMB)", nombre, len(contenido) / (1024*1024))
         return ruta
     except Exception as e:
         logger.error("Error descargando archivo Telegram: %s", e)
