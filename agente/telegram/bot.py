@@ -61,6 +61,36 @@ def _answer_callback(callback_id: str, texto: str = ""):
     }, timeout=10)
 
 
+def _commit_biblioteca(nombre_archivo: str = ""):
+    """Commit y push inmediato de la biblioteca a GitHub.
+    Solo corre en GitHub Actions (donde existe GITHUB_TOKEN). Silencioso en local.
+    """
+    import subprocess, os
+    if not os.environ.get("GITHUB_TOKEN"):
+        return  # Local: no hay nada que commitear
+    try:
+        subprocess.run(
+            ["git", "config", "user.email", "agente@salsasbestial.com"], check=False
+        )
+        subprocess.run(
+            ["git", "config", "user.name", "Agente Bestial"], check=False
+        )
+        subprocess.run(
+            ["git", "add", "datos/biblioteca.json", "material_agente/biblioteca/"],
+            check=False,
+        )
+        msg = f"chore: biblioteca — {nombre_archivo}" if nombre_archivo else "chore: biblioteca actualizada"
+        result = subprocess.run(
+            ["git", "commit", "-m", msg], capture_output=True, text=True
+        )
+        if "nothing to commit" in result.stdout:
+            return
+        subprocess.run(["git", "push"], check=False)
+        logger.info("Biblioteca commiteada a GitHub: %s", nombre_archivo)
+    except Exception as e:
+        logger.warning("No se pudo commitear biblioteca: %s", e)
+
+
 def _descargar_archivo(file_id: str, extension: str, tipo: str = "media") -> Optional[Path]:
     """Descarga un archivo de Telegram con nombre limpio (sin UUIDs).
 
@@ -561,6 +591,8 @@ class BotTelegram:
                 item = agregar_item(ruta_tmp, tipo_pub, pilar)
                 ruta_tmp.unlink(missing_ok=True)
                 conteo = contar_pendientes()
+                # Commit inmediato a GitHub para que publicar-programado pueda verlo
+                _commit_biblioteca(item.nombre_archivo)
                 _enviar_mensaje(
                     f"📚 <b>Guardado en biblioteca</b>\n\n"
                     f"Tipo: {tipo_pub.upper()} | Pilar: {pilar.replace('_', ' ').title()}\n\n"
