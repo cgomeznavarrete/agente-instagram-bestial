@@ -1001,14 +1001,17 @@ def publicar_programado():
             )
             return
 
-    # ── Verificar archivo existe ──────────────────────────────────────────────
+    # ── Verificar archivo existe (local o Cloudinary) ────────────────────────
     ruta = None
+    cloudinary_url = getattr(item, "cloudinary_url", "")
     if not item.es_carrusel:
         ruta = Path(item.ruta_local)
-        if not ruta.exists():
-            console.print(f"[red]Archivo no encontrado: {ruta}[/red]")
+        if not ruta.exists() and not cloudinary_url:
+            console.print(f"[red]Archivo no encontrado ni en disco ni en Cloudinary: {item.nombre_archivo}[/red]")
             marcar_descartado(item.id)
             return
+        if not ruta.exists():
+            ruta = None  # Usar cloudinary_url directamente
 
     tipo_label = {"post": "📸 POST", "reel": "🎬 REEL", "story": "⭕ STORY"}.get(tipo_pub, tipo_pub.upper())
 

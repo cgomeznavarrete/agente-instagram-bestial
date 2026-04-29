@@ -62,43 +62,33 @@ def _answer_callback(callback_id: str, texto: str = ""):
 
 
 def _commit_biblioteca(nombre_archivo: str = ""):
-    """Commit y push inmediato de la biblioteca a GitHub.
-    Solo corre en GitHub Actions (donde existe GITHUB_TOKEN). Silencioso en local.
+    """Commit y push del biblioteca.json a GitHub.
+    Solo el JSON — los archivos van a Cloudinary, no a git.
     """
     import subprocess, os
     token = os.environ.get("GITHUB_TOKEN")
     if not token:
-        return  # Local: no hay nada que commitear
+        return  # Local: no es necesario
     try:
-        # Configurar usuario
+        repo = "github.com/cgomeznavarrete/agente-instagram-bestial.git"
         subprocess.run(["git", "config", "user.email", "agente@salsasbestial.com"], check=False)
         subprocess.run(["git", "config", "user.name", "Agente Bestial"], check=False)
-
-        # URL con token explícito para que git push funcione desde Python
-        repo = "github.com/cgomeznavarrete/agente-instagram-bestial.git"
         subprocess.run(
             ["git", "remote", "set-url", "origin", f"https://x-access-token:{token}@{repo}"],
             check=False,
         )
-
-        subprocess.run(
-            ["git", "add", "datos/biblioteca.json", "material_agente/biblioteca/"],
-            check=False,
-        )
-        msg = f"chore: biblioteca — {nombre_archivo}" if nombre_archivo else "chore: biblioteca actualizada"
-        result = subprocess.run(
-            ["git", "commit", "-m", msg], capture_output=True, text=True
-        )
+        subprocess.run(["git", "add", "datos/biblioteca.json"], check=False)
+        msg = f"chore: biblioteca +{nombre_archivo}" if nombre_archivo else "chore: biblioteca actualizada"
+        result = subprocess.run(["git", "commit", "-m", msg], capture_output=True, text=True)
         if "nothing to commit" in (result.stdout + result.stderr):
-            logger.info("Biblioteca: nada nuevo para commitear")
             return
         push = subprocess.run(["git", "push", "origin", "master"], capture_output=True, text=True)
         if push.returncode == 0:
-            logger.info("Biblioteca commiteada a GitHub: %s", nombre_archivo)
+            logger.info("biblioteca.json commiteado: %s", nombre_archivo)
         else:
-            logger.warning("git push falló: %s", push.stderr)
+            logger.warning("git push falló: %s", push.stderr[:200])
     except Exception as e:
-        logger.warning("No se pudo commitear biblioteca: %s", e)
+        logger.warning("No se pudo commitear biblioteca.json: %s", e)
 
 
 def _descargar_archivo(file_id: str, extension: str, tipo: str = "media") -> Optional[Path]:

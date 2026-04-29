@@ -42,6 +42,7 @@ class ItemBiblioteca:
     fecha_publicado: float = 0.0
     es_carrusel: bool = False
     archivos_carrusel: list = field(default_factory=list)  # para carruseles multi-imagen
+    cloudinary_url: str = ""    # URL pública en Cloudinary (persiste entre runners)
 
 
 def _cargar() -> dict:
@@ -69,7 +70,11 @@ def agregar_item(
     pilar: str = "lifestyle_y_comunidad",
     caption: str = "",
 ) -> ItemBiblioteca:
-    """Copia el archivo a la biblioteca y lo registra en la cola."""
+    """Sube el archivo a Cloudinary y lo registra en la cola.
+
+    Los archivos se guardan en Cloudinary (no en git) para que persistan
+    entre runners de GitHub Actions. El JSON es lo único que se commitea.
+    """
     _inicializar_carpetas()
 
     ts = int(time.time() * 1000)
@@ -77,9 +82,28 @@ def agregar_item(
     sufijo = ruta_origen.suffix.lower()
     nombre_guardado = f"{item_id}{sufijo}"
 
+    # Subir a Cloudinary inmediatamente
+    cloudinary_url = ""
+    try:
+        from agente.media.subidor_cloudinary import SubidorCloudinary
+        subidor = SubidorCloudinary()
+        es_video = sufijo in EXTENSIONES_VIDEO
+        url = subidor.subir(ruta_origen, resource_type="video" if es_video else "image")
+        if url:
+            cloudinary_url = url
+            logger.info("Biblioteca: subido a Cloudinary → %s", url[:60])
+        else:
+            logger.warning("Biblioteca: Cloudinary no retornó URL para %s", nombre_guardado)
+    except Exception as e:
+        logger.warning("Biblioteca: error subiendo a Cloudinary: %s", e)
+
+    # Guardar copia local también (útil en desarrollo)
     carpeta_destino = CARPETAS.get(tipo, CARPETAS["post"])
     ruta_destino = carpeta_destino / nombre_guardado
-    shutil.copy2(ruta_origen, ruta_destino)
+    try:
+        shutil.copy2(ruta_origen, ruta_destino)
+    except Exception:
+        ruta_destino = ruta_origen  # fallback: usar ruta temporal
 
     item = ItemBiblioteca(
         id=item_id,
@@ -89,13 +113,14 @@ def agregar_item(
         fecha_agregado=time.time(),
         pilar=pilar,
         caption=caption,
+        cloudinary_url=cloudinary_url,
     )
 
     data = _cargar()
     data["items"].append(asdict(item))
     _guardar(data)
 
-    logger.info("Biblioteca: agregado %s → %s", ruta_origen.name, nombre_guardado)
+    logger.info("Biblioteca: registrado %s (cloudinary=%s)", nombre_guardado, bool(cloudinary_url))
     return item
 
 
