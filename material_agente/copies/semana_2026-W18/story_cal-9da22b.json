@@ -1,0 +1,13 @@
+{
+  "texto_principal": "¿Con qué lo combinarías tú?",
+  "texto_secundario": "No hay respuesta incorrecta... bueno, casi.",
+  "cta": "Responde la encuesta 👇",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "A) Tacos de birria | B) Huevos revueltos | C) Pizza fría del día anterior | D) Todo lo anterior ✅"
+  },
+  "descripcion_visual": "Fondo naranja sólido intenso. Ilustración minimalista del frasco de Salsa Tatemada Ahumada centrada en pantalla, trazo negro limpio sin foto real. Tipografía bold negra en la parte superior con la pregunta principal. Texto secundario en tipografía más delgada debajo del frasco, en negro. Sticker de encuesta nativo de Instagram con las 4 opciones posicionado en la parte inferior. Sin filtros sobre la ilustración. Composición limpia, aire generoso entre elementos, energía visual de cartel urbano.",
+  "hashtags_ocultos": [
+    "#SalsasBestial"
+  ]
+}

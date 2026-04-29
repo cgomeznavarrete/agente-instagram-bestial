@@ -1,0 +1,13 @@
+{
+  "texto_principal": "¿Cómo la pido?",
+  "texto_secundario": "Más fácil de lo que crees — tres formas, cero complicaciones.",
+  "cta": "Responde este mensaje y te atendemos ahorita.",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "¿Por dónde prefieres pedirla? 🔥 Instagram / WhatsApp"
+  },
+  "descripcion_visual": "Frame 1 — Fondo negro profundo, texto '¿Cómo la pido?' centrado en tipografía bold blanca, ícono de carrito minimalista debajo. Transición rápida con corte seco. Frame 2 — Fondo oscuro con tres bloques verticales simples: ícono de Instagram + 'Link en bio', ícono de WhatsApp + 'Número en bio', ícono de globo web + 'Página web'. Íconos en blanco o rojo bestial, sin saturar el espacio. Frame 3 — Fondo oscuro con texto principal en blanco y acento en rojo: 'Te respondemos en minutos.' CTA tipo sticker de respuesta directa abajo. Countdown sticker si hay promo activa, posicionado en esquina superior derecha. Diseño limpio, respirado, sin elementos de relleno.",
+  "hashtags_ocultos": [
+    "#SalsasBestial"
+  ]
+}

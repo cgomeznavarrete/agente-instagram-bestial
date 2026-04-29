@@ -1,0 +1,49 @@
+# IA y API principal
+anthropic>=0.40.0
+
+# HTTP y APIs externas
+requests>=2.32.0
+httpx>=0.27.0
+
+# Validación de datos
+pydantic>=2.7.0
+
+# Variables de entorno
+python-dotenv>=1.0.0
+
+# Procesamiento de imágenes
+Pillow>=10.3.0
+
+# Generación de video automático
+moviepy>=1.0.3
+ffmpeg-python>=0.2.0
+
+# Plantillas para prompts y briefs
+Jinja2>=3.1.4
+
+# CLI y output visual
+click>=8.1.7
+rich>=13.7.0
+
+# Scheduler local
+schedule>=1.2.2
+
+# Reintentos con backoff
+tenacity>=8.3.0
+
+# Cloudinary (hosting de videos)
+cloudinary>=1.40.0
+
+# Watcher de archivos (para detectar cambios en Obsidian)
+watchdog>=4.0.0
+
+# Google Drive (para material subido desde el celular)
+# Instalación opcional — solo si usas GitHub Actions con Drive API
+# google-api-python-client>=2.126.0
+# google-auth>=2.29.0
+
+# Fal.ai (generación de fondos con IA — opcional)
+fal-client>=0.4.0
+
+# Renderizado HTML → PNG para carruseles de alta calidad
+playwright>=1.44.0

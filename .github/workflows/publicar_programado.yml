@@ -1,0 +1,63 @@
+name: Publicar contenido programado
+
+on:
+  schedule:
+    # Colombia = UTC-5. Todos los horarios en UTC.
+    # Lunes, Miércoles, Viernes — Story 9am COL = 14:00 UTC
+    - cron: '0 14 * * 1,3,5'
+    # Lunes, Miércoles, Viernes — Post 12pm COL = 17:00 UTC
+    - cron: '0 17 * * 1,3,5'
+    # Martes, Jueves — Reel 7pm COL = 00:00 UTC del día siguiente
+    - cron: '0 0 * * 3,5'
+
+  workflow_dispatch:
+    inputs:
+      tipo:
+        description: 'Tipo a publicar manualmente (post/reel/story)'
+        required: false
+        default: ''
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Instalar dependencias
+        run: |
+          pip install -r requirements.txt
+          playwright install chromium --with-deps
+
+      - name: Publicar según horario
+        run: python main.py publicar-programado
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          INSTAGRAM_BUSINESS_ACCOUNT_ID: ${{ secrets.INSTAGRAM_BUSINESS_ACCOUNT_ID }}
+          CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+
+      - name: Guardar estado biblioteca
+        if: always()
+        uses: actions/checkout@v4
+        continue-on-error: true
+
+      - name: Commit biblioteca actualizada
+        run: |
+          git config --global user.email "agente@salsasbestial.com"
+          git config --global user.name "Agente Bestial"
+          git add datos/biblioteca.json datos/archivos_publicados.json || true
+          git commit -m "chore: actualizar biblioteca post publicación" || true
+          git push || true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

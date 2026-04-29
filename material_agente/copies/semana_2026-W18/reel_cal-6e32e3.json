@@ -1,0 +1,41 @@
+{
+  "hook": "Esto pasa antes de que abras el frasco.",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Pantalla negra. Texto animado aparece letra por letra, como si alguien lo estuviera escribiendo en tiempo real.",
+      "texto_pantalla": "Esto pasa antes de que abras el frasco."
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Stop-motion ilustrado: chiles, jitomates y ajos crudos sobre una superficie rústica de madera. La cámara los escanea lentamente, como inspeccionándolos. Corte brusco a comal de barro con fuego real debajo.",
+      "texto_pantalla": "Nadie tatemea rápido."
+    },
+    {
+      "segundo": "8-20",
+      "visual": "Secuencia stop-motion: los ingredientes van al comal — se ven las marcas del tatemado, el humo, el color oscuro tomando forma. Corte a manos mezclando en molcajete. Ritmo lento, casi hipnótico. Cada toma dura 2-3 segundos para que se sienta el peso del proceso. Último frame: el líquido denso cae en frasco, pero el frasco queda fuera de cuadro — solo se ve el chorro.",
+      "texto_pantalla": "O lo haces bien — o no lo haces."
+    },
+    {
+      "segundo": "20-25",
+      "visual": "Fondo negro. Logo de Salsas Bestial aparece centrado. Debajo, texto pequeño: 'Salsa Tatemada Ahumada'. Sin frasco físico. Solo marca, nombre y silencio visual.",
+      "texto_pantalla": "El link está en bio. ¿O te lo mando por WhatsApp?"
+    }
+  ],
+  "caption": "El fuego no miente — cada lote pasa por el mismo proceso, sin atajos que lo arruinen. Así se hace. Punto. 🔥",
+  "cta": "Guarda este video para cuando alguien te pregunte por qué la Tatemada Ahumada sabe diferente. El enlace para pedirla está en bio.",
+  "hashtags": [
+    "#SalsasBestial",
+    "#TatemadaAhumada",
+    "#SalsaArtesanal",
+    "#HechosConFuego",
+    "#SalsaPicante",
+    "#ComidaMexicana",
+    "#BehindTheScenes",
+    "#ProcesoArtesanal",
+    "#SalsaLovers",
+    "#PicanteDeVerdad"
+  ],
+  "mood_musica": "chill_food",
+  "hook_audio": "Nadie tatemea rápido. O lo haces bien — o no lo haces."
+}

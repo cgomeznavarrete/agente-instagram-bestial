@@ -1,0 +1,40 @@
+name: Publicar contenido pendiente
+
+on:
+  schedule:
+    - cron: '0 17 * * *'    # 12:00pm Colombia (UTC-5 → 17:00 UTC)
+    - cron: '0 0 * * *'     # 7:00pm Colombia (UTC-5 → 00:00 UTC siguiente día)
+  workflow_dispatch:
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias Python
+        run: pip install -r requirements.txt
+
+      - name: Publicar entradas aprobadas
+        run: python main.py publicar_pendientes
+        env:
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          INSTAGRAM_BUSINESS_ACCOUNT_ID: ${{ secrets.INSTAGRAM_BUSINESS_ACCOUNT_ID }}
+          CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
+          IMGBB_API_KEY: ${{ secrets.IMGBB_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      - name: Guardar historial actualizado
+        run: |
+          git config --global user.email "agente@salsasbestial.com"
+          git config --global user.name "Agente Bestial"
+          git add datos/historial_publicaciones.json datos/calendario_semanal.json
+          git commit -m "chore: publicaciones $(date +%Y-%m-%d)" || true
+          git push

@@ -1,0 +1,53 @@
+{
+  "version": "1.0",
+  "fecha_actualizacion": "2026-04-27T21:32:57.728040",
+  "totales": {
+    "usuario": 0,
+    "agente": 0,
+    "referencia": 4
+  },
+  "material_usuario": [],
+  "material_agente": [],
+  "referencia_producto": [
+    {
+      "ruta": "referencia_producto\\logo_circulo_amarillo.png",
+      "nombre": "logo_circulo_amarillo.png",
+      "categoria": "general",
+      "tipo": "imagen",
+      "extension": ".png",
+      "tamano_kb": 10.7,
+      "fecha_modificacion": "2026-04-13T09:11:49.838751",
+      "origen": "agente"
+    },
+    {
+      "ruta": "referencia_producto\\logo_principal.png",
+      "nombre": "logo_principal.png",
+      "categoria": "general",
+      "tipo": "imagen",
+      "extension": ".png",
+      "tamano_kb": 587.3,
+      "fecha_modificacion": "2024-09-30T20:01:25.648791",
+      "origen": "agente"
+    },
+    {
+      "ruta": "referencia_producto\\salsa_tatemada_completa.jpg",
+      "nombre": "salsa_tatemada_completa.jpg",
+      "categoria": "general",
+      "tipo": "imagen",
+      "extension": ".jpg",
+      "tamano_kb": 671.2,
+      "fecha_modificacion": "2026-04-27T13:22:51.999614",
+      "origen": "agente"
+    },
+    {
+      "ruta": "referencia_producto\\salsa_tatemada_frente.jpg",
+      "nombre": "salsa_tatemada_frente.jpg",
+      "categoria": "general",
+      "tipo": "imagen",
+      "extension": ".jpg",
+      "tamano_kb": 581.8,
+      "fecha_modificacion": "2026-04-27T13:21:28.964267",
+      "origen": "agente"
+    }
+  ]
+}

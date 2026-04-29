@@ -1,0 +1,36 @@
+Crea el copy completo para un REEL de Instagram de Salsas Bestial.
+
+CONCEPTO DE ESTA PIEZA:
+- Pilar: {{ entrada.pilar | replace('_', ' ') | title }}
+- Objetivo: {{ entrada.objetivo }}
+- Concepto: {{ entrada.concepto }}
+
+{% if historial_copies %}
+HOOKS RECIENTES (usar estructura diferente):
+{% for c in historial_copies[:5] %}
+- "{{ c.get('hook', '')[:80] }}"
+{% endfor %}
+{% endif %}
+
+INSTRUCCIONES ESPECÍFICAS PARA REEL:
+- El hook de los PRIMEROS 3 SEGUNDOS es lo más importante — debe generar el "¿qué es esto?"
+- El caption del Reel puede ser más corto que un post normal (1-2 oraciones + CTA)
+- El CTA debe generar acción inmediata: guardar, comentar, o ir al bio
+- El guion del video debe indicar exactamente qué pasa en cada segundo
+- Duración objetivo: 20-30 segundos para máxima retención
+
+Devuelve ÚNICAMENTE este JSON:
+{
+  "hook": "texto de los primeros 3 segundos del video (en pantalla o voz)",
+  "guion_video": [
+    {"segundo": "0-3", "visual": "qué se ve", "texto_pantalla": "texto superpuesto"},
+    {"segundo": "3-8", "visual": "qué se ve", "texto_pantalla": "texto superpuesto"},
+    {"segundo": "8-20", "visual": "qué se ve", "texto_pantalla": "texto superpuesto"},
+    {"segundo": "20-25", "visual": "cierre con producto", "texto_pantalla": "CTA"}
+  ],
+  "caption": "texto del caption del reel (corto, máx 2 oraciones)",
+  "cta": "llamado a la acción",
+  "hashtags": ["#SalsasBestial", "#..."],
+  "mood_musica": "upbeat_latino|chill_food|humor|energetico|romantico_gastro",
+  "hook_audio": "texto para decir en voz (si aplica) o null"
+}

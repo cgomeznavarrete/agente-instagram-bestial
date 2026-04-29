@@ -1,0 +1,39 @@
+Analiza las métricas de Instagram de Salsas Bestial y genera recomendaciones estratégicas para la próxima semana.
+
+MÉTRICAS DE LA SEMANA:
+{{ metricas | tojson(indent=2) }}
+
+{% if historial %}
+HISTORIAL DE PUBLICACIONES RECIENTES:
+{% for pub in historial[:10] %}
+- {{ pub.get('fecha_publicacion', '')[:10] }} | {{ pub.get('tipo', '') }} | {{ pub.get('pilar', '') }}
+  Métricas: reach={{ pub.get('metricas', {}).get('reach', 0) }}, engagement={{ pub.get('metricas', {}).get('engagement_rate', 0) }}%
+{% endfor %}
+{% endif %}
+
+INSTRUCCIONES DE ANÁLISIS:
+1. Identificar qué formatos generaron más engagement
+2. Identificar los mejores horarios de publicación
+3. Detectar qué pilares de contenido resonaron más
+4. Identificar tendencias de crecimiento o decrecimiento
+5. Proponer ajustes concretos para la próxima semana
+
+Devuelve ÚNICAMENTE este JSON:
+{
+  "resumen_semana": "1-2 oraciones del desempeño general",
+  "formato_ganador": "post|reel|story|carrusel",
+  "horario_optimo": {"dia": "miercoles", "hora": "19:00"},
+  "pilar_ganador": "nombre del pilar con mejor performance",
+  "engagement_promedio": 0.0,
+  "tendencia_seguidores": "crecimiento|estable|decrecimiento",
+  "recomendaciones": [
+    "recomendación concreta #1",
+    "recomendación concreta #2",
+    "recomendación concreta #3"
+  ],
+  "ajustes_calendario_siguiente": {
+    "aumentar": ["tipo de contenido a publicar más"],
+    "reducir": ["tipo de contenido a publicar menos"],
+    "probar": ["nuevo tipo de contenido a experimentar"]
+  }
+}

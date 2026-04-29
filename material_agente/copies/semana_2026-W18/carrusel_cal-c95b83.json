@@ -1,0 +1,60 @@
+{
+  "caption_principal": "Tatemar no es quemar. Es saber exactamente hasta dónde llevar el fuego — y parar justo antes. Esa diferencia está en cada frasco. Desliza → si cocinas en serio o quieres empezar a hacerlo.",
+  "cta_caption": "Guarda este carrusel. La próxima vez que agarres una salsa del súper, vas a leer la etiqueta diferente.",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#SalsaAhumada",
+    "#CocinaMexicana",
+    "#Tatemar",
+    "#SalsaArtesanal",
+    "#PicanteMexicano",
+    "#FoodLovers",
+    "#CocinaCasera",
+    "#SaborReal"
+  ],
+  "slides": [
+    {
+      "numero": 1,
+      "titulo": "La mayoría compra salsa. Pocos saben qué están comprando.",
+      "subtitulo": "Desliza — esto cambia cómo ves cualquier salsa.",
+      "descripcion_visual": "Fondo naranja quemado (#C4511F o similar). Tipografía bold blanca, tamaño grande para el título principal. Subtítulo en blanco con peso regular, centrado en la parte inferior. Sin imágenes del frasco. El texto ocupa el centro con mucho aire alrededor para generar tensión visual. Logo de Salsas Bestial pequeño en esquina superior izquierda, sin modificaciones.",
+      "tipo": "portada"
+    },
+    {
+      "numero": 2,
+      "titulo": "Tatemar: tostar al fuego directo hasta que duela — pero de buena manera.",
+      "subtitulo": "Chiles, jitomates, ajos y cebollas van directo al comal o a la llama. Sin aceite. Sin agua. Solo fuego y tiempo.",
+      "descripcion_visual": "Fondo negro. Título en tipografía bold naranja (#C4511F). Subtítulo en blanco, peso regular, tamaño menor. Puede incluir un ícono minimalista de llama o comal en línea (ilustración vectorial simple, no foto). Composición centrada. Sensación de calor controlado — el negro y el naranja hacen ese trabajo.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 3,
+      "titulo": "Cuando el fuego toca el chile, pasa algo que ningún horno puede replicar.",
+      "subtitulo": "Los azúcares naturales se caramelizan. La piel se oscurece. El sabor se concentra y se vuelve profundo — a eso le llamamos ahumado real, no extracto de humo en botella.",
+      "descripcion_visual": "Fondo naranja oscuro a negro, degradado de izquierda a derecha. Título bold blanco en la mitad superior. Subtítulo en blanco regular, tamaño pequeño, debajo del título. Línea divisoria fina en naranja entre título y subtítulo. Sin imágenes. El degradado debe sentirse como el proceso mismo — del fuego a la oscuridad.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 4,
+      "titulo": "Salsa tatemada vs salsa cruda. No es lo mismo — nunca lo fue.",
+      "subtitulo": "TATEMADA: chile tostado, jitomate asado, ajo quemado, cebolla carbonizada en las orillas. / CRUDA: los mismos ingredientes, pero hervidos o licuados en frío. Diferente mundo.",
+      "descripcion_visual": "Fondo negro dividido en dos columnas por una línea vertical fina naranja. Columna izquierda: encabezado 'TATEMADA' en naranja bold. Columna derecha: encabezado 'CRUDA' en blanco grisáceo bold. Debajo de cada encabezado, los ingredientes/características en texto blanco pequeño. Diseño limpio, casi editorial. Sin bullets visuales — solo texto estructurado en columnas.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 5,
+      "titulo": "¿Con qué va una salsa ahumada? Con todo lo que ya cocinas.",
+      "subtitulo": "Carne asada — huevos con lo que sea — tacos de canasta — elote con crema — frijoles de olla. Si ya lo hacías rico, con salsa tatemada lo haces memorable.",
+      "descripcion_visual": "Fondo naranja quemado. Título en negro bold, grande. Subtítulo en negro regular, tamaño medio, con guiones como separadores entre cada maridaje — no como lista vertical. Puede incluir pequeños íconos minimalistas en línea (brasa, huevo, taco) ilustrados en negro, sin fotos. Composición centrada con ritmo visual entre ícono y texto.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 6,
+      "titulo": "La Bestial Tatemada Ahumada nació de este proceso. Sin atajos.",
+      "subtitulo": "Cada frasco tiene fuego real adentro. Consíguela — link en bio o escríbenos por WhatsApp. 🔥",
+      "descripcion_visual": "Fondo negro total. Título en tipografía bold blanca, tamaño grande, centrado. Subtítulo en naranja (#C4511F), peso regular, debajo del título. Logo de Salsas Bestial centrado en la parte inferior, sin modificaciones, en su versión original. Texto del CTA enmarcado por un rectángulo con borde naranja fino para destacarlo. Slide con mayor contraste del carrusel — es el cierre y debe sentirse definitivo.",
+      "tipo": "cta"
+    }
+  ]
+}

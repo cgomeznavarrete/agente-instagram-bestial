@@ -1,0 +1,60 @@
+{
+  "caption_principal": "La mayoría de salsas 'ahumadas' nunca vieron el fuego. La nuestra sí. Desliza → y mira lo que pasa cuando tatemamos de verdad.",
+  "cta_caption": "Salsa Tatemada Ahumada disponible en el link en bio o escríbenos por WhatsApp.",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#HechoDeManos",
+    "#SalsaArtesanal",
+    "#PicanteDeMéxico",
+    "#TatemadoDeVerdad",
+    "#SalsasMexicanas",
+    "#FoodiesLatam",
+    "#CocinaMexicana",
+    "#SaborReal"
+  ],
+  "slides": [
+    {
+      "numero": 1,
+      "titulo": "No es ahumado de laboratorio. Es tatemado.",
+      "subtitulo": "Hay una diferencia brutal.",
+      "descripcion_visual": "Fondo negro total. Tipografía blanca gruesa, sans-serif bold, ocupando el 70% del slide. La palabra 'tatemado' en rojo quemado (#8B1A00). Sin imágenes, sin adornos. En la esquina inferior derecha, el logo de Salsas Bestial en blanco pequeño. Ambiente austero, directo, como una declaración.",
+      "tipo": "portada"
+    },
+    {
+      "numero": 2,
+      "titulo": "Primero: el chile va directo al fuego.",
+      "subtitulo": "Sin aceite. Sin horno. Comal y llama.",
+      "descripcion_visual": "Fondo negro. Ilustración minimalista lineal en blanco de un chile sobre un comal con líneas de calor ascendiendo. Trazos simples, estilo grabado. Texto en blanco en la mitad inferior. Un punto de acento en rojo quemado en la línea de calor del chile. Composición centrada, mucho espacio negativo.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 3,
+      "titulo": "El ajo se tuesta hasta que la piel se quema.",
+      "subtitulo": "Ese amargor oscuro es exactamente el punto.",
+      "descripcion_visual": "Fondo negro. Ilustración minimalista lineal en blanco de una cabeza de ajo partida a la mitad con marcas de quemado representadas por líneas irregulares en rojo quemado. Texto en blanco en la parte inferior izquierda. Estilo monocromático coherente con el slide anterior. Sensación de proceso, de trabajo real.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 4,
+      "titulo": "El jitomate se asa hasta que la piel se rompe sola.",
+      "subtitulo": "Cuando suelta el jugo ahí — ahí está el sabor.",
+      "descripcion_visual": "Fondo negro. Ilustración minimalista lineal en blanco de un jitomate con la piel agrietada y una gota cayendo, representada en rojo quemado. Misma línea gráfica que los slides anteriores. Texto en blanco, fuente consistente. La gota en rojo es el único elemento de color, funciona como punto focal emocional.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 5,
+      "titulo": "Todo junto: molido, probado, corregido. Sin prisa.",
+      "subtitulo": "El ensamble no tiene fórmula exacta — tiene criterio.",
+      "descripcion_visual": "Fondo negro. Ilustración minimalista lineal en blanco de un molcajete con ingredientes cayendo dentro, líneas de vapor ascendiendo. Acento en rojo quemado en el interior del molcajete. Texto en blanco parte inferior. Composición más densa que los anteriores, transmite el momento de reunión de todo el proceso. Misma coherencia gráfica.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 6,
+      "titulo": "Así se hace la Bestial.",
+      "subtitulo": "Link en bio — o escríbenos y te la llevamos.",
+      "descripcion_visual": "Fondo negro. Logo de Salsas Bestial en blanco centrado en la parte superior, respetando proporciones originales sin modificación. Debajo, el frasco de Salsa Tatemada Ahumada fotografiado sobre fondo negro, sin filtros de color sobre la etiqueta. Texto del CTA en rojo quemado en la parte inferior. Línea horizontal en rojo quemado separando logo del frasco. Cierre limpio, con peso de marca.",
+      "tipo": "cta"
+    }
+  ]
+}

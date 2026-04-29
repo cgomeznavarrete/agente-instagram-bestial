@@ -1,0 +1,30 @@
+Crea el copy completo para un POST de Instagram de Salsas Bestial.
+
+CONCEPTO DE ESTA PIEZA:
+- Tipo: {{ entrada.tipo_contenido }}
+- Pilar: {{ entrada.pilar | replace('_', ' ') | title }}
+- Objetivo: {{ entrada.objetivo }}
+- Concepto: {{ entrada.concepto }}
+
+{% if historial_copies %}
+COPIES RECIENTES (no repetir hooks ni estructuras):
+{% for c in historial_copies[:5] %}
+- Hook usado: "{{ c.get('hook', '')[:80] }}"
+{% endfor %}
+{% endif %}
+
+INSTRUCCIONES ESPECÍFICAS PARA POST:
+- El hook (primera línea) debe parar el scroll en menos de 2 segundos
+- El cuerpo puede tener 2-4 oraciones máximo (Instagram premia captions cortos)
+- El CTA debe ser específico y urgente, no genérico
+- Seleccionar 20-25 hashtags: 5 de marca + 8 de nicho + 7 moderados (evitar los prohibidos de IG)
+- El copy NO debe sonar como anuncio — debe sonar como una persona real
+
+Devuelve ÚNICAMENTE este JSON:
+{
+  "hook": "primera línea impactante",
+  "cuerpo": "2-4 oraciones del caption",
+  "cta": "llamado a la acción específico",
+  "hashtags": ["#SalsasBestial", "#..."],
+  "notas_visuales": "descripción de qué imagen usar o cómo debería verse"
+}

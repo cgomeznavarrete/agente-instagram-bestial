@@ -1,0 +1,16 @@
+{
+  "texto_principal": "¿Cómo la consigues?",
+  "texto_secundario": "Tres caminos. Todos llegan a la Tatemada.",
+  "cta": "Enlace",
+  "elemento_interactivo": {
+    "tipo": "ninguno",
+    "contenido": null
+  },
+  "descripcion_visual": "Secuencia de 3 slides. Slide 1: fondo negro con texto blanco centrado en tipografía bold, sin adornos — solo la pregunta y un punto de color naranja al final como único acento visual. Slide 2: fondo oscuro con tres bloques verticales alineados, cada uno con ícono minimalista (Instagram, WhatsApp, globo web) en blanco, texto de acción debajo en gris claro, sticker de link activo posicionado en la parte inferior centrada con etiqueta 'Ir al link'. Slide 3: fondo con textura sutil tipo papel kraft oscuro, texto en blanco con tipografía limpia — frase dividida en dos líneas para respirar: 'Sin complicaciones.' en grande, luego 'Solo tú, la Tatemada y lo que quieras cocinar.' en cuerpo más pequeño. Sin filtros sobre producto. Paleta: negro, naranja quemado, blanco.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#CompraMexicana",
+    "#SalsaArtesanal"
+  ]
+}

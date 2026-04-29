@@ -1,0 +1,70 @@
+Genera el calendario de contenido de Instagram para Salsas Bestial para la semana {{ semana }}.
+
+VOLUMEN REQUERIDO:
+- Posts en feed: {{ posts_semana }}
+- Reels: {{ reels_semana }}
+- Stories: {{ stories_semana }}
+- Carruseles: {{ carruseles_semana }}
+- Total máximo por día: 4 piezas (límite de seguridad Meta)
+- Intervalo mínimo entre publicaciones: 90 minutos
+
+{% if campanas_activas %}
+CAMPAÑAS ACTIVAS ESTA SEMANA:
+{% for c in campanas_activas %}
+- {{ c.nombre }}: {{ c.descripcion }} (objetivo: {{ c.objetivo }})
+{% endfor %}
+{% endif %}
+
+{% if metricas_previas %}
+RESULTADOS SEMANA ANTERIOR (adaptar estrategia):
+- Formato ganador: {{ metricas_previas.get('formato_ganador', 'sin datos') }}
+- Horario óptimo: {{ metricas_previas.get('horario_optimo', 'sin datos') }}
+- Engagement promedio: {{ metricas_previas.get('engagement_promedio', 0) }}%
+- Nuevos seguidores: {{ metricas_previas.get('nuevos_seguidores', 0) }}
+{% if metricas_previas.get('recomendaciones') %}
+- Recomendaciones: {{ metricas_previas['recomendaciones'] | join(', ') }}
+{% endif %}
+{% endif %}
+
+{% if historial_resumido %}
+CONTENIDO RECIENTE (evitar repetición de formatos y conceptos):
+{% for h in historial_resumido[:8] %}
+- {{ h.get('fecha', '') }} | {{ h.get('tipo', '') }} | {{ h.get('pilar', '') }} | {{ h.get('concepto', '')[:60] }}
+{% endfor %}
+{% endif %}
+
+{% if material_disponible %}
+MATERIAL DISPONIBLE:
+{% for tipo, cantidad in material_disponible.items() %}
+- {{ tipo }}: {{ cantidad }} archivos disponibles
+{% endfor %}
+{% endif %}
+
+REGLAS DEL CALENDARIO:
+1. Distribuir uniformemente en la semana (lunes a domingo)
+2. Horarios recomendados: 12:00, 19:00, 20:00 (Colombia UTC-5)
+3. Alternar: venta / educación / entretenimiento / comunidad
+4. Alternar material del usuario y material del agente
+5. No repetir el mismo pilar de contenido dos días seguidos
+6. Los reels deben tener los hooks más fuertes de la semana
+7. Al menos 1 contenido de venta/conversión por semana
+
+Devuelve ÚNICAMENTE el siguiente JSON, sin texto adicional:
+{
+  "semana": "{{ semana }}",
+  "notas_estrategia": "string con la lógica de la semana",
+  "entradas": [
+    {
+      "id": "cal-001",
+      "dia": "lunes",
+      "fecha": "YYYY-MM-DD",
+      "hora_publicacion": "19:00",
+      "tipo_contenido": "post|reel|story|carrusel|poster|story_video",
+      "pilar": "uno de los pilares de contenido",
+      "objetivo": "awareness|engagement|ventas|educacion|entretenimiento|comunidad",
+      "concepto": "descripción clara y específica del contenido a crear",
+      "material_sugerido": ["ruta/al/material.jpg"],
+      "estado": "pendiente"
+    }
+  ]
+}

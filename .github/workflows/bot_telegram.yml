@@ -1,0 +1,48 @@
+name: Bot Telegram — siempre activo
+
+on:
+  workflow_dispatch:  # Lanzar manualmente desde GitHub
+  push:
+    branches: [main]
+    paths:
+      - 'agente/telegram/bot.py'
+      - '.github/workflows/bot_telegram.yml'
+
+jobs:
+  bot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350  # ~6 horas máximo por run de GitHub Actions
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Instalar dependencias
+        run: |
+          pip install -r requirements.txt
+          playwright install chromium --with-deps
+
+      - name: Ejecutar bot
+        run: python main.py bot
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          INSTAGRAM_BUSINESS_ACCOUNT_ID: ${{ secrets.INSTAGRAM_BUSINESS_ACCOUNT_ID }}
+          CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+
+      - name: Guardar biblioteca actualizada
+        if: always()
+        run: |
+          git config --global user.email "agente@salsasbestial.com"
+          git config --global user.name "Agente Bestial"
+          git add datos/ material_agente/biblioteca/ || true
+          git commit -m "chore: biblioteca actualizada por bot" || true
+          git push || true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

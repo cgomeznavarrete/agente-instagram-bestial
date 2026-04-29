@@ -1,0 +1,37 @@
+Crea el copy para una STORY de Instagram de Salsas Bestial.
+
+CONCEPTO DE ESTA PIEZA:
+- Tipo: {{ entrada.tipo_contenido }}
+- Pilar: {{ entrada.pilar | replace('_', ' ') | title }}
+- Objetivo: {{ entrada.objetivo }}
+- Concepto: {{ entrada.concepto }}
+
+INSTRUCCIONES ESPECÍFICAS PARA STORY:
+- Las Stories son efímeras (24h) — el tono puede ser más casual e íntimo
+- Máximo 1-2 líneas de texto visible en pantalla
+- Si es story_video: incluir guion de 3-5 escenas cortas (15 segundos total)
+- El CTA de Story puede ser: "Desliza" / "Responde" / "Enlace" (según tipo de cuenta)
+- Usar elementos interactivos cuando aplique: encuestas, preguntas, sliders
+
+Devuelve ÚNICAMENTE este JSON:
+{
+  "texto_principal": "texto grande visible en pantalla (máx 8 palabras)",
+  "texto_secundario": "texto pequeño adicional si aplica (o null)",
+  "cta": "acción específica para la story",
+  "elemento_interactivo": {
+    "tipo": "encuesta|pregunta|slider|ninguno",
+    "contenido": "texto de la encuesta/pregunta o null"
+  },
+  "descripcion_visual": "cómo debe verse la story visualmente",
+  {% if entrada.tipo_contenido == 'story_video' %}
+  "escenas_video": [
+    {"duracion_seg": 4, "visual": "qué se ve", "texto": "texto en pantalla"},
+    {"duracion_seg": 4, "visual": "qué se ve", "texto": "texto en pantalla"},
+    {"duracion_seg": 4, "visual": "cierre con producto", "texto": "CTA"},
+    {"duracion_seg": 3, "visual": "pantalla final", "texto": "enlace en bio"}
+  ],
+  "mood_musica": "upbeat_latino|chill_food|humor|energetico"
+  {% else %}
+  "hashtags_ocultos": ["#SalsasBestial"]
+  {% endif %}
+}

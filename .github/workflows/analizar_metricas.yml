@@ -1,0 +1,37 @@
+name: Analizar métricas semanales
+
+on:
+  schedule:
+    - cron: '0 3 * * 0'    # Domingo 10:00pm Colombia (UTC-5 → 03:00 UTC lunes)
+  workflow_dispatch:
+
+jobs:
+  metricas:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias Python
+        run: pip install -r requirements.txt
+
+      - name: Descargar y analizar métricas
+        run: python main.py analizar_metricas
+        env:
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          INSTAGRAM_BUSINESS_ACCOUNT_ID: ${{ secrets.INSTAGRAM_BUSINESS_ACCOUNT_ID }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      - name: Guardar métricas y reportes
+        run: |
+          git config --global user.email "agente@salsasbestial.com"
+          git config --global user.name "Agente Bestial"
+          git add datos/metricas_instagram.json material_agente/reportes/
+          git commit -m "chore: reporte métricas $(date +%Y-W%W)" || true
+          git push

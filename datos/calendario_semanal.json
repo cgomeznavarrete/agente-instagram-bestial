@@ -1,0 +1,429 @@
+{
+  "semana": "2026-W18",
+  "fecha_inicio": "2026-04-27",
+  "fecha_fin": "2026-05-03",
+  "fecha_generacion": "2026-04-27T21:34:12.928043",
+  "estado": "borrador",
+  "campana_activa": null,
+  "entradas": [
+    {
+      "id": "cal-2a1bfc",
+      "dia": "lunes",
+      "fecha": "2026-04-27",
+      "hora_publicacion": "19:00",
+      "tipo_contenido": "reel",
+      "pilar": "retos_y_pruebas_de_picante",
+      "objetivo": "awareness",
+      "concepto": "Reel de apertura de semana con hook visual fuerte. Texto animado sobre fondo oscuro con brasa: '¿Cuántos tacos aguantas antes de rendirte?' Secuencia rápida de manos echando Salsa Tatemada Ahumada a distintos platillos (tacos, huevos, arroz). Sin cara visible, solo manos y comida. Audio: sonido de chisporroteo + música urbana latina de fondo bajo. Copy en caption: 'El lunes también pica. Algunos lo saben desde el primer taco, otros lo aprenden a las 7pm con el estómago vacío y la Tatemada en mano. ¿Cuándo fue la última vez que una salsa te hizo sudar sin disculparte? 🔥 Enlace en bio.'",
+      "material_sugerido": [
+        "agente/generar/reel_manos_tacos_tatemada_lunes.mp4"
+      ],
+      "contenido_copy": {
+        "hook": "¿Cuántos tacos aguantas antes de rendirte?",
+        "cuerpo": "El lunes también pica... algunos lo aprenden a las 7pm con el estómago vacío y la Tatemada en mano. ¿Cuándo fue la última vez que una salsa te hizo sudar sin disculparte? 🔥 Enlace en bio.",
+        "cta": "Comenta cuántos tacos aguantaste — o ve directo al enlace en bio y pruébala tú mismo.",
+        "hashtags": [
+          "#SalsasBestial",
+          "#TatemadaAhumada",
+          "#SalsaPicante",
+          "#LunesPicante",
+          "#RetoPicante",
+          "#SalsaArtesanal",
+          "#TacoTime",
+          "#FoodLovers",
+          "#PicanteDeVerdad",
+          "#ComidaMexicana"
+        ],
+        "hashtags_cantidad": 10
+      },
+      "brief_capcut_path": "D:\\20210729\\cgome\\Documents\\Claude\\Agente Instagram\\material_agente\\briefs_capcut\\2026-04-27_reel_cal-2a1bfc.md",
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "estado": "generado",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-87ca37",
+      "dia": "lunes",
+      "fecha": "2026-04-27",
+      "hora_publicacion": "20:30",
+      "tipo_contenido": "story",
+      "pilar": "como_comprar",
+      "objetivo": "ventas",
+      "concepto": "Story estática con diseño minimalista sobre fondo negro con textura de carbón. Texto grande: 'La consigues por WhatsApp, por la web o en el link de bio. Sin complicaciones.' Flecha animada apuntando al swipe up / link. Subtexto pequeño: 'Salsa Tatemada Ahumada — envíos disponibles.' Sticker de 'Link' nativo de Instagram activado.",
+      "material_sugerido": [
+        "agente/generar/story_como_comprar_lunes.png"
+      ],
+      "contenido_copy": {
+        "hook": "",
+        "cuerpo": "",
+        "cta": "Desliza o escríbenos por WhatsApp — está en el bio.",
+        "hashtags": [],
+        "hashtags_cantidad": 0
+      },
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "estado": "generado",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-c95b83",
+      "dia": "martes",
+      "fecha": "2026-04-28",
+      "hora_publicacion": "12:00",
+      "tipo_contenido": "carrusel",
+      "pilar": "educacion_sobre_salsas",
+      "objetivo": "educacion",
+      "concepto": "Carrusel de 6 slides titulado internamente 'Todo lo que no sabías sobre una salsa tatemada'. Slide 1 (portada): texto provocador sobre fondo naranja quemado — 'La mayoría compra salsa. Pocos saben qué están comprando.' Slide 2: qué significa 'tatemar' — proceso de tostar ingredientes directamente al fuego o comal. Slide 3: por qué el ahumado cambia el sabor (reacción de Maillard explicada simple, sin tecnicismos). Slide 4: ingredientes típicos de una salsa tatemada vs una salsa cruda. Slide 5: cómo maridar una salsa ahumada (carnes, huevos, tacos de canasta, elotes). Slide 6 (cierre): 'La Bestial Tatemada Ahumada nació de este proceso. Sin atajos.' con CTA al link en bio. Diseño: tipografía bold, paleta naranja/negro/blanco, sin fotos del frasco (no hay material disponible). Copy caption: 'Tatemar no es quemar. Es saber exactamente hasta dónde llevar el fuego — y parar justo antes. Esa diferencia está en cada frasco. Guarda este carrusel si cocinas en serio.'",
+      "material_sugerido": [
+        "agente/generar/carrusel_educacion_tatemada_martes_slide1.png",
+        "agente/generar/carrusel_educacion_tatemada_martes_slide2.png",
+        "agente/generar/carrusel_educacion_tatemada_martes_slide3.png",
+        "agente/generar/carrusel_educacion_tatemada_martes_slide4.png",
+        "agente/generar/carrusel_educacion_tatemada_martes_slide5.png",
+        "agente/generar/carrusel_educacion_tatemada_martes_slide6.png"
+      ],
+      "contenido_copy": {
+        "hook": "",
+        "cuerpo": "",
+        "cta": "",
+        "hashtags": [
+          "#SalsasBestial",
+          "#SalsaTatemada",
+          "#SalsaAhumada",
+          "#CocinaMexicana",
+          "#Tatemar",
+          "#SalsaArtesanal",
+          "#PicanteMexicano",
+          "#FoodLovers",
+          "#CocinaCasera",
+          "#SaborReal"
+        ],
+        "hashtags_cantidad": 10
+      },
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "estado": "generado",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-24d5bc",
+      "dia": "martes",
+      "fecha": "2026-04-28",
+      "hora_publicacion": "19:00",
+      "tipo_contenido": "story",
+      "pilar": "humor_picante",
+      "objetivo": "entretenimiento",
+      "concepto": "Story con formato meme latinoamericano. Imagen generada: dos paneles estilo 'expectativa vs realidad'. Panel izquierda: texto 'Yo pidiendo la salsa suave en el restaurante'. Panel derecha: texto 'Yo en casa con la Tatemada Ahumada a las 11pm'. Fondo blanco, tipografía impacto, tono completamente humorístico. Sticker de encuesta: '¿Eres de salsa suave afuera, bestial en casa?' Opción A: 'Exactamente yo' / Opción B: 'Yo soy bestial siempre'.",
+      "material_sugerido": [
+        "agente/generar/story_meme_expectativa_realidad_martes.png"
+      ],
+      "contenido_copy": {
+        "hook": "",
+        "cuerpo": "",
+        "cta": "Responde la encuesta — sabemos quién eres.",
+        "hashtags": [],
+        "hashtags_cantidad": 0
+      },
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "estado": "generado",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-265e1e",
+      "dia": "miercoles",
+      "fecha": "2026-04-29",
+      "hora_publicacion": "19:00",
+      "tipo_contenido": "post",
+      "pilar": "recetas_y_maridajes",
+      "objetivo": "engagement",
+      "concepto": "Post estático de receta express. Diseño tipo tarjeta de receta con fondo texturizado color crema/ocre. Título: 'Elote bestial en 4 pasos'. Pasos listados en diseño visual (no en caption): 1. Elote cocido o asado. 2. Mantequilla. 3. Queso cotija rallado. 4. Salsa Tatemada Ahumada encima — sin límite. Tipografía artesanal, sin foto del producto. Copy caption: 'El elote con mayonesa ya lo conoces. El elote con la Tatemada... eso es otra conversación. Cuatro pasos. Ninguna excusa para no hacerlo este miércoles. ¿Agregarías algo más? 🌽'",
+      "material_sugerido": [
+        "agente/generar/post_receta_elote_bestial_miercoles.png"
+      ],
+      "contenido_copy": {
+        "hook": "El elote con mayonesa ya lo conoces.",
+        "cuerpo": "El elote con la Tatemada... eso es otra conversación. Cuatro pasos — elote, mantequilla, cotija y la Tatemada encima sin asco. Ninguna excusa para no hacerlo este miércoles. ¿Agregarías algo más? 🌽",
+        "cta": "Cuéntanos en los comentarios qué le metes — y si no has probado la Tatemada Ahumada, el link está en bio 🔥",
+        "hashtags": [
+          "#SalsasBestial",
+          "#TatemadaAhumada",
+          "#BestialLovers",
+          "#SaborBestial",
+          "#HechoConActitud",
+          "#EloteMexicano",
+          "#RecetasMexicanas",
+          "#ComidaCallejera",
+          "#SalsaPicante",
+          "#EloteAsado",
+          "#AntojitosМексикanos",
+          "#CocinaМexicana",
+          "#PicanteLovers",
+          "#RecetaExpress",
+          "#ComidaRica",
+          "#SalsaArtesanal",
+          "#FoodiesМexico",
+          "#AntojosМexicanos",
+          "#QuesoCotija",
+          "#RecetaFacil",
+          "#ComidaCallejera",
+          "#SalsaCasera",
+          "#FoodLovers",
+          "#MexicanFood",
+          "#CocinaEnCasa"
+        ],
+        "hashtags_cantidad": 25
+      },
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "estado": "generado",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-a4b902",
+      "dia": "miercoles",
+      "fecha": "2026-04-29",
+      "hora_publicacion": "20:30",
+      "tipo_contenido": "story",
+      "pilar": "testimonios_y_ugc",
+      "objetivo": "comunidad",
+      "concepto": "Story con diseño de 'caja de comentarios destacados'. Fondo oscuro con marco naranja. Texto central simulando testimonio real (redactado en tono auténtico): '\"La eché en los huevos del desayuno y ya no pude comer huevos sin ella. Problema mío.\" — alguien de la comunidad Bestial'. Subtexto: '¿Ya nos contaste tu historia? Etiquétanos.' Sticker de mención @salsasbestial activo. Nota de producción: si hay testimonios reales disponibles al momento de publicar, reemplazar el texto sugerido por el testimonio real.",
+      "material_sugerido": [
+        "agente/generar/story_testimonio_destacado_miercoles.png"
+      ],
+      "contenido_copy": {
+        "hook": "",
+        "cuerpo": "",
+        "cta": "Responde esta story con tu historia Bestial",
+        "hashtags": [],
+        "hashtags_cantidad": 0
+      },
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "estado": "generado",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-6e32e3",
+      "dia": "jueves",
+      "fecha": "2026-04-30",
+      "hora_publicacion": "12:00",
+      "tipo_contenido": "reel",
+      "pilar": "behind_the_scenes",
+      "objetivo": "awareness",
+      "concepto": "Reel de proceso artesanal narrado en primera persona. Hook visual: texto animado en pantalla — 'Esto pasa antes de que abras el frasco.' Video generado o animación estilo stop-motion ilustrado que muestra el proceso conceptual: ingredientes crudos → comal → fuego → mezcla → frasco. Sin mostrar frasco real (no hay material). Audio: voz en off con tono casual, como si fuera un mensaje de voz de WhatsApp: 'Nadie tatemea rápido. O lo haces bien o no lo haces.' Duración sugerida: 20-30 segundos. Copy caption: 'El fuego no miente. Cada lote de la Tatemada Ahumada pasa por el mismo proceso — sin máquinas que lo apresuren, sin atajos que lo arruinen. Así se hace. Punto.'",
+      "material_sugerido": [
+        "agente/generar/reel_behind_scenes_proceso_jueves.mp4"
+      ],
+      "contenido_copy": {
+        "hook": "Esto pasa antes de que abras el frasco.",
+        "cuerpo": "El fuego no miente — cada lote pasa por el mismo proceso, sin atajos que lo arruinen. Así se hace. Punto. 🔥",
+        "cta": "Guarda este video para cuando alguien te pregunte por qué la Tatemada Ahumada sabe diferente. El enlace para pedirla está en bio.",
+        "hashtags": [
+          "#SalsasBestial",
+          "#TatemadaAhumada",
+          "#SalsaArtesanal",
+          "#HechosConFuego",
+          "#SalsaPicante",
+          "#ComidaMexicana",
+          "#BehindTheScenes",
+          "#ProcesoArtesanal",
+          "#SalsaLovers",
+          "#PicanteDeVerdad"
+        ],
+        "hashtags_cantidad": 10
+      },
+      "brief_capcut_path": "D:\\20210729\\cgome\\Documents\\Claude\\Agente Instagram\\material_agente\\briefs_capcut\\2026-04-30_reel_cal-6e32e3.md",
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "estado": "generado",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-4d069e",
+      "dia": "viernes",
+      "fecha": "2026-05-01",
+      "hora_publicacion": "19:00",
+      "tipo_contenido": "post",
+      "pilar": "lifestyle_y_comunidad",
+      "objetivo": "comunidad",
+      "concepto": "Post estático de viernes con energía de fin de semana. Diseño: tipografía grande sobre fondo con textura de madera quemada. Texto principal: 'Ya es viernes. La pregunta no es qué vas a comer — es con qué salsa.' Subtexto pequeño: 'Nosotros ya sabemos la respuesta.' Paleta: naranja, negro, blanco hueso. Sin producto visible. Copy caption: 'Viernes sin plan concreto pero con la Tatemada en la alacena... algo bueno va a pasar. ¿Qué estás cocinando este finde? Cuéntanos abajo. 👇'",
+      "material_sugerido": [
+        "agente/generar/post_lifestyle_viernes_finde.png"
+      ],
+      "contenido_copy": {
+        "hook": "Viernes sin plan concreto pero con la Tatemada en la alacena...",
+        "cuerpo": "Algo bueno va a pasar, eso es seguro. No sé si vas a cocinar tacos, una pasta improvisada o lo que sobró del miércoles — pero con la salsa correcta, cualquier cosa se convierte en el plato del finde. Así funciona esto.",
+        "cta": "¿Qué estás cocinando hoy o mañana? Dinos abajo y te decimos cómo meterle la Tatemada. 👇",
+        "hashtags": [
+          "#SalsasBestial",
+          "#TatemadaAhumada",
+          "#BestialLovers",
+          "#SaborBestial",
+          "#VidalaBestial",
+          "#SalsaPicante",
+          "#ComidaMexicana",
+          "#PicanteLovers",
+          "#SalsaArtesanal",
+          "#FoodiesLatinos",
+          "#CocinaEnCasa",
+          "#RecetasFáciles",
+          "#ViernesdeCocina",
+          "#FinDeSemanaGourmet",
+          "#SalsasMexicanas",
+          "#AhumadoNatural",
+          "#CocinaCasera",
+          "#PicanteMexicano",
+          "#GastroMex",
+          "#SaborAuténtico",
+          "#ViernessabrosoS",
+          "#TacoViernes",
+          "#ComidasDelFinde",
+          "#SalsaParaTodo",
+          "#MejorConSalsa"
+        ],
+        "hashtags_cantidad": 25
+      },
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "estado": "generado",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-26bf10",
+      "dia": "sabado",
+      "fecha": "2026-05-02",
+      "hora_publicacion": "12:00",
+      "tipo_contenido": "post",
+      "pilar": "humor_picante",
+      "objetivo": "entretenimiento",
+      "concepto": "Post estático con humor latinoamericano. Diseño: formato de 'clasificación' o 'tier list' visual. Título: 'Tipos de personas en una parrillada'. Categorías ilustradas con texto e íconos simples: S-tier — 'El que lleva la Tatemada sin que nadie se lo pida.' A-tier — 'El que pregunta si pica antes de probar.' B-tier — 'El que dice que no le gusta picante y se sirve tres veces.' C-tier — 'El que trae salsa de botella de supermercado.' Diseño limpio, colores de marca. Copy caption: 'Todos conocemos a alguien en cada nivel. ¿En cuál estás tú? — Sé honesto, aquí no se juzga (sí se juzga un poco).'",
+      "material_sugerido": [
+        "agente/generar/post_humor_tierlist_parrillada_sabado.png"
+      ],
+      "contenido_copy": {
+        "hook": "En cada parrillada hay un héroe, un cobarde y alguien que arruina el asado.",
+        "cuerpo": "Ya sabes quién es quién. El S-tier no pide permiso — llega con la Tatemada y punto. El de la salsa de supermercado... bueno, ya saben. Comenta la letra de tu tier y nosotros no decimos nada... casi.",
+        "cta": "Etiqueta al que siempre cae en C-tier 👇 — y si quieres subir de nivel, el link está en bio.",
+        "hashtags": [
+          "#SalsasBestial",
+          "#TatemadaAhumada",
+          "#BestialLovers",
+          "#SalsaBestial",
+          "#PickyBestial",
+          "#SalsaPicante",
+          "#Parrillada",
+          "#AsadoLatino",
+          "#ComidaPicante",
+          "#SalsaArtesanal",
+          "#FoodiesLatam",
+          "#AmantesDelPicante",
+          "#CulturaParrillera",
+          "#HumorFoodie",
+          "#TierList",
+          "#VibesDeParrilla",
+          "#MexicanFood",
+          "#SalsaHecha",
+          "#PicanteDeVerdad",
+          "#GrillSeason",
+          "#ComidaReal",
+          "#FoodHumor",
+          "#AsadoMexicano",
+          "#SaborAutentico",
+          "#PicanteCultural"
+        ],
+        "hashtags_cantidad": 25
+      },
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "estado": "generado",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-9da22b",
+      "dia": "sabado",
+      "fecha": "2026-05-02",
+      "hora_publicacion": "19:00",
+      "tipo_contenido": "story",
+      "pilar": "recetas_y_maridajes",
+      "objetivo": "engagement",
+      "concepto": "Story interactiva tipo 'quiz de maridaje'. Fondo naranja con tipografía negra bold. Pregunta: '¿Con qué lo combinarías tú?' Imagen ilustrada de la Salsa Tatemada Ahumada (sin foto real, versión ilustrada minimalista del frasco). Sticker de encuesta con 4 opciones: A) Tacos de birria B) Huevos revueltos C) Pizza fría del día anterior D) Todo lo anterior (respuesta correcta obvia). Diseño divertido, tono ligero.",
+      "material_sugerido": [
+        "agente/generar/story_quiz_maridaje_sabado.png"
+      ],
+      "contenido_copy": {
+        "hook": "",
+        "cuerpo": "",
+        "cta": "Responde la encuesta 👇",
+        "hashtags": [],
+        "hashtags_cantidad": 0
+      },
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "estado": "generado",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-1ff7a7",
+      "dia": "domingo",
+      "fecha": "2026-05-03",
+      "hora_publicacion": "12:00",
+      "tipo_contenido": "story",
+      "pilar": "promociones_y_lanzamientos",
+      "objetivo": "ventas",
+      "concepto": "Story de conversión directa. Diseño: fondo negro, texto en naranja y blanco, estilo urgente pero sin ser agresivo. Texto principal: 'Si llevas semanas pensándolo — este es el momento.' Subtexto: 'Salsa Tatemada Ahumada. Pídela por WhatsApp, por la web o en el link de bio.' CTA visual con flecha hacia arriba. Sticker de enlace activo. Tono: amigo que te da el último empujón, no vendedor de teletienda.",
+      "material_sugerido": [
+        "agente/generar/story_conversion_domingo.png"
+      ],
+      "contenido_copy": {
+        "hook": "",
+        "cuerpo": "",
+        "cta": "Toca el enlace. Hoy.",
+        "hashtags": [],
+        "hashtags_cantidad": 0
+      },
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "estado": "generado",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-e117f4",
+      "dia": "domingo",
+      "fecha": "2026-05-03",
+      "hora_publicacion": "19:00",
+      "tipo_contenido": "story",
+      "pilar": "como_comprar",
+      "objetivo": "ventas",
+      "concepto": "Story de cierre de semana con instrucciones claras de compra. Diseño en 3 slides de story enlazados (formato secuencia). Slide 1: '¿Cómo la consigues?' Slide 2: Tres opciones visuales con íconos simples — Icono Instagram: 'Link en bio' / Icono WhatsApp: 'Escríbenos directo' / Icono web: 'Página web'. Slide 3: 'Sin complicaciones. Solo tú, la Tatemada y lo que quieras cocinar.' Paleta de marca, tipografía limpia. Sticker de link activo en el slide 2.",
+      "material_sugerido": [
+        "agente/generar/story_como_comprar_cierre_domingo_s1.png",
+        "agente/generar/story_como_comprar_cierre_domingo_s2.png",
+        "agente/generar/story_como_comprar_cierre_domingo_s3.png"
+      ],
+      "contenido_copy": {
+        "hook": "",
+        "cuerpo": "",
+        "cta": "Enlace",
+        "hashtags": [],
+        "hashtags_cantidad": 0
+      },
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "estado": "generado",
+      "publicacion_id": null
+    }
+  ],
+  "notas_estrategia": "Semana de construcción de comunidad y deseo de producto. Sin material visual disponible, todo el contenido se basa en material generado por el agente: ilustraciones, texto sobre fondo, motion graphics simples y video generado. La semana arranca con un hook de actitud (lunes-reel), transita por educación y humor en la mitad de semana, y cierra el domingo con conversión directa. Se alterna venta/educación/entretenimiento/comunidad según reglas. Ningún pilar se repite en días consecutivos. El límite de 4 piezas diarias y el intervalo de 90 minutos se respetan en todos los días con más de una publicación. Al menos 1 pieza de ventas directa (domingo). Los reels tienen los hooks más fuertes de la semana."
+}

@@ -1,0 +1,59 @@
+Genera un brief de producción completo para CapCut para Salsas Bestial.
+
+DETALLES DE LA PIEZA:
+- Tipo: {{ entrada.tipo_contenido }}
+- Pilar: {{ entrada.pilar | replace('_', ' ') | title }}
+- Objetivo: {{ entrada.objetivo }}
+- Concepto: {{ entrada.concepto }}
+- Fecha de publicación: {{ entrada.fecha }} a las {{ entrada.hora_publicacion }}
+
+{% if material_disponible %}
+MATERIAL DISPONIBLE PARA ESTA PIEZA:
+{% for archivo in material_disponible %}
+- {{ archivo }}
+{% endfor %}
+{% endif %}
+
+ESPECIFICACIONES TÉCNICAS (obligatorias):
+- Formato: 9:16 vertical (1080x1920px)
+- Codec: H.264, AAC audio
+- FPS: 30
+- Duración: {% if entrada.tipo_contenido == 'reel' %}20-30 segundos{% else %}10-15 segundos{% endif %}
+- Exportar como MP4
+
+INSTRUCCIONES PARA EL BRIEF:
+- Cada escena debe indicar exactamente qué material usar
+- Los textos deben especificar fuente, tamaño y posición
+- Las transiciones deben ser simples y rápidas (no distraer del contenido)
+- La música debe complementar sin tapar el mensaje visual
+- El hook de los primeros 3 segundos es la prioridad máxima
+
+Devuelve ÚNICAMENTE este JSON:
+{
+  "nombre_pieza": "nombre descriptivo del archivo",
+  "duracion_total_seg": 25,
+  "hook_primeros_3_seg": "descripción precisa de qué pasa en los primeros 3 segundos",
+  "escenas": [
+    {
+      "numero": 1,
+      "duracion_seg": 3,
+      "descripcion_visual": "qué se ve exactamente",
+      "material_a_usar": "nombre del archivo de material_usuario/ o material_agente/",
+      "texto_en_pantalla": "texto exacto a superponer",
+      "posicion_texto": "top|center|bottom",
+      "fuente": "Impact|Arial Bold",
+      "tamano_fuente": "grande|mediano|pequeño",
+      "tipo_transicion_salida": "fade|slide_left|cut"
+    }
+  ],
+  "musica": {
+    "mood": "upbeat_latino|chill_food|humor|energetico",
+    "volumen_pct": 25,
+    "fade_in_seg": 1,
+    "fade_out_seg": 1.5
+  },
+  "texto_cta_final": "texto exacto del CTA en el último segundo",
+  "color_texto_principal": "#FFFFFF",
+  "efectos_adicionales": ["zoom lento en producto", "partículas de fuego (opcional)"],
+  "notas_editor": "instrucciones adicionales para quien edita en CapCut"
+}

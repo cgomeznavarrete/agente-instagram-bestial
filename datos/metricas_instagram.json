@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "cuenta": {
+    "seguidores": 0,
+    "seguidos": 0,
+    "publicaciones_total": 0,
+    "ultima_actualizacion": null
+  },
+  "semanas": []
+}

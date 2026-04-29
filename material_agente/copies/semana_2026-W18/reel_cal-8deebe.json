@@ -1,0 +1,41 @@
+{
+  "hook": "La gente que dice que no le gusta el picante... nunca ha probado la Tatemada.",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Fondo negro puro. Texto blanco enorme aparece letra por letra con efecto de máquina de escribir rápida.",
+      "texto_pantalla": "La gente que dice que no le gusta el picante..."
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Corte seco. Mismo fondo negro. El texto cambia de golpe, más grande, con ligero temblor en la tipografía.",
+      "texto_pantalla": "...nunca ha probado la Tatemada."
+    },
+    {
+      "segundo": "8-20",
+      "visual": "Close-up lento del frasco de Salsa Tatemada Ahumada sobre superficie oscura. Efecto de humo sutil en post-producción saliendo del frasco. Luz lateral cálida que resalta la etiqueta sin filtros de color. Sonido de chisporroteo en el audio.",
+      "texto_pantalla": "Salsa Tatemada Ahumada 🔥"
+    },
+    {
+      "segundo": "20-25",
+      "visual": "El frasco queda centrado en pantalla. Texto aparece debajo en tipografía limpia y directa.",
+      "texto_pantalla": "Link en bio. Tu comida te lo va a agradecer."
+    }
+  ],
+  "caption": "Hay dos tipos de personas. Y ya sabes en cuál estás tú 🔥 — el link en bio no muerde, la salsa sí.",
+  "cta": "Comenta TATEMADA si ya la probaste. Si no... ¿a qué estás esperando? Link en bio.",
+  "hashtags": [
+    "#SalsasBestial",
+    "#TatemadaAhumada",
+    "#SalsaPicante",
+    "#HumorPicante",
+    "#ComidaMexicana",
+    "#SalsaArtesanal",
+    "#Foodie",
+    "#PicanteLovers",
+    "#SaborReal",
+    "#ReelDeCocina"
+  ],
+  "mood_musica": "humor",
+  "hook_audio": null
+}

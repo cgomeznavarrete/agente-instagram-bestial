@@ -1,0 +1,37 @@
+Crea el copy para un CARRUSEL de Instagram de Salsas Bestial.
+
+CONCEPTO DE ESTA PIEZA:
+- Pilar: {{ entrada.pilar | replace('_', ' ') | title }}
+- Objetivo: {{ entrada.objetivo }}
+- Concepto: {{ entrada.concepto }}
+
+INSTRUCCIONES ESPECÍFICAS PARA CARRUSEL:
+- El carrusel tiene el mayor tiempo de retención en Instagram — aprovechar cada slide
+- Slide 1 (portada): debe generar el "necesito ver más" — el hook visual
+- Slides intermedios: cada uno debe tener 1 solo mensaje claro
+- Último slide: siempre terminar con CTA específico y mención de la marca
+- Caption principal: hacer referencia a que hay más slides ("desliza →")
+- Máximo 7-8 slides para no cansar
+
+Devuelve ÚNICAMENTE este JSON:
+{
+  "caption_principal": "texto del caption con referencia a deslizar",
+  "cta_caption": "CTA del caption",
+  "hashtags": ["#SalsasBestial", "#..."],
+  "slides": [
+    {
+      "numero": 1,
+      "titulo": "texto principal del slide (hook)",
+      "subtitulo": "texto secundario (o null)",
+      "descripcion_visual": "cómo debe verse este slide",
+      "tipo": "portada|contenido|cta"
+    },
+    {
+      "numero": 2,
+      "titulo": "mensaje de este slide",
+      "subtitulo": null,
+      "descripcion_visual": "descripción visual",
+      "tipo": "contenido"
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "version": "1.0",
+  "ultima_actualizacion": "2026-04-27T21:39:46.566371",
+  "banco_ideas": [
+    {
+      "id": "idea-4428a483",
+      "fecha_generacion": "2026-04-27",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "retos_y_pruebas_de_picante",
+      "concepto": "Alguien prueba la Salsa Tatemada Ahumada por primera vez sin saber qué tan picante es. La cámara captura la reacción en tiempo real: la cara, el silencio, y luego el 'espérate... está buenísima'. Sin cortes dramáticos, sin actuación. Solo la reacción honesta.",
+      "notas": "Los reels de reacciones auténticas tienen tasa de compartido altísima. No requiere producción elaborada, solo un celular y alguien dispuesto. El giro de 'está picante pero está deliciosa' genera identificación inmediata.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-460f974c",
+      "fecha_generacion": "2026-04-27",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "recetas_y_maridajes",
+      "concepto": "Carrusel titulado 'Lo que le faltaba a tu taco de canasta'. Slide 1: foto del taco solo, triste, sin salsa. Slide 2 al 5: paso a paso de cómo agregar la Salsa Tatemada Ahumada con gestos específicos (cantidad, momento, técnica). Último slide: el taco ya 'completo' con la salsa encima.",
+      "notas": "El taco de canasta es un ícono cultural latinoamericano. Conecta emocionalmente antes de vender. El formato antes/después en carrusel retiene atención y genera guardados masivos.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-3706d2d2",
+      "fecha_generacion": "2026-04-27",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "behind_the_scenes",
+      "concepto": "Video de 30 segundos mostrando el proceso de elaboración de la salsa: los chiles tatemándose, el ahumado, el frasco siendo llenado. Sin narración sobreproducida. Solo sonidos reales de la cocina y una frase al final en pantalla: 'Esto es lo que sabe diferente'.",
+      "notas": "El contenido artesanal y 'crudo' genera confianza y diferencia de marcas industriales. Los sonidos ASMR de cocina tienen muy buen desempeño orgánico en Reels actualmente.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-3ded5a58",
+      "fecha_generacion": "2026-04-27",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "humor_picante",
+      "concepto": "Foto del frasco de Salsa Tatemada Ahumada en primer plano con copy que diga: 'Mi ex decía que yo era demasiado intenso. Igual que esta salsa. Y mira, aquí seguimos los dos.' Fondo neutro, iluminación limpia.",
+      "notas": "El humor relacional es uno de los formatos más compartidos en Instagram. Humaniza la marca sin perder identidad. Bajo costo de producción, alto potencial de viralidad por identificación.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-f7171926",
+      "fecha_generacion": "2026-04-27",
+      "origen": "claude",
+      "tipo_sugerido": "story",
+      "pilar": "como_comprar",
+      "concepto": "Serie de 3 stories: Story 1 con pregunta '¿Ya tienes la tuya?' con sticker de encuesta Sí/No. Story 2 mostrando el link en bio y el número de WhatsApp con instrucciones visuales simples. Story 3 con captura de pantalla de un pedido real o mensaje de cliente satisfecho (con permiso).",
+      "notas": "Las stories de conversión directa funcionan mejor cuando están precedidas de una pregunta de engagement. El sticker de encuesta activa el algoritmo y calienta la audiencia antes del CTA.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-b58c802a",
+      "fecha_generacion": "2026-04-27",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "educacion_sobre_salsas",
+      "concepto": "Carrusel '¿Qué significa que una salsa esté tatemada?' Slide 1: pregunta provocadora. Slides 2-4: explicación visual de qué es tatemarla, por qué cambia el sabor, qué aporta el ahumado. Último slide: 'Ahora ya sabes por qué nuestra salsa sabe así. Y por qué las otras no.'",
+      "notas": "El contenido educativo genera guardados masivos, lo que mejora el alcance orgánico. Posiciona a Salsas Bestial como autoridad en el tema sin sonar pedante. El último slide cierra con diferenciación de producto.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-3ec65723",
+      "fecha_generacion": "2026-04-27",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "lifestyle_y_comunidad",
+      "concepto": "Reel con escenas cortas de situaciones cotidianas donde la salsa aparece: la carnita asada del domingo, el desayuno de huevos rancheros, la reunión con amigos. No es un anuncio, es un día normal donde Salsas Bestial está presente. Audio trending con ritmo relajado.",
+      "notas": "El lifestyle content construye identidad de marca a largo plazo. Muestra que la salsa no es un producto especial para ocasiones raras, sino parte del día a día. Alta resonancia con el público de 25-38 años.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-4dda26d0",
+      "fecha_generacion": "2026-04-27",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "testimonios_y_ugc",
+      "concepto": "Repost o recreación de un mensaje de WhatsApp real de un cliente (anonimizado o con permiso) donde describe la salsa con sus propias palabras, probablemente con faltas de ortografía y todo. Diseño que imite la burbuja de WhatsApp. Copy de la marca: solo el nombre y un punto.",
+      "notas": "Los testimonios en formato de mensaje de WhatsApp se sienten 100% auténticos. Las faltas de ortografía o el lenguaje informal generan más confianza que una reseña perfecta. Es el antimarketing que más vende.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-25113474",
+      "fecha_generacion": "2026-04-27",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "retos_y_pruebas_de_picante",
+      "concepto": "Reto '¿Cuántas gotas aguantas en tu taco?' Alguien empieza con una gota, luego dos, luego tres... La cámara registra cómo el sabor lo va conquistando más que el picante. El mensaje final: no es resistencia, es adicción.",
+      "notas": "El formato de reto escalonado engancha porque el espectador quiere ver qué pasa en cada nivel. Invita a replicarlo, lo que puede generar contenido UGC orgánico. Bajo costo, alto retorno de atención.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-ec46b839",
+      "fecha_generacion": "2026-04-27",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "promociones_y_lanzamientos",
+      "concepto": "Carrusel de 'Todo lo que no te dijimos de la Salsa Tatemada Ahumada'. Cada slide revela un detalle del producto de forma visual y directa: el proceso, el tipo de chile, el origen del ahumado, cómo se sella. Último slide: precio, canales de compra, CTA directo.",
+      "notas": "Funciona como contenido evergreen de presentación del producto. Ideal para anclar en el perfil como publicación fija. Educa y convierte al mismo tiempo sin sonar a catálogo corporativo.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    }
+  ]
+}

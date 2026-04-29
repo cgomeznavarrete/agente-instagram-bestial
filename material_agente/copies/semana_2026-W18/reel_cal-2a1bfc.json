@@ -1,0 +1,41 @@
+{
+  "hook": "¿Cuántos tacos aguantas antes de rendirte?",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Fondo negro con efecto brasa/chisporroteo. Texto animado aparece letra por letra, como quemándose en la pantalla.",
+      "texto_pantalla": "¿Cuántos tacos aguantas antes de rendirte?"
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Corte rápido a mano echando Salsa Tatemada Ahumada sobre un taco bien cargado. Primer plano del chorro de salsa cayendo. Sin cara, solo manos morenas, anillos, uñas naturales — manos reales.",
+      "texto_pantalla": "El lunes también pica."
+    },
+    {
+      "segundo": "8-20",
+      "visual": "Secuencia en cortes de 3 segundos cada uno: 1) Mano bañando huevos estrellados con la Tatemada, vapor visible. 2) Mano echando salsa al arroz blanco — contraste visual fuerte. 3) Taco número tres en mano, ya con la salsa puesta, listo para la mordida. Cada corte sincronizado con el beat de la música urbana.",
+      "texto_pantalla": "Taco 1... taco 2... taco 3... 🔥"
+    },
+    {
+      "segundo": "20-25",
+      "visual": "Frasco de Salsa Tatemada Ahumada en primer plano sobre mesa rústica oscura. Mano lo toma con confianza. Fade out lento con chisporroteo de audio.",
+      "texto_pantalla": "Salsa Tatemada Ahumada — enlace en bio."
+    }
+  ],
+  "caption": "El lunes también pica... algunos lo aprenden a las 7pm con el estómago vacío y la Tatemada en mano. ¿Cuándo fue la última vez que una salsa te hizo sudar sin disculparte? 🔥 Enlace en bio.",
+  "cta": "Comenta cuántos tacos aguantaste — o ve directo al enlace en bio y pruébala tú mismo.",
+  "hashtags": [
+    "#SalsasBestial",
+    "#TatemadaAhumada",
+    "#SalsaPicante",
+    "#LunesPicante",
+    "#RetoPicante",
+    "#SalsaArtesanal",
+    "#TacoTime",
+    "#FoodLovers",
+    "#PicanteDeVerdad",
+    "#ComidaMexicana"
+  ],
+  "mood_musica": "energetico",
+  "hook_audio": null
+}

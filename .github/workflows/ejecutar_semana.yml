@@ -1,0 +1,47 @@
+name: Ejecutar semana de contenido
+
+on:
+  schedule:
+    - cron: '0 14 * * 1'   # Lunes 9:00am Colombia (UTC-5 → 14:00 UTC)
+  workflow_dispatch:        # Permite ejecución manual desde GitHub
+
+jobs:
+  generar-semana:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias del sistema (FFmpeg para MoviePy)
+        run: sudo apt-get install -y ffmpeg
+
+      - name: Instalar dependencias Python
+        run: pip install -r requirements.txt
+
+      - name: Ejecutar flujo semanal
+        run: python main.py ejecutar_semana
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          INSTAGRAM_BUSINESS_ACCOUNT_ID: ${{ secrets.INSTAGRAM_BUSINESS_ACCOUNT_ID }}
+          FACEBOOK_APP_ID: ${{ secrets.FACEBOOK_APP_ID }}
+          FACEBOOK_APP_SECRET: ${{ secrets.FACEBOOK_APP_SECRET }}
+          CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
+          IMGBB_API_KEY: ${{ secrets.IMGBB_API_KEY }}
+          REMOVEBG_API_KEY: ${{ secrets.REMOVEBG_API_KEY }}
+          FALAI_API_KEY: ${{ secrets.FALAI_API_KEY }}
+          OBSIDIAN_VAULT_PATH: ${{ github.workspace }}/obsidian_output
+
+      - name: Guardar calendario y material generado
+        run: |
+          git config --global user.email "agente@salsasbestial.com"
+          git config --global user.name "Agente Bestial"
+          git add datos/ material_agente/copies/ material_agente/briefs_capcut/ material_agente/calendarios/
+          git commit -m "chore: semana $(date +%Y-W%W) generada" || true
+          git push
