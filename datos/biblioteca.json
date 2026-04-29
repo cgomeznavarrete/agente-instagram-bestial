@@ -125,6 +125,26 @@
         "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/posts/carrusel_1777502906582/slide_04.jpg"
       ],
       "cloudinary_url": ""
+    },
+    {
+      "id": "carrusel_1777503025943",
+      "tipo": "post",
+      "nombre_archivo": "carrusel_4_slides",
+      "ruta_local": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/posts/carrusel_1777503025943",
+      "fecha_agregado": 1777503025.9437754,
+      "estado": "pendiente",
+      "pilar": "lifestyle_y_comunidad",
+      "caption": "",
+      "media_id": "",
+      "fecha_publicado": 0.0,
+      "es_carrusel": true,
+      "archivos_carrusel": [
+        "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/posts/carrusel_1777503025943/slide_00.jpg",
+        "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/posts/carrusel_1777503025943/slide_01.jpg",
+        "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/posts/carrusel_1777503025943/slide_02.jpg",
+        "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/posts/carrusel_1777503025943/slide_03.jpg"
+      ],
+      "cloudinary_url": ""
     }
   ]
 }
