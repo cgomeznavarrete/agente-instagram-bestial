@@ -195,10 +195,10 @@ class BotTelegram:
 
     def _manejar_mensaje(self, msg: dict):
         chat_id = str(msg.get("chat", {}).get("id", ""))
-        logger.info("Mensaje de chat_id=%s | config=%s | match=%s | keys=%s",
-                    chat_id, settings.TELEGRAM_CHAT_ID,
+        logger.info("Mensaje recibido | chat_id=%s | match=%s | keys=%s",
+                    chat_id,
                     chat_id == str(settings.TELEGRAM_CHAT_ID),
-                    [k for k in msg if k != "photo"])
+                    list(msg.keys()))
         if chat_id != str(settings.TELEGRAM_CHAT_ID):
             logger.warning("Ignorando mensaje de chat_id=%s (no autorizado)", chat_id)
             return  # Solo responder al chat autorizado
@@ -206,6 +206,7 @@ class BotTelegram:
         texto = msg.get("text", "").strip()
         foto = msg.get("photo")
         video = msg.get("video")
+        documento = msg.get("document")
         media_group_id = msg.get("media_group_id")  # álbum de varias fotos
 
         # ── Comandos de texto ─────────────────────────────────────────────
@@ -227,14 +228,32 @@ class BotTelegram:
 
         # ── Foto recibida ─────────────────────────────────────────────────
         if foto:
+            logger.info("Foto recibida, procesando...")
             file_id = foto[-1]["file_id"]  # La de mayor resolución
             self._recibir_media(file_id, ".jpg", "imagen", chat_id, media_group_id)
             return
 
         # ── Video recibido ────────────────────────────────────────────────
         if video:
+            logger.info("Video recibido, procesando...")
             file_id = video["file_id"]
             self._recibir_media(file_id, ".mp4", "video", chat_id, media_group_id)
+            return
+
+        # ── Documento recibido (foto enviada como archivo) ────────────────
+        if documento:
+            mime = documento.get("mime_type", "")
+            logger.info("Documento recibido, mime_type=%s", mime)
+            if mime.startswith("image/"):
+                ext = ".jpg" if "jpeg" in mime else ".png" if "png" in mime else ".jpg"
+                self._recibir_media(documento["file_id"], ext, "imagen", chat_id, media_group_id)
+            elif mime.startswith("video/"):
+                self._recibir_media(documento["file_id"], ".mp4", "video", chat_id, media_group_id)
+            else:
+                _enviar_mensaje(
+                    f"Recibí un archivo ({mime}), pero solo proceso imágenes y videos.\n"
+                    "Envíame una foto directamente desde la galería."
+                )
             return
 
         # ── Contexto: esperando pilar ─────────────────────────────────────
@@ -242,6 +261,16 @@ class BotTelegram:
         if estado["paso"] == "esperando_pilar_texto" and texto:
             pilar = estado["datos"].get("pilar", "lifestyle_y_comunidad")
             self._continuar_flujo_con_pilar(chat_id, pilar)
+            return
+
+        # ── Mensaje no reconocido ─────────────────────────────────────────
+        if not texto:
+            logger.info("Mensaje sin contenido reconocido: %s", list(msg.keys()))
+            _enviar_mensaje(
+                "Recibí tu mensaje pero no lo pude procesar.\n\n"
+                "Envíame una <b>foto</b> desde tu galería directamente.\n"
+                "O escribe /ayuda para ver los comandos disponibles."
+            )
 
     def _recibir_media(self, file_id: str, extension: str, tipo_media: str, chat_id: str, media_group_id: str = None):
         """Recibe un archivo y pregunta qué hacer con él."""
