@@ -3,7 +3,7 @@ name: Bot Telegram — siempre activo
 on:
   workflow_dispatch:  # Lanzar manualmente desde GitHub
   push:
-    branches: [main]
+    branches: [master]
     paths:
       - 'agente/telegram/bot.py'
       - '.github/workflows/bot_telegram.yml'
