@@ -480,12 +480,12 @@ class BotTelegram:
             from agente.instagram.publicador import Publicador
             # Usar el publicador existente para reels
             subidor = SubidorCloudinary()
-            url = subidor.subir(ruta, tipo="video")
+            url = subidor.subir(ruta, resource_type="video")
             if url:
                 media_id = self._publicar_reel_ig(url, caption)
         elif tipo_pub == "story" and es_video:
             subidor = SubidorCloudinary()
-            url = subidor.subir(ruta, tipo="video")
+            url = subidor.subir(ruta, resource_type="video")
             if url:
                 media_id = self._publicar_story_video_ig(url)
 
