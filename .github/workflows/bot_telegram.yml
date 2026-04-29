@@ -6,7 +6,16 @@ on:
     branches: [master]
     paths:
       - 'agente/telegram/bot.py'
+      - 'agente/telegram/notificador.py'
+      - 'agente/media/subidor_cloudinary.py'
+      - 'agente/gestores/biblioteca.py'
+      - 'agente/generadores/carrusel_html.py'
       - '.github/workflows/bot_telegram.yml'
+
+# Solo una instancia activa a la vez — la nueva cancela la anterior
+concurrency:
+  group: bot-telegram
+  cancel-in-progress: true
 
 jobs:
   bot:
