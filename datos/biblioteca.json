@@ -1,3 +1,19 @@
 {
-  "items": []
+  "items": [
+    {
+      "id": "story_1777498679201",
+      "tipo": "story",
+      "nombre_archivo": "story_1777498679201.mp4",
+      "ruta_local": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/stories/story_1777498679201.mp4",
+      "fecha_agregado": 1777498680.3321426,
+      "estado": "pendiente",
+      "pilar": "lifestyle_y_comunidad",
+      "caption": "",
+      "media_id": "",
+      "fecha_publicado": 0.0,
+      "es_carrusel": false,
+      "archivos_carrusel": [],
+      "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/video/upload/v1777498679/salsas_bestial/edmttbbyrfbdnog1g8wk.mp4"
+    }
+  ]
 }
