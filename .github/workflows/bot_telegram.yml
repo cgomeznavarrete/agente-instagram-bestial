@@ -21,9 +21,14 @@ jobs:
   bot:
     runs-on: ubuntu-latest
     timeout-minutes: 350  # ~6 horas máximo por run de GitHub Actions
+    permissions:
+      contents: write
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          persist-credentials: true
 
       - uses: actions/setup-python@v5
         with:
