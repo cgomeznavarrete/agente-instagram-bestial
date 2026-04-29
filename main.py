@@ -891,26 +891,37 @@ def publicar_programado():
     import requests as req
     import cloudinary
     import cloudinary.uploader
+    from zoneinfo import ZoneInfo
     from agente.gestores.biblioteca import (
         siguiente_pendiente, marcar_publicado, marcar_descartado, contar_pendientes
     )
     from agente.telegram.notificador import _enviar_foto, _enviar_mensaje, BASE_URL
 
-    ahora = datetime.datetime.now()
-    dia_semana = ahora.weekday()  # 0=lun, 1=mar, 2=mie, 3=jue, 4=vie
+    # Siempre hora Colombia (UTC-5) — funciona igual local y en GitHub Actions (Ubuntu UTC)
+    tz_col = ZoneInfo("America/Bogota")
+    ahora = datetime.datetime.now(tz_col)
+    dia_semana = ahora.weekday()  # 0=lun ... 6=dom
     hora = ahora.hour
 
-    # Determinar qué publicar según día y hora
+    # Dos slots por día, todos los días:
+    #   Mediodía (11-14 COL) → post o carrusel
+    #   Noche   (18-22 COL) → reel o story
     HORARIO = {
-        # (dia_semana, hora_min, hora_max): tipo
-        (0, 8, 10): "story",   # Lunes 9am
-        (0, 11, 13): "post",   # Lunes 12pm
-        (1, 18, 20): "reel",   # Martes 7pm
-        (2, 8, 10): "story",   # Miércoles 9am
-        (2, 11, 13): "post",   # Miércoles 12pm
-        (3, 18, 20): "reel",   # Jueves 7pm
-        (4, 8, 10): "story",   # Viernes 9am
-        (4, 11, 13): "post",   # Viernes 12pm
+        # (dia_semana, hora_min, hora_max): tipo_preferido
+        (0, 11, 14): "post",    # Lunes mediodía
+        (0, 18, 22): "reel",    # Lunes noche
+        (1, 11, 14): "post",    # Martes mediodía
+        (1, 18, 22): "reel",    # Martes noche
+        (2, 11, 14): "post",    # Miércoles mediodía
+        (2, 18, 22): "story",   # Miércoles noche
+        (3, 11, 14): "reel",    # Jueves mediodía
+        (3, 18, 22): "story",   # Jueves noche
+        (4, 11, 14): "post",    # Viernes mediodía
+        (4, 18, 22): "reel",    # Viernes noche
+        (5, 11, 14): "post",    # Sábado mediodía
+        (5, 18, 22): "story",   # Sábado noche
+        (6, 11, 14): "story",   # Domingo mediodía
+        (6, 18, 22): "story",   # Domingo noche
     }
 
     tipo_pub = None
@@ -920,15 +931,25 @@ def publicar_programado():
             break
 
     if not tipo_pub:
-        console.print(f"[yellow]Fuera de horario de publicación ({ahora.strftime('%A %H:%M')}). No se publica nada.[/yellow]")
+        console.print(f"[yellow]Fuera de horario ({ahora.strftime('%A %H:%M')} COL). No se publica nada.[/yellow]")
         return
 
     console.print(Panel(
         f"[bold blue]Publicación programada[/bold blue]\n"
-        f"Día: {ahora.strftime('%A')} | Hora: {ahora.strftime('%H:%M')} | Tipo: {tipo_pub.upper()}"
+        f"Día: {ahora.strftime('%A')} | Hora: {ahora.strftime('%H:%M')} COL | Tipo: {tipo_pub.upper()}"
     ))
 
+    # Intentar tipo preferido; si no hay, cualquier tipo disponible
     item = siguiente_pendiente(tipo_pub)
+    if not item:
+        for tipo_alt in ["post", "reel", "story"]:
+            if tipo_alt != tipo_pub:
+                item_alt = siguiente_pendiente(tipo_alt)
+                if item_alt:
+                    console.print(f"[yellow]No hay {tipo_pub}s — usando {tipo_alt.upper()} disponible[/yellow]")
+                    tipo_pub = tipo_alt
+                    item = item_alt
+                    break
     if not item:
         conteo = contar_pendientes()
         console.print(f"[yellow]No hay {tipo_pub}s pendientes. Intentando generar carrusel de emergencia...[/yellow]")

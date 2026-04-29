@@ -2,13 +2,10 @@ name: Publicar contenido programado
 
 on:
   schedule:
-    # Colombia = UTC-5. Todos los horarios en UTC.
-    # Lunes, Miércoles, Viernes — Story 9am COL = 14:00 UTC
-    - cron: '0 14 * * 1,3,5'
-    # Lunes, Miércoles, Viernes — Post 12pm COL = 17:00 UTC
-    - cron: '0 17 * * 1,3,5'
-    # Martes, Jueves — Reel 7pm COL = 00:00 UTC del día siguiente
-    - cron: '0 0 * * 3,5'
+    # 12pm Colombia (UTC-5) = 17:00 UTC — slot mediodía
+    - cron: '0 17 * * *'
+    # 7pm Colombia (UTC-5) = 00:00 UTC del día siguiente — slot noche
+    - cron: '0 0 * * *'
 
   workflow_dispatch:
     inputs:
@@ -17,10 +14,15 @@ on:
         required: false
         default: ''
 
+# Solo una instancia a la vez
+concurrency:
+  group: publicar-programado
+  cancel-in-progress: false
+
 jobs:
   publicar:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 40
 
     steps:
       - name: Checkout
@@ -47,17 +49,13 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
-      - name: Guardar estado biblioteca
+      - name: Guardar biblioteca actualizada
         if: always()
-        uses: actions/checkout@v4
-        continue-on-error: true
-
-      - name: Commit biblioteca actualizada
         run: |
           git config --global user.email "agente@salsasbestial.com"
           git config --global user.name "Agente Bestial"
           git add datos/biblioteca.json datos/archivos_publicados.json || true
-          git commit -m "chore: actualizar biblioteca post publicación" || true
+          git commit -m "chore: biblioteca post-publicacion" || true
           git push || true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
