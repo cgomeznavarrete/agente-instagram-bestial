@@ -181,10 +181,11 @@ class BotTelegram:
             updates = _get_updates(self.offset, timeout=20)
             for update in updates:
                 self.offset = update["update_id"] + 1
+                logger.info("Update recibido: id=%s tipos=%s", update["update_id"], list(update.keys()))
                 try:
                     self._procesar_update(update)
                 except Exception as e:
-                    logger.error("Error procesando update: %s", e)
+                    logger.error("Error procesando update %s: %s", update["update_id"], e, exc_info=True)
 
     def _procesar_update(self, update: dict):
         if "callback_query" in update:
@@ -194,7 +195,12 @@ class BotTelegram:
 
     def _manejar_mensaje(self, msg: dict):
         chat_id = str(msg.get("chat", {}).get("id", ""))
+        logger.info("Mensaje de chat_id=%s | config=%s | match=%s | keys=%s",
+                    chat_id, settings.TELEGRAM_CHAT_ID,
+                    chat_id == str(settings.TELEGRAM_CHAT_ID),
+                    [k for k in msg if k != "photo"])
         if chat_id != str(settings.TELEGRAM_CHAT_ID):
+            logger.warning("Ignorando mensaje de chat_id=%s (no autorizado)", chat_id)
             return  # Solo responder al chat autorizado
 
         texto = msg.get("text", "").strip()
