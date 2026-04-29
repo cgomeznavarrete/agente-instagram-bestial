@@ -62,33 +62,42 @@ def _answer_callback(callback_id: str, texto: str = ""):
 
 
 def _commit_biblioteca(nombre_archivo: str = ""):
-    """Commit y push del biblioteca.json a GitHub.
-    Solo el JSON — los archivos van a Cloudinary, no a git.
-    """
-    import subprocess, os
+    """Actualiza biblioteca.json en GitHub via REST API — sin git commands."""
+    import base64, os
+    import requests as _req
     token = os.environ.get("GITHUB_TOKEN")
     if not token:
         return  # Local: no es necesario
     try:
-        repo = "github.com/cgomeznavarrete/agente-instagram-bestial.git"
-        subprocess.run(["git", "config", "user.email", "agente@salsasbestial.com"], check=False)
-        subprocess.run(["git", "config", "user.name", "Agente Bestial"], check=False)
-        subprocess.run(
-            ["git", "remote", "set-url", "origin", f"https://x-access-token:{token}@{repo}"],
-            check=False,
-        )
-        subprocess.run(["git", "add", "datos/biblioteca.json"], check=False)
-        msg = f"chore: biblioteca +{nombre_archivo}" if nombre_archivo else "chore: biblioteca actualizada"
-        result = subprocess.run(["git", "commit", "-m", msg], capture_output=True, text=True)
-        if "nothing to commit" in (result.stdout + result.stderr):
-            return
-        push = subprocess.run(["git", "push", "origin", "master"], capture_output=True, text=True)
-        if push.returncode == 0:
-            logger.info("biblioteca.json commiteado: %s", nombre_archivo)
+        api_url = "https://api.github.com/repos/cgomeznavarrete/agente-instagram-bestial/contents/datos/biblioteca.json"
+        headers = {
+            "Authorization": f"Bearer {token}",
+            "Accept": "application/vnd.github.v3+json",
+            "X-GitHub-Api-Version": "2022-11-28",
+        }
+        # Obtener SHA actual del archivo
+        r_get = _req.get(api_url, headers=headers, timeout=15)
+        sha = r_get.json().get("sha", "") if r_get.status_code == 200 else ""
+
+        # Contenido actual del JSON
+        contenido = Path("datos/biblioteca.json").read_text(encoding="utf-8")
+        contenido_b64 = base64.b64encode(contenido.encode("utf-8")).decode("ascii")
+
+        payload = {
+            "message": f"chore: biblioteca +{nombre_archivo}" if nombre_archivo else "chore: biblioteca actualizada",
+            "content": contenido_b64,
+            "committer": {"name": "Agente Bestial", "email": "agente@salsasbestial.com"},
+        }
+        if sha:
+            payload["sha"] = sha
+
+        r_put = _req.put(api_url, headers=headers, json=payload, timeout=15)
+        if r_put.status_code in (200, 201):
+            logger.info("biblioteca.json actualizado en GitHub via API: %s", nombre_archivo)
         else:
-            logger.warning("git push falló: %s", push.stderr[:200])
+            logger.warning("GitHub API error %s: %s", r_put.status_code, r_put.text[:200])
     except Exception as e:
-        logger.warning("No se pudo commitear biblioteca.json: %s", e)
+        logger.warning("No se pudo actualizar biblioteca.json via API: %s", e)
 
 
 def _descargar_archivo(file_id: str, extension: str, tipo: str = "media") -> Optional[Path]:
