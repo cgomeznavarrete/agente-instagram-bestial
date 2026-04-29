@@ -1125,20 +1125,88 @@ def publicar_programado():
                 )
                 media_id = r_pub.json().get("id") if r_pub.status_code == 200 else None
 
-    elif tipo_pub in ("post", "story"):
-        # Usar cloudinary_url guardada si el archivo local no existe
+    elif tipo_pub == "reel":
+        # Reel: siempre video — usar cloudinary_url guardada o subir desde disco
         if cloudinary_url:
-            url_img = cloudinary_url
+            url_video = cloudinary_url
         elif ruta and ruta.exists():
-            url_img = cloudinary.uploader.upload(str(ruta), folder="salsas_bestial")["secure_url"]
+            url_video = cloudinary.uploader.upload(
+                str(ruta), folder="salsas_bestial", resource_type="video"
+            )["secure_url"]
         else:
-            console.print("[red]Sin archivo ni URL de Cloudinary para publicar[/red]")
+            console.print("[red]Sin archivo ni URL de Cloudinary para el reel[/red]")
             return
 
-        media_data = {"image_url": url_img, "caption": item.caption, "access_token": settings.INSTAGRAM_ACCESS_TOKEN}
-        if tipo_pub == "story":
-            media_data["media_type"] = "STORIES"
-            media_data.pop("caption", None)
+        r1 = req.post(
+            f"https://graph.facebook.com/v21.0/{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media",
+            data={
+                "video_url": url_video,
+                "media_type": "REELS",
+                "caption": item.caption,
+                "share_to_feed": "true",
+                "access_token": settings.INSTAGRAM_ACCESS_TOKEN,
+            }, timeout=120,
+        )
+        if r1.status_code == 200:
+            creation_id = r1.json()["id"]
+            # Esperar procesamiento (hasta 3 min)
+            for _ in range(18):
+                _time.sleep(10)
+                st = req.get(
+                    f"https://graph.facebook.com/v21.0/{creation_id}",
+                    params={"fields": "status_code", "access_token": settings.INSTAGRAM_ACCESS_TOKEN},
+                    timeout=30,
+                ).json().get("status_code", "")
+                if st == "FINISHED":
+                    break
+                if st == "ERROR":
+                    console.print("[red]Error procesando reel en Instagram[/red]")
+                    return
+            r2 = req.post(
+                f"https://graph.facebook.com/v21.0/{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media_publish",
+                data={"creation_id": creation_id, "access_token": settings.INSTAGRAM_ACCESS_TOKEN},
+                timeout=60,
+            )
+            media_id = r2.json().get("id") if r2.status_code == 200 else None
+        else:
+            console.print(f"[red]Error creando container de reel: {r1.json()}[/red]")
+
+    elif tipo_pub in ("post", "story"):
+        # Determinar si es imagen o video por la extensión guardada en el nombre de archivo
+        es_video_story = any(
+            item.nombre_archivo.lower().endswith(ext)
+            for ext in (".mp4", ".mov", ".avi", ".m4v")
+        )
+
+        if es_video_story:
+            # Story de video
+            if cloudinary_url:
+                url_video = cloudinary_url
+            elif ruta and ruta.exists():
+                url_video = cloudinary.uploader.upload(
+                    str(ruta), folder="salsas_bestial", resource_type="video"
+                )["secure_url"]
+            else:
+                console.print("[red]Sin archivo ni URL de Cloudinary para publicar[/red]")
+                return
+            media_data = {
+                "video_url": url_video,
+                "media_type": "STORIES",
+                "access_token": settings.INSTAGRAM_ACCESS_TOKEN,
+            }
+        else:
+            # Post o story de imagen
+            if cloudinary_url:
+                url_img = cloudinary_url
+            elif ruta and ruta.exists():
+                url_img = cloudinary.uploader.upload(str(ruta), folder="salsas_bestial")["secure_url"]
+            else:
+                console.print("[red]Sin archivo ni URL de Cloudinary para publicar[/red]")
+                return
+            media_data = {"image_url": url_img, "caption": item.caption, "access_token": settings.INSTAGRAM_ACCESS_TOKEN}
+            if tipo_pub == "story":
+                media_data["media_type"] = "STORIES"
+                media_data.pop("caption", None)
 
         r1 = req.post(
             f"https://graph.facebook.com/v21.0/{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media",
@@ -1151,6 +1219,8 @@ def publicar_programado():
                 timeout=60,
             )
             media_id = r2.json().get("id") if r2.status_code == 200 else None
+        else:
+            console.print(f"[red]Error creando container: {r1.json()}[/red]")
 
     if media_id:
         marcar_publicado(item.id, media_id)
