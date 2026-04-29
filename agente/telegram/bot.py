@@ -288,10 +288,15 @@ class BotTelegram:
 
         resultado = _enviar_mensaje(
             f"{emoji} <b>Archivo recibido</b>\n\n¿Qué hago con este {tipo_media}?",
-            reply_markup={"inline_keyboard": [[
-                {"text": "📚 Guardar en biblioteca", "callback_data": "accion:biblioteca"},
-                {"text": "🚀 Publicar ahora", "callback_data": "accion:ahora"},
-            ]]}
+            reply_markup={"inline_keyboard": [
+                [
+                    {"text": "📚 Guardar en biblioteca", "callback_data": "accion:biblioteca"},
+                    {"text": "🚀 Publicar ahora",        "callback_data": "accion:ahora"},
+                ],
+                [
+                    {"text": "❌ Cancelar",              "callback_data": "accion:cancelar"},
+                ],
+            ]}
         )
         if not resultado.get("ok"):
             logger.error("Error enviando opciones de media: %s", resultado)
@@ -309,6 +314,14 @@ class BotTelegram:
         # ── Acción principal: biblioteca o ahora ──────────────────────────
         if partes[0] == "accion" and len(partes) >= 2:
             destino = partes[1]
+
+            # ── Cancelar ──────────────────────────────────────────────────
+            if destino == "cancelar":
+                _answer_callback(cb_id, "❌ Cancelado")
+                self._clear_estado(chat_id)
+                _enviar_mensaje("❌ <b>Cancelado.</b>\n\nEl archivo fue descartado. Mándame otro cuando quieras.")
+                return
+
             _answer_callback(cb_id, "📥 Recibido")
 
             # Recuperar file_id y tipo del estado (guardado cuando llegó la foto)
@@ -322,15 +335,21 @@ class BotTelegram:
             # Preguntar tipo de contenido
             es_video = tipo_media == "video"
             if es_video:
-                botones = [[
-                    {"text": "🎬 Reel", "callback_data": "tipo:reel"},
-                    {"text": "⭕ Story", "callback_data": "tipo:story"},
-                ]]
+                botones = [
+                    [
+                        {"text": "🎬 Reel",    "callback_data": "tipo:reel"},
+                        {"text": "⭕ Story",   "callback_data": "tipo:story"},
+                    ],
+                    [{"text": "❌ Cancelar",   "callback_data": "tipo:cancelar"}],
+                ]
             else:
-                botones = [[
-                    {"text": "📸 Post", "callback_data": "tipo:post"},
-                    {"text": "⭕ Story", "callback_data": "tipo:story"},
-                ]]
+                botones = [
+                    [
+                        {"text": "📸 Post",    "callback_data": "tipo:post"},
+                        {"text": "⭕ Story",   "callback_data": "tipo:story"},
+                    ],
+                    [{"text": "❌ Cancelar",   "callback_data": "tipo:cancelar"}],
+                ]
 
             _enviar_mensaje("¿Qué tipo de publicación es?", reply_markup={"inline_keyboard": botones})
             return
@@ -338,6 +357,14 @@ class BotTelegram:
         # ── Tipo seleccionado ─────────────────────────────────────────────
         if partes[0] == "tipo" and len(partes) >= 2:
             tipo_pub = partes[1]
+
+            # ── Cancelar ──────────────────────────────────────────────────
+            if tipo_pub == "cancelar":
+                _answer_callback(cb_id, "❌ Cancelado")
+                self._clear_estado(chat_id)
+                _enviar_mensaje("❌ <b>Cancelado.</b>\n\nEl archivo fue descartado. Mándame otro cuando quieras.")
+                return
+
             estado = self._get_estado(chat_id)
             datos = estado.get("datos", {})
             destino = datos.get("destino", "biblioteca")
@@ -353,6 +380,7 @@ class BotTelegram:
                     [{"text": "😄 Humor picante",        "callback_data": "pilar:humor_picante"}],
                     [{"text": "📚 Educación",            "callback_data": "pilar:educacion_sobre_salsas"}],
                     [{"text": "🎬 Behind the scenes",    "callback_data": "pilar:behind_the_scenes"}],
+                    [{"text": "❌ Cancelar",             "callback_data": "pilar:cancelar"}],
                 ]
                 _enviar_mensaje("¿Cuál es el pilar de contenido?", reply_markup={"inline_keyboard": botones_pilar})
             else:
@@ -365,6 +393,14 @@ class BotTelegram:
         # ── Pilar seleccionado ────────────────────────────────────────────
         if partes[0] == "pilar" and len(partes) >= 2:
             pilar = partes[1]
+
+            # ── Cancelar ──────────────────────────────────────────────────
+            if pilar == "cancelar":
+                _answer_callback(cb_id, "❌ Cancelado")
+                self._clear_estado(chat_id)
+                _enviar_mensaje("❌ <b>Cancelado.</b>\n\nEl archivo fue descartado. Mándame otro cuando quieras.")
+                return
+
             estado = self._get_estado(chat_id)
             datos  = estado.get("datos", {})
             file_id   = datos.get("file_id", "")
@@ -372,7 +408,7 @@ class BotTelegram:
             tipo_pub  = datos.get("tipo_pub", "post")
             destino   = datos.get("destino", "biblioteca")
 
-            _answer_callback(cb_id, "✍️ Generando caption...")
+            _answer_callback(cb_id, "✍️ Procesando...")
             self._ejecutar_con_pilar(file_id, extension, tipo_pub, destino, pilar, chat_id)
             return
 
