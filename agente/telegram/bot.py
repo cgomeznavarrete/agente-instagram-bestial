@@ -273,8 +273,10 @@ class BotTelegram:
             )
 
     def _recibir_media(self, file_id: str, extension: str, tipo_media: str, chat_id: str, media_group_id: str = None):
-        """Recibe un archivo y pregunta qué hacer con él."""
-        # Guardar temporalmente para luego
+        """Recibe un archivo y pregunta qué hacer con él.
+        El file_id se guarda en estado (no en callback_data — límite 64 bytes de Telegram).
+        """
+        # Guardar datos en estado — el callback_data solo lleva claves cortas
         self._set_estado(chat_id, "recibido", {
             "file_id": file_id,
             "extension": extension,
@@ -283,15 +285,16 @@ class BotTelegram:
         })
 
         emoji = "📸" if tipo_media == "imagen" else "🎬"
-        tipo_sugerido = "post o story" if tipo_media == "imagen" else "reel o story"
 
-        _enviar_mensaje(
+        resultado = _enviar_mensaje(
             f"{emoji} <b>Archivo recibido</b>\n\n¿Qué hago con este {tipo_media}?",
             reply_markup={"inline_keyboard": [[
-                {"text": "📚 Guardar en biblioteca", "callback_data": f"accion:biblioteca:{file_id}:{extension}:{tipo_media}"},
-                {"text": "🚀 Publicar ahora", "callback_data": f"accion:ahora:{file_id}:{extension}:{tipo_media}"},
+                {"text": "📚 Guardar en biblioteca", "callback_data": "accion:biblioteca"},
+                {"text": "🚀 Publicar ahora", "callback_data": "accion:ahora"},
             ]]}
         )
+        if not resultado.get("ok"):
+            logger.error("Error enviando opciones de media: %s", resultado)
 
     def _manejar_callback(self, cb: dict):
         chat_id = str(cb.get("message", {}).get("chat", {}).get("id", ""))
@@ -304,52 +307,71 @@ class BotTelegram:
         partes = data.split(":")
 
         # ── Acción principal: biblioteca o ahora ──────────────────────────
-        if partes[0] == "accion" and len(partes) >= 5:
-            _, destino, file_id, extension, tipo_media = partes[:5]
+        if partes[0] == "accion" and len(partes) >= 2:
+            destino = partes[1]
             _answer_callback(cb_id, "📥 Recibido")
+
+            # Recuperar file_id y tipo del estado (guardado cuando llegó la foto)
+            estado = self._get_estado(chat_id)
+            datos = estado.get("datos", {})
+            tipo_media = datos.get("tipo_media", "imagen")
+
+            # Actualizar estado con destino
+            self._set_estado(chat_id, "recibido", {**datos, "destino": destino})
 
             # Preguntar tipo de contenido
             es_video = tipo_media == "video"
             if es_video:
                 botones = [[
-                    {"text": "🎬 Reel", "callback_data": f"tipo:reel:{file_id}:{extension}:{destino}"},
-                    {"text": "⭕ Story", "callback_data": f"tipo:story:{file_id}:{extension}:{destino}"},
+                    {"text": "🎬 Reel", "callback_data": "tipo:reel"},
+                    {"text": "⭕ Story", "callback_data": "tipo:story"},
                 ]]
             else:
                 botones = [[
-                    {"text": "📸 Post", "callback_data": f"tipo:post:{file_id}:{extension}:{destino}"},
-                    {"text": "⭕ Story", "callback_data": f"tipo:story:{file_id}:{extension}:{destino}"},
+                    {"text": "📸 Post", "callback_data": "tipo:post"},
+                    {"text": "⭕ Story", "callback_data": "tipo:story"},
                 ]]
 
-            _enviar_mensaje(
-                f"¿Qué tipo de publicación es?",
-                reply_markup={"inline_keyboard": botones}
-            )
+            _enviar_mensaje("¿Qué tipo de publicación es?", reply_markup={"inline_keyboard": botones})
             return
 
         # ── Tipo seleccionado ─────────────────────────────────────────────
-        if partes[0] == "tipo" and len(partes) >= 5:
-            _, tipo_pub, file_id, extension, destino = partes[:5]
+        if partes[0] == "tipo" and len(partes) >= 2:
+            tipo_pub = partes[1]
+            estado = self._get_estado(chat_id)
+            datos = estado.get("datos", {})
+            destino = datos.get("destino", "biblioteca")
+
             _answer_callback(cb_id, f"{'📚' if destino == 'biblioteca' else '🚀'} {tipo_pub.upper()}")
+            self._set_estado(chat_id, "recibido", {**datos, "tipo_pub": tipo_pub})
 
             # Preguntar pilar (solo para posts y reels)
             if tipo_pub in ("post", "reel"):
                 botones_pilar = [
-                    [{"text": "🌶 Recetas y maridajes", "callback_data": f"pilar:recetas_y_maridajes:{file_id}:{extension}:{tipo_pub}:{destino}"}],
-                    [{"text": "🌅 Lifestyle", "callback_data": f"pilar:lifestyle_y_comunidad:{file_id}:{extension}:{tipo_pub}:{destino}"}],
-                    [{"text": "😄 Humor picante", "callback_data": f"pilar:humor_picante:{file_id}:{extension}:{tipo_pub}:{destino}"}],
-                    [{"text": "📚 Educación", "callback_data": f"pilar:educacion_sobre_salsas:{file_id}:{extension}:{tipo_pub}:{destino}"}],
-                    [{"text": "🎬 Behind the scenes", "callback_data": f"pilar:behind_the_scenes:{file_id}:{extension}:{tipo_pub}:{destino}"}],
+                    [{"text": "🌶 Recetas y maridajes", "callback_data": "pilar:recetas_y_maridajes"}],
+                    [{"text": "🌅 Lifestyle",            "callback_data": "pilar:lifestyle_y_comunidad"}],
+                    [{"text": "😄 Humor picante",        "callback_data": "pilar:humor_picante"}],
+                    [{"text": "📚 Educación",            "callback_data": "pilar:educacion_sobre_salsas"}],
+                    [{"text": "🎬 Behind the scenes",    "callback_data": "pilar:behind_the_scenes"}],
                 ]
                 _enviar_mensaje("¿Cuál es el pilar de contenido?", reply_markup={"inline_keyboard": botones_pilar})
             else:
                 # Story → no necesita pilar ni caption
+                file_id    = datos.get("file_id", "")
+                extension  = datos.get("extension", ".jpg")
                 self._ejecutar_con_pilar(file_id, extension, tipo_pub, destino, "lifestyle_y_comunidad", chat_id)
             return
 
         # ── Pilar seleccionado ────────────────────────────────────────────
-        if partes[0] == "pilar" and len(partes) >= 6:
-            _, pilar, file_id, extension, tipo_pub, destino = partes[:6]
+        if partes[0] == "pilar" and len(partes) >= 2:
+            pilar = partes[1]
+            estado = self._get_estado(chat_id)
+            datos  = estado.get("datos", {})
+            file_id   = datos.get("file_id", "")
+            extension = datos.get("extension", ".jpg")
+            tipo_pub  = datos.get("tipo_pub", "post")
+            destino   = datos.get("destino", "biblioteca")
+
             _answer_callback(cb_id, "✍️ Generando caption...")
             self._ejecutar_con_pilar(file_id, extension, tipo_pub, destino, pilar, chat_id)
             return
