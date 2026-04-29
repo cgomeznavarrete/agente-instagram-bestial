@@ -397,33 +397,32 @@ class BotTelegram:
                 self._set_estado(chat_id, "esperando_ajuste", estado["datos"])
             return
 
-        # ── Aprobar guardar en biblioteca ─────────────────────────────────
+        # ── Aprobar guardar en biblioteca (flujo legado / mensajes viejos) ──
         if partes[0] == "guardar" and len(partes) >= 2:
             accion = partes[1]
+            _answer_callback(cb_id, "📚 Guardando..." if accion == "si" else "🗑 Descartado")
             estado = self._get_estado(chat_id)
-            datos = estado["datos"]
-
-            if accion == "si":
-                _answer_callback(cb_id, "📚 Guardando...")
-                ruta_tmp = Path(datos["ruta_tmp"])
-                tipo_pub = datos["tipo_pub"]
+            datos = estado.get("datos", {})
+            ruta_str = datos.get("ruta_tmp", "")
+            if accion == "si" and ruta_str:
+                ruta_tmp = Path(ruta_str)
+                tipo_pub = datos.get("tipo_pub", "post")
                 pilar = datos.get("pilar", "lifestyle_y_comunidad")
-                item = agregar_item(ruta_tmp, tipo_pub, pilar)
-                ruta_tmp.unlink(missing_ok=True)
-                conteo = contar_pendientes()
-                _enviar_mensaje(
-                    f"📚 <b>Guardado en biblioteca</b>\n\n"
-                    f"Tipo: {tipo_pub.upper()} | Pilar: {pilar.replace('_', ' ').title()}\n\n"
-                    f"Cola actual:\n"
-                    f"  Posts: {conteo['post']} | Reels: {conteo['reel']} | Stories: {conteo['story']}"
-                )
-            else:
-                _answer_callback(cb_id, "🗑 Descartado")
-                ruta_tmp = datos.get("ruta_tmp")
-                if ruta_tmp:
-                    Path(ruta_tmp).unlink(missing_ok=True)
-                _enviar_mensaje("🗑 Archivo descartado.")
-
+                try:
+                    item = agregar_item(ruta_tmp, tipo_pub, pilar)
+                    ruta_tmp.unlink(missing_ok=True)
+                    conteo = contar_pendientes()
+                    _enviar_mensaje(
+                        f"📚 <b>Guardado en biblioteca</b>\n"
+                        f"Cola: {conteo['post']} posts · {conteo['reel']} reels · {conteo['story']} stories"
+                    )
+                except Exception as e:
+                    logger.error("Error guardando: %s", e)
+                    _enviar_mensaje("❌ Error guardando.")
+            elif accion != "si":
+                if ruta_str:
+                    Path(ruta_str).unlink(missing_ok=True)
+                _enviar_mensaje("🗑 Descartado.")
             self._clear_estado(chat_id)
             return
 
@@ -458,37 +457,26 @@ class BotTelegram:
         ruta_tmp = _descargar_archivo(file_id, extension, tipo=tipo_pub)
         if not ruta_tmp:
             _enviar_mensaje("❌ Error al descargar el archivo. Intenta de nuevo.")
+            self._clear_estado(chat_id)
             return
 
         if destino == "biblioteca":
-            # Mostrar preview y confirmar guardado
-            caption_preview = ""
-            if tipo_pub in ("post", "reel"):
-                _enviar_mensaje("✍️ Generando caption con Claude...")
-                caption_preview = _generar_caption(tipo_pub, pilar)
-
-            texto_confirm = (
-                f"📚 <b>¿Guardar en biblioteca?</b>\n\n"
-                f"Tipo: {tipo_pub.upper()} | Pilar: {pilar.replace('_', ' ').title()}\n\n"
-                + (f"Caption preview:\n{caption_preview[:400]}" if caption_preview else "Story — sin caption")
-            )
-            self._set_estado(chat_id, "esperando_confirmacion_biblioteca", {
-                "ruta_tmp": str(ruta_tmp),
-                "tipo_pub": tipo_pub,
-                "pilar": pilar,
-                "caption": caption_preview,
-            })
-
-            if extension in (".jpg", ".jpeg", ".png", ".webp"):
-                _enviar_foto(ruta_tmp, caption=texto_confirm, reply_markup={"inline_keyboard": [[
-                    {"text": "✅ Guardar", "callback_data": "guardar:si"},
-                    {"text": "🗑 Descartar", "callback_data": "guardar:no"},
-                ]]})
-            else:
-                _enviar_mensaje(texto_confirm, reply_markup={"inline_keyboard": [[
-                    {"text": "✅ Guardar", "callback_data": "guardar:si"},
-                    {"text": "🗑 Descartar", "callback_data": "guardar:no"},
-                ]]})
+            # Guardar directo sin pedir confirmación extra — el caption se genera al publicar
+            try:
+                item = agregar_item(ruta_tmp, tipo_pub, pilar)
+                ruta_tmp.unlink(missing_ok=True)
+                conteo = contar_pendientes()
+                _enviar_mensaje(
+                    f"📚 <b>Guardado en biblioteca</b>\n\n"
+                    f"Tipo: {tipo_pub.upper()} | Pilar: {pilar.replace('_', ' ').title()}\n\n"
+                    f"Cola: {conteo['post']} posts · {conteo['reel']} reels · {conteo['story']} stories\n\n"
+                    f"El caption se genera automaticamente cuando se publique."
+                )
+            except Exception as e:
+                logger.error("Error guardando en biblioteca: %s", e, exc_info=True)
+                _enviar_mensaje("❌ Error guardando en biblioteca. Intenta de nuevo.")
+            self._clear_estado(chat_id)
+            return
 
         else:  # publicar ahora
             _enviar_mensaje("✍️ Generando caption con Claude...")
