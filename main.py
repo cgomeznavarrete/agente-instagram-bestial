@@ -1125,27 +1125,24 @@ def publicar_programado():
                 )
                 media_id = r_pub.json().get("id") if r_pub.status_code == 200 else None
 
-    elif tipo_pub == "post":
-        url_img = cloudinary.uploader.upload(str(ruta), folder="salsas_bestial")["secure_url"]
-        r1 = req.post(
-            f"https://graph.facebook.com/v21.0/{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media",
-            data={"image_url": url_img, "caption": item.caption, "access_token": settings.INSTAGRAM_ACCESS_TOKEN},
-            timeout=60,
-        )
-        if r1.status_code == 200:
-            r2 = req.post(
-                f"https://graph.facebook.com/v21.0/{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media_publish",
-                data={"creation_id": r1.json()["id"], "access_token": settings.INSTAGRAM_ACCESS_TOKEN},
-                timeout=60,
-            )
-            media_id = r2.json().get("id") if r2.status_code == 200 else None
+    elif tipo_pub in ("post", "story"):
+        # Usar cloudinary_url guardada si el archivo local no existe
+        if cloudinary_url:
+            url_img = cloudinary_url
+        elif ruta and ruta.exists():
+            url_img = cloudinary.uploader.upload(str(ruta), folder="salsas_bestial")["secure_url"]
+        else:
+            console.print("[red]Sin archivo ni URL de Cloudinary para publicar[/red]")
+            return
 
-    elif tipo_pub == "story":
-        url_img = cloudinary.uploader.upload(str(ruta), folder="salsas_bestial")["secure_url"]
+        media_data = {"image_url": url_img, "caption": item.caption, "access_token": settings.INSTAGRAM_ACCESS_TOKEN}
+        if tipo_pub == "story":
+            media_data["media_type"] = "STORIES"
+            media_data.pop("caption", None)
+
         r1 = req.post(
             f"https://graph.facebook.com/v21.0/{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media",
-            data={"image_url": url_img, "media_type": "STORIES", "access_token": settings.INSTAGRAM_ACCESS_TOKEN},
-            timeout=60,
+            data=media_data, timeout=60,
         )
         if r1.status_code == 200:
             r2 = req.post(
