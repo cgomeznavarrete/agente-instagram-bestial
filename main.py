@@ -931,14 +931,54 @@ def publicar_programado():
     item = siguiente_pendiente(tipo_pub)
     if not item:
         conteo = contar_pendientes()
-        console.print(f"[yellow]No hay {tipo_pub}s pendientes en la biblioteca.[/yellow]")
-        _enviar_mensaje(
-            f"⚠️ <b>Sin material en biblioteca</b>\n\n"
-            f"No hay {tipo_pub.upper()}s listos para publicar hoy.\n\n"
-            f"Mándame fotos/videos al bot para cargar la biblioteca.\n"
-            f"Posts: {conteo['post']} | Reels: {conteo['reel']} | Stories: {conteo['story']}"
-        )
-        return
+        console.print(f"[yellow]No hay {tipo_pub}s pendientes. Intentando generar carrusel de emergencia...[/yellow]")
+
+        # ── Fallback automático: generar carrusel educativo ───────────────────
+        if tipo_pub == "post":
+            try:
+                from agente.generadores.carrusel_html import generar_carrusel_html
+                from agente.gestores.biblioteca import agregar_carrusel
+                import random
+
+                TEMAS_FALLBACK = [
+                    "curiosidades del chile habanero",
+                    "beneficios de comer picante",
+                    "historia de las salsas picantes en México",
+                    "tipos de chile y su nivel de picante",
+                    "por qué el picante es adictivo",
+                    "maridajes perfectos para salsas artesanales",
+                    "cómo se hace una salsa tatemada",
+                    "diferencia entre salsa fresca y salsa ahumada",
+                    "el chile más picante del mundo",
+                    "rituales del picante en Latinoamérica",
+                ]
+                tema = random.choice(TEMAS_FALLBACK)
+                console.print(f"  Generando carrusel: '{tema}'...")
+                _enviar_mensaje(f"📚 Sin material en biblioteca — generando carrusel automático sobre: <b>{tema}</b>")
+
+                rutas = generar_carrusel_html(tema=tema, n_slides=3, pilar="educacion_sobre_salsas")
+                if rutas:
+                    item = agregar_carrusel(rutas, tipo="post", pilar="educacion_sobre_salsas")
+                    console.print(f"  [green]✓[/green] Carrusel generado: {len(rutas)} slides → {item.id}")
+                    _enviar_mensaje(f"✅ Carrusel generado ({len(rutas)} slides). Publicando...")
+                else:
+                    raise RuntimeError("No se generaron slides")
+            except Exception as e:
+                console.print(f"  [red]Error generando carrusel fallback: {e}[/red]")
+                _enviar_mensaje(
+                    f"⚠️ <b>Sin material</b> — no hay {tipo_pub.upper()}s ni se pudo generar contenido.\n"
+                    f"Posts: {conteo['post']} | Reels: {conteo['reel']} | Stories: {conteo['story']}"
+                )
+                return
+        else:
+            # Para reels y stories no hay generación automática — solo avisar
+            _enviar_mensaje(
+                f"⚠️ <b>Sin material en biblioteca</b>\n\n"
+                f"No hay {tipo_pub.upper()}s listos para publicar hoy.\n"
+                f"Mándame fotos/videos al bot para cargar la biblioteca.\n\n"
+                f"Posts: {conteo['post']} | Reels: {conteo['reel']} | Stories: {conteo['story']}"
+            )
+            return
 
     # ── Verificar archivo existe ──────────────────────────────────────────────
     ruta = None
