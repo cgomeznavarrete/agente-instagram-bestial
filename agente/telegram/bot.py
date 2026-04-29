@@ -23,7 +23,7 @@ from config import settings, brand_guidelines as brand
 from agente.claude.cliente_claude import ClienteClaude
 from agente.gestores.biblioteca import (
     agregar_item, agregar_carrusel, siguiente_pendiente,
-    contar_pendientes, marcar_publicado, marcar_descartado,
+    contar_pendientes, listar_pendientes, marcar_publicado, marcar_descartado,
     EXTENSIONES_IMAGEN, EXTENSIONES_VIDEO,
 )
 from agente.telegram.notificador import _enviar_mensaje, _enviar_foto, _enviar_video, BASE_URL
@@ -833,17 +833,43 @@ class BotTelegram:
         )
 
     def _mostrar_estado(self):
+        from datetime import datetime
         conteo = contar_pendientes()
-        _enviar_mensaje(
-            "📊 <b>Biblioteca de contenido</b>\n\n"
-            f"📸 Posts: {conteo['post']} pendientes\n"
-            f"🎬 Reels: {conteo['reel']} pendientes\n"
-            f"⭕ Stories: {conteo['story']} pendientes\n"
-            f"📖 Carruseles: {conteo['carrusel']} pendientes\n\n"
-            "<b>Horario de publicación:</b>\n"
-            "Lun/Mié/Vie → Story 9am + Post 12pm\n"
-            "Mar/Jue → Reel 7pm"
-        )
+
+        EMOJI = {"post": "📸", "reel": "🎬", "story": "⭕", "carrusel": "📖"}
+        PILAR_CORTO = {
+            "recetas_y_maridajes": "Recetas",
+            "lifestyle_y_comunidad": "Lifestyle",
+            "humor_picante": "Humor",
+            "educacion_sobre_salsas": "Educación",
+            "behind_the_scenes": "BTS",
+            "promociones_y_lanzamientos": "Promo",
+            "testimonios_y_ugc": "Testimonios",
+            "como_comprar": "Cómo comprar",
+        }
+
+        lineas = ["📚 <b>Biblioteca de contenido</b>\n"]
+
+        total = sum(conteo.values())
+        if total == 0:
+            lineas.append("Vacía — envíame fotos o videos para cargar material.")
+        else:
+            for tipo in ["post", "reel", "story", "carrusel"]:
+                items = listar_pendientes(tipo)
+                if not items:
+                    continue
+                lineas.append(f"{EMOJI[tipo]} <b>{tipo.upper()} ({len(items)})</b>")
+                for i, it in enumerate(items, 1):
+                    v = vars(it)
+                    pilar = PILAR_CORTO.get(v.get("pilar", ""), v.get("pilar", ""))
+                    fecha = datetime.fromtimestamp(v.get("fecha_agregado", 0)).strftime("%d/%m %H:%M")
+                    tiene_url = "✅" if v.get("cloudinary_url") else "📁"
+                    nombre = v.get("nombre_archivo", "")[-20:]  # últimos 20 chars
+                    lineas.append(f"  {i}. {tiene_url} {pilar} — {fecha} — <code>{nombre}</code>")
+                lineas.append("")
+
+        lineas.append(f"<b>Total:</b> {conteo['post']} posts · {conteo['reel']} reels · {conteo['story']} stories · {conteo['carrusel']} carruseles")
+        _enviar_mensaje("\n".join(lineas))
 
     def _mostrar_ayuda(self):
         _enviar_mensaje(
