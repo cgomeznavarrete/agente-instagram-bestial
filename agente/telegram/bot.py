@@ -285,6 +285,9 @@ class BotTelegram:
                 except Exception as e:
                     logger.error("Error procesando update %s: %s", update["update_id"], e, exc_info=True)
 
+            # Procesar álbumes completos (media groups cuyo último mensaje llegó hace >2s)
+            self._procesar_albumes_pendientes()
+
     def _procesar_update(self, update: dict):
         if "callback_query" in update:
             self._manejar_callback(update["callback_query"])
@@ -372,14 +375,29 @@ class BotTelegram:
 
     def _recibir_media(self, file_id: str, extension: str, tipo_media: str, chat_id: str, media_group_id: str = None):
         """Recibe un archivo y pregunta qué hacer con él.
-        El file_id se guarda en estado (no en callback_data — límite 64 bytes de Telegram).
+        Si viene en un álbum (media_group_id), acumula hasta que lleguen todos.
         """
-        # Guardar datos en estado — el callback_data solo lleva claves cortas
+        if media_group_id:
+            # Acumular en el estado del álbum — preguntar cuando lleguen todos
+            estado = self._leer_estado_disco()
+            clave_album = f"album_{media_group_id}"
+            album = estado.get(clave_album, {
+                "chat_id": chat_id,
+                "archivos": [],
+                "ts_ultimo": 0,
+            })
+            album["archivos"].append({"file_id": file_id, "extension": extension})
+            album["ts_ultimo"] = time.time()
+            estado[clave_album] = album
+            self._escribir_estado_disco(estado)
+            logger.info("Álbum %s: %d foto(s) acumuladas", media_group_id, len(album["archivos"]))
+            return
+
+        # Archivo individual — preguntar inmediatamente
         self._set_estado(chat_id, "recibido", {
             "file_id": file_id,
             "extension": extension,
             "tipo_media": tipo_media,
-            "media_group_id": media_group_id,
         })
 
         emoji = "📸" if tipo_media == "imagen" else "🎬"
@@ -398,6 +416,68 @@ class BotTelegram:
         )
         if not resultado.get("ok"):
             logger.error("Error enviando opciones de media: %s", resultado)
+
+    def _procesar_albumes_pendientes(self):
+        """Procesa álbumes cuyo último mensaje llegó hace >2 segundos (álbum completo)."""
+        estado = self._leer_estado_disco()
+        ahora = time.time()
+        claves_album = [k for k in estado if k.startswith("album_")]
+        modificado = False
+
+        for clave in claves_album:
+            album = estado[clave]
+            if ahora - album.get("ts_ultimo", ahora) < 2.0:
+                continue  # Todavía puede llegar más fotos
+
+            chat_id = album["chat_id"]
+            archivos = album["archivos"]
+            del estado[clave]
+            modificado = True
+
+            if not archivos:
+                continue
+
+            n = len(archivos)
+            logger.info("Álbum completo: %d fotos para chat %s", n, chat_id)
+
+            if n == 1:
+                # Solo llegó una — tratar como foto individual
+                a = archivos[0]
+                estado[chat_id] = {
+                    "paso": "recibido",
+                    "datos": {"file_id": a["file_id"], "extension": a["extension"], "tipo_media": "imagen"},
+                    "ts": ahora,
+                }
+                _enviar_mensaje(
+                    "📸 <b>Foto recibida</b>\n\n¿Qué hago con esta imagen?",
+                    reply_markup={"inline_keyboard": [
+                        [
+                            {"text": "📚 Guardar en biblioteca", "callback_data": "accion:biblioteca"},
+                            {"text": "🚀 Publicar ahora",        "callback_data": "accion:ahora"},
+                        ],
+                        [{"text": "❌ Cancelar", "callback_data": "accion:cancelar"}],
+                    ]}
+                )
+            else:
+                # Múltiples fotos — ofrecer como carrusel
+                estado[chat_id] = {
+                    "paso": "recibido_album",
+                    "datos": {"archivos": archivos},
+                    "ts": ahora,
+                }
+                _enviar_mensaje(
+                    f"📖 <b>{n} fotos recibidas</b>\n\n¿Las publico como carrusel?",
+                    reply_markup={"inline_keyboard": [
+                        [
+                            {"text": "📚 Guardar carrusel en biblioteca", "callback_data": "album:biblioteca"},
+                            {"text": "🚀 Publicar carrusel ahora",        "callback_data": "album:ahora"},
+                        ],
+                        [{"text": "❌ Cancelar", "callback_data": "album:cancelar"}],
+                    ]}
+                )
+
+        if modificado:
+            self._escribir_estado_disco(estado)
 
     def _manejar_callback(self, cb: dict):
         chat_id = str(cb.get("message", {}).get("chat", {}).get("id", ""))
@@ -557,6 +637,65 @@ class BotTelegram:
                 if ruta_str:
                     Path(ruta_str).unlink(missing_ok=True)
                 _enviar_mensaje("🗑 Descartado.")
+            self._clear_estado(chat_id)
+            return
+
+        # ── Álbum de fotos del usuario → carrusel ────────────────────────
+        if partes[0] == "album" and len(partes) >= 2:
+            accion = partes[1]
+            estado = self._get_estado(chat_id)
+            archivos = estado.get("datos", {}).get("archivos", [])
+
+            if accion == "cancelar":
+                _answer_callback(cb_id, "❌ Cancelado")
+                self._clear_estado(chat_id)
+                _enviar_mensaje("❌ Cancelado.")
+                return
+
+            if not archivos:
+                _answer_callback(cb_id, "⚠️ Sin archivos")
+                self._clear_estado(chat_id)
+                return
+
+            _answer_callback(cb_id, "⬇️ Descargando fotos...")
+            _enviar_mensaje(f"⬇️ Descargando {len(archivos)} fotos...")
+
+            rutas = []
+            for a in archivos:
+                ruta = _descargar_archivo(a["file_id"], a["extension"], tipo="post")
+                if ruta:
+                    rutas.append(ruta)
+
+            if not rutas:
+                _enviar_mensaje("❌ Error descargando las fotos.")
+                self._clear_estado(chat_id)
+                return
+
+            if accion == "biblioteca":
+                item = agregar_carrusel(rutas, tipo="post", pilar="lifestyle_y_comunidad")
+                _commit_biblioteca(item.id)
+                conteo = contar_pendientes()
+                _enviar_mensaje(
+                    f"📚 <b>Carrusel guardado en biblioteca</b>\n\n"
+                    f"{len(rutas)} fotos — Cola posts: {conteo['post']}"
+                )
+            elif accion == "ahora":
+                _enviar_mensaje("✍️ Generando caption con Claude...")
+                from agente.claude.cliente_claude import ClienteClaude
+                from config import brand_guidelines as brand
+                import re as _re
+                cliente = ClienteClaude()
+                caption_raw = cliente.generar(
+                    prompt_sistema="Eres el community manager de Salsas Bestial.",
+                    prompt_usuario=(
+                        f"Carrusel de {len(rutas)} fotos. Pilar: lifestyle_y_comunidad.\n"
+                        f"Caption para Instagram — hook directo, 2 líneas, CTA: Pídela aquí → {brand.LINK_COMPRA_WHATSAPP}, 10 hashtags"
+                    ),
+                    temperatura=0.8, max_tokens=400,
+                )
+                caption = _re.sub(r"\*\*(.+?)\*\*", r"\1", caption_raw).strip()
+                self._publicar_carrusel_ig(rutas, caption, chat_id)
+
             self._clear_estado(chat_id)
             return
 
