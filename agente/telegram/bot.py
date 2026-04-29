@@ -186,17 +186,43 @@ class BotTelegram:
 
     def __init__(self):
         self.offset: Optional[int] = None
-        # Estado por chat: guarda contexto entre mensajes
-        self.estado: dict = {}  # chat_id → {"paso": str, "datos": dict}
+        # Estado persistido en disco — sobrevive reinicios del bot
+        self._estado_path = Path("datos/bot_estado.json")
 
     def _set_estado(self, chat_id: str, paso: str, datos: dict = None):
-        self.estado[chat_id] = {"paso": paso, "datos": datos or {}}
+        estado = self._leer_estado_disco()
+        estado[chat_id] = {"paso": paso, "datos": datos or {}, "ts": time.time()}
+        self._escribir_estado_disco(estado)
 
     def _get_estado(self, chat_id: str) -> dict:
-        return self.estado.get(chat_id, {"paso": "idle", "datos": {}})
+        estado = self._leer_estado_disco()
+        entrada = estado.get(chat_id, {"paso": "idle", "datos": {}})
+        # Expirar estado con más de 2 horas de antigüedad
+        if time.time() - entrada.get("ts", 0) > 7200:
+            return {"paso": "idle", "datos": {}}
+        return entrada
 
     def _clear_estado(self, chat_id: str):
-        self.estado.pop(chat_id, None)
+        estado = self._leer_estado_disco()
+        estado.pop(chat_id, None)
+        self._escribir_estado_disco(estado)
+
+    def _leer_estado_disco(self) -> dict:
+        try:
+            if self._estado_path.exists():
+                return json.loads(self._estado_path.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+        return {}
+
+    def _escribir_estado_disco(self, estado: dict):
+        try:
+            self._estado_path.parent.mkdir(parents=True, exist_ok=True)
+            self._estado_path.write_text(
+                json.dumps(estado, ensure_ascii=False, indent=2), encoding="utf-8"
+            )
+        except Exception as e:
+            logger.warning("No se pudo guardar estado en disco: %s", e)
 
     def ejecutar(self):
         """Loop principal de polling."""
