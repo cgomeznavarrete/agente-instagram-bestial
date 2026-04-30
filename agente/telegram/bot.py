@@ -204,7 +204,8 @@ def _generar_caption(tipo: str, pilar: str) -> str:
         temperatura=0.85,
         max_tokens=600,
     )
-    return re.sub(r"\*\*(.+?)\*\*", r"\1", caption_raw).replace("---", "").strip()
+    from agente.claude.cliente_claude import limpiar_caption
+    return limpiar_caption(re.sub(r"\*\*(.+?)\*\*", r"\1", caption_raw))
 
 
 def _publicar_ahora_imagen(ruta: Path, caption: str) -> Optional[str]:
@@ -792,7 +793,8 @@ class BotTelegram:
                     ),
                     temperatura=0.8, max_tokens=450,
                 )
-                caption = _re.sub(r"\*\*(.+?)\*\*", r"\1", caption_raw).strip()
+                from agente.claude.cliente_claude import limpiar_caption
+                caption = limpiar_caption(_re.sub(r"\*\*(.+?)\*\*", r"\1", caption_raw))
                 self._publicar_carrusel_ig(rutas, caption, chat_id)
 
             self._clear_estado(chat_id)
@@ -1055,7 +1057,8 @@ class BotTelegram:
             temperatura=0.8,
             max_tokens=400,
         )
-        caption = re.sub(r"\*\*(.+?)\*\*", r"\1", caption_raw).strip()
+        from agente.claude.cliente_claude import limpiar_caption
+        caption = limpiar_caption(re.sub(r"\*\*(.+?)\*\*", r"\1", caption_raw))
 
         # Enviar slides a Telegram para preview
         _enviar_mensaje(f"✅ {len(rutas)} slides generados. Enviando preview...")

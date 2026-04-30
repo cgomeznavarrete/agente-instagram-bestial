@@ -75,8 +75,9 @@ class GeneradorCopies:
 
         # Para reels, el copy puede tener estructura diferente (guion_video)
         # Normalizamos a CopyContenido extrayendo los campos estándar
-        hook = datos.get("hook", "")
-        cuerpo = datos.get("caption") or datos.get("cuerpo", "")
+        from agente.claude.cliente_claude import limpiar_caption
+        hook = limpiar_caption(datos.get("hook", ""))
+        cuerpo = limpiar_caption(datos.get("caption") or datos.get("cuerpo", ""))
         cta = datos.get("cta", "")
         hashtags = datos.get("hashtags", [])
 

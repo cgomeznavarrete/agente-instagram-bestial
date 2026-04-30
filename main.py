@@ -1143,7 +1143,8 @@ def publicar_programado(forzar: bool = False, tipo: str | None = None):
             temperatura=0.85,
             max_tokens=600,
         )
-        item.caption = re.sub(r"\*\*(.+?)\*\*", r"\1", caption_raw).strip()
+        from agente.claude.cliente_claude import limpiar_caption
+        item.caption = limpiar_caption(re.sub(r"\*\*(.+?)\*\*", r"\1", caption_raw))
 
     # ── Enviar preview a Telegram y esperar aprobación ──────────────────────
     rev_id = f"prog_{int(_time.time())}"

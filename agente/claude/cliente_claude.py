@@ -58,6 +58,46 @@ def _reparar_json(texto: str) -> str:
     return texto_reparado
 
 
+def limpiar_caption(texto: str) -> str:
+    """
+    Elimina encabezados, etiquetas de sección y prefijos que Claude agrega
+    antes del caption real pero que NO deben publicarse en Instagram.
+
+    Ejemplos de líneas que se eliminan:
+        # Caption — REEL | Humor Picante 🌶️
+        ## Caption
+        **Caption:**
+        Caption para Instagram:
+        ---
+
+    Reglas:
+    - Elimina líneas que empiezan con '#' (markdown heading)
+    - Elimina líneas que empiezan con '**' y terminan con '**:' (bold label)
+    - Elimina líneas que contienen solo '---' o '___' (separadores)
+    - Elimina líneas de prefijo como "Caption:", "Caption para Instagram:"
+    - Deja el resto intacto — no toca el cuerpo ni los hashtags
+    """
+    import re as _re
+
+    lineas = texto.splitlines()
+    resultado = []
+    _PATRON_PREFIJO = _re.compile(
+        r"^(#{1,3}\s|"                          # # Heading / ## Heading
+        r"\*\*[^*]+\*\*\s*:?\s*$|"             # **Label:** sola en la línea
+        r"caption\s*(para\s*instagram)?\s*:?\s*$|"  # Caption: / Caption para Instagram:
+        r"[-_]{3,}\s*$)"                         # --- o ___
+        , _re.IGNORECASE
+    )
+
+    for linea in lineas:
+        if _PATRON_PREFIJO.match(linea.strip()):
+            continue  # saltar esta línea
+        resultado.append(linea)
+
+    # Eliminar líneas vacías al inicio y al final
+    return "\n".join(resultado).strip()
+
+
 class ClienteClaude:
     """
     Centraliza todas las llamadas a Claude.
