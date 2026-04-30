@@ -323,6 +323,10 @@ class BotTelegram:
             self._mostrar_estado()
             return
 
+        if texto.startswith("/hoy"):
+            self._mostrar_plan_hoy()
+            return
+
         if texto.startswith("/ayuda") or texto.startswith("/start"):
             self._mostrar_ayuda()
             return
@@ -1019,16 +1023,116 @@ class BotTelegram:
         lineas.append(f"<b>Total:</b> {conteo['post']} posts · {conteo['reel']} reels · {conteo['story']} stories · {conteo['carrusel']} carruseles")
         _enviar_mensaje("\n".join(lineas))
 
+    def _mostrar_plan_hoy(self):
+        """Muestra el plan de publicación para hoy con el material disponible."""
+        import datetime
+        from zoneinfo import ZoneInfo
+
+        tz_col = ZoneInfo("America/Bogota")
+        ahora = datetime.datetime.now(tz_col)
+        dia_semana = ahora.weekday()
+        DIAS = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
+
+        # Mismo horario que publicar_programado en main.py
+        HORARIO = {
+            (0, 11, 14): "post",  (0, 18, 22): "reel",
+            (1, 11, 14): "post",  (1, 18, 22): "reel",
+            (2, 11, 14): "post",  (2, 18, 22): "story",
+            (3, 11, 14): "reel",  (3, 18, 22): "story",
+            (4, 11, 14): "post",  (4, 18, 22): "reel",
+            (5, 11, 14): "post",  (5, 18, 22): "story",
+            (6, 11, 14): "story", (6, 18, 22): "story",
+        }
+
+        slots_hoy = [
+            (h_min, h_max, tipo)
+            for (dia, h_min, h_max), tipo in HORARIO.items()
+            if dia == dia_semana
+        ]
+        slots_hoy.sort()  # Ordenar por hora
+
+        EMOJI = {"post": "📸", "reel": "🎬", "story": "⭕", "carrusel": "📖"}
+        PILAR_CORTO = {
+            "recetas_y_maridajes": "Recetas",
+            "lifestyle_y_comunidad": "Lifestyle",
+            "humor_picante": "Humor",
+            "educacion_sobre_salsas": "Educación",
+            "behind_the_scenes": "BTS",
+            "promociones_y_lanzamientos": "Promo",
+        }
+
+        conteo = contar_pendientes()
+        lineas = [f"🗓 <b>Plan de hoy — {DIAS[dia_semana]} {ahora.strftime('%d/%m')}</b>\n"]
+
+        for h_min, h_max, tipo_pref in slots_hoy:
+            hora_str = f"{h_min}:00–{h_max}:00"
+            emoji = EMOJI.get(tipo_pref, "📌")
+
+            # Ver si hay material del tipo preferido
+            items = listar_pendientes(tipo_pref)
+            if items:
+                it = items[0]
+                pilar = PILAR_CORTO.get(it.pilar, it.pilar)
+                tiene_url = "☁️" if it.cloudinary_url else "📁"
+                lineas.append(
+                    f"{emoji} <b>{hora_str}</b> — {tipo_pref.upper()}\n"
+                    f"   {tiene_url} {pilar} — <code>{it.nombre_archivo[-25:]}</code>\n"
+                    f"   Estado: listo para publicar ✅"
+                )
+            else:
+                # Buscar fallback en otros tipos
+                fallback = None
+                fallback_tipo = None
+                for tipo_alt in ["post", "reel", "story"]:
+                    if tipo_alt != tipo_pref:
+                        alt_items = listar_pendientes(tipo_alt)
+                        if alt_items:
+                            fallback = alt_items[0]
+                            fallback_tipo = tipo_alt
+                            break
+
+                if fallback:
+                    pilar = PILAR_CORTO.get(fallback.pilar, fallback.pilar)
+                    lineas.append(
+                        f"{emoji} <b>{hora_str}</b> — {tipo_pref.upper()} (sin material)\n"
+                        f"   ↳ Usará {fallback_tipo.upper()}: {pilar} ✅"
+                    )
+                elif tipo_pref == "post":
+                    lineas.append(
+                        f"{emoji} <b>{hora_str}</b> — POST\n"
+                        f"   ↳ Sin material — generará carrusel automático 🤖"
+                    )
+                else:
+                    lineas.append(
+                        f"{emoji} <b>{hora_str}</b> — {tipo_pref.upper()}\n"
+                        f"   ⚠️ Sin material — no se publicará nada"
+                    )
+            lineas.append("")
+
+        # Resumen de biblioteca
+        total = sum(conteo.values())
+        lineas.append(
+            f"<b>Biblioteca:</b> {conteo['post']} posts · {conteo['reel']} reels · "
+            f"{conteo['story']} stories · {conteo['carrusel']} carruseles"
+        )
+        lineas.append(f"\n<i>Hora actual: {ahora.strftime('%H:%M')} COL</i>")
+
+        _enviar_mensaje("\n".join(lineas))
+
     def _mostrar_ayuda(self):
         _enviar_mensaje(
             "🤖 <b>Comandos disponibles</b>\n\n"
             "📸 <b>Envía una foto</b> → te pregunto si guardar o publicar ahora\n"
             "🎬 <b>Envía un video</b> → te pregunto si es Reel o Story\n"
             "📖 <b>Envía varias fotos juntas</b> → carrusel automático\n\n"
-            "/carrusel <tema> → genera carrusel educativo con IA\n"
-            "/estado → ver cuánto material hay en biblioteca\n"
+            "/hoy → plan de publicación de hoy con material disponible\n"
+            "/estado → lista completa del material en biblioteca\n"
+            "/carrusel &lt;tema&gt; → genera carrusel educativo con IA\n"
             "/ayuda → este mensaje\n\n"
-            "<b>Horario automático:</b>\n"
-            "Lun/Mié/Vie: Story 9am + Post 12pm\n"
-            "Mar/Jue: Reel 7pm"
+            "<b>Horario de publicación:</b>\n"
+            "Lun/Mar/Mié/Vie: Post 12pm · Reel o Story 7pm\n"
+            "Jue: Reel 12pm · Story 7pm\n"
+            "Sáb: Post 12pm · Story 7pm\n"
+            "Dom: Story 12pm · Story 7pm\n\n"
+            "<i>30 min antes te mando preview para aprobar</i>"
         )
