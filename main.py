@@ -1147,10 +1147,9 @@ def publicar_programado(forzar: bool = False, tipo: str | None = None):
 
     # ── Enviar preview a Telegram y esperar aprobación ──────────────────────
     rev_id = f"prog_{int(_time.time())}"
-    hora_pub = "12:00pm" if hora < 15 else "7:00pm"
     texto_prev = (
         f"🗓 <b>Publicación programada — {tipo_label}</b>\n"
-        f"⏰ Se publica a las <b>{hora_pub} COL</b> si apruebas\n\n"
+        f"👆 Toca <b>✅ Publicar</b> para que salga al aire\n\n"
         + (f"{item.caption[:600]}\n\n" if item.caption else "")
         + "<i>¿Apruebas esta publicación?</i>"
     )
@@ -1179,12 +1178,12 @@ def publicar_programado(forzar: bool = False, tipo: str | None = None):
     if not _preview_enviado:
         _enviar_mensaje(texto_prev, reply_markup=botones)
 
-    console.print("Preview enviado a Telegram. Esperando aprobación (30 min)...")
+    console.print("Preview enviado a Telegram. Esperando aprobación (60 min)...")
 
-    # ── Esperar respuesta hasta 30 minutos ────────────────────────────────────
+    # ── Esperar respuesta hasta 60 minutos — NUNCA publica sin aprobación ────
     offset = None
     decision = None
-    deadline = _time.time() + 30 * 60
+    deadline = _time.time() + 60 * 60
 
     while _time.time() < deadline:
         params_poll = {"timeout": 20, "allowed_updates": ["callback_query"]}
@@ -1207,8 +1206,8 @@ def publicar_programado(forzar: bool = False, tipo: str | None = None):
             break
 
     if not decision:
-        console.print("[yellow]Sin respuesta en 30 min — publicación cancelada.[/yellow]")
-        _enviar_mensaje(f"⏰ <b>Sin respuesta</b> — {tipo_label} no se publicó hoy. Intenta de nuevo mañana.")
+        console.print("[yellow]Sin respuesta en 60 min — publicación cancelada (nunca publica sin aprobación).[/yellow]")
+        _enviar_mensaje(f"⏰ <b>Sin respuesta en 60 min</b> — {tipo_label} no se publicó. Dispara el workflow de nuevo cuando quieras aprobarlo.")
         return
 
     if decision == "saltar":
