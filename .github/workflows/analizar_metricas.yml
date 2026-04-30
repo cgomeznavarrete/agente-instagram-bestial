@@ -5,6 +5,9 @@ on:
     - cron: '0 3 * * 0'    # Domingo 10:00pm Colombia (UTC-5 → 03:00 UTC lunes)
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   metricas:
     runs-on: ubuntu-latest

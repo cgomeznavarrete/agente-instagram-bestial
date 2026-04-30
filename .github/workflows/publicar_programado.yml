@@ -20,6 +20,10 @@ on:
         required: false
         default: 'reel'
 
+# Permisos para que el workflow pueda hacer push al repo
+permissions:
+  contents: write
+
 # Solo una instancia a la vez
 concurrency:
   group: publicar-programado
@@ -33,6 +37,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Python
         uses: actions/setup-python@v5

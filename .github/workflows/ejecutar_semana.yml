@@ -5,6 +5,9 @@ on:
     - cron: '0 14 * * 1'   # Lunes 9:00am Colombia (UTC-5 → 14:00 UTC)
   workflow_dispatch:        # Permite ejecución manual desde GitHub
 
+permissions:
+  contents: write
+
 jobs:
   generar-semana:
     runs-on: ubuntu-latest
