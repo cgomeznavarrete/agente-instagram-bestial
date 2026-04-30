@@ -26,7 +26,10 @@ from agente.gestores.biblioteca import (
     contar_pendientes, listar_pendientes, marcar_publicado, marcar_descartado,
     EXTENSIONES_IMAGEN, EXTENSIONES_VIDEO,
 )
-from agente.telegram.notificador import _enviar_mensaje, _enviar_foto, _enviar_video, BASE_URL
+from agente.telegram.notificador import (
+    _enviar_mensaje, _enviar_foto, _enviar_video,
+    _enviar_foto_url, _enviar_video_url, BASE_URL,
+)
 from agente.media.subidor_cloudinary import SubidorCloudinary
 
 logger = logging.getLogger(__name__)
@@ -59,6 +62,35 @@ def _answer_callback(callback_id: str, texto: str = ""):
     requests.post(f"{BASE_URL}/answerCallbackQuery", data={
         "callback_query_id": callback_id, "text": texto,
     }, timeout=10)
+
+
+def _commit_json_github(ruta_local: str, repo_path: str, mensaje: str):
+    """Sube cualquier archivo JSON a GitHub via REST API."""
+    import base64, os
+    import requests as _req
+    token = os.environ.get("GITHUB_TOKEN")
+    if not token:
+        return
+    try:
+        api_url = f"https://api.github.com/repos/cgomeznavarrete/agente-instagram-bestial/contents/{repo_path}"
+        headers = {
+            "Authorization": f"Bearer {token}",
+            "Accept": "application/vnd.github.v3+json",
+            "X-GitHub-Api-Version": "2022-11-28",
+        }
+        r_get = _req.get(api_url, headers=headers, timeout=15)
+        sha = r_get.json().get("sha", "") if r_get.status_code == 200 else ""
+        contenido = Path(ruta_local).read_text(encoding="utf-8")
+        payload = {
+            "message": mensaje,
+            "content": base64.b64encode(contenido.encode("utf-8")).decode("ascii"),
+            "committer": {"name": "Agente Bestial", "email": "agente@salsasbestial.com"},
+        }
+        if sha:
+            payload["sha"] = sha
+        _req.put(api_url, headers=headers, json=payload, timeout=15)
+    except Exception as e:
+        logger.warning("No se pudo subir %s a GitHub: %s", repo_path, e)
 
 
 def _commit_biblioteca(nombre_archivo: str = ""):
@@ -225,8 +257,21 @@ class BotTelegram:
 
     def __init__(self):
         self.offset: Optional[int] = None
-        # Estado persistido en disco — sobrevive reinicios del bot
         self._estado_path = Path("datos/bot_estado.json")
+        self._pausas_path = Path("datos/pausas_hoy.json")
+
+    def _leer_pausas_hoy(self) -> dict:
+        try:
+            if self._pausas_path.exists():
+                return json.loads(self._pausas_path.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+        return {}
+
+    def _guardar_pausas_hoy(self, pausas: dict):
+        self._pausas_path.parent.mkdir(parents=True, exist_ok=True)
+        self._pausas_path.write_text(json.dumps(pausas, ensure_ascii=False, indent=2), encoding="utf-8")
+        _commit_json_github(str(self._pausas_path), "datos/pausas_hoy.json", "chore: pausas publicacion actualizadas")
 
     def _set_estado(self, chat_id: str, paso: str, datos: dict = None):
         estado = self._leer_estado_disco()
@@ -644,6 +689,48 @@ class BotTelegram:
             self._clear_estado(chat_id)
             return
 
+        # ── Control de publicaciones del día (/hoy) ──────────────────────
+        if partes[0] == "hoy" and len(partes) >= 2:
+            import datetime
+            from zoneinfo import ZoneInfo
+            accion = partes[1]
+            fecha_hoy = datetime.datetime.now(ZoneInfo("America/Bogota")).strftime("%Y-%m-%d")
+            pausas = self._leer_pausas_hoy()
+            if pausas.get("fecha") != fecha_hoy:
+                pausas = {"fecha": fecha_hoy, "slots_pausados": [], "pausado_todo": False}
+
+            if accion == "pausar_todo":
+                pausas["pausado_todo"] = True
+                pausas["slots_pausados"] = []
+                self._guardar_pausas_hoy(pausas)
+                _answer_callback(cb_id, "🚫 Publicaciones pausadas para hoy")
+                _enviar_mensaje("🚫 <b>No se publica nada hoy.</b>\nEscribe /hoy para reactivar cuando quieras.")
+
+            elif accion == "activar_todo":
+                pausas["pausado_todo"] = False
+                pausas["slots_pausados"] = []
+                self._guardar_pausas_hoy(pausas)
+                _answer_callback(cb_id, "✅ Publicaciones reactivadas")
+                _enviar_mensaje("✅ <b>Publicaciones reactivadas.</b>\nEscribe /hoy para ver el plan.")
+
+            elif accion == "saltar" and len(partes) >= 3:
+                h_min = int(partes[2])
+                hora_label = "12pm" if h_min < 15 else "7pm"
+                if h_min not in pausas["slots_pausados"]:
+                    pausas["slots_pausados"].append(h_min)
+                self._guardar_pausas_hoy(pausas)
+                _answer_callback(cb_id, f"⏭ Slot {hora_label} saltado")
+                _enviar_mensaje(f"⏭ Slot de <b>{hora_label}</b> no se publicará hoy.\nEscribe /hoy para ver el plan actualizado.")
+
+            elif accion == "activar" and len(partes) >= 3:
+                h_min = int(partes[2])
+                hora_label = "12pm" if h_min < 15 else "7pm"
+                pausas["slots_pausados"] = [s for s in pausas["slots_pausados"] if s != h_min]
+                self._guardar_pausas_hoy(pausas)
+                _answer_callback(cb_id, f"✅ Slot {hora_label} reactivado")
+                _enviar_mensaje(f"✅ Slot de <b>{hora_label}</b> reactivado.\nEscribe /hoy para ver el plan actualizado.")
+            return
+
         # ── Álbum de fotos del usuario → carrusel ────────────────────────
         if partes[0] == "album" and len(partes) >= 2:
             accion = partes[1]
@@ -1023,6 +1110,38 @@ class BotTelegram:
         lineas.append(f"<b>Total:</b> {conteo['post']} posts · {conteo['reel']} reels · {conteo['story']} stories · {conteo['carrusel']} carruseles")
         _enviar_mensaje("\n".join(lineas))
 
+        # Enviar preview visual de cada item
+        time.sleep(0.5)
+        for tipo in ["post", "reel", "story", "carrusel"]:
+            for it in listar_pendientes(tipo):
+                v = vars(it)
+                url = v.get("cloudinary_url", "")
+                nombre = v.get("nombre_archivo", "sin nombre")
+                pilar = PILAR_CORTO.get(v.get("pilar", ""), v.get("pilar", ""))
+                caption_prev = f"{EMOJI[tipo]} {tipo.upper()} — {pilar}\n<code>{nombre}</code>"
+
+                # Para carruseles usar la primera URL del campo cloudinary_url
+                if v.get("es_carrusel") and url:
+                    primera_url = url.split(",")[0].strip()
+                    if primera_url.startswith("http"):
+                        _enviar_foto_url(primera_url, caption=caption_prev + "\n<i>(primer slide)</i>")
+                        time.sleep(0.3)
+                        continue
+
+                if not url:
+                    continue
+
+                es_video = nombre.lower().endswith((".mp4", ".mov", ".avi", ".m4v"))
+                if es_video:
+                    r = _enviar_video_url(url, caption=caption_prev)
+                else:
+                    r = _enviar_foto_url(url, caption=caption_prev)
+
+                if not r.get("ok"):
+                    # Fallback: solo texto si falla el envío del media
+                    _enviar_mensaje(f"⚠️ No se pudo previsualizar: {caption_prev}")
+                time.sleep(0.3)
+
     def _mostrar_plan_hoy(self):
         """Muestra el plan de publicación para hoy con el material disponible."""
         import datetime
@@ -1110,14 +1229,34 @@ class BotTelegram:
             lineas.append("")
 
         # Resumen de biblioteca
-        total = sum(conteo.values())
         lineas.append(
             f"<b>Biblioteca:</b> {conteo['post']} posts · {conteo['reel']} reels · "
             f"{conteo['story']} stories · {conteo['carrusel']} carruseles"
         )
         lineas.append(f"\n<i>Hora actual: {ahora.strftime('%H:%M')} COL</i>")
 
-        _enviar_mensaje("\n".join(lineas))
+        # Leer pausas ya guardadas para este día
+        pausas = self._leer_pausas_hoy()
+        fecha_hoy = ahora.strftime("%Y-%m-%d")
+        pausas_activas = set(pausas.get("slots_pausados", [])) if pausas.get("fecha") == fecha_hoy else set()
+        pausado_todo = pausas.get("pausado_todo", False) and pausas.get("fecha") == fecha_hoy
+
+        # Construir botones de control
+        botones_slots = []
+        for h_min, _, _ in slots_hoy:
+            hora_label = f"12pm" if h_min < 15 else "7pm"
+            if h_min in pausas_activas or pausado_todo:
+                botones_slots.append({"text": f"✅ Activar {hora_label}", "callback_data": f"hoy:activar:{h_min}"})
+            else:
+                botones_slots.append({"text": f"⏭ Saltar {hora_label}", "callback_data": f"hoy:saltar:{h_min}"})
+
+        teclado = [botones_slots]
+        if pausado_todo:
+            teclado.append([{"text": "✅ Activar todo hoy", "callback_data": "hoy:activar_todo"}])
+        else:
+            teclado.append([{"text": "🚫 No publicar nada hoy", "callback_data": "hoy:pausar_todo"}])
+
+        _enviar_mensaje("\n".join(lineas), reply_markup={"inline_keyboard": teclado})
 
     def _mostrar_ayuda(self):
         _enviar_mensaje(

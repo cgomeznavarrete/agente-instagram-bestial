@@ -887,6 +887,7 @@ def publicar_programado():
     Envía preview a Telegram 10 minutos antes de publicar.
     """
     import datetime
+    import json
     import time as _time
     import requests as req
     import cloudinary
@@ -933,6 +934,32 @@ def publicar_programado():
     if not tipo_pub:
         console.print(f"[yellow]Fuera de horario ({ahora.strftime('%A %H:%M')} COL). No se publica nada.[/yellow]")
         return
+
+    # Verificar si el usuario pausó este slot desde Telegram (/hoy)
+    pausas_path = Path("datos/pausas_hoy.json")
+    if pausas_path.exists():
+        try:
+            pausas = json.loads(pausas_path.read_text(encoding="utf-8"))
+            fecha_hoy = ahora.strftime("%Y-%m-%d")
+            if pausas.get("fecha") == fecha_hoy:
+                if pausas.get("pausado_todo"):
+                    console.print("[yellow]Publicación pausada por el usuario para hoy — saliendo.[/yellow]")
+                    _enviar_mensaje("⏭ Slot pausado — no se publicó nada en este horario.")
+                    return
+                slot_h_min = next((h for (d, h, _) in HORARIO if d == dia_semana and HORARIO[(d, h, _)] == tipo_pub
+                                   and h <= hora), None) if False else None
+                # Buscar el h_min del slot actual
+                for (d, h_min_s, h_max_s), t in HORARIO.items():
+                    if d == dia_semana and h_min_s <= hora < h_max_s:
+                        slot_h_min = h_min_s
+                        break
+                if slot_h_min in pausas.get("slots_pausados", []):
+                    hora_label = "12pm" if slot_h_min < 15 else "7pm"
+                    console.print(f"[yellow]Slot {hora_label} pausado por el usuario — saliendo.[/yellow]")
+                    _enviar_mensaje(f"⏭ Slot {hora_label} pausado — no se publicó nada.")
+                    return
+        except Exception as e:
+            console.print(f"[yellow]No se pudo leer pausas_hoy.json: {e}[/yellow]")
 
     console.print(Panel(
         f"[bold blue]Publicación programada[/bold blue]\n"

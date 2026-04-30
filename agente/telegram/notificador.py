@@ -66,6 +66,36 @@ def _enviar_video(ruta: Path, caption: str = "", reply_markup: dict = None) -> d
     return resp.json()
 
 
+def _enviar_foto_url(url: str, caption: str = "", reply_markup: dict = None) -> dict:
+    """Envía una imagen al chat usando una URL pública (ej: Cloudinary)."""
+    data = {
+        "chat_id": settings.TELEGRAM_CHAT_ID,
+        "photo": url,
+        "caption": caption[:1024],
+        "parse_mode": "HTML",
+    }
+    if reply_markup:
+        import json
+        data["reply_markup"] = json.dumps(reply_markup)
+    resp = requests.post(f"{BASE_URL}/sendPhoto", data=data, timeout=30)
+    return resp.json()
+
+
+def _enviar_video_url(url: str, caption: str = "", reply_markup: dict = None) -> dict:
+    """Envía un video al chat usando una URL pública (ej: Cloudinary)."""
+    data = {
+        "chat_id": settings.TELEGRAM_CHAT_ID,
+        "video": url,
+        "caption": caption[:1024],
+        "parse_mode": "HTML",
+    }
+    if reply_markup:
+        import json
+        data["reply_markup"] = json.dumps(reply_markup)
+    resp = requests.post(f"{BASE_URL}/sendVideo", data=data, timeout=60)
+    return resp.json()
+
+
 def _botones_aprobacion(entrada_id: str) -> dict:
     """Genera los botones inline de aprobar/rechazar."""
     return {
