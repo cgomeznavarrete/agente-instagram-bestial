@@ -262,6 +262,72 @@ def generar_story(
     return _exportar(video_final, "story", sufijo)
 
 
+def imagen_a_video_story(
+    ruta_imagen: str | Path,
+    mood_musica: str = "chill_food",
+    duracion: int = 15,
+    sufijo: str = "",
+) -> Path | None:
+    """
+    Convierte una imagen estática en un video MP4 9:16 de 15 s listo para Story.
+
+    No agrega texto — la imagen ya tiene su propio diseño.
+    Solo aplica: imagen → duración fija → música con fade in/out → H.264+AAC.
+
+    Args:
+        ruta_imagen: Ruta a la imagen (JPG, PNG, WEBP). Se redimensiona a 1080×1920.
+        mood_musica: mood para seleccionar el track ('chill_food', 'upbeat_latino',
+                     'energetico', 'humor'). Si no hay track disponible, exporta sin música.
+        duracion: Duración en segundos (por defecto 15, máx 60 para Stories).
+        sufijo: Sufijo opcional en el nombre del archivo de salida.
+
+    Returns:
+        Path al MP4 generado, o None si falla.
+    """
+    if not _cargar_moviepy():
+        return None
+
+    from moviepy.editor import ImageClip, AudioFileClip
+
+    ruta = Path(ruta_imagen)
+    if not ruta.exists():
+        # Intentar resolución relativa al proyecto
+        ruta = settings.BASE_DIR / ruta_imagen
+    if not ruta.exists():
+        logger.error("Imagen no encontrada para convertir a story: %s", ruta_imagen)
+        return None
+
+    res = params.VIDEO_STORIES["resolucion"]  # (1080, 1920)
+
+    try:
+        video = (
+            ImageClip(str(ruta))
+            .set_duration(duracion)
+            .resize(res)
+        )
+    except Exception as e:
+        logger.error("Error cargando imagen '%s': %s", ruta, e)
+        return None
+
+    # Música con fade in/out
+    pista = _seleccionar_musica(mood_musica)
+    if pista:
+        try:
+            audio = (
+                AudioFileClip(str(pista))
+                .subclip(0, min(duracion, AudioFileClip(str(pista)).duration))
+                .audio_fadein(min(params.VOLUMEN_FADE_IN_SEG, 1.5))
+                .audio_fadeout(min(params.VOLUMEN_FADE_OUT_SEG, 2.0))
+                .volumex(params.VOLUMEN_MUSICA)
+            )
+            video = video.set_audio(audio)
+            logger.info("Música agregada a story: %s (%s)", pista.name, mood_musica)
+        except Exception as e:
+            logger.warning("No se pudo agregar música a la story: %s — exportando sin audio", e)
+
+    return _exportar(video, "story", sufijo)
+
+
 def _posicion_texto(posicion: str, res: tuple) -> tuple:
     margen = params.TEXTO_VIDEO["margen_px"]
     if posicion == "top":

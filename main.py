@@ -1326,17 +1326,65 @@ def publicar_programado(forzar: bool = False, tipo: str | None = None):
             }
         else:
             # Post o story de imagen
-            if cloudinary_url:
-                url_img = cloudinary_url
-            elif ruta and ruta.exists():
-                url_img = cloudinary.uploader.upload(str(ruta), folder="salsas_bestial")["secure_url"]
+            # ── Stories: convertir imagen a video MP4 con música ────────────
+            if tipo_pub == "story" and ruta and ruta.exists():
+                from agente.generadores.video_automatico import imagen_a_video_story
+                import random as _rand
+                # Elegir música según pilar de la story
+                _MOOD_POR_PILAR = {
+                    "humor_picante": "humor",
+                    "retos_y_pruebas_de_picante": "energetico",
+                    "promociones_y_lanzamientos": "upbeat_latino",
+                    "como_comprar": "upbeat_latino",
+                    "recetas_y_maridajes": "chill_food",
+                    "behind_the_scenes": "chill_food",
+                    "lifestyle_y_comunidad": "chill_food",
+                    "educacion_sobre_salsas": "chill_food",
+                    "testimonios_y_ugc": "chill_food",
+                    "beneficios_del_producto": "upbeat_latino",
+                }
+                pilar_item = getattr(item, "pilar", "") or ""
+                mood_elegido = (
+                    getattr(item, "mood_musica", None)
+                    or _MOOD_POR_PILAR.get(pilar_item)
+                    or _rand.choice(["chill_food", "upbeat_latino", "energetico", "humor"])
+                )
+                console.print(f"  Convirtiendo imagen a video story ({mood_elegido})...")
+                ruta_video = imagen_a_video_story(ruta, mood_musica=mood_elegido, duracion=15)
+                if ruta_video and ruta_video.exists():
+                    console.print(f"  [green]✓[/green] Video story generado: {ruta_video.name}")
+                    url_video = cloudinary.uploader.upload(
+                        str(ruta_video), folder="salsas_bestial", resource_type="video"
+                    )["secure_url"]
+                    media_data = {
+                        "video_url": url_video,
+                        "media_type": "STORIES",
+                        "access_token": settings.INSTAGRAM_ACCESS_TOKEN,
+                    }
+                else:
+                    # Fallback: publicar como imagen estática si falla la conversión
+                    console.print("  [yellow]No se pudo generar video — publicando imagen estática[/yellow]")
+                    if cloudinary_url:
+                        url_img = cloudinary_url
+                    else:
+                        url_img = cloudinary.uploader.upload(str(ruta), folder="salsas_bestial")["secure_url"]
+                    media_data = {
+                        "image_url": url_img,
+                        "media_type": "STORIES",
+                        "access_token": settings.INSTAGRAM_ACCESS_TOKEN,
+                    }
             else:
-                console.print("[red]Sin archivo ni URL de Cloudinary para publicar[/red]")
-                return
-            media_data = {"image_url": url_img, "caption": item.caption, "access_token": settings.INSTAGRAM_ACCESS_TOKEN}
-            if tipo_pub == "story":
-                media_data["media_type"] = "STORIES"
-                media_data.pop("caption", None)
+                if cloudinary_url:
+                    url_img = cloudinary_url
+                elif ruta and ruta.exists():
+                    url_img = cloudinary.uploader.upload(str(ruta), folder="salsas_bestial")["secure_url"]
+                else:
+                    console.print("[red]Sin archivo ni URL de Cloudinary para publicar[/red]")
+                    return
+                media_data = {"image_url": url_img, "caption": item.caption, "access_token": settings.INSTAGRAM_ACCESS_TOKEN}
+                if tipo_pub == "story":
+                    media_data["media_type"] = "STORIES"
+                    media_data.pop("caption", None)
 
         r1 = req.post(
             f"https://graph.facebook.com/v21.0/{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media",
