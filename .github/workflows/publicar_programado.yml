@@ -11,10 +11,14 @@ on:
 
   workflow_dispatch:
     inputs:
-      tipo:
-        description: 'Tipo a publicar manualmente (post/reel/story)'
+      forzar:
+        description: 'Publicar ahora sin verificar horario (true/false)'
         required: false
-        default: ''
+        default: 'false'
+      tipo:
+        description: 'Tipo a publicar manualmente (post/reel/story/carrusel)'
+        required: false
+        default: 'reel'
 
 # Solo una instancia a la vez
 concurrency:
@@ -42,7 +46,14 @@ jobs:
           playwright install chromium --with-deps
 
       - name: Publicar según horario
-        run: python main.py publicar-programado
+        run: |
+          FORZAR="${{ github.event.inputs.forzar }}"
+          TIPO="${{ github.event.inputs.tipo }}"
+          if [ "$FORZAR" = "true" ]; then
+            python main.py publicar-programado --forzar --tipo "${TIPO:-reel}"
+          else
+            python main.py publicar-programado
+          fi
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}

@@ -937,7 +937,11 @@ def bot():
 
 
 @cli.command()
-def publicar_programado():
+@click.option("--forzar", is_flag=True, default=False,
+              help="Publica ahora sin verificar el horario (tipo=reel por defecto)")
+@click.option("--tipo", default=None, type=str,
+              help="Tipo forzado: reel|post|story|carrusel")
+def publicar_programado(forzar: bool = False, tipo: str | None = None):
     """
     Publica el siguiente item de la biblioteca según el horario del día.
 
@@ -947,6 +951,7 @@ def publicar_programado():
 
     GitHub Actions ejecuta este comando en los horarios configurados.
     Envía preview a Telegram 10 minutos antes de publicar.
+    Usa --forzar para publicar fuera del horario (útil para pruebas manuales).
     """
     import datetime
     import json
@@ -990,14 +995,22 @@ def publicar_programado():
     }
 
     tipo_pub = None
-    for (dia, h_min, h_max), tipo in HORARIO.items():
+    for (dia, h_min, h_max), _tipo in HORARIO.items():
         if dia_semana == dia and h_min <= hora < h_max:
-            tipo_pub = tipo
+            tipo_pub = _tipo
             break
 
     if not tipo_pub:
-        console.print(f"[yellow]Fuera de horario ({ahora.strftime('%A %H:%M')} COL). No se publica nada.[/yellow]")
-        return
+        if forzar:
+            tipo_pub = tipo or "reel"
+            console.print(f"[yellow]⚡ Publicación forzada ({ahora.strftime('%A %H:%M')} COL) — tipo: {tipo_pub}[/yellow]")
+        else:
+            console.print(f"[yellow]Fuera de horario ({ahora.strftime('%A %H:%M')} COL). No se publica nada.[/yellow]")
+            return
+
+    # Si se pasó --tipo explícitamente, sobreescribir el tipo del horario
+    if tipo:
+        tipo_pub = tipo
 
     # Verificar si el usuario pausó este slot desde Telegram (/hoy)
     pausas_path = Path("datos/pausas_hoy.json")
