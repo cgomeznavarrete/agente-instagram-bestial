@@ -1099,10 +1099,18 @@ def publicar_programado():
     media_id = None
 
     if item.es_carrusel:
+        # Preferir URLs de Cloudinary guardadas; si no, subir desde disco
+        urls_cloudinary_guardadas = [u for u in (cloudinary_url or "").split(",") if u.startswith("http")]
         rutas_slides = [Path(r) for r in item.archivos_carrusel]
         creation_ids = []
-        for slide_ruta in rutas_slides:
-            url_slide = cloudinary.uploader.upload(str(slide_ruta), folder="salsas_bestial")["secure_url"]
+        for i, slide_ruta in enumerate(rutas_slides):
+            if i < len(urls_cloudinary_guardadas):
+                url_slide = urls_cloudinary_guardadas[i]
+            elif slide_ruta.exists():
+                url_slide = cloudinary.uploader.upload(str(slide_ruta), folder="salsas_bestial")["secure_url"]
+            else:
+                console.print(f"[red]Slide {i} no encontrado local ni en Cloudinary — saltando[/red]")
+                continue
             r_c = req.post(
                 f"https://graph.facebook.com/v21.0/{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media",
                 data={"image_url": url_slide, "is_carousel_item": "true", "access_token": settings.INSTAGRAM_ACCESS_TOKEN},

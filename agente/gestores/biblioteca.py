@@ -137,12 +137,32 @@ def agregar_carrusel(
     carpeta_destino = CARPETAS.get(tipo, CARPETAS["post"]) / item_id
     carpeta_destino.mkdir(parents=True, exist_ok=True)
 
+    # Subir slides a Cloudinary y guardar copia local
     archivos_guardados = []
+    cloudinary_urls = []
+    try:
+        from agente.media.subidor_cloudinary import SubidorCloudinary
+        subidor = SubidorCloudinary()
+    except Exception:
+        subidor = None
+
     for i, ruta in enumerate(rutas):
         nombre = f"slide_{i:02d}{ruta.suffix.lower()}"
         dest = carpeta_destino / nombre
-        shutil.copy2(ruta, dest)
+        try:
+            shutil.copy2(ruta, dest)
+        except Exception:
+            dest = ruta
         archivos_guardados.append(str(dest))
+
+        if subidor:
+            try:
+                url = subidor.subir(dest)
+                if url:
+                    cloudinary_urls.append(url)
+                    logger.info("Biblioteca: slide %d subido a Cloudinary → %s", i, url[:50])
+            except Exception as e:
+                logger.warning("Biblioteca: error subiendo slide %d: %s", i, e)
 
     item = ItemBiblioteca(
         id=item_id,
@@ -153,6 +173,7 @@ def agregar_carrusel(
         pilar=pilar,
         es_carrusel=True,
         archivos_carrusel=archivos_guardados,
+        cloudinary_url=",".join(cloudinary_urls) if cloudinary_urls else "",
     )
 
     data = _cargar()
