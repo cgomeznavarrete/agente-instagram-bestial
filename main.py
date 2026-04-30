@@ -216,12 +216,74 @@ def publicar_pendientes():
 
 @cli.command()
 def analizar_metricas():
-    """Descarga y analiza las métricas de Instagram de la semana anterior."""
+    """Descarga métricas, identifica Reel ganador y analiza hashtags."""
     from agente.orquestador import OrquestadorMetricas
+    from agente.analisis.analizador_hashtags import AnalizadorHashtags
 
     console.print(Panel("[bold cyan]Analizando métricas de Instagram[/bold cyan]"))
     reporte = OrquestadorMetricas().ejecutar()
-    console.print("[green]✓[/green] Métricas actualizadas y reporte generado en Obsidian")
+    console.print("[green]✓[/green] Métricas y Reel ganador actualizados")
+
+    # Análisis de hashtags — correlaciona hashtags usados con alcance
+    console.print("[cyan]Analizando rendimiento de hashtags...[/cyan]")
+    try:
+        datos_ht = AnalizadorHashtags().analizar()
+        top = datos_ht.get("top_10", [])[:5]
+        if top:
+            console.print(f"[green]✓[/green] Top hashtags: {', '.join(top)}")
+        else:
+            console.print("[yellow]⚠[/yellow] Sin suficientes datos para ranking de hashtags aún")
+    except Exception as e:
+        console.print(f"[yellow]⚠[/yellow] Hashtags: {e}")
+
+    console.print("[green]✓[/green] Reporte completo generado en material_agente/reportes/")
+
+
+@cli.command(name="analizar-competencia")
+@click.option("--hashtag", default="salsapicante", help="Hashtag para buscar posts de nicho via Graph API")
+@click.option("--manual", is_flag=True, default=False, help="Modo manual: pegar datos en stdin como JSON")
+def analizar_competencia(hashtag: str, manual: bool):
+    """Analiza competidores e identifica oportunidades de contenido (corre 1 vez/mes)."""
+    from agente.analisis.analizador_competencia import AnalizadorCompetencia
+
+    console.print(Panel("[bold cyan]Análisis de competencia[/bold cyan]"))
+    analizador = AnalizadorCompetencia()
+
+    if manual:
+        console.print(
+            "Pega un JSON con los posts de competidores y presiona Enter dos veces.\n"
+            "Formato: lista de objetos con: cuenta, tipo, tema, likes, comentarios, fecha, caption_fragmento"
+        )
+        lines = []
+        try:
+            while True:
+                line = input()
+                if line == "":
+                    break
+                lines.append(line)
+        except EOFError:
+            pass
+        import json as _json
+        datos = _json.loads("\n".join(lines))
+        resultado = analizador.analizar_con_datos_manuales(datos)
+    else:
+        console.print(f"[cyan]Buscando posts del hashtag #{hashtag} via Graph API...[/cyan]")
+        posts = analizador.analizar_con_hashtag_api(hashtag, limit=20)
+        if not posts:
+            console.print("[yellow]Sin posts del API. Usa --manual para pegar datos.[/yellow]")
+            return
+        console.print(f"[green]{len(posts)} posts obtenidos. Analizando con Claude...[/green]")
+        resultado = analizador.analizar_con_datos_manuales(posts)
+
+    analisis = resultado.get("analisis", {})
+    if analisis:
+        console.print(f"\n[bold]Resumen:[/bold] {analisis.get('resumen_ejecutivo', '')}")
+        acciones = analisis.get("acciones_para_bestial", [])
+        for a in acciones:
+            prioridad = a.get("prioridad", "media").upper()
+            color = "red" if prioridad == "ALTA" else "yellow"
+            console.print(f"  [{color}][{prioridad}][/{color}] {a.get('accion', '')}")
+        console.print("\n[green]✓[/green] Reporte guardado en material_agente/reportes/")
 
 
 @cli.command()
@@ -896,7 +958,9 @@ def publicar_programado():
     from agente.gestores.biblioteca import (
         siguiente_pendiente, marcar_publicado, marcar_descartado, contar_pendientes
     )
-    from agente.telegram.notificador import _enviar_foto, _enviar_mensaje, BASE_URL
+    from agente.telegram.notificador import (
+        _enviar_foto, _enviar_mensaje, _enviar_foto_url, _enviar_video_url, BASE_URL
+    )
 
     # Siempre hora Colombia (UTC-5) — funciona igual local y en GitHub Actions (Ubuntu UTC)
     tz_col = ZoneInfo("America/Bogota")
@@ -1058,8 +1122,10 @@ def publicar_programado():
                 "Caption para Instagram:\n"
                 "- Primera línea: verdad que los amantes del picante reconocen\n"
                 "- Cuerpo (2-3 líneas): la experiencia\n"
-                f"- CTA: Pídela aquí → {brand.LINK_COMPRA_WHATSAPP}\n"
-                "- 15 hashtags. Máximo 3 emojis"
+                f"- CTA de compra: Pídela aquí → {brand.LINK_COMPRA_WHATSAPP}\n"
+                f"- Pregunta de cierre (OBLIGATORIA, última línea antes de hashtags): elige la más apropiada de esta lista: {brand.PREGUNTAS_ENGAGEMENT}\n"
+                f"- Usa exactamente estos hashtags al final (mezcla nicho/amplio ya seleccionada): {' '.join(brand.seleccionar_hashtags())}\n"
+                "- Máximo 3 emojis"
             ),
             temperatura=0.85,
             max_tokens=600,
@@ -1068,8 +1134,10 @@ def publicar_programado():
 
     # ── Enviar preview a Telegram y esperar aprobación ──────────────────────
     rev_id = f"prog_{int(_time.time())}"
+    hora_pub = "12:00pm" if hora < 15 else "7:00pm"
     texto_prev = (
-        f"🗓 <b>Publicación programada — {tipo_label}</b>\n\n"
+        f"🗓 <b>Publicación programada — {tipo_label}</b>\n"
+        f"⏰ Se publica a las <b>{hora_pub} COL</b> si apruebas\n\n"
         + (f"{item.caption[:600]}\n\n" if item.caption else "")
         + "<i>¿Apruebas esta publicación?</i>"
     )
@@ -1078,9 +1146,24 @@ def publicar_programado():
         {"text": "⏭ Saltar", "callback_data": f"pub_rechazar:{rev_id}"},
     ]]}
 
-    if ruta and ruta.suffix.lower() in {".jpg", ".jpeg", ".png", ".webp"}:
+    # Enviar preview con el media real cuando existe — el usuario ve exactamente lo que se va a publicar
+    _preview_enviado = False
+    if cloudinary_url and not item.es_carrusel:
+        # Determinar si es video o imagen por extensión del nombre de archivo
+        nombre = item.nombre_archivo.lower()
+        es_video_url = any(nombre.endswith(ext) for ext in (".mp4", ".mov", ".avi", ".m4v"))
+        if es_video_url:
+            r = _enviar_video_url(cloudinary_url, caption=texto_prev, reply_markup=botones)
+            _preview_enviado = r.get("ok", False)
+        else:
+            r = _enviar_foto_url(cloudinary_url, caption=texto_prev, reply_markup=botones)
+            _preview_enviado = r.get("ok", False)
+
+    if not _preview_enviado and ruta and ruta.suffix.lower() in {".jpg", ".jpeg", ".png", ".webp"}:
         _enviar_foto(ruta, caption=texto_prev, reply_markup=botones)
-    else:
+        _preview_enviado = True
+
+    if not _preview_enviado:
         _enviar_mensaje(texto_prev, reply_markup=botones)
 
     console.print("Preview enviado a Telegram. Esperando aprobación (30 min)...")

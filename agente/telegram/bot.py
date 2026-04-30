@@ -196,8 +196,9 @@ def _generar_caption(tipo: str, pilar: str) -> str:
             "Escribe un caption para Instagram:\n"
             "- Primera línea: verdad que los amantes del picante reconocen al instante\n"
             "- Cuerpo (2-3 líneas): la experiencia — olor, sabor, el momento\n"
-            f"- CTA final exacto: Pídela aquí → {brand.LINK_COMPRA_WHATSAPP}\n"
-            "- 15 hashtags mezcla español/inglés\n"
+            f"- CTA de compra: Pídela aquí → {brand.LINK_COMPRA_WHATSAPP}\n"
+            f"- Pregunta de cierre (OBLIGATORIA, genera conversación): elige la más apropiada de esta lista y ponla como última línea antes de los hashtags: {brand.PREGUNTAS_ENGAGEMENT}\n"
+            f"- Incluye exactamente estos hashtags al final (no inventes otros): {' '.join(brand.seleccionar_hashtags())}\n"
             "- Máximo 3 emojis"
         ),
         temperatura=0.85,
@@ -370,6 +371,10 @@ class BotTelegram:
 
         if texto.startswith("/hoy"):
             self._mostrar_plan_hoy()
+            return
+
+        if texto.startswith("/venta"):
+            self._flujo_venta()
             return
 
         if texto.startswith("/ayuda") or texto.startswith("/start"):
@@ -780,9 +785,12 @@ class BotTelegram:
                     prompt_sistema="Eres el community manager de Salsas Bestial.",
                     prompt_usuario=(
                         f"Carrusel de {len(rutas)} fotos. Pilar: lifestyle_y_comunidad.\n"
-                        f"Caption para Instagram — hook directo, 2 líneas, CTA: Pídela aquí → {brand.LINK_COMPRA_WHATSAPP}, 10 hashtags"
+                        f"Caption para Instagram — hook directo, 2 líneas, "
+                        f"CTA: Pídela aquí → {brand.LINK_COMPRA_WHATSAPP}, "
+                        f"pregunta de engagement al final (elige de: {brand.PREGUNTAS_ENGAGEMENT[:3]}), "
+                        f"hashtags: {' '.join(brand.seleccionar_hashtags())}"
                     ),
-                    temperatura=0.8, max_tokens=400,
+                    temperatura=0.8, max_tokens=450,
                 )
                 caption = _re.sub(r"\*\*(.+?)\*\*", r"\1", caption_raw).strip()
                 self._publicar_carrusel_ig(rutas, caption, chat_id)
@@ -1258,6 +1266,118 @@ class BotTelegram:
 
         _enviar_mensaje("\n".join(lineas), reply_markup={"inline_keyboard": teclado})
 
+    def _flujo_venta(self):
+        """Genera la serie de 3 stories de conversión a venta con Claude.
+
+        Secuencia:
+          Story 1 (Enganche)  — Poll / pregunta de curiosidad
+          Story 2 (Prueba)    — Reacción / prueba social
+          Story 3 (Cierre)    — CTA directo al WhatsApp
+
+        El agente genera los textos y briefs. El usuario los publica
+        manualmente o envía las imágenes al bot para publicarlas como stories.
+        """
+        _enviar_mensaje("🔥 <b>Generando serie de conversión...</b>\n\nClaude está creando los 3 guiones de story.")
+
+        from agente.claude.cliente_claude import ClienteClaude
+        import json as _json
+        cliente = ClienteClaude()
+
+        prompt = (
+            "Eres el community manager de Salsas Bestial (salsa tatemada artesanal colombiana).\n"
+            "Genera una serie de 3 stories de Instagram para convertir seguidores en clientes.\n\n"
+            "REGLAS:\n"
+            "- Tono: cercano, conversacional, como DM de amigo\n"
+            "- Story 1: enganche con pregunta o poll (genera curiosidad, NO menciona el producto aún)\n"
+            "- Story 2: prueba social / reacción (introduce el producto con emoción auténtica)\n"
+            "- Story 3: CTA directo al WhatsApp con urgencia real (no falsa)\n"
+            "- Máximo 2 emojis por story\n"
+            "- Cada story debe funcionar sola, pero la serie conecta\n\n"
+            "Devuelve SOLO este JSON:\n"
+            "{\n"
+            '  "story_1": {\n'
+            '    "tipo": "poll",\n'
+            '    "texto_principal": "texto grande en la story",\n'
+            '    "opcion_a": "texto opción A del poll",\n'
+            '    "opcion_b": "texto opción B del poll",\n'
+            '    "descripcion_visual": "cómo debe verse la story (fondo, colores, imagen sugerida)"\n'
+            "  },\n"
+            '  "story_2": {\n'
+            '    "tipo": "reaccion",\n'
+            '    "texto_principal": "texto principal de la story",\n'
+            '    "texto_secundario": "detalle adicional o null",\n'
+            '    "descripcion_visual": "cómo debe verse",\n'
+            '    "gancho_siguiente": "texto pequeño al pie: \'mañana te cuento...\' o similar"\n'
+            "  },\n"
+            '  "story_3": {\n'
+            '    "tipo": "cta",\n'
+            '    "texto_principal": "texto de cierre potente",\n'
+            '    "texto_cta": "texto exacto del botón o sticker link",\n'
+            '    "link": "https://wa.me/573005864523",\n'
+            '    "descripcion_visual": "cómo debe verse"\n'
+            "  }\n"
+            "}"
+        )
+
+        try:
+            datos = cliente.generar_json(
+                prompt_sistema="Eres copywriter experto en Instagram Stories con foco en conversión.",
+                prompt_usuario=prompt,
+                temperatura=0.85,
+            )
+        except Exception as e:
+            _enviar_mensaje(f"❌ Error generando la serie: {e}")
+            return
+
+        s1 = datos.get("story_1", {})
+        s2 = datos.get("story_2", {})
+        s3 = datos.get("story_3", {})
+
+        # Enviar cada story como mensaje separado
+        _enviar_mensaje(
+            "━━━━━━━━━━━━━━━━━━━━\n"
+            "🗓 <b>SERIE VENTA — 3 Stories en días consecutivos</b>\n"
+            "━━━━━━━━━━━━━━━━━━━━\n\n"
+            "Crea las 3 imágenes/videos con estos briefs y envíamelas en orden.\n"
+            "Las programo como stories en días consecutivos. 👇"
+        )
+        time.sleep(0.5)
+
+        _enviar_mensaje(
+            f"<b>STORY 1 — Enganche (DÍA 1)</b>\n\n"
+            f"📝 <b>Texto principal:</b>\n{s1.get('texto_principal', '')}\n\n"
+            f"🗳 <b>Poll:</b>\n  A → {s1.get('opcion_a', '')}\n  B → {s1.get('opcion_b', '')}\n\n"
+            f"🎨 <b>Visual:</b> {s1.get('descripcion_visual', '')}"
+        )
+        time.sleep(0.4)
+
+        _enviar_mensaje(
+            f"<b>STORY 2 — Prueba social (DÍA 2)</b>\n\n"
+            f"📝 <b>Texto principal:</b>\n{s2.get('texto_principal', '')}\n\n"
+            + (f"💬 <b>Detalle:</b> {s2.get('texto_secundario', '')}\n\n" if s2.get('texto_secundario') else "")
+            + f"🪝 <b>Gancho al día 3:</b> {s2.get('gancho_siguiente', '')}\n\n"
+            f"🎨 <b>Visual:</b> {s2.get('descripcion_visual', '')}"
+        )
+        time.sleep(0.4)
+
+        _enviar_mensaje(
+            f"<b>STORY 3 — Cierre / Venta (DÍA 3)</b>\n\n"
+            f"📝 <b>Texto principal:</b>\n{s3.get('texto_principal', '')}\n\n"
+            f"👉 <b>CTA:</b> {s3.get('texto_cta', '')} → {s3.get('link', '')}\n\n"
+            f"🎨 <b>Visual:</b> {s3.get('descripcion_visual', '')}"
+        )
+        time.sleep(0.4)
+
+        _enviar_mensaje(
+            "━━━━━━━━━━━━━━━━━━━━\n"
+            "✅ <b>¿Cómo publicarlas?</b>\n\n"
+            "1. Crea las 3 imágenes/videos con los briefs de arriba\n"
+            "2. Envíame cada una al chat (una por día, o las 3 juntas para programar)\n"
+            "3. Selecciona <b>Story → Biblioteca</b> en cada una\n"
+            "4. El agente las publica en días consecutivos automáticamente\n\n"
+            "<i>Consejo: Story 1 funciona sin imagen — solo texto + poll sobre fondo rojo bestial.</i>"
+        )
+
     def _mostrar_ayuda(self):
         _enviar_mensaje(
             "🤖 <b>Comandos disponibles</b>\n\n"
@@ -1267,11 +1387,13 @@ class BotTelegram:
             "/hoy → plan de publicación de hoy con material disponible\n"
             "/estado → lista completa del material en biblioteca\n"
             "/carrusel &lt;tema&gt; → genera carrusel educativo con IA\n"
+            "/venta → genera serie de 3 stories de conversión a venta\n"
             "/ayuda → este mensaje\n\n"
             "<b>Horario de publicación:</b>\n"
             "Lun/Mar/Mié/Vie: Post 12pm · Reel o Story 7pm\n"
             "Jue: Reel 12pm · Story 7pm\n"
             "Sáb: Post 12pm · Story 7pm\n"
             "Dom: Story 12pm · Story 7pm\n\n"
-            "<i>30 min antes te mando preview para aprobar</i>"
+            "⏰ <i>El preview llega a las 11:30am y 6:30pm COL\n"
+            "Tienes 30 min para aprobar antes de que se publique</i>"
         )

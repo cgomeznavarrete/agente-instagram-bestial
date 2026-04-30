@@ -40,6 +40,13 @@ MATERIAL DISPONIBLE:
 {% endfor %}
 {% endif %}
 
+{% if reel_ganador_concepto %}
+REEL GANADOR DE LA SEMANA ANTERIOR (OBLIGATORIO incluir variación):
+El siguiente concepto es una variación del Reel con mayor engagement rate de la semana pasada.
+DEBE aparecer como uno de los Reels de esta semana — es el formato probado que funcionó:
+"{{ reel_ganador_concepto }}"
+{% endif %}
+
 REGLAS DEL CALENDARIO:
 1. Distribuir uniformemente en la semana (lunes a domingo)
 2. Horarios recomendados: 12:00, 19:00, 20:00 (Colombia UTC-5)
@@ -48,6 +55,7 @@ REGLAS DEL CALENDARIO:
 5. No repetir el mismo pilar de contenido dos días seguidos
 6. Los reels deben tener los hooks más fuertes de la semana
 7. Al menos 1 contenido de venta/conversión por semana
+8. PRIORIDAD DE FORMATOS: Reels > Carruseles > Posts (el algoritmo premia video en 2026)
 
 Devuelve ÚNICAMENTE el siguiente JSON, sin texto adicional:
 {

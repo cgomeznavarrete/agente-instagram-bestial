@@ -36,36 +36,74 @@ PILARES_CONTENIDO = [
     "lifestyle_y_comunidad",
 ]
 
-HASHTAGS_FIJOS = [
-    "#SalsasBestial",
+# ── Hashtags — 3 niveles de alcance ─────────────────────────────────────────
+# Estrategia: cada post usa 5 de cada nivel = 15 hashtags total
+# El algoritmo de Instagram distribuye mejor con mix de tamaños de comunidad
+
+# Nivel 1 — Nicho estrecho (comunidades pequeñas y específicas → más fácil aparecer en explorar)
+HASHTAGS_NICHO_ESTRECHO = [
+    "#SalsaTatemada",
+    "#SalsaArtesanalColombia",
+    "#SalsaCasera",
+    "#SalsaHechaMano",
+    "#AhumadoArtesanal",
+    "#SalsaAhumada",
+    "#SalsaBestial",
+    "#PicanteColombia",
+    "#SalsaPicanteArtesanal",
+    "#HotSauceArtesanal",
+]
+
+# Nivel 2 — Nicho medio (comunidades medianas → balance entre competencia y alcance)
+HASHTAGS_NICHO_MEDIO = [
     "#SalsaPicante",
     "#HotSauce",
     "#Picante",
+    "#SalsasColombia",
+    "#ComidaArtesanal",
     "#SalsaArtesanal",
-]
-
-HASHTAGS_NICHO = [
-    "#FoodLovers",
-    "#Foodie",
-    "#RecetasFaciles",
-    "#CocinaLatina",
     "#HotSauceLovers",
     "#SpicyFood",
     "#SalsaCasera",
-    "#Chile",
-    "#Gastronomia",
     "#ComidaPicante",
+    "#FoodLovers",
+    "#SaborColombia",
 ]
 
-HASHTAGS_MODERADOS = [
-    "#Comida",
-    "#Recetas",
+# Nivel 3 — Amplio (comunidades grandes → largo plazo, algoritmo de explorar)
+HASHTAGS_AMPLIO = [
+    "#ComidaColombia",
+    "#FoodiesColombia",
+    "#CocinaArtesanal",
+    "#RecetasColombia",
+    "#Foodie",
     "#Food",
-    "#Cocina",
-    "#Mexico",
     "#Colombia",
-    "#Latinoamerica",
+    "#CocinaLatina",
+    "#Gastronomia",
+    "#RecetasFaciles",
 ]
+
+# Fijos — van en TODOS los posts sin excepción
+HASHTAGS_FIJOS = [
+    "#SalsasBestial",
+]
+
+
+def seleccionar_hashtags(n_estrecho: int = 5, n_medio: int = 5, n_amplio: int = 4) -> list[str]:
+    """Retorna mix balanceado de hashtags para un post (default: 14 + 1 fijo = 15 total).
+    Rota dentro de cada nivel para no repetir siempre los mismos.
+    """
+    import random
+    estrecho = random.sample(HASHTAGS_NICHO_ESTRECHO, min(n_estrecho, len(HASHTAGS_NICHO_ESTRECHO)))
+    medio = random.sample(HASHTAGS_NICHO_MEDIO, min(n_medio, len(HASHTAGS_NICHO_MEDIO)))
+    amplio = random.sample(HASHTAGS_AMPLIO, min(n_amplio, len(HASHTAGS_AMPLIO)))
+    return HASHTAGS_FIJOS + estrecho + medio + amplio
+
+
+# Retrocompatibilidad — algunos módulos viejos pueden usar estas listas
+HASHTAGS_NICHO = HASHTAGS_NICHO_MEDIO
+HASHTAGS_MODERADOS = HASHTAGS_AMPLIO
 
 # Sabores disponibles (actualizar cuando se lancen nuevos productos)
 SABORES_DISPONIBLES = [
@@ -129,6 +167,22 @@ REGLAS PARA QUE EL COPY NO PAREZCA GENERADO POR IA:
 """
 
 # ── CTAs efectivos por objetivo ───────────────────────────────────────────────
+# ── Preguntas de engagement — terminan TODO post/reel ────────────────────────
+# Objetivo: generar comentarios → aumentar distribución algorítmica
+# El caption SIEMPRE termina con una de estas preguntas (antes de los hashtags)
+PREGUNTAS_ENGAGEMENT = [
+    "¿Tú con qué la combinarías?",
+    "¿Con qué plato la probarías primero?",
+    "¿Cuánto picante aguantas realmente?",
+    "¿Qué le pondrías tú a esto?",
+    "¿A quién le mandarías una de estas?",
+    "¿El picante es de equipo o de valientes solitarios?",
+    "¿Eres de los que le ponen salsa a todo o solo cuando el plato lo pide?",
+    "¿La primer vez que probaste picante de verdad, cuál fue tu reacción?",
+    "¿Cuál es ese plato que todavía no has probado con salsa pero sabes que quedaría brutal?",
+    "¿La comes sola o siempre necesita compañía en el plato?",
+]
+
 CTAS_POR_OBJETIVO = {
     "compra": [
         "Enlace en bio. Sin excusas.",

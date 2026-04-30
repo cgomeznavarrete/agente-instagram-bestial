@@ -14,6 +14,7 @@ from agente.memoria import gestor_memoria as memoria
 from agente.memoria.modelos import CalendarioSemanal, EntradaCalendario
 from agente.gestores import material as gestor_material
 from agente.gestores.rotacion import validar_distribucion_semanal
+from agente.analisis.analizador_metricas import AnalizadorMetricas
 
 logger = logging.getLogger(__name__)
 
@@ -80,6 +81,12 @@ class GeneradorCalendario:
             for c in campanas
         ]
 
+        # Verificar si hay una variación de Reel ganador pendiente de usar
+        analizador = AnalizadorMetricas()
+        reel_ganador_concepto = analizador.obtener_variacion_pendiente() or ""
+        if reel_ganador_concepto:
+            logger.info("Incluyendo variación de Reel ganador en el calendario: %.80s...", reel_ganador_concepto)
+
         prompt_usuario = prompt_calendario(
             semana=semana,
             metricas_previas=metricas_raw,
@@ -90,6 +97,7 @@ class GeneradorCalendario:
             reels_semana=settings.REELS_POR_SEMANA,
             stories_semana=settings.STORIES_POR_SEMANA,
             carruseles_semana=settings.CARRUSELES_POR_SEMANA,
+            reel_ganador_concepto=reel_ganador_concepto,
         )
 
         datos = self._claude.generar_json(
@@ -115,6 +123,10 @@ class GeneradorCalendario:
         )
 
         memoria.guardar_calendario(calendario)
+
+        # Marcar variación del Reel ganador como usada (para no repetirla la semana siguiente)
+        if reel_ganador_concepto:
+            analizador.marcar_variacion_usada()
 
         # Archivar copia
         archivo_semana = settings.MATERIAL_AGENTE_DIR / "calendarios" / f"calendario_{semana}.json"

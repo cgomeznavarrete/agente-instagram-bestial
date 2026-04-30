@@ -2,10 +2,12 @@ name: Publicar contenido programado
 
 on:
   schedule:
-    # 12pm Colombia (UTC-5) = 17:00 UTC — slot mediodía
-    - cron: '0 17 * * *'
-    # 7pm Colombia (UTC-5) = 00:00 UTC del día siguiente — slot noche
-    - cron: '0 0 * * *'
+    # Preview+publicación 12pm Colombia (UTC-5):
+    # Dispara a las 11:30am COL (16:30 UTC) → preview llega 30 min antes de publicar
+    - cron: '30 16 * * *'
+    # Preview+publicación 7pm Colombia (UTC-5):
+    # Dispara a las 6:30pm COL (23:30 UTC) → preview llega 30 min antes de publicar
+    - cron: '30 23 * * *'
 
   workflow_dispatch:
     inputs:

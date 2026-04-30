@@ -68,6 +68,7 @@ def prompt_calendario(
     reels_semana: int,
     stories_semana: int,
     carruseles_semana: int,
+    reel_ganador_concepto: str = "",
 ) -> str:
     return renderizar(
         "calendario_semanal.j2",
@@ -80,6 +81,7 @@ def prompt_calendario(
         reels_semana=reels_semana,
         stories_semana=stories_semana,
         carruseles_semana=carruseles_semana,
+        reel_ganador_concepto=reel_ganador_concepto,
     )
 
 
