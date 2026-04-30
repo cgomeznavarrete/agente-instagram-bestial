@@ -220,6 +220,21 @@
       "es_carrusel": false,
       "archivos_carrusel": [],
       "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/video/upload/v1777506708/salsas_bestial/pzrowhbkdjb0avifvaoj.mp4"
+    },
+    {
+      "id": "post_1777522845874",
+      "tipo": "post",
+      "nombre_archivo": "post_1777522845874.jpg",
+      "ruta_local": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/posts/post_1777522845874.jpg",
+      "fecha_agregado": 1777522846.7554975,
+      "estado": "pendiente",
+      "pilar": "recetas_y_maridajes",
+      "caption": "",
+      "media_id": "",
+      "fecha_publicado": 0.0,
+      "es_carrusel": false,
+      "archivos_carrusel": [],
+      "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/image/upload/v1777522846/salsas_bestial/kjerlutyq7y0scrmtepg.jpg"
     }
   ]
 }
