@@ -973,25 +973,28 @@ def publicar_programado(forzar: bool = False, tipo: str | None = None):
     dia_semana = ahora.weekday()  # 0=lun ... 6=dom
     hora = ahora.hour
 
-    # Dos slots por día, todos los días:
-    #   Mediodía (11-14 COL) → post o carrusel
-    #   Noche   (18-22 COL) → reel o story
+    # Dos slots por día, todos los días.
+    # Ventanas AMPLIAS para absorber los retrasos de GitHub Actions (puede llegar
+    # horas tarde). El cron dispara ~11:30am y ~6:30pm COL; las ventanas cubren
+    # desde 1 h antes hasta 3 h después para no quedar "fuera de horario".
+    #   Mediodía (10-16 COL) → post o carrusel
+    #   Noche    (17-23 COL) → reel o story
     HORARIO = {
         # (dia_semana, hora_min, hora_max): tipo_preferido
-        (0, 11, 14): "post",    # Lunes mediodía
-        (0, 18, 22): "reel",    # Lunes noche
-        (1, 11, 14): "post",    # Martes mediodía
-        (1, 18, 22): "reel",    # Martes noche
-        (2, 11, 14): "post",    # Miércoles mediodía
-        (2, 18, 22): "story",   # Miércoles noche
-        (3, 11, 14): "reel",    # Jueves mediodía
-        (3, 18, 22): "story",   # Jueves noche
-        (4, 11, 14): "post",    # Viernes mediodía
-        (4, 18, 22): "reel",    # Viernes noche
-        (5, 11, 14): "post",    # Sábado mediodía
-        (5, 18, 22): "story",   # Sábado noche
-        (6, 11, 14): "story",   # Domingo mediodía
-        (6, 18, 22): "story",   # Domingo noche
+        (0, 10, 16): "post",    # Lunes mediodía
+        (0, 17, 23): "reel",    # Lunes noche
+        (1, 10, 16): "post",    # Martes mediodía
+        (1, 17, 23): "reel",    # Martes noche
+        (2, 10, 16): "post",    # Miércoles mediodía
+        (2, 17, 23): "story",   # Miércoles noche
+        (3, 10, 16): "reel",    # Jueves mediodía
+        (3, 17, 23): "story",   # Jueves noche
+        (4, 10, 16): "post",    # Viernes mediodía
+        (4, 17, 23): "reel",    # Viernes noche
+        (5, 10, 16): "post",    # Sábado mediodía
+        (5, 17, 23): "story",   # Sábado noche
+        (6, 10, 16): "story",   # Domingo mediodía
+        (6, 17, 23): "story",   # Domingo noche
     }
 
     tipo_pub = None
@@ -1148,8 +1151,10 @@ def publicar_programado(forzar: bool = False, tipo: str | None = None):
 
     # ── Enviar preview a Telegram y esperar aprobación ──────────────────────
     rev_id = f"prog_{int(_time.time())}"
+    slot_label = "mediodía" if hora < 16 else "noche"
     texto_prev = (
         f"🗓 <b>Publicación programada — {tipo_label}</b>\n"
+        f"📅 Slot de <b>{slot_label}</b> · {ahora.strftime('%a %d/%m %H:%M')} COL\n"
         f"👆 Toca <b>✅ Publicar</b> para que salga al aire\n\n"
         + (f"{item.caption[:600]}\n\n" if item.caption else "")
         + "<i>¿Apruebas esta publicación?</i>"

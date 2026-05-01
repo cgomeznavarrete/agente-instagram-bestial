@@ -378,6 +378,16 @@ class BotTelegram:
             self._flujo_venta()
             return
 
+        if texto.startswith("/publicar"):
+            # /publicar          → publica el siguiente item pendiente (cualquier tipo)
+            # /publicar reel     → fuerza tipo reel
+            # /publicar post     → fuerza tipo post
+            # /publicar story    → fuerza tipo story
+            partes_pub = texto.split()
+            tipo_forzado = partes_pub[1].lower() if len(partes_pub) > 1 else None
+            self._flujo_publicar_ahora(tipo_forzado)
+            return
+
         if texto.startswith("/ayuda") or texto.startswith("/start"):
             self._mostrar_ayuda()
             return
@@ -1381,22 +1391,85 @@ class BotTelegram:
             "<i>Consejo: Story 1 funciona sin imagen — solo texto + poll sobre fondo rojo bestial.</i>"
         )
 
+    def _flujo_publicar_ahora(self, tipo_forzado: str | None = None):
+        """
+        /publicar — dispara el flujo de preview+aprobación+publicación desde Telegram.
+        Funciona a cualquier hora, independiente del cron de GitHub Actions.
+        """
+        import subprocess
+        import sys
+        import os
+
+        tipos_validos = {"reel", "post", "story", "carrusel"}
+        tipo = tipo_forzado if tipo_forzado in tipos_validos else None
+
+        conteo = contar_pendientes()
+        total = sum(conteo.values())
+        if total == 0:
+            _enviar_mensaje(
+                "⚠️ <b>Biblioteca vacía</b> — no hay material pendiente.\n\n"
+                "Envíame fotos o videos para cargar la biblioteca."
+            )
+            return
+
+        # Informar qué se va a publicar
+        if tipo:
+            disponibles = conteo.get(tipo, 0)
+            if disponibles == 0:
+                _enviar_mensaje(
+                    f"⚠️ No hay <b>{tipo.upper()}s</b> en la biblioteca.\n\n"
+                    f"Disponibles → Posts: {conteo['post']} | Reels: {conteo['reel']} | Stories: {conteo['story']}"
+                )
+                return
+            _enviar_mensaje(f"🔄 Iniciando publicación de <b>{tipo.upper()}</b>...")
+        else:
+            _enviar_mensaje(
+                f"🔄 Iniciando publicación del siguiente item en la biblioteca...\n"
+                f"Posts: {conteo['post']} | Reels: {conteo['reel']} | Stories: {conteo['story']}"
+            )
+
+        # Lanzar publicar-programado --forzar en background
+        # El proceso hijo se encarga de enviar el preview a Telegram y esperar la aprobación
+        args = [sys.executable, "main.py", "publicar-programado", "--forzar"]
+        if tipo:
+            args += ["--tipo", tipo]
+
+        # Cambiar al directorio raíz del proyecto
+        proyecto_dir = str(Path(__file__).parent.parent.parent)
+
+        env = os.environ.copy()
+        try:
+            subprocess.Popen(
+                args,
+                cwd=proyecto_dir,
+                env=env,
+                # Desconectar del proceso padre — el bot sigue corriendo
+                start_new_session=True,
+            )
+            _enviar_mensaje(
+                "✅ <b>Preview en camino</b> — recibirás el material en unos segundos.\n"
+                "Toca <b>✅ Publicar</b> para que salga al aire en Instagram."
+            )
+        except Exception as e:
+            logger.error("Error lanzando publicar-programado: %s", e)
+            _enviar_mensaje(f"❌ No se pudo iniciar la publicación: {e}")
+
     def _mostrar_ayuda(self):
         _enviar_mensaje(
             "🤖 <b>Comandos disponibles</b>\n\n"
             "📸 <b>Envía una foto</b> → te pregunto si guardar o publicar ahora\n"
             "🎬 <b>Envía un video</b> → te pregunto si es Reel o Story\n"
             "📖 <b>Envía varias fotos juntas</b> → carrusel automático\n\n"
+            "/publicar → envía preview del siguiente item y espera tu ✅\n"
+            "/publicar reel → fuerza publicar un Reel\n"
+            "/publicar post → fuerza publicar un Post\n"
+            "/publicar story → fuerza publicar una Story\n"
             "/hoy → plan de publicación de hoy con material disponible\n"
             "/estado → lista completa del material en biblioteca\n"
             "/carrusel &lt;tema&gt; → genera carrusel educativo con IA\n"
             "/venta → genera serie de 3 stories de conversión a venta\n"
             "/ayuda → este mensaje\n\n"
-            "<b>Horario de publicación:</b>\n"
-            "Lun/Mar/Mié/Vie: Post 12pm · Reel o Story 7pm\n"
-            "Jue: Reel 12pm · Story 7pm\n"
-            "Sáb: Post 12pm · Story 7pm\n"
-            "Dom: Story 12pm · Story 7pm\n\n"
-            "⏰ <i>El preview llega a las 11:30am y 6:30pm COL\n"
-            "Tienes 30 min para aprobar antes de que se publique</i>"
+            "<b>Horario automático:</b>\n"
+            "Preview llega ~11:30am y ~6:30pm COL (GitHub Actions)\n\n"
+            "⚡ <b>Si no llega el preview automático</b> → escribe <code>/publicar</code>"
         )
