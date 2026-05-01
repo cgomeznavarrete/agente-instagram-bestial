@@ -1394,17 +1394,42 @@ def publicar_programado(forzar: bool = False, tipo: str | None = None):
 
         r1 = req.post(
             f"https://graph.facebook.com/v21.0/{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media",
-            data=media_data, timeout=60,
+            data=media_data, timeout=120,
         )
-        if r1.status_code == 200:
+        if r1.status_code != 200:
+            console.print(f"[red]Error creando container ({r1.status_code}): {r1.text}[/red]")
+        else:
+            creation_id = r1.json()["id"]
+            # Videos de Story necesitan polling igual que Reels
+            es_video_container = "video_url" in media_data
+            if es_video_container:
+                console.print("  Esperando procesamiento del video en Instagram...")
+                for _ in range(24):   # hasta 4 min (24 × 10 s)
+                    _time.sleep(10)
+                    st_resp = req.get(
+                        f"https://graph.facebook.com/v21.0/{creation_id}",
+                        params={"fields": "status_code,status", "access_token": settings.INSTAGRAM_ACCESS_TOKEN},
+                        timeout=30,
+                    ).json()
+                    st = st_resp.get("status_code", "")
+                    console.print(f"  status: {st}")
+                    if st == "FINISHED":
+                        break
+                    if st == "ERROR":
+                        console.print(f"[red]Error procesando video en Instagram: {st_resp}[/red]")
+                        media_id = None
+                        break
+                else:
+                    console.print("[yellow]Timeout esperando procesamiento — intentando publicar de todos modos[/yellow]")
             r2 = req.post(
                 f"https://graph.facebook.com/v21.0/{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media_publish",
-                data={"creation_id": r1.json()["id"], "access_token": settings.INSTAGRAM_ACCESS_TOKEN},
+                data={"creation_id": creation_id, "access_token": settings.INSTAGRAM_ACCESS_TOKEN},
                 timeout=60,
             )
-            media_id = r2.json().get("id") if r2.status_code == 200 else None
-        else:
-            console.print(f"[red]Error creando container: {r1.json()}[/red]")
+            if r2.status_code == 200:
+                media_id = r2.json().get("id")
+            else:
+                console.print(f"[red]Error en media_publish ({r2.status_code}): {r2.text}[/red]")
 
     if media_id:
         marcar_publicado(item.id, media_id)
