@@ -261,6 +261,7 @@ class BotTelegram:
         self.offset: Optional[int] = None
         self._estado_path = Path("datos/bot_estado.json")
         self._pausas_path = Path("datos/pausas_hoy.json")
+        self._pending_pubs: dict = {}  # rev_id -> item
 
     def _leer_pausas_hoy(self) -> dict:
         try:
@@ -835,6 +836,30 @@ class BotTelegram:
             self._clear_estado(chat_id)
             return
 
+        # ── Aprobación de publicación vía /publicar ───────────────────────
+        if partes[0] == "pub_aprobar" and len(partes) >= 2:
+            rev_id = partes[1]
+            item = self._pending_pubs.pop(rev_id, None)
+            if not item:
+                _answer_callback(cb_id, "⚠️ Expirado o ya procesado")
+                return
+            _answer_callback(cb_id, "✅ Publicando...")
+            _enviar_mensaje(f"⏳ Publicando {item.tipo.upper()}...")
+            import threading
+            threading.Thread(
+                target=self._publicar_en_hilo,
+                args=(item,),
+                daemon=True,
+            ).start()
+            return
+
+        if partes[0] == "pub_rechazar" and len(partes) >= 2:
+            rev_id = partes[1]
+            self._pending_pubs.pop(rev_id, None)
+            _answer_callback(cb_id, "⏭ Saltado")
+            _enviar_mensaje("⏭ <b>Publicación cancelada.</b>")
+            return
+
     def _ejecutar_con_pilar(self, file_id: str, extension: str, tipo_pub: str, destino: str, pilar: str, chat_id: str):
         """Descarga el archivo y ejecuta el flujo según destino (biblioteca o ahora)."""
         _enviar_mensaje("⬇️ Descargando archivo...")
@@ -1395,64 +1420,80 @@ class BotTelegram:
         """
         /publicar — dispara el flujo de preview+aprobación+publicación desde Telegram.
         Funciona a cualquier hora, independiente del cron de GitHub Actions.
+        Maneja el flujo completo internamente sin subprocess.
         """
-        import subprocess
-        import sys
-        import os
-
         tipos_validos = {"reel", "post", "story", "carrusel"}
-        tipo = tipo_forzado if tipo_forzado in tipos_validos else None
+        tipos_a_probar = [tipo_forzado] if tipo_forzado in tipos_validos else ["reel", "post", "story"]
 
-        conteo = contar_pendientes()
-        total = sum(conteo.values())
-        if total == 0:
+        item = None
+        tipo_encontrado = None
+        for t in tipos_a_probar:
+            item = siguiente_pendiente(t)
+            if item:
+                tipo_encontrado = t
+                break
+
+        if not item:
+            conteo = contar_pendientes()
             _enviar_mensaje(
                 "⚠️ <b>Biblioteca vacía</b> — no hay material pendiente.\n\n"
+                f"Posts: {conteo['post']} | Reels: {conteo['reel']} | Stories: {conteo['story']}\n\n"
                 "Envíame fotos o videos para cargar la biblioteca."
             )
             return
 
-        # Informar qué se va a publicar
-        if tipo:
-            disponibles = conteo.get(tipo, 0)
-            if disponibles == 0:
-                _enviar_mensaje(
-                    f"⚠️ No hay <b>{tipo.upper()}s</b> en la biblioteca.\n\n"
-                    f"Disponibles → Posts: {conteo['post']} | Reels: {conteo['reel']} | Stories: {conteo['story']}"
-                )
-                return
-            _enviar_mensaje(f"🔄 Iniciando publicación de <b>{tipo.upper()}</b>...")
-        else:
-            _enviar_mensaje(
-                f"🔄 Iniciando publicación del siguiente item en la biblioteca...\n"
-                f"Posts: {conteo['post']} | Reels: {conteo['reel']} | Stories: {conteo['story']}"
-            )
+        # Generar caption si no tiene
+        if not item.caption and tipo_encontrado in ("post", "reel"):
+            _enviar_mensaje("✍️ Generando caption...")
+            item.caption = _generar_caption(tipo_encontrado, getattr(item, "pilar", "recetas_y_maridajes") or "recetas_y_maridajes")
 
-        # Lanzar publicar-programado --forzar en background
-        # El proceso hijo se encarga de enviar el preview a Telegram y esperar la aprobación
-        args = [sys.executable, "main.py", "publicar-programado", "--forzar"]
-        if tipo:
-            args += ["--tipo", tipo]
+        tipo_label = {"post": "📸 POST", "reel": "🎬 REEL", "story": "⭕ STORY"}.get(tipo_encontrado, tipo_encontrado.upper())
+        rev_id = f"bot_{int(time.time())}"
+        self._pending_pubs[rev_id] = item
 
-        # Cambiar al directorio raíz del proyecto
-        proyecto_dir = str(Path(__file__).parent.parent.parent)
+        texto_prev = (
+            f"🗓 <b>Publicación — {tipo_label}</b>\n"
+            f"👆 Toca ✅ Publicar para que salga al aire\n\n"
+            + (f"{item.caption[:600]}\n\n" if item.caption else "")
+            + "<i>¿Apruebas esta publicación?</i>"
+        )
+        botones = {"inline_keyboard": [[
+            {"text": "✅ Publicar", "callback_data": f"pub_aprobar:{rev_id}"},
+            {"text": "⏭ Saltar",   "callback_data": f"pub_rechazar:{rev_id}"},
+        ]]}
 
-        env = os.environ.copy()
+        cloudinary_url = getattr(item, "cloudinary_url", "") or ""
+        nombre = item.nombre_archivo.lower()
+        es_video_url = any(nombre.endswith(e) for e in (".mp4", ".mov", ".avi", ".m4v"))
+
+        enviado = False
+        if cloudinary_url:
+            if es_video_url:
+                r = _enviar_video_url(cloudinary_url, caption=texto_prev, reply_markup=botones)
+            else:
+                r = _enviar_foto_url(cloudinary_url, caption=texto_prev, reply_markup=botones)
+            enviado = r.get("ok", False)
+        if not enviado:
+            _enviar_mensaje(texto_prev, reply_markup=botones)
+
+    def _publicar_en_hilo(self, item) -> None:
+        """Publica el item en Instagram en un hilo separado para no bloquear el bot."""
+        from agente.instagram.publicar_item import publicar_item
         try:
-            subprocess.Popen(
-                args,
-                cwd=proyecto_dir,
-                env=env,
-                # Desconectar del proceso padre — el bot sigue corriendo
-                start_new_session=True,
-            )
-            _enviar_mensaje(
-                "✅ <b>Preview en camino</b> — recibirás el material en unos segundos.\n"
-                "Toca <b>✅ Publicar</b> para que salga al aire en Instagram."
-            )
+            media_id = publicar_item(item)
+            if media_id:
+                from agente.gestores.biblioteca import marcar_publicado
+                marcar_publicado(item.id, media_id)
+                emoji = {"post": "📸", "reel": "🎬", "story": "⭕"}.get(item.tipo, "✅")
+                _enviar_mensaje(
+                    f"{emoji} <b>{item.tipo.upper()} publicado en Instagram</b>\n"
+                    f"<a href='https://www.instagram.com/salsas.bestial/'>Ver en @salsas.bestial →</a>"
+                )
+            else:
+                _enviar_mensaje(f"❌ Error publicando {item.tipo.upper()}. Revisa los logs.")
         except Exception as e:
-            logger.error("Error lanzando publicar-programado: %s", e)
-            _enviar_mensaje(f"❌ No se pudo iniciar la publicación: {e}")
+            logger.error("Error en _publicar_en_hilo: %s", e, exc_info=True)
+            _enviar_mensaje(f"❌ Error inesperado: {e}")
 
     def _mostrar_ayuda(self):
         _enviar_mensaje(
