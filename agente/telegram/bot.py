@@ -1429,118 +1429,135 @@ class BotTelegram:
                 time.sleep(0.3)
 
     def _mostrar_plan_hoy(self):
-        """Muestra el plan de publicación para hoy con el material disponible."""
+        """
+        Muestra el plan completo de hoy: entradas del calendario + biblioteca.
+        Para cada entrada muestra: hora, tipo, hook del copy, concepto y estado del material.
+        """
         import datetime
         from zoneinfo import ZoneInfo
+        from agente.memoria.gestor_memoria import cargar_calendario
 
         tz_col = ZoneInfo("America/Bogota")
         ahora = datetime.datetime.now(tz_col)
+        hoy = ahora.date()
         dia_semana = ahora.weekday()
         DIAS = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
 
-        # Mismo horario que publicar_programado en main.py
-        HORARIO = {
-            (0, 10, 16): "post",  (0, 17, 23): "reel",
-            (1, 10, 16): "post",  (1, 17, 23): "reel",
-            (2, 10, 16): "post",  (2, 17, 23): "story",
-            (3, 10, 16): "reel",  (3, 17, 23): "story",
-            (4, 10, 16): "post",  (4, 17, 23): "reel",
-            (5, 10, 16): "post",  (5, 17, 23): "story",
-            (6, 10, 16): "story", (6, 17, 23): "story",
-        }
-
-        slots_hoy = [
-            (h_min, h_max, tipo)
-            for (dia, h_min, h_max), tipo in HORARIO.items()
-            if dia == dia_semana
-        ]
-        slots_hoy.sort()  # Ordenar por hora
-
         EMOJI = {"post": "📸", "reel": "🎬", "story": "⭕", "carrusel": "📖"}
-        PILAR_CORTO = {
-            "recetas_y_maridajes": "Recetas",
-            "lifestyle_y_comunidad": "Lifestyle",
-            "humor_picante": "Humor",
-            "educacion_sobre_salsas": "Educación",
-            "behind_the_scenes": "BTS",
-            "promociones_y_lanzamientos": "Promo",
+        PILAR_EMOJI = {
+            "humor_picante": "😄",
+            "retos_y_pruebas_de_picante": "🔥",
+            "recetas_y_maridajes": "🍽",
+            "lifestyle_y_comunidad": "✨",
+            "educacion_sobre_salsas": "📚",
+            "behind_the_scenes": "🎥",
+            "promociones_y_lanzamientos": "🚀",
+            "como_comprar": "🛒",
+            "testimonios_y_ugc": "⭐",
+            "beneficios_del_producto": "💪",
+        }
+        ESTADO_LABEL = {
+            "generado": "⏳ Pendiente de aprobación",
+            "aprobado": "✅ Aprobado — se publicará automáticamente",
+            "publicado": "✔️ Ya publicado",
+            "rechazado": "❌ Rechazado",
         }
 
-        conteo = contar_pendientes()
-        lineas = [f"🗓 <b>Plan de hoy — {DIAS[dia_semana]} {ahora.strftime('%d/%m')}</b>\n"]
+        lineas = [f"🗓 <b>{DIAS[dia_semana]} {ahora.strftime('%d/%m')} — {ahora.strftime('%H:%M')} COL</b>\n"]
 
-        for h_min, h_max, tipo_pref in slots_hoy:
-            hora_str = f"{h_min}:00–{h_max}:00 COL"
-            emoji = EMOJI.get(tipo_pref, "📌")
+        # ── Sección 1: Entradas del calendario para hoy ───────────────────────
+        cal = cargar_calendario()
+        entradas_hoy = []
+        if cal:
+            for e in cal.entradas:
+                try:
+                    fecha_e = e.fecha if isinstance(e.fecha, datetime.date) else datetime.date.fromisoformat(str(e.fecha))
+                    if fecha_e == hoy and e.estado != "publicado":
+                        entradas_hoy.append(e)
+                except Exception:
+                    pass
+        entradas_hoy.sort(key=lambda e: e.hora_publicacion)
 
-            # Ver si hay material del tipo preferido
-            items = listar_pendientes(tipo_pref)
-            if items:
-                it = items[0]
-                pilar = PILAR_CORTO.get(it.pilar, it.pilar)
-                tiene_url = "☁️" if it.cloudinary_url else "📁"
-                lineas.append(
-                    f"{emoji} <b>{hora_str}</b> — {tipo_pref.upper()}\n"
-                    f"   {tiene_url} {pilar} — <code>{it.nombre_archivo[-25:]}</code>\n"
-                    f"   Estado: listo para publicar ✅"
-                )
-            else:
-                # Buscar fallback en otros tipos
-                fallback = None
-                fallback_tipo = None
-                for tipo_alt in ["post", "reel", "story"]:
-                    if tipo_alt != tipo_pref:
-                        alt_items = listar_pendientes(tipo_alt)
-                        if alt_items:
-                            fallback = alt_items[0]
-                            fallback_tipo = tipo_alt
-                            break
+        if entradas_hoy:
+            lineas.append("📅 <b>CALENDARIO DE HOY</b>")
+            for e in entradas_hoy:
+                emoji = EMOJI.get(e.tipo_contenido, "📌")
+                pilar_e = PILAR_EMOJI.get(e.pilar, "🌶") + " " + e.pilar.replace("_", " ").title()
+                estado_label = ESTADO_LABEL.get(e.estado, e.estado)
 
-                if fallback:
-                    pilar = PILAR_CORTO.get(fallback.pilar, fallback.pilar)
-                    lineas.append(
-                        f"{emoji} <b>{hora_str}</b> — {tipo_pref.upper()} (sin material)\n"
-                        f"   ↳ Usará {fallback_tipo.upper()}: {pilar} ✅"
-                    )
-                elif tipo_pref == "post":
-                    lineas.append(
-                        f"{emoji} <b>{hora_str}</b> — POST\n"
-                        f"   ↳ Sin material — generará carrusel automático 🤖"
-                    )
+                # Hook del copy (primera línea del caption)
+                hook = ""
+                if e.contenido_copy and hasattr(e.contenido_copy, "hook") and e.contenido_copy.hook:
+                    hook = e.contenido_copy.hook[:100]
+                elif e.concepto:
+                    # Usar las primeras palabras del concepto
+                    hook = e.concepto[:100]
+
+                # Estado del material
+                tiene_video = e.video_generado_path and str(e.video_generado_path).strip()
+                tiene_imagen = e.imagen_compuesta_path and str(e.imagen_compuesta_path).strip()
+                if tiene_video:
+                    material_str = "🎬 Video listo"
+                elif tiene_imagen:
+                    material_str = "🖼 Imagen lista"
                 else:
-                    lineas.append(
-                        f"{emoji} <b>{hora_str}</b> — {tipo_pref.upper()}\n"
-                        f"   ⚠️ Sin material — no se publicará nada"
-                    )
+                    material_str = "⚠️ Sin material generado aún"
+
+                lineas.append(
+                    f"\n{emoji} <b>{e.hora_publicacion} — {e.tipo_contenido.upper()}</b>\n"
+                    f"   {pilar_e}\n"
+                    f"   🪝 <i>{hook}</i>\n"
+                    f"   {material_str}\n"
+                    f"   {estado_label}"
+                )
+            lineas.append("")
+        else:
+            lineas.append("📅 <i>No hay entradas en el calendario para hoy.</i>\n")
+
+        # ── Sección 2: Cola de biblioteca (próximos a publicar) ───────────────
+        conteo = contar_pendientes()
+        total_biblioteca = sum(conteo.values())
+
+        if total_biblioteca > 0:
+            lineas.append(f"📚 <b>BIBLIOTECA ({total_biblioteca} pendientes)</b>")
+            for tipo in ["post", "reel", "story", "carrusel"]:
+                items = listar_pendientes(tipo)
+                if not items:
+                    continue
+                it = items[0]
+                emoji = EMOJI.get(tipo, "📌")
+                pilar_e = PILAR_EMOJI.get(it.pilar, "🌶") + " " + (it.pilar or "").replace("_", " ").title()
+
+                # Mostrar hook del caption si existe, si no mostrar pilar
+                if it.caption:
+                    cap = str(it.caption)
+                    primera_linea = cap.split("\n")[0].strip()[:100]
+                    preview = f"🪝 <i>{primera_linea}</i>" if primera_linea else pilar_e
+                else:
+                    preview = pilar_e
+
+                tiene_media = "☁️ En Cloudinary" if it.cloudinary_url else ("📁 Local" if it.ruta_local else "⚠️ Sin media")
+
+                lineas.append(
+                    f"\n{emoji} <b>{tipo.upper()}</b> — {tiene_media}\n"
+                    f"   {preview}\n"
+                    f"   ({conteo[tipo]} en cola)"
+                )
             lineas.append("")
 
-        # Resumen de biblioteca
-        lineas.append(
-            f"<b>Biblioteca:</b> {conteo['post']} posts · {conteo['reel']} reels · "
-            f"{conteo['story']} stories · {conteo['carrusel']} carruseles"
-        )
-        lineas.append(f"\n<i>Hora actual: {ahora.strftime('%H:%M')} COL</i>")
+        lineas.append(f"<i>Hora actual: {ahora.strftime('%H:%M')} COL</i>")
 
-        # Leer pausas ya guardadas para este día
+        # ── Botones de control ────────────────────────────────────────────────
         pausas = self._leer_pausas_hoy()
-        fecha_hoy = ahora.strftime("%Y-%m-%d")
-        pausas_activas = set(pausas.get("slots_pausados", [])) if pausas.get("fecha") == fecha_hoy else set()
-        pausado_todo = pausas.get("pausado_todo", False) and pausas.get("fecha") == fecha_hoy
+        fecha_hoy_str = ahora.strftime("%Y-%m-%d")
+        pausas_activas = set(pausas.get("slots_pausados", [])) if pausas.get("fecha") == fecha_hoy_str else set()
+        pausado_todo = pausas.get("pausado_todo", False) and pausas.get("fecha") == fecha_hoy_str
 
-        # Construir botones de control
-        botones_slots = []
-        for h_min, _, _ in slots_hoy:
-            hora_label = "mañana (10am)" if h_min < 15 else "tarde (5pm)"
-            if h_min in pausas_activas or pausado_todo:
-                botones_slots.append({"text": f"✅ Activar {hora_label}", "callback_data": f"hoy:activar:{h_min}"})
-            else:
-                botones_slots.append({"text": f"⏭ Saltar {hora_label}", "callback_data": f"hoy:saltar:{h_min}"})
-
-        teclado = [botones_slots]
-        if pausado_todo:
-            teclado.append([{"text": "✅ Activar todo hoy", "callback_data": "hoy:activar_todo"}])
-        else:
+        teclado = []
+        if not pausado_todo:
             teclado.append([{"text": "🚫 No publicar nada hoy", "callback_data": "hoy:pausar_todo"}])
+        else:
+            teclado.append([{"text": "✅ Reactivar publicaciones hoy", "callback_data": "hoy:activar_todo"}])
 
         _enviar_mensaje("\n".join(lineas), reply_markup={"inline_keyboard": teclado})
 
