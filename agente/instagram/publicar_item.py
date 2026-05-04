@@ -138,24 +138,10 @@ def publicar_item(item) -> str | None:
     media_id = None
 
     # ── CARRUSEL ──────────────────────────────────────────────────────────────
+    # Los carruseles se publican como estáticos (sin música).
+    # El usuario los publica manualmente desde la app de Instagram para agregarles música.
+    # Si llega aquí desde publicar_pendientes es porque el usuario ya lo aprobó para publicar sin música.
     if item.es_carrusel:
-        pilar_item = getattr(item, "pilar", "") or ""
-        rutas_slides = [Path(r) for r in getattr(item, "archivos_carrusel", []) if Path(r).exists()]
-
-        # Los slides son imágenes estáticas → convertir a Reel con música.
-        # Solo se hace si hay archivos locales disponibles.
-        if rutas_slides:
-            logger.info("Carrusel con %d slides → convirtiendo a Reel con música", len(rutas_slides))
-            url_video_reel = _carrusel_slides_a_reel_cloudinary(rutas_slides, pilar_item)
-            if url_video_reel:
-                media_id = _publicar_video_como_reel(url_video_reel, item.caption)
-                if media_id:
-                    return media_id
-                logger.warning("Reel de carrusel falló — intentando publicar como carrusel estático")
-            else:
-                logger.warning("No se pudo generar video del carrusel — publicando carrusel estático")
-
-        # Fallback: publicar como carrusel estático de imágenes (sin música)
         urls_guardadas = [u for u in (cloudinary_url or "").split(",") if u.startswith("http")]
         creation_ids = []
         for i, slide_ruta in enumerate(rutas_slides):

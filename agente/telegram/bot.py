@@ -964,8 +964,10 @@ class BotTelegram:
                     f"{len(rutas)} fotos — Cola posts: {conteo['post']}"
                 )
             elif accion == "ahora":
+                # Carruseles NO se publican automáticamente — el usuario los publica
+                # manualmente en Instagram para poder agregarle música desde la app.
                 _enviar_mensaje("✍️ Generando caption con Claude...")
-                from agente.claude.cliente_claude import ClienteClaude
+                from agente.claude.cliente_claude import ClienteClaude, limpiar_caption
                 from config import brand_guidelines as brand
                 import re as _re
                 cliente = ClienteClaude()
@@ -980,9 +982,13 @@ class BotTelegram:
                     ),
                     temperatura=0.8, max_tokens=450,
                 )
-                from agente.claude.cliente_claude import limpiar_caption
                 caption = limpiar_caption(_re.sub(r"\*\*(.+?)\*\*", r"\1", caption_raw))
-                self._publicar_carrusel_ig(rutas, caption, chat_id)
+                _enviar_mensaje(
+                    f"📋 <b>Caption listo — publícalo manualmente:</b>\n\n"
+                    f"{caption}\n\n"
+                    f"📌 <i>Las fotos ya las tenés en Telegram. "
+                    f"Publicá el carrusel desde Instagram y agregale música desde la app.</i>"
+                )
 
             self._clear_estado(chat_id)
             return
@@ -996,8 +1002,15 @@ class BotTelegram:
             caption = datos.get("caption", "")
 
             if accion == "ahora":
-                _answer_callback(cb_id, "🚀 Publicando carrusel...")
-                self._publicar_carrusel_ig(rutas, caption, chat_id)
+                # Carruseles NO se publican automáticamente — el usuario los publica
+                # manualmente desde Instagram para poder agregarle música desde la app.
+                _answer_callback(cb_id, "📋 Caption listo")
+                _enviar_mensaje(
+                    f"📋 <b>Caption para el carrusel — publicalo manualmente:</b>\n\n"
+                    f"{caption}\n\n"
+                    f"📌 <i>Abrí Instagram → Nueva publicación → seleccioná los slides "
+                    f"→ Siguiente → agregá música → pegá este caption → Compartir.</i>"
+                )
             elif accion == "biblioteca":
                 _answer_callback(cb_id, "📚 Guardando...")
                 item = agregar_carrusel(rutas, tipo="post", pilar=datos.get("pilar", "educacion_sobre_salsas"))
@@ -1334,9 +1347,11 @@ class BotTelegram:
         })
 
         _enviar_mensaje(
-            f"Caption generado:\n\n{caption[:600]}\n\n¿Qué hacemos con este carrusel?",
+            f"✅ <b>Carrusel listo — publicalo manualmente en Instagram</b>\n\n"
+            f"Los slides ya los tenés arriba en Telegram. "
+            f"Descargalos y publicalos desde la app para poder agregarle música.\n\n"
+            f"<b>Caption:</b>\n{caption[:600]}",
             reply_markup={"inline_keyboard": [[
-                {"text": "🚀 Publicar ahora", "callback_data": "carrusel:ahora"},
                 {"text": "📚 Guardar en biblioteca", "callback_data": "carrusel:biblioteca"},
                 {"text": "🗑 Descartar", "callback_data": "carrusel:descartar"},
             ]]}
