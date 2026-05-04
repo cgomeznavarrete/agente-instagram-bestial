@@ -265,6 +265,28 @@
       "es_carrusel": false,
       "archivos_carrusel": [],
       "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/video/upload/v1777897070/salsas_bestial/ptf5gm2rrgroymvgzmtc.mp4"
+    },
+    {
+      "id": "carrusel_1777897957008",
+      "tipo": "post",
+      "nombre_archivo": "carrusel_6_slides",
+      "ruta_local": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/posts/carrusel_1777897957008",
+      "fecha_agregado": 1777897962.764923,
+      "estado": "pendiente",
+      "pilar": "lifestyle_y_comunidad",
+      "caption": "",
+      "media_id": "",
+      "fecha_publicado": 0.0,
+      "es_carrusel": true,
+      "archivos_carrusel": [
+        "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/posts/carrusel_1777897957008/slide_00.jpg",
+        "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/posts/carrusel_1777897957008/slide_01.jpg",
+        "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/posts/carrusel_1777897957008/slide_02.jpg",
+        "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/posts/carrusel_1777897957008/slide_03.jpg",
+        "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/posts/carrusel_1777897957008/slide_04.jpg",
+        "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/posts/carrusel_1777897957008/slide_05.jpg"
+      ],
+      "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/image/upload/v1777897957/salsas_bestial/hpir2iupng6ulyfdmdmc.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1777897958/salsas_bestial/ty1r7akgakhuf1vzk6zm.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1777897959/salsas_bestial/qqityndzeznks4lgdxee.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1777897960/salsas_bestial/qbn66aqjl4fso2aq5miu.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1777897961/salsas_bestial/twah2jiutxwkmvp40ned.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1777897962/salsas_bestial/fcmcfz68kuuthu7pspnp.jpg"
     }
   ]
 }
