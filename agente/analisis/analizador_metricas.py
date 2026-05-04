@@ -38,7 +38,10 @@ class AnalizadorMetricas:
             logger.warning("No hay métricas para analizar")
             return "# Sin métricas disponibles\n\nEjecuta primero `analizar_metricas` para descargar los datos."
 
-        semanas_recientes = metricas.semanas[-4:]
+        semanas_recientes = [
+            s.model_dump(mode="json") if hasattr(s, "model_dump") else s
+            for s in metricas.semanas[-4:]
+        ]
         historial = memoria.cargar_historial()
 
         prompt = pb.prompt_analisis_metricas(
@@ -48,8 +51,8 @@ class AnalizadorMetricas:
         contexto_marca = pb.construir_contexto_marca()
 
         reporte = self._claude.generar_con_cache(
-            contexto_cache=contexto_marca,
-            prompt_usuario=prompt,
+            bloque_estatico=contexto_marca,
+            prompt_dinamico=prompt,
             temperatura=settings.TEMPERATURAS_CLAUDE.get("analisis", 0.3),
             max_tokens=2000,
         )
@@ -82,12 +85,13 @@ class AnalizadorMetricas:
         mejor_er = 0.0
 
         for semana in metricas.semanas[-4:]:
-            cuenta = semana.get("cuenta", {})
+            s_dict = semana.model_dump(mode="json") if hasattr(semana, "model_dump") else semana
+            cuenta = s_dict.get("metricas_cuenta", s_dict.get("cuenta", {}))
             seg = cuenta.get("seguidores", 0)
             if seg:
                 seguidores = seg
 
-            for post in semana.get("posts", []):
+            for post in cuenta.get("posts_raw", s_dict.get("posts", [])):
                 tipo = post.get("tipo", "")
                 if tipo not in ("VIDEO", "REELS"):
                     continue

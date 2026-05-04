@@ -15,7 +15,7 @@ from agente.instagram import rate_limiter
 
 logger = logging.getLogger(__name__)
 
-BASE_URL = "https://graph.instagram.com/v21.0"
+BASE_URL = "https://graph.facebook.com/v21.0"
 
 
 class ErrorInstagram(Exception):
@@ -162,16 +162,73 @@ def publicar_contenedor(creation_id: str) -> str:
 
 
 def obtener_insights_cuenta() -> dict:
-    """Descarga métricas de la cuenta de negocio."""
-    campos = "followers_count,media_count"
-    return _get(settings.INSTAGRAM_BUSINESS_ACCOUNT_ID, {"fields": campos})
+    """Descarga métricas básicas y de engagement de la cuenta."""
+    # Campos básicos
+    datos_basicos = _get(settings.INSTAGRAM_BUSINESS_ACCOUNT_ID, {
+        "fields": "followers_count,media_count,name,username"
+    })
 
-
-def obtener_insights_media(media_id: str) -> dict:
-    """Descarga métricas de una publicación específica."""
-    metricas = "impressions,reach,likes,comments,shares,saved,video_views"
+    # Reach de los últimos 7 días
+    reach_semana = 0
     try:
-        return _get(f"{media_id}/insights", {"metric": metricas, "period": "lifetime"})
+        r_reach = _get(f"{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/insights", {
+            "metric": "reach",
+            "period": "week",
+        })
+        for item in r_reach.get("data", []):
+            valores = item.get("values", [])
+            if valores:
+                reach_semana = valores[-1].get("value", 0)
+    except Exception as e:
+        logger.warning("No se pudo obtener reach semanal: %s", e)
+
+    # Visitas al perfil y clics al link (requieren metric_type=total_value)
+    visitas_perfil = 0
+    clicks_link = 0
+    try:
+        r_total = _get(f"{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/insights", {
+            "metric": "profile_views,website_clicks",
+            "period": "day",
+            "metric_type": "total_value",
+        })
+        for item in r_total.get("data", []):
+            name = item.get("name", "")
+            val = item.get("values", {})
+            if isinstance(val, dict):
+                v = val.get("value", 0)
+            elif isinstance(val, list) and val:
+                v = val[-1].get("value", 0)
+            else:
+                v = item.get("total_value", {}).get("value", 0) if isinstance(item.get("total_value"), dict) else 0
+            if name == "profile_views":
+                visitas_perfil = v
+            elif name == "website_clicks":
+                clicks_link = v
+    except Exception as e:
+        logger.warning("No se pudo obtener profile_views/website_clicks: %s", e)
+
+    return {
+        **datos_basicos,
+        "reach_semana": reach_semana,
+        "visitas_perfil": visitas_perfil,
+        "clicks_link": clicks_link,
+    }
+
+
+def obtener_insights_media(media_id: str, media_type: str = "IMAGE") -> dict:
+    """
+    Descarga métricas de una publicación específica.
+    La API v21+ usa métricas distintas por tipo de media.
+    Soportados para todos los tipos: reach, saved, shares, total_interactions
+    """
+    metrics = "reach,saved,shares,total_interactions"
+    try:
+        resp = _get(f"{media_id}/insights", {"metric": metrics, "period": "lifetime"})
+        # Respuesta directa: cada item tiene 'value' (no 'values' array)
+        result = {}
+        for item in resp.get("data", []):
+            result[item["name"]] = item.get("value", 0)
+        return result
     except ErrorInstagram as e:
         logger.warning("No se pudieron obtener insights de %s: %s", media_id, e)
         return {}

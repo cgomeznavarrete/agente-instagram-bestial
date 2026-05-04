@@ -6,5 +6,12 @@
     "publicaciones_total": 0,
     "ultima_actualizacion": null
   },
-  "semanas": []
+  "semanas": [
+    {
+      "semana": "2026-W18",
+      "fecha_descarga": "2026-05-04T00:57:02.108235",
+      "cuenta": {},
+      "posts": []
+    }
+  ]
 }

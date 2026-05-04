@@ -18,36 +18,52 @@ class GestorMetricas:
 
     def descargar_y_analizar(self):
         """Flujo completo: descarga métricas de cuenta + posts recientes → guarda en JSON."""
+        from datetime import timedelta
+        hoy = datetime.now().date()
+        # Calcular inicio de semana ISO (lunes) y fin (domingo)
+        lunes = hoy - timedelta(days=hoy.weekday())
+        domingo = lunes + timedelta(days=6)
         semana = datetime.now().strftime("%Y-W%W")
 
-        # Métricas de la cuenta
         datos_cuenta = self._descargar_cuenta()
-
-        # Métricas de los últimos 25 posts
         posts_metricas = self._descargar_posts_recientes()
 
-        # Cargar o crear registro de métricas
         metricas = memoria.cargar_metricas()
         if not metricas:
             metricas = MetricasInstagram()
 
-        # Construir entrada para esta semana
-        entrada_semana = {
-            "semana": semana,
-            "fecha_descarga": datetime.now().isoformat(),
-            "cuenta": datos_cuenta,
-            "posts": posts_metricas,
-        }
+        from agente.memoria.modelos import MetricasSemana
+        nueva_semana = MetricasSemana(
+            semana=semana,
+            fecha_inicio=lunes,
+            fecha_fin=domingo,
+            metricas_cuenta=datos_cuenta,
+            mejores_posts=[
+                p["media_id"] for p in sorted(
+                    posts_metricas, key=lambda x: x.get("likes", 0) + x.get("comentarios", 0) * 3, reverse=True
+                )[:3]
+            ],
+            peores_posts=[
+                p["media_id"] for p in sorted(
+                    posts_metricas, key=lambda x: x.get("likes", 0) + x.get("comentarios", 0) * 3
+                )[:3]
+            ],
+            engagement_promedio=round(
+                sum(p.get("likes", 0) + p.get("comentarios", 0) for p in posts_metricas) / max(len(posts_metricas), 1), 2
+            ) if posts_metricas else 0.0,
+            nuevos_seguidores=0,  # Requires separate follower_count call
+        )
+        # Attach raw posts for analysis (stored as extra in metricas_cuenta dict)
+        nueva_semana.metricas_cuenta["posts_raw"] = posts_metricas
 
-        # Evitar duplicar la misma semana
-        semanas_existentes = [s.get("semana") for s in metricas.semanas]
+        semanas_existentes = [s.semana for s in metricas.semanas]
         if semana in semanas_existentes:
             idx = semanas_existentes.index(semana)
-            metricas.semanas[idx] = entrada_semana
+            metricas.semanas[idx] = nueva_semana
             logger.info("Métricas de semana %s actualizadas", semana)
         else:
-            metricas.semanas.append(entrada_semana)
-            logger.info("Métricas de semana %s añadidas (%d semanas en total)", semana, len(metricas.semanas))
+            metricas.semanas.append(nueva_semana)
+            logger.info("Métricas de semana %s añadidas (%d semanas total)", semana, len(metricas.semanas))
 
         memoria.guardar_metricas(metricas)
         return metricas
@@ -58,8 +74,9 @@ class GestorMetricas:
             return {
                 "seguidores": datos.get("followers_count", 0),
                 "total_posts": datos.get("media_count", 0),
-                "visitas_perfil": datos.get("profile_views", 0),
-                "clicks_sitio": datos.get("website_clicks", 0),
+                "visitas_perfil": datos.get("visitas_perfil", 0),
+                "clicks_link": datos.get("clicks_link", 0),
+                "reach_semana": datos.get("reach_semana", 0),
             }
         except Exception as e:
             logger.error("Error descargando métricas de cuenta: %s", e)
@@ -71,24 +88,20 @@ class GestorMetricas:
             posts = []
             for medio in medios:
                 media_id = medio["id"]
-                insights = cliente_api.obtener_insights_media(media_id)
-
-                datos_insights = {}
-                for item in insights.get("data", []):
-                    datos_insights[item["name"]] = item.get("values", [{}])[0].get("value", 0)
+                media_type = medio.get("media_type", "IMAGE")
+                insights = cliente_api.obtener_insights_media(media_id, media_type)
 
                 posts.append({
                     "media_id": media_id,
-                    "tipo": medio.get("media_type", ""),
+                    "tipo": media_type,
                     "fecha": medio.get("timestamp", ""),
                     "permalink": medio.get("permalink", ""),
                     "likes": medio.get("like_count", 0),
                     "comentarios": medio.get("comments_count", 0),
-                    "impresiones": datos_insights.get("impressions", 0),
-                    "alcance": datos_insights.get("reach", 0),
-                    "guardados": datos_insights.get("saved", 0),
-                    "compartidos": datos_insights.get("shares", 0),
-                    "vistas_video": datos_insights.get("video_views", 0),
+                    "alcance": insights.get("reach", 0),
+                    "guardados": insights.get("saved", 0),
+                    "compartidos": insights.get("shares", 0),
+                    "total_interacciones": insights.get("total_interactions", 0),
                 })
             logger.info("Descargadas métricas de %d posts", len(posts))
             return posts
@@ -114,9 +127,10 @@ class GestorMetricas:
         seguidores = 1000  # Fallback si no hay dato
 
         for semana in semanas_recientes:
-            cuenta = semana.get("cuenta", {})
+            s_dict = semana.model_dump(mode="json") if hasattr(semana, "model_dump") else semana
+            cuenta = s_dict.get("metricas_cuenta", s_dict.get("cuenta", {}))
             seguidores = cuenta.get("seguidores", seguidores) or seguidores
-            for post in semana.get("posts", []):
+            for post in cuenta.get("posts_raw", s_dict.get("posts", [])):
                 tipo = post.get("tipo", "UNKNOWN")
                 er = self.calcular_engagement_rate(post, seguidores)
                 por_tipo.setdefault(tipo, []).append(er)
