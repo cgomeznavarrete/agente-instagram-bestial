@@ -1663,20 +1663,39 @@ class BotTelegram:
 
     def _mostrar_ayuda(self):
         _enviar_mensaje(
-            "🤖 <b>Comandos disponibles</b>\n\n"
-            "📸 <b>Envía una foto</b> → te pregunto si guardar o publicar ahora\n"
-            "🎬 <b>Envía un video</b> → te pregunto si es Reel o Story\n"
-            "📖 <b>Envía varias fotos juntas</b> → carrusel automático\n\n"
-            "/publicar → envía preview del siguiente item y espera tu ✅\n"
-            "/publicar reel → fuerza publicar un Reel\n"
-            "/publicar post → fuerza publicar un Post\n"
-            "/publicar story → fuerza publicar una Story\n"
-            "/hoy → plan de publicación de hoy con material disponible\n"
-            "/estado → lista completa del material en biblioteca\n"
-            "/carrusel &lt;tema&gt; → genera carrusel educativo con IA\n"
-            "/venta → genera serie de 3 stories de conversión a venta\n"
-            "/ayuda → este mensaje\n\n"
-            "<b>Horario automático:</b>\n"
-            "Preview llega ~11:30am y ~6:30pm COL (GitHub Actions)\n\n"
-            "⚡ <b>Si no llega el preview automático</b> → escribe <code>/publicar</code>"
+            "🤖 <b>Agente Salsas Bestial — Comandos</b>\n\n"
+
+            "━━ 📥 ENVIAR MATERIAL ━━\n"
+            "📸 <b>Foto</b> → te pregunto si guardar en biblioteca o publicar ahora\n"
+            "🎬 <b>Video</b> → te pregunto si es Reel o Story\n"
+            "📖 <b>Varias fotos juntas</b> → te ofrezco publicar como carrusel\n\n"
+
+            "━━ 🚀 PUBLICAR ━━\n"
+            "<code>/publicar</code> — preview del siguiente pendiente + botón ✅ para publicar\n"
+            "<code>/publicar reel</code> — fuerza tipo Reel\n"
+            "<code>/publicar post</code> — fuerza tipo Post\n"
+            "<code>/publicar story</code> — fuerza tipo Story\n"
+            "<code>/publicar carrusel</code> — fuerza tipo Carrusel\n\n"
+
+            "━━ 📊 ESTADO Y PLAN ━━\n"
+            "<code>/hoy</code> — plan de publicación de hoy: qué hay en la biblioteca, a qué hora sale, botones para pausar/activar slots\n"
+            "<code>/estado</code> — lista completa del material en biblioteca con preview visual\n\n"
+
+            "━━ 🎨 GENERAR CONTENIDO ━━\n"
+            "<code>/carrusel &lt;tema&gt;</code> — Claude genera carrusel educativo + preview de slides\n"
+            "   <i>Ejemplo: /carrusel beneficios del picante</i>\n"
+            "<code>/venta</code> — Claude genera serie de 3 stories de conversión (enganche → prueba → CTA)\n\n"
+
+            "━━ ⏭ DURANTE UNA APROBACIÓN ━━\n"
+            "Al tocar <b>⏭ Saltar</b> → el bot te pide el motivo para mejorar el contenido futuro\n"
+            "Escribe el motivo libremente o escribe <code>/siguiente</code> para omitirlo\n"
+            "Al rechazar un caption → escribe qué cambiar y Claude lo reescribe\n"
+            "Escribe <code>saltar</code> para descartar sin cambiar\n\n"
+
+            "━━ ⏰ HORARIO AUTOMÁTICO ━━\n"
+            "Preview llega ~11:30am y ~6:30pm COL (GitHub Actions)\n"
+            "Ventanas de publicación: <b>10am–4pm</b> y <b>5pm–11pm</b> COL\n\n"
+
+            "⚡ <b>¿No llegó el preview automático?</b>\n"
+            "Escribe <code>/publicar</code> — funciona a cualquier hora"
         )
