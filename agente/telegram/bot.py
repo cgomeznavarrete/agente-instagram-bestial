@@ -1550,7 +1550,6 @@ class BotTelegram:
         # ── Botones de control ────────────────────────────────────────────────
         pausas = self._leer_pausas_hoy()
         fecha_hoy_str = ahora.strftime("%Y-%m-%d")
-        pausas_activas = set(pausas.get("slots_pausados", [])) if pausas.get("fecha") == fecha_hoy_str else set()
         pausado_todo = pausas.get("pausado_todo", False) and pausas.get("fecha") == fecha_hoy_str
 
         teclado = []
@@ -1560,6 +1559,79 @@ class BotTelegram:
             teclado.append([{"text": "✅ Reactivar publicaciones hoy", "callback_data": "hoy:activar_todo"}])
 
         _enviar_mensaje("\n".join(lineas), reply_markup={"inline_keyboard": teclado})
+
+        # ── Enviar imágenes y videos de cada entrada ──────────────────────────
+        # Calendario de hoy
+        for e in entradas_hoy:
+            caption_media = (
+                f"{EMOJI.get(e.tipo_contenido,'📌')} <b>{e.hora_publicacion} — {e.tipo_contenido.upper()}</b>\n"
+                f"{PILAR_EMOJI.get(e.pilar,'🌶')} {e.pilar.replace('_',' ').title()}\n"
+            )
+            if e.contenido_copy and hasattr(e.contenido_copy, "hook") and e.contenido_copy.hook:
+                caption_media += f"🪝 {e.contenido_copy.hook[:200]}"
+            elif e.concepto:
+                caption_media += f"📝 {e.concepto[:200]}"
+
+            enviado = False
+            # 1. Video generado local
+            if e.video_generado_path:
+                ruta_v = Path(str(e.video_generado_path))
+                if ruta_v.exists():
+                    _enviar_video(ruta_v, caption=caption_media)
+                    enviado = True
+            # 2. Imagen compuesta local
+            if not enviado and e.imagen_compuesta_path:
+                ruta_i = Path(str(e.imagen_compuesta_path))
+                if ruta_i.exists():
+                    _enviar_foto(ruta_i, caption=caption_media)
+                    enviado = True
+            # 3. Imagen de material_sugerido (si hay archivo local)
+            if not enviado and e.material_sugerido:
+                ruta_s = Path(str(e.material_sugerido))
+                if ruta_s.exists():
+                    if ruta_s.suffix.lower() in (".mp4", ".mov"):
+                        _enviar_video(ruta_s, caption=caption_media)
+                    else:
+                        _enviar_foto(ruta_s, caption=caption_media)
+                    enviado = True
+            time.sleep(0.4)
+
+        # Biblioteca: primer ítem de cada tipo con media
+        lineas_bib = []
+        for tipo in ["post", "reel", "story", "carrusel"]:
+            items = listar_pendientes(tipo)
+            if not items:
+                continue
+            it = items[0]
+
+            caption_bib = (
+                f"{EMOJI.get(tipo,'📌')} <b>BIBLIOTECA — {tipo.upper()}</b>\n"
+                f"{PILAR_EMOJI.get(it.pilar,'🌶')} {(it.pilar or '').replace('_',' ').title()}\n"
+            )
+            if it.caption:
+                primera = str(it.caption).split("\n")[0].strip()[:200]
+                if primera:
+                    caption_bib += f"🪝 {primera}"
+
+            enviado_bib = False
+            # 1. Archivo local
+            if it.ruta_local:
+                ruta_l = Path(it.ruta_local)
+                if ruta_l.exists():
+                    if ruta_l.suffix.lower() in (".mp4", ".mov", ".m4v"):
+                        _enviar_video(ruta_l, caption=caption_bib)
+                    else:
+                        _enviar_foto(ruta_l, caption=caption_bib)
+                    enviado_bib = True
+            # 2. URL de Cloudinary
+            if not enviado_bib and it.cloudinary_url:
+                url_str = str(it.cloudinary_url)
+                if "/video/" in url_str or url_str.lower().endswith((".mp4", ".mov")):
+                    _enviar_video_url(url_str, caption=caption_bib)
+                else:
+                    _enviar_foto_url(url_str, caption=caption_bib)
+                enviado_bib = True
+            time.sleep(0.4)
 
     def _flujo_venta(self):
         """Genera la serie de 3 stories de conversión a venta con Claude.
