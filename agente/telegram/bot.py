@@ -261,7 +261,8 @@ class BotTelegram:
         self.offset: Optional[int] = None
         self._estado_path = Path("datos/bot_estado.json")
         self._pausas_path = Path("datos/pausas_hoy.json")
-        self._pending_pubs: dict = {}  # rev_id -> item
+        self._pending_pubs_path = Path("datos/pending_pubs.json")
+        self._pending_pubs: dict = self._cargar_pending_pubs()
 
     def _leer_pausas_hoy(self) -> dict:
         try:
@@ -294,6 +295,56 @@ class BotTelegram:
         estado.pop(chat_id, None)
         self._escribir_estado_disco(estado)
 
+    def _cargar_pending_pubs(self) -> dict:
+        """Carga el mapa rev_id → item_id desde disco."""
+        try:
+            if self._pending_pubs_path.exists():
+                data = json.loads(self._pending_pubs_path.read_text(encoding="utf-8"))
+                # Restore full item objects from biblioteca using listar_pendientes
+                items_por_id = {}
+                for tipo in ("post", "reel", "story", "carrusel"):
+                    for it in listar_pendientes(tipo):
+                        items_por_id[it.id] = it
+                result = {}
+                for rev_id, item_id in data.items():
+                    if item_id in items_por_id:
+                        result[rev_id] = items_por_id[item_id]
+                if result:
+                    logger.info("Restaurados %d pending_pubs desde disco", len(result))
+                return result
+        except Exception as e:
+            logger.warning("No se pudo cargar pending_pubs: %s", e)
+        return {}
+
+    def _guardar_pending_pubs(self):
+        """Persiste el mapa rev_id → item_id a disco."""
+        try:
+            self._pending_pubs_path.parent.mkdir(parents=True, exist_ok=True)
+            data = {rev_id: item.id for rev_id, item in self._pending_pubs.items()}
+            self._pending_pubs_path.write_text(
+                json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8"
+            )
+        except Exception as e:
+            logger.warning("No se pudo guardar pending_pubs: %s", e)
+
+    def _guardar_razon_salto(self, rev_id: str, razon: str):
+        """Persiste razones de salto a datos/razones_salto.json."""
+        import datetime
+        ruta = Path("datos/razones_salto.json")
+        try:
+            datos = []
+            if ruta.exists():
+                datos = json.loads(ruta.read_text(encoding="utf-8"))
+            datos.append({
+                "ts": datetime.datetime.now().isoformat(),
+                "rev_id": rev_id,
+                "razon": razon,
+            })
+            ruta.parent.mkdir(parents=True, exist_ok=True)
+            ruta.write_text(json.dumps(datos, ensure_ascii=False, indent=2), encoding="utf-8")
+        except Exception as e:
+            logger.warning("No se pudo guardar razón de salto: %s", e)
+
     def _leer_estado_disco(self) -> dict:
         try:
             if self._estado_path.exists():
@@ -313,6 +364,12 @@ class BotTelegram:
 
     def ejecutar(self):
         """Loop principal de polling."""
+        # Drain stale updates accumulated before this run
+        stale = _get_updates(timeout=0)
+        if stale:
+            self.offset = stale[-1]["update_id"] + 1
+            logger.info("Saltando %d updates previos al inicio del bot", len(stale))
+
         logger.info("Bot Telegram iniciado — escuchando mensajes...")
         _enviar_mensaje(
             "🤖 <b>Agente Salsas Bestial activo</b>\n\n"
@@ -423,8 +480,81 @@ class BotTelegram:
                 )
             return
 
-        # ── Contexto: esperando pilar ─────────────────────────────────────
+        # ── Contexto: estado conversacional ──────────────────────────────
         estado = self._get_estado(chat_id)
+
+        # ── Razón de salto ────────────────────────────────────────────────
+        if estado["paso"] == "esperando_razon_salto" and texto:
+            rev_id = estado["datos"].get("rev_id", "")
+            if texto.lower().strip() not in ("/siguiente", "omitir", "skip", "no"):
+                self._guardar_razon_salto(rev_id, texto)
+                _enviar_mensaje(
+                    f"📝 <b>Anotado:</b> «{texto[:150]}»\n\n"
+                    "Gracias — usaré esto para mejorar el contenido futuro. 🙏"
+                )
+            else:
+                _enviar_mensaje("Ok, motivo omitido.")
+            # Now pop the pending pub and persist
+            if rev_id and rev_id in self._pending_pubs:
+                self._pending_pubs.pop(rev_id)
+                self._guardar_pending_pubs()
+            self._clear_estado(chat_id)
+            return
+
+        # ── Caption rechazado — reescribir ────────────────────────────────
+        if estado["paso"] == "esperando_ajuste" and texto:
+            if texto.lower().strip() in ("saltar", "skip", "omitir", "no", "/siguiente"):
+                self._clear_estado(chat_id)
+                _enviar_mensaje("⏭ Ok, saltado. Envíame más material cuando quieras.")
+                return
+            datos = estado.get("datos", {})
+            tipo_pub = datos.get("tipo_pub", "post")
+            pilar = datos.get("pilar", "recetas_y_maridajes")
+            caption_anterior = datos.get("caption", "")
+            _enviar_mensaje("✍️ Reescribiendo el caption con tu corrección...")
+            try:
+                cliente = ClienteClaude()
+                from agente.claude.cliente_claude import limpiar_caption
+                caption_raw = cliente.generar(
+                    prompt_sistema=(
+                        "Eres el community manager de Salsas Bestial, marca colombiana de salsas picantes. "
+                        "Reescribe el caption según el feedback del usuario. "
+                        "Tono: cercano, real, apasionado. Sin frases publicitarias genéricas."
+                    ),
+                    prompt_usuario=(
+                        f"Caption anterior:\n{caption_anterior}\n\n"
+                        f"Feedback del usuario: {texto}\n\n"
+                        f"Tipo: {tipo_pub.upper()}. Pilar: {pilar}.\n"
+                        "Reescribe el caption completo incorporando el feedback. "
+                        f"Mantén el CTA exacto: Pídela aquí → {brand.LINK_COMPRA_WHATSAPP}"
+                    ),
+                    temperatura=0.85,
+                    max_tokens=600,
+                )
+                caption_nuevo = limpiar_caption(re.sub(r"\*\*(.+?)\*\*", r"\1", caption_raw))
+                rev_id = f"rev_{int(time.time())}"
+                datos_nuevos = {**datos, "caption": caption_nuevo, "rev_id": rev_id}
+                self._set_estado(chat_id, "esperando_aprobacion", datos_nuevos)
+                ruta = datos.get("ruta_tmp", "")
+                texto_rev = (
+                    f"✍️ <b>Caption reescrito</b>\n\n{caption_nuevo[:700]}\n\n"
+                    "<i>¿Publicar en Instagram?</i>"
+                )
+                botones_rev = {"inline_keyboard": [[
+                    {"text": "✅ Publicar",  "callback_data": f"pub:aprobar:{rev_id}"},
+                    {"text": "❌ Rechazar", "callback_data": f"pub:rechazar:{rev_id}"},
+                ]]}
+                ext = datos.get("extension", ".jpg")
+                if ruta and Path(ruta).exists() and ext in (".jpg", ".jpeg", ".png", ".webp"):
+                    _enviar_foto(Path(ruta), caption=texto_rev, reply_markup=botones_rev)
+                else:
+                    _enviar_mensaje(texto_rev, reply_markup=botones_rev)
+            except Exception as e:
+                logger.error("Error reescribiendo caption: %s", e)
+                _enviar_mensaje("❌ Error reescribiendo el caption. Intenta de nuevo.")
+            return
+
+        # ── Contexto: esperando pilar ─────────────────────────────────────
         if estado["paso"] == "esperando_pilar_texto" and texto:
             pilar = estado["datos"].get("pilar", "lifestyle_y_comunidad")
             self._continuar_flujo_con_pilar(chat_id, pilar)
@@ -840,6 +970,7 @@ class BotTelegram:
         if partes[0] == "pub_aprobar" and len(partes) >= 2:
             rev_id = partes[1]
             item = self._pending_pubs.pop(rev_id, None)
+            self._guardar_pending_pubs()
             if not item:
                 _answer_callback(cb_id, "⚠️ Expirado o ya procesado")
                 return
@@ -855,9 +986,15 @@ class BotTelegram:
 
         if partes[0] == "pub_rechazar" and len(partes) >= 2:
             rev_id = partes[1]
-            self._pending_pubs.pop(rev_id, None)
+            # Keep in _pending_pubs until reason is collected (or timeout)
             _answer_callback(cb_id, "⏭ Saltado")
-            _enviar_mensaje("⏭ <b>Publicación cancelada.</b>")
+            self._set_estado(chat_id, "esperando_razon_salto", {"rev_id": rev_id})
+            _enviar_mensaje(
+                "⏭ <b>Contenido saltado</b>\n\n"
+                "¿Por qué lo saltaste? Tu feedback me ayuda a mejorar el contenido a futuro. 💡\n\n"
+                "<i>Escribe el motivo (ej: «muy similar al anterior», «tono muy comercial») "
+                "o escribe /siguiente para omitirlo.</i>"
+            )
             return
 
     def _ejecutar_con_pilar(self, file_id: str, extension: str, tipo_pub: str, destino: str, pilar: str, chat_id: str):
@@ -969,8 +1106,10 @@ class BotTelegram:
             }, timeout=120,
         )
         if r.status_code != 200:
+            logger.error("Error container reel: %s", r.text)
             return None
         creation_id = r.json()["id"]
+        procesado = False
         for _ in range(18):
             time.sleep(10)
             st = requests.get(
@@ -979,15 +1118,23 @@ class BotTelegram:
                 timeout=30,
             ).json().get("status_code", "")
             if st == "FINISHED":
+                procesado = True
                 break
             if st == "ERROR":
+                logger.error("Error procesando reel en Instagram")
                 return None
+        if not procesado:
+            logger.error("Timeout esperando reel FINISHED tras 180s — abortando")
+            return None
         r2 = requests.post(
             f"https://graph.facebook.com/v21.0/{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media_publish",
             data={"creation_id": creation_id, "access_token": settings.INSTAGRAM_ACCESS_TOKEN},
             timeout=60,
         )
-        return r2.json().get("id") if r2.status_code == 200 else None
+        if r2.status_code != 200:
+            logger.error("Error media_publish reel: %s", r2.text)
+            return None
+        return r2.json().get("id")
 
     def _publicar_story_video_ig(self, url_video: str) -> Optional[str]:
         r = requests.post(
@@ -999,23 +1146,35 @@ class BotTelegram:
             }, timeout=120,
         )
         if r.status_code != 200:
+            logger.error("Error container story video: %s", r.text)
             return None
         creation_id = r.json()["id"]
-        for _ in range(18):
+        procesado = False
+        for _ in range(24):
             time.sleep(10)
             st = requests.get(
                 f"https://graph.facebook.com/v21.0/{creation_id}",
                 params={"fields": "status_code", "access_token": settings.INSTAGRAM_ACCESS_TOKEN},
                 timeout=30,
             ).json().get("status_code", "")
-            if st in ("FINISHED",):
+            if st == "FINISHED":
+                procesado = True
                 break
+            if st == "ERROR":
+                logger.error("Error procesando story video en Instagram")
+                return None
+        if not procesado:
+            logger.error("Timeout esperando story video FINISHED tras 240s — abortando")
+            return None
         r2 = requests.post(
             f"https://graph.facebook.com/v21.0/{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media_publish",
             data={"creation_id": creation_id, "access_token": settings.INSTAGRAM_ACCESS_TOKEN},
             timeout=60,
         )
-        return r2.json().get("id") if r2.status_code == 200 else None
+        if r2.status_code != 200:
+            logger.error("Error media_publish story video: %s", r2.text)
+            return None
+        return r2.json().get("id")
 
     def _publicar_carrusel_ig(self, rutas: list[Path], caption: str, chat_id: str):
         """Publica un carrusel de imágenes en Instagram."""
@@ -1200,13 +1359,13 @@ class BotTelegram:
 
         # Mismo horario que publicar_programado en main.py
         HORARIO = {
-            (0, 11, 14): "post",  (0, 18, 22): "reel",
-            (1, 11, 14): "post",  (1, 18, 22): "reel",
-            (2, 11, 14): "post",  (2, 18, 22): "story",
-            (3, 11, 14): "reel",  (3, 18, 22): "story",
-            (4, 11, 14): "post",  (4, 18, 22): "reel",
-            (5, 11, 14): "post",  (5, 18, 22): "story",
-            (6, 11, 14): "story", (6, 18, 22): "story",
+            (0, 10, 16): "post",  (0, 17, 23): "reel",
+            (1, 10, 16): "post",  (1, 17, 23): "reel",
+            (2, 10, 16): "post",  (2, 17, 23): "story",
+            (3, 10, 16): "reel",  (3, 17, 23): "story",
+            (4, 10, 16): "post",  (4, 17, 23): "reel",
+            (5, 10, 16): "post",  (5, 17, 23): "story",
+            (6, 10, 16): "story", (6, 17, 23): "story",
         }
 
         slots_hoy = [
@@ -1230,7 +1389,7 @@ class BotTelegram:
         lineas = [f"🗓 <b>Plan de hoy — {DIAS[dia_semana]} {ahora.strftime('%d/%m')}</b>\n"]
 
         for h_min, h_max, tipo_pref in slots_hoy:
-            hora_str = f"{h_min}:00–{h_max}:00"
+            hora_str = f"{h_min}:00–{h_max}:00 COL"
             emoji = EMOJI.get(tipo_pref, "📌")
 
             # Ver si hay material del tipo preferido
@@ -1290,7 +1449,7 @@ class BotTelegram:
         # Construir botones de control
         botones_slots = []
         for h_min, _, _ in slots_hoy:
-            hora_label = f"12pm" if h_min < 15 else "7pm"
+            hora_label = "mañana (10am)" if h_min < 15 else "tarde (5pm)"
             if h_min in pausas_activas or pausado_todo:
                 botones_slots.append({"text": f"✅ Activar {hora_label}", "callback_data": f"hoy:activar:{h_min}"})
             else:
@@ -1450,6 +1609,7 @@ class BotTelegram:
         tipo_label = {"post": "📸 POST", "reel": "🎬 REEL", "story": "⭕ STORY"}.get(tipo_encontrado, tipo_encontrado.upper())
         rev_id = f"bot_{int(time.time())}"
         self._pending_pubs[rev_id] = item
+        self._guardar_pending_pubs()
 
         texto_prev = (
             f"🗓 <b>Publicación — {tipo_label}</b>\n"
