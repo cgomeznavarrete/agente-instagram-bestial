@@ -211,6 +211,8 @@ def publicar_pendientes():
         resultado = pub.publicar(entrada)
         if resultado.exito:
             console.print(f"  [green]✓[/green] Publicado: media_id={resultado.instagram_media_id}")
+            # Marcar como publicado para que no se vuelva a intentar en el próximo ciclo
+            memoria.actualizar_estado_entrada(entrada.id, "publicado")
         else:
             console.print(f"  [red]✗[/red] Error: {resultado.error}")
 

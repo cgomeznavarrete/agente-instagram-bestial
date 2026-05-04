@@ -3,7 +3,10 @@ name: Publicar contenido pendiente
 on:
   schedule:
     - cron: '0 17 * * *'    # 12:00pm Colombia (UTC-5 → 17:00 UTC)
-    - cron: '0 0 * * *'     # 7:00pm Colombia (UTC-5 → 00:00 UTC siguiente día)
+    - cron: '0 20 * * *'    # 3:00pm Colombia  (UTC-5 → 20:00 UTC) — respaldo mañana
+    - cron: '0 23 * * *'    # 6:00pm Colombia  (UTC-5 → 23:00 UTC)
+    - cron: '0 0 * * *'     # 7:00pm Colombia  (UTC-5 → 00:00 UTC siguiente día)
+    - cron: '0 2 * * *'     # 9:00pm Colombia  (UTC-5 → 02:00 UTC) — respaldo noche
   workflow_dispatch:
 
 jobs:

@@ -122,8 +122,12 @@ def obtener_entradas_aprobadas() -> list[EntradaCalendario]:
 
 
 def obtener_entradas_para_publicar_ahora() -> list[EntradaCalendario]:
-    """Retorna entradas aprobadas cuya hora de publicación es la hora actual (±15 min)."""
-    from datetime import date, time
+    """
+    Retorna entradas aprobadas cuya hora de publicación ya pasó (hoy o días anteriores).
+
+    Lógica "overdue": publica todo lo que estaba aprobado y programado para ahora o antes.
+    Esto garantiza que un retraso de GitHub Actions (30+ min) no pierda la publicación.
+    """
     import datetime as dt
 
     calendario = cargar_calendario()
@@ -131,19 +135,19 @@ def obtener_entradas_para_publicar_ahora() -> list[EntradaCalendario]:
         return []
 
     ahora = dt.datetime.now()
+    hoy = ahora.date()
     resultado = []
     for entrada in calendario.entradas:
         if entrada.estado != "aprobado":
             continue
-        if entrada.fecha != ahora.date():
-            continue
         try:
-            hora_pub = dt.datetime.strptime(entrada.hora_publicacion, "%H:%M")
-            diferencia = abs((ahora.hour * 60 + ahora.minute) -
-                             (hora_pub.hour * 60 + hora_pub.minute))
-            if diferencia <= 15:
+            fecha_entrada = entrada.fecha if isinstance(entrada.fecha, dt.date) else dt.date.fromisoformat(str(entrada.fecha))
+            hora_pub = dt.datetime.strptime(entrada.hora_publicacion, "%H:%M").time()
+            scheduled = dt.datetime.combine(fecha_entrada, hora_pub)
+            # Publicar si la hora programada ya pasó (overdue) — máx 24h de retraso
+            if scheduled <= ahora and (ahora - scheduled).total_seconds() <= 86400:
                 resultado.append(entrada)
-        except ValueError:
+        except (ValueError, TypeError):
             continue
     return resultado
 
