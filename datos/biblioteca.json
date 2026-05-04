@@ -250,6 +250,21 @@
         "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/posts/carrusel_1777552419065/slide_04.jpg"
       ],
       "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/image/upload/v1777552419/salsas_bestial/zi793r0a1g0vms9rt6uc.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1777552419/salsas_bestial/jjk70em32swe2xecqjzo.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1777552420/salsas_bestial/yym0bfqcnxzw9zhwbar9.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1777552420/salsas_bestial/tdbrfscyjl0khrudfqzd.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1777552421/salsas_bestial/r45e6ccck2of5bafgzkx.jpg"
+    },
+    {
+      "id": "reel_1777897070073",
+      "tipo": "reel",
+      "nombre_archivo": "reel_1777897070073.mp4",
+      "ruta_local": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/reels/reel_1777897070073.mp4",
+      "fecha_agregado": 1777897072.0438118,
+      "estado": "pendiente",
+      "pilar": "humor_picante",
+      "caption": "",
+      "media_id": "",
+      "fecha_publicado": 0.0,
+      "es_carrusel": false,
+      "archivos_carrusel": [],
+      "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/video/upload/v1777897070/salsas_bestial/ptf5gm2rrgroymvgzmtc.mp4"
     }
   ]
 }
