@@ -1481,8 +1481,14 @@ class BotTelegram:
         from agente.instagram.publicar_item import publicar_item
         try:
             media_id = publicar_item(item)
+            if media_id == "SIN_MEDIA":
+                marcar_descartado(item.id)
+                _enviar_mensaje(
+                    f"⚠️ <b>{item.tipo.upper()} descartado</b> — no tiene archivo ni URL.\n"
+                    "Sube el archivo a Google Drive y vuelve a agregarlo."
+                )
+                return
             if media_id:
-                from agente.gestores.biblioteca import marcar_publicado
                 marcar_publicado(item.id, media_id)
                 emoji = {"post": "📸", "reel": "🎬", "story": "⭕"}.get(item.tipo, "✅")
                 _enviar_mensaje(

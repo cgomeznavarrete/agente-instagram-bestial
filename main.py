@@ -20,6 +20,7 @@ from rich import print as rprint
 
 from config import settings
 from agente.memoria import gestor_memoria as memoria
+from agente.claude.cliente_claude import limpiar_caption
 
 console = Console()
 
@@ -579,7 +580,7 @@ def publicar_imagen(imagen, pilar, esperar):
         temperatura=0.85,
         max_tokens=600,
     )
-    caption = re.sub(r"\*\*(.+?)\*\*", r"\1", caption_raw).replace("---", "").strip()
+    caption = limpiar_caption(re.sub(r"\*\*(.+?)\*\*", r"\1", caption_raw))
     console.print("[green]✓[/green] Caption generado.")
 
     # ── 2. Enviar a Telegram para aprobación ─────────────────────────────────
@@ -872,7 +873,7 @@ def publicar_carpeta(pilar):
                     temperatura=0.85,
                     max_tokens=600,
                 )
-                caption = re.sub(r"\*\*(.+?)\*\*", r"\1", caption_raw).replace("---", "").strip()
+                caption = limpiar_caption(re.sub(r"\*\*(.+?)\*\*", r"\1", caption_raw))
 
             # ── Agregar a biblioteca ──────────────────────────────────────
             item = agregar_item(archivo, tipo_pub, pilar, caption=caption)
@@ -1144,7 +1145,6 @@ def publicar_programado(forzar: bool = False, tipo: str | None = None):
             temperatura=0.85,
             max_tokens=600,
         )
-        from agente.claude.cliente_claude import limpiar_caption
         item.caption = limpiar_caption(re.sub(r"\*\*(.+?)\*\*", r"\1", caption_raw))
 
     # ── Enviar preview a Telegram y esperar aprobación ──────────────────────
@@ -1223,7 +1223,11 @@ def publicar_programado(forzar: bool = False, tipo: str | None = None):
     console.print(f"Publicando {tipo_pub.upper()}...")
     media_id = _publicar_item(item)
 
-    if media_id:
+    if media_id == "SIN_MEDIA":
+        marcar_descartado(item.id)
+        console.print("[yellow]Item descartado — sin archivo ni URL[/yellow]")
+        _enviar_mensaje(f"⚠️ {tipo_pub.upper()} descartado — no tiene archivo ni URL.")
+    elif media_id:
         marcar_publicado(item.id, media_id)
         console.print(f"[green bold]✓ Publicado[/green bold] — media_id: {media_id}")
         _enviar_mensaje(

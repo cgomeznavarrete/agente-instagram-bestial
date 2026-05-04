@@ -4,6 +4,9 @@
 .env.local
 .env.*.local
 
+# Claude Code local settings (puede contener tokens en URLs de herramientas)
+.claude/settings.local.json
+
 # Python
 __pycache__/
 *.py[cod]

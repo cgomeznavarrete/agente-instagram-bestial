@@ -30,6 +30,14 @@ def publicar_item(item) -> str | None:
     if ruta and not ruta.exists():
         ruta = None
 
+    # Detectar sin media antes de intentar nada
+    if not cloudinary_url and not ruta and not getattr(item, "archivos_carrusel", None):
+        logger.error(
+            "Item %s (%s) no tiene archivo local ni cloudinary_url — marcando como sin_media",
+            item.id, item.tipo,
+        )
+        return "SIN_MEDIA"
+
     media_id = None
 
     # ── CARRUSEL ──────────────────────────────────────────────────────────────
@@ -100,6 +108,7 @@ def publicar_item(item) -> str | None:
             logger.error("Error creando container reel: %s", r1.text)
             return None
         creation_id = r1.json()["id"]
+        procesado = False
         for _ in range(18):
             time.sleep(10)
             st = req.get(
@@ -108,10 +117,14 @@ def publicar_item(item) -> str | None:
                 timeout=30,
             ).json().get("status_code", "")
             if st == "FINISHED":
+                procesado = True
                 break
             if st == "ERROR":
                 logger.error("Error procesando reel en Instagram")
                 return None
+        if not procesado:
+            logger.error("Timeout esperando reel FINISHED tras 180s — abortando")
+            return None
         r2 = req.post(
             f"https://graph.facebook.com/v21.0/{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media_publish",
             data={"creation_id": creation_id, "access_token": settings.INSTAGRAM_ACCESS_TOKEN},
@@ -190,6 +203,7 @@ def publicar_item(item) -> str | None:
     # Polling para videos
     if "video_url" in media_data:
         logger.info("Esperando procesamiento de video en Instagram...")
+        procesado = False
         for _ in range(24):
             time.sleep(10)
             st_resp = req.get(
@@ -200,10 +214,14 @@ def publicar_item(item) -> str | None:
             st = st_resp.get("status_code", "")
             logger.info("status_code: %s", st)
             if st == "FINISHED":
+                procesado = True
                 break
             if st == "ERROR":
                 logger.error("Error procesando video: %s", st_resp)
                 return None
+        if not procesado:
+            logger.error("Timeout esperando video FINISHED tras 240s — abortando")
+            return None
 
     r2 = req.post(
         f"https://graph.facebook.com/v21.0/{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media_publish",
