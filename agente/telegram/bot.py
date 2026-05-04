@@ -208,8 +208,23 @@ def _generar_caption(tipo: str, pilar: str) -> str:
     return limpiar_caption(re.sub(r"\*\*(.+?)\*\*", r"\1", caption_raw))
 
 
-def _publicar_ahora_imagen(ruta: Path, caption: str) -> Optional[str]:
-    """Sube imagen a Cloudinary y publica en Instagram. Retorna media_id o None."""
+def _publicar_ahora_imagen(ruta: Path, caption: str, pilar: str = "") -> Optional[str]:
+    """
+    Convierte la imagen a Reel MP4 con música y publica en Instagram.
+    La Instagram Graph API no permite música en posts estáticos — la única
+    forma de tener audio es publicar como video (Reel).
+    Si la conversión falla, publica como imagen estática (sin música).
+    """
+    from agente.instagram.publicar_item import _imagen_a_reel_cloudinary, _publicar_video_como_reel
+
+    # Intentar convertir a Reel con música
+    url_video = _imagen_a_reel_cloudinary(ruta, pilar)
+    if url_video:
+        logger.info("Imagen convertida a Reel con musica: %s", ruta.name)
+        return _publicar_video_como_reel(url_video, caption)
+
+    # Fallback: imagen estática sin música
+    logger.warning("Fallback: publicando imagen estática sin música")
     subidor = SubidorCloudinary()
     url = subidor.subir(ruta)
     if not url:
@@ -232,6 +247,37 @@ def _publicar_ahora_imagen(ruta: Path, caption: str) -> Optional[str]:
 
 
 def _publicar_ahora_story_imagen(ruta: Path) -> Optional[str]:
+    """Story de imagen → convierte a video con música antes de publicar."""
+    from agente.generadores.video_automatico import imagen_a_video_story
+    from config.imagen_params import MOOD_POR_PILAR
+    import random, cloudinary, cloudinary.uploader
+    cloudinary.config(cloudinary_url=settings.CLOUDINARY_URL)
+
+    # Convertir a video con música
+    try:
+        mood = random.choice(["chill_food", "upbeat_latino"])
+        ruta_video = imagen_a_video_story(ruta, mood_musica=mood, duracion=15)
+        if ruta_video and ruta_video.exists():
+            url_video = cloudinary.uploader.upload(
+                str(ruta_video), folder="salsas_bestial", resource_type="video"
+            )["secure_url"]
+            r = requests.post(
+                f"https://graph.facebook.com/v21.0/{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media",
+                data={"video_url": url_video, "media_type": "STORIES", "access_token": settings.INSTAGRAM_ACCESS_TOKEN},
+                timeout=120,
+            )
+            if r.status_code == 200:
+                creation_id = r.json()["id"]
+                r2 = requests.post(
+                    f"https://graph.facebook.com/v21.0/{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media_publish",
+                    data={"creation_id": creation_id, "access_token": settings.INSTAGRAM_ACCESS_TOKEN},
+                    timeout=60,
+                )
+                return r2.json().get("id") if r2.status_code == 200 else None
+    except Exception as e:
+        logger.warning("No se pudo convertir story imagen a video: %s — publicando imagen estática", e)
+
+    # Fallback: imagen estática sin música
     subidor = SubidorCloudinary()
     url = subidor.subir(ruta)
     if not url:
@@ -1176,10 +1222,30 @@ class BotTelegram:
             return None
         return r2.json().get("id")
 
-    def _publicar_carrusel_ig(self, rutas: list[Path], caption: str, chat_id: str):
-        """Publica un carrusel de imágenes en Instagram."""
+    def _publicar_carrusel_ig(self, rutas: list[Path], caption: str, chat_id: str, pilar: str = ""):
+        """
+        Convierte los slides de imágenes a un Reel MP4 con música y publica en Instagram.
+        Los slides son imágenes estáticas — la API no permite música en carruseles estáticos.
+        Si la conversión falla, publica como carrusel estático (sin música).
+        """
+        from agente.instagram.publicar_item import _carrusel_slides_a_reel_cloudinary, _publicar_video_como_reel
+
+        _enviar_mensaje(f"🎵 Convirtiendo {len(rutas)} slides a Reel con música...")
+
+        url_video = _carrusel_slides_a_reel_cloudinary(rutas, pilar)
+        if url_video:
+            media_id = _publicar_video_como_reel(url_video, caption)
+            if media_id:
+                _enviar_mensaje(
+                    f"📖 <b>Carrusel publicado como Reel con música</b>\n"
+                    f"<a href='https://www.instagram.com/salsas.bestial/'>Ver en @salsas.bestial →</a>"
+                )
+                return
+            _enviar_mensaje("⚠️ Reel generado pero fallo al publicar — intentando carrusel estático...")
+
+        # Fallback: carrusel estático de imágenes (sin música)
+        _enviar_mensaje(f"📤 Publicando como carrusel estático ({len(rutas)} slides)...")
         subidor = SubidorCloudinary()
-        _enviar_mensaje(f"📤 Subiendo {len(rutas)} slides a Cloudinary...")
         creation_ids = []
         for ruta in rutas:
             url = subidor.subir(ruta)

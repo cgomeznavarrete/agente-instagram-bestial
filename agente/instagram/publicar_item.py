@@ -1,6 +1,11 @@
 """
 Publicación directa de un item de la biblioteca en Instagram.
 Usado por main.py (CLI) y por bot.py (Telegram).
+
+Política de música:
+  - Posts de imagen y Carruseles → se convierten a Reel MP4 con música antes de publicar.
+    La Instagram Graph API no permite agregar música a imágenes estáticas vía API.
+  - Reels y Stories de video → música embebida en el MP4 generado.
 """
 import logging
 import time
@@ -11,9 +16,101 @@ import cloudinary
 import cloudinary.uploader
 
 from config import settings
+from config.imagen_params import MOOD_POR_PILAR
 from agente.gestores.biblioteca import marcar_publicado
 
 logger = logging.getLogger(__name__)
+
+
+def _publicar_video_como_reel(url_video: str, caption: str) -> str | None:
+    """
+    Crea container de Reel → polling FINISHED → media_publish.
+    Retorna media_id o None.
+    """
+    r1 = req.post(
+        f"https://graph.facebook.com/v21.0/{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media",
+        data={
+            "video_url": url_video,
+            "media_type": "REELS",
+            "caption": caption,
+            "share_to_feed": "true",
+            "access_token": settings.INSTAGRAM_ACCESS_TOKEN,
+        },
+        timeout=120,
+    )
+    if r1.status_code != 200:
+        logger.error("Error creando container reel: %s", r1.text)
+        return None
+
+    creation_id = r1.json()["id"]
+    procesado = False
+    for _ in range(18):
+        time.sleep(10)
+        st = req.get(
+            f"https://graph.facebook.com/v21.0/{creation_id}",
+            params={"fields": "status_code", "access_token": settings.INSTAGRAM_ACCESS_TOKEN},
+            timeout=30,
+        ).json().get("status_code", "")
+        if st == "FINISHED":
+            procesado = True
+            break
+        if st == "ERROR":
+            logger.error("Error procesando reel en Instagram")
+            return None
+
+    if not procesado:
+        logger.error("Timeout esperando reel FINISHED — abortando")
+        return None
+
+    r2 = req.post(
+        f"https://graph.facebook.com/v21.0/{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media_publish",
+        data={"creation_id": creation_id, "access_token": settings.INSTAGRAM_ACCESS_TOKEN},
+        timeout=60,
+    )
+    if r2.status_code != 200:
+        logger.error("Error media_publish reel: %s", r2.text)
+        return None
+    return r2.json().get("id")
+
+
+def _imagen_a_reel_cloudinary(ruta_local: Path, pilar: str) -> str | None:
+    """
+    Convierte imagen a MP4 Reel con música y lo sube a Cloudinary.
+    Retorna la URL pública del video, o None si falla.
+    """
+    try:
+        from agente.generadores.video_automatico import imagen_a_reel
+        import random
+        mood = MOOD_POR_PILAR.get(pilar or "", None) or random.choice(["chill_food", "upbeat_latino"])
+        ruta_video = imagen_a_reel(ruta_local, mood_musica=mood, duracion=20)
+        if not ruta_video or not ruta_video.exists():
+            return None
+        return cloudinary.uploader.upload(
+            str(ruta_video), folder="salsas_bestial", resource_type="video"
+        )["secure_url"]
+    except Exception as e:
+        logger.warning("No se pudo convertir imagen a reel: %s", e)
+        return None
+
+
+def _carrusel_slides_a_reel_cloudinary(rutas_slides: list, pilar: str) -> str | None:
+    """
+    Convierte lista de slides de carrusel a MP4 Reel con música y lo sube a Cloudinary.
+    Retorna la URL pública del video, o None si falla.
+    """
+    try:
+        from agente.generadores.video_automatico import carrusel_a_reel
+        import random
+        mood = MOOD_POR_PILAR.get(pilar or "", None) or random.choice(["chill_food", "upbeat_latino"])
+        ruta_video = carrusel_a_reel(rutas_slides, mood_musica=mood)
+        if not ruta_video or not ruta_video.exists():
+            return None
+        return cloudinary.uploader.upload(
+            str(ruta_video), folder="salsas_bestial", resource_type="video"
+        )["secure_url"]
+    except Exception as e:
+        logger.warning("No se pudo convertir carrusel a reel: %s", e)
+        return None
 
 
 def publicar_item(item) -> str | None:
@@ -42,8 +139,24 @@ def publicar_item(item) -> str | None:
 
     # ── CARRUSEL ──────────────────────────────────────────────────────────────
     if item.es_carrusel:
+        pilar_item = getattr(item, "pilar", "") or ""
+        rutas_slides = [Path(r) for r in getattr(item, "archivos_carrusel", []) if Path(r).exists()]
+
+        # Los slides son imágenes estáticas → convertir a Reel con música.
+        # Solo se hace si hay archivos locales disponibles.
+        if rutas_slides:
+            logger.info("Carrusel con %d slides → convirtiendo a Reel con música", len(rutas_slides))
+            url_video_reel = _carrusel_slides_a_reel_cloudinary(rutas_slides, pilar_item)
+            if url_video_reel:
+                media_id = _publicar_video_como_reel(url_video_reel, item.caption)
+                if media_id:
+                    return media_id
+                logger.warning("Reel de carrusel falló — intentando publicar como carrusel estático")
+            else:
+                logger.warning("No se pudo generar video del carrusel — publicando carrusel estático")
+
+        # Fallback: publicar como carrusel estático de imágenes (sin música)
         urls_guardadas = [u for u in (cloudinary_url or "").split(",") if u.startswith("http")]
-        rutas_slides = [Path(r) for r in getattr(item, "archivos_carrusel", [])]
         creation_ids = []
         for i, slide_ruta in enumerate(rutas_slides):
             if i < len(urls_guardadas):
@@ -136,9 +249,11 @@ def publicar_item(item) -> str | None:
         return r2.json().get("id")
 
     # ── POST / STORY ──────────────────────────────────────────────────────────
+    pilar_item = getattr(item, "pilar", "") or ""
     es_video = any(item.nombre_archivo.lower().endswith(e) for e in (".mp4", ".mov", ".avi", ".m4v"))
 
     if es_video:
+        # Video enviado por el usuario — puede tener música propia → publicar tal cual.
         if cloudinary_url:
             url_video = cloudinary_url
         elif ruta and ruta.exists():
@@ -152,20 +267,22 @@ def publicar_item(item) -> str | None:
             "access_token": settings.INSTAGRAM_ACCESS_TOKEN,
         }
     else:
-        # Story imagen → convertir a video con música si hay archivo local
+        # Imagen estática → agregar música convirtiéndola a video.
+        import random
+        mood = MOOD_POR_PILAR.get(pilar_item) or random.choice(["chill_food", "upbeat_latino"])
+
+        if tipo_pub == "post" and ruta and ruta.exists():
+            # Post de imagen → Reel con música (más alcance + audio)
+            logger.info("Post imagen → convirtiendo a Reel con música (%s)", mood)
+            url_video_reel = _imagen_a_reel_cloudinary(ruta, pilar_item)
+            if url_video_reel:
+                return _publicar_video_como_reel(url_video_reel, item.caption)
+            logger.warning("No se pudo convertir imagen a Reel — publicando como post estático")
+
         if tipo_pub == "story" and ruta and ruta.exists():
+            # Story imagen → video con música
             try:
                 from agente.generadores.video_automatico import imagen_a_video_story
-                import random
-                _MOOD_POR_PILAR = {
-                    "humor_picante": "humor", "retos_y_pruebas_de_picante": "energetico",
-                    "promociones_y_lanzamientos": "upbeat_latino", "como_comprar": "upbeat_latino",
-                    "recetas_y_maridajes": "chill_food", "behind_the_scenes": "chill_food",
-                    "lifestyle_y_comunidad": "chill_food", "educacion_sobre_salsas": "chill_food",
-                    "testimonios_y_ugc": "chill_food", "beneficios_del_producto": "upbeat_latino",
-                }
-                pilar_item = getattr(item, "pilar", "") or ""
-                mood = _MOOD_POR_PILAR.get(pilar_item) or random.choice(["chill_food", "upbeat_latino"])
                 ruta_video = imagen_a_video_story(ruta, mood_musica=mood, duracion=15)
                 if ruta_video and ruta_video.exists():
                     url_video = cloudinary.uploader.upload(str(ruta_video), folder="salsas_bestial", resource_type="video")["secure_url"]
@@ -173,10 +290,11 @@ def publicar_item(item) -> str | None:
                 else:
                     raise RuntimeError("Video no generado")
             except Exception as e:
-                logger.warning("No se pudo convertir imagen a video: %s — publicando imagen estática", e)
+                logger.warning("No se pudo convertir story imagen a video: %s — publicando imagen estática", e)
                 url_img = cloudinary_url or cloudinary.uploader.upload(str(ruta), folder="salsas_bestial")["secure_url"]
                 media_data = {"image_url": url_img, "media_type": "STORIES", "access_token": settings.INSTAGRAM_ACCESS_TOKEN}
         else:
+            # Fallback: publicar imagen estática (sin música)
             if cloudinary_url:
                 url_img = cloudinary_url
             elif ruta and ruta.exists():

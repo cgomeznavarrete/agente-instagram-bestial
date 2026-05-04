@@ -173,3 +173,18 @@ MUSICA_POR_TIPO_CONTENIDO = {
 VOLUMEN_MUSICA = 0.25
 VOLUMEN_FADE_IN_SEG = 1.0
 VOLUMEN_FADE_OUT_SEG = 1.5
+
+# ── Mood de música por pilar de contenido ─────────────────────────────────────
+# Usado para posts, carruseles y reels — define el estado de ánimo del track
+MOOD_POR_PILAR = {
+    "humor_picante":               "humor",
+    "retos_y_pruebas_de_picante":  "energetico",
+    "promociones_y_lanzamientos":  "upbeat_latino",
+    "como_comprar":                "upbeat_latino",
+    "beneficios_del_producto":     "upbeat_latino",
+    "lifestyle_y_comunidad":       "upbeat_latino",
+    "recetas_y_maridajes":         "chill_food",
+    "behind_the_scenes":           "chill_food",
+    "educacion_sobre_salsas":      "chill_food",
+    "testimonios_y_ugc":           "chill_food",
+}
