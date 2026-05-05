@@ -46,6 +46,34 @@ PILARES_OPCIONES = [
 ]
 
 
+def _primera_url(cloudinary_url: str) -> str:
+    """Extrae la primera URL válida de cloudinary_url.
+
+    Los carruseles guardan varias URLs separadas por coma.
+    Telegram solo acepta una URL por vez — siempre usar solo la primera.
+    """
+    if not cloudinary_url:
+        return ""
+    partes = [u.strip() for u in cloudinary_url.split(",") if u.strip().startswith("http")]
+    return partes[0] if partes else cloudinary_url.strip()
+
+
+def _es_video_url(url: str) -> bool:
+    """True si la URL apunta a un video (mp4, mov, o contiene /video/)."""
+    u = url.lower()
+    return "/video/" in u or u.endswith((".mp4", ".mov", ".m4v", ".avi"))
+
+
+def _enviar_media_url(url: str, caption: str = "") -> dict:
+    """Envía foto o video por URL, detectando el tipo automáticamente."""
+    url1 = _primera_url(url)
+    if not url1:
+        return {"ok": False}
+    if _es_video_url(url1):
+        return _enviar_video_url(url1, caption=caption)
+    return _enviar_foto_url(url1, caption=caption)
+
+
 # ── Helpers de polling ────────────────────────────────────────────────────────
 
 def _get_updates(offset: Optional[int] = None, timeout: int = 20) -> list:
@@ -1815,11 +1843,8 @@ class BotTelegram:
                             _enviar_foto(ruta_l, caption=caption_bib)
                         enviado_bib = True
                 if not enviado_bib and it.cloudinary_url:
-                    url_str = str(it.cloudinary_url)
-                    if "/video/" in url_str or url_str.lower().endswith((".mp4", ".mov")):
-                        _enviar_video_url(url_str, caption=caption_bib)
-                    else:
-                        _enviar_foto_url(url_str, caption=caption_bib)
+                    # _primera_url maneja carruseles con múltiples URLs separadas por coma
+                    _enviar_media_url(it.cloudinary_url, caption=caption_bib)
                     enviado_bib = True
                 time.sleep(0.4)
             except Exception as err:
@@ -1959,16 +1984,8 @@ class BotTelegram:
             caption_corto += f"\n{_html.escape(nota)}"
 
         enviado_media = False
-        if cloudinary_url:
-            try:
-                if es_video_item:
-                    r = _enviar_video_url(cloudinary_url, caption=caption_corto)
-                else:
-                    r = _enviar_foto_url(cloudinary_url, caption=caption_corto)
-                enviado_media = r.get("ok", False)
-            except Exception as e:
-                logger.warning("Error enviando media preview: %s", e)
-        if not enviado_media and ruta_local:
+        # Intentar desde archivo local primero (más confiable en GitHub Actions)
+        if ruta_local:
             try:
                 ruta_p = Path(ruta_local)
                 if ruta_p.exists():
@@ -1979,6 +1996,13 @@ class BotTelegram:
                     enviado_media = r.get("ok", False)
             except Exception as e:
                 logger.warning("Error enviando media local: %s", e)
+        # Fallback: Cloudinary URL (usa _primera_url para manejar carruseles multi-URL)
+        if not enviado_media and cloudinary_url:
+            try:
+                r = _enviar_media_url(cloudinary_url, caption=caption_corto)
+                enviado_media = r.get("ok", False)
+            except Exception as e:
+                logger.warning("Error enviando media por URL: %s", e)
 
         # 2. Enviar texto completo con caption y botones (sin límite de 1024)
         botones = {"inline_keyboard": [
