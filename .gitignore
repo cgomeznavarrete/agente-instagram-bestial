@@ -27,6 +27,11 @@ logs/
 # Backups del sistema de memoria
 datos/*.json.bak
 
+# Estado efímero del bot (no necesita persistirse entre runners)
+datos/bot_ultimo_inicio.json
+datos/bot_estado.json
+datos/pending_pubs.json
+
 # Material generado (no se versiona — puede tener imágenes del producto)
 material_agente/videos_generados/
 material_agente/imagenes_compuestas/

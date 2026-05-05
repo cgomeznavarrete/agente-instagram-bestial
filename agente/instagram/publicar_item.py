@@ -142,17 +142,35 @@ def publicar_item(item) -> str | None:
     # El usuario los publica manualmente desde la app de Instagram para agregarles música.
     # Si llega aquí desde publicar_pendientes es porque el usuario ya lo aprobó para publicar sin música.
     if item.es_carrusel:
-        urls_guardadas = [u for u in (cloudinary_url or "").split(",") if u.startswith("http")]
+        urls_guardadas = [u.strip() for u in (cloudinary_url or "").split(",") if u.strip().startswith("http")]
         rutas_slides = [Path(r) for r in (getattr(item, "archivos_carrusel", None) or [])]
+
+        # Construir lista de URLs para cada slide — priorizar Cloudinary (ya subidas)
+        # Si hay URLs guardadas, usarlas directamente sin necesitar archivos locales.
+        if urls_guardadas:
+            slide_urls = urls_guardadas
+            logger.info("Carrusel: usando %d URLs de Cloudinary", len(slide_urls))
+        else:
+            slide_urls = []
+            for slide_ruta in rutas_slides:
+                if slide_ruta.exists():
+                    try:
+                        url_s = cloudinary.uploader.upload(
+                            str(slide_ruta), folder="salsas_bestial"
+                        )["secure_url"]
+                        slide_urls.append(url_s)
+                        logger.info("Carrusel: slide subido a Cloudinary: %s", url_s[:60])
+                    except Exception as _e_slide:
+                        logger.error("Error subiendo slide %s: %s", slide_ruta.name, _e_slide)
+                else:
+                    logger.warning("Slide no encontrado: %s", slide_ruta)
+
+        if not slide_urls:
+            logger.error("Carrusel sin slides — ni URLs guardadas ni archivos locales")
+            return None
+
         creation_ids = []
-        for i, slide_ruta in enumerate(rutas_slides):
-            if i < len(urls_guardadas):
-                url_slide = urls_guardadas[i]
-            elif slide_ruta.exists():
-                url_slide = cloudinary.uploader.upload(str(slide_ruta), folder="salsas_bestial")["secure_url"]
-            else:
-                logger.warning("Slide %d no encontrado", i)
-                continue
+        for i, url_slide in enumerate(slide_urls):
             r_c = req.post(
                 f"https://graph.facebook.com/v21.0/{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media",
                 data={"image_url": url_slide, "is_carousel_item": "true", "access_token": settings.INSTAGRAM_ACCESS_TOKEN},
@@ -160,10 +178,11 @@ def publicar_item(item) -> str | None:
             )
             if r_c.status_code == 200:
                 creation_ids.append(r_c.json()["id"])
+                logger.info("Carrusel: slide %d/%d → creation_id=%s", i + 1, len(slide_urls), r_c.json()["id"])
             else:
-                logger.error("Error slide carrusel: %s", r_c.text)
+                logger.error("Error slide %d carrusel: %s", i, r_c.text)
         if not creation_ids:
-            logger.error("No se pudieron subir slides al carrusel")
+            logger.error("No se pudieron crear containers para los slides del carrusel")
             return None
         r_car = req.post(
             f"https://graph.facebook.com/v21.0/{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media",
@@ -279,9 +298,13 @@ def publicar_item(item) -> str | None:
             return None
         media_data = {
             "video_url": url_video,
-            "media_type": "STORIES" if tipo_pub == "story" else "VIDEO",
+            "media_type": "STORIES" if tipo_pub == "story" else "REELS",
             "access_token": settings.INSTAGRAM_ACCESS_TOKEN,
         }
+        if tipo_pub == "reel" or tipo_pub == "post":
+            media_data["share_to_feed"] = "true"
+        if item.caption:
+            media_data["caption"] = item.caption
     else:
         # Imagen estática → agregar música convirtiéndola a video.
         import random

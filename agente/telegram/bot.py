@@ -456,15 +456,32 @@ class BotTelegram:
     def ejecutar(self):
         """Loop principal de polling."""
         logger.info("Bot Telegram iniciado — escuchando mensajes...")
-        _enviar_mensaje(
-            "🤖 <b>Agente Salsas Bestial activo</b>\n\n"
-            "Mándame una foto o video y te digo qué hacer con él.\n\n"
-            "Comandos:\n"
-            "/publicar — siguiente pendiente con botones ✅\n"
-            "/hoy — plan de publicación de hoy\n"
-            "/estado — ver material en biblioteca\n"
-            "/ayuda — ver todos los comandos"
-        )
+        # Evitar spam: solo notificar al usuario si el bot no se notificó en las
+        # últimas 4 horas (cada run de GitHub Actions dura ~5h, así que 1 notif/día).
+        _ultimo_inicio_path = Path("datos/bot_ultimo_inicio.json")
+        _ahora_ts = time.time()
+        _debe_notificar = True
+        try:
+            if _ultimo_inicio_path.exists():
+                _ts_prev = json.loads(_ultimo_inicio_path.read_text(encoding="utf-8")).get("ts", 0)
+                if _ahora_ts - _ts_prev < 4 * 3600:  # < 4h → silencio
+                    _debe_notificar = False
+        except Exception:
+            pass
+        if _debe_notificar:
+            _ultimo_inicio_path.parent.mkdir(parents=True, exist_ok=True)
+            _ultimo_inicio_path.write_text(json.dumps({"ts": _ahora_ts}), encoding="utf-8")
+            conteo_inic = contar_pendientes()
+            _enviar_mensaje(
+                "🤖 <b>Agente Salsas Bestial activo</b>\n\n"
+                f"📚 Biblioteca: {conteo_inic['post']} posts · {conteo_inic['reel']} reels · {conteo_inic['story']} stories\n\n"
+                "Mándame una foto o video para agregar a la biblioteca.\n\n"
+                "Comandos:\n"
+                "/publicar — siguiente pendiente con botones ✅\n"
+                "/hoy — plan de publicación de hoy\n"
+                "/biblioteca — ver y gestionar todo el material\n"
+                "/ayuda — ver todos los comandos"
+            )
 
         while True:
             updates = _get_updates(self.offset, timeout=20)
@@ -1236,6 +1253,17 @@ class BotTelegram:
                 )
 
             self._clear_estado(chat_id)
+            return
+
+        # ── Callbacks del workflow publicar_programado (prog_si / prog_no) ──
+        # IMPORTANTE: estos callbacks los escucha el workflow, NO el bot.
+        # El bot los recibe solo si gana la race condition de getUpdates.
+        # En ese caso: responder con texto neutral y NO procesar lógica del bot.
+        if partes[0] in ("prog_si", "prog_no") and len(partes) >= 2:
+            # El workflow ya no usará pub_aprobar/pub_rechazar para evitar conflictos.
+            # Si el bot llega aquí primero, responder sin hacer nada más.
+            _answer_callback(cb_id, "⏳ Procesando...")
+            logger.info("Bot recibió callback del workflow (%s) — ignorando lógica del bot", data)
             return
 
         # ── Carrusel: publicar ahora o biblioteca ─────────────────────────

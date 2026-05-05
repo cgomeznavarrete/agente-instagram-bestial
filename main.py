@@ -1027,9 +1027,8 @@ def publicar_programado(forzar: bool = False, tipo: str | None = None):
                     console.print("[yellow]Publicación pausada por el usuario para hoy — saliendo.[/yellow]")
                     _enviar_mensaje("⏭ Slot pausado — no se publicó nada en este horario.")
                     return
-                slot_h_min = next((h for (d, h, _) in HORARIO if d == dia_semana and HORARIO[(d, h, _)] == tipo_pub
-                                   and h <= hora), None) if False else None
                 # Buscar el h_min del slot actual
+                slot_h_min = None
                 for (d, h_min_s, h_max_s), t in HORARIO.items():
                     if d == dia_semana and h_min_s <= hora < h_max_s:
                         slot_h_min = h_min_s
@@ -1230,25 +1229,61 @@ def publicar_programado(forzar: bool = False, tipo: str | None = None):
             except Exception as _e2:
                 _log.warning("No se pudo guardar caption en biblioteca: %s", _e2)
 
-    # ── Enviar preview a Telegram y esperar aprobación ──────────────────────
+    # ── Helper interno para publicar y notificar ─────────────────────────────
+    def _ejecutar_publicacion(item_pub, tipo_pub_str):
+        from agente.instagram.publicar_item import publicar_item as _pub
+        emoji_t = {"post": "📸", "reel": "🎬", "story": "⭕"}.get(tipo_pub_str, "📌")
+        console.print(f"Publicando {tipo_pub_str.upper()}...")
+        mid = _pub(item_pub)
+        if mid == "SIN_MEDIA":
+            marcar_descartado(item_pub.id)
+            console.print("[yellow]Item descartado — sin archivo ni URL[/yellow]")
+            _enviar_mensaje(f"⚠️ {tipo_pub_str.upper()} descartado — no tiene archivo ni URL.")
+        elif mid:
+            marcar_publicado(item_pub.id, mid)
+            console.print(f"[green bold]✓ Publicado[/green bold] — media_id: {mid}")
+            _enviar_mensaje(
+                f"{emoji_t} <b>{tipo_pub_str.upper()} publicado</b>\n"
+                f"<a href='https://www.instagram.com/salsas.bestial/'>Ver en @salsas.bestial →</a>"
+            )
+        else:
+            console.print("[red]Error al publicar[/red]")
+            _enviar_mensaje(f"❌ Error publicando {tipo_pub_str.upper()}. Revisa los logs.")
+
+    # ── Flujo A: item pre-aprobado desde /hoy → publicar DIRECTAMENTE ────────
+    # Esto evita la race condition donde el bot consume la respuesta del usuario
+    # antes de que el workflow de publicación la reciba.
+    if item_aprobado_id and item.id == item_aprobado_id:
+        slot_label_a = "mediodía" if hora < 16 else "noche"
+        console.print(f"[green bold]✅ Pre-aprobado desde /hoy — publicando directamente (sin preview)[/green bold]")
+        _enviar_mensaje(
+            f"🚀 <b>Publicando {tipo_label}</b> — slot {slot_label_a}\n"
+            f"Aprobado previamente desde /hoy · publicando ahora..."
+        )
+        _ejecutar_publicacion(item, tipo_pub)
+        return
+
+    # ── Flujo B: sin pre-aprobación → enviar preview y esperar tap (20 min) ──
+    # Nota: el bot de Telegram corre 24/7 con el mismo token. Si el usuario
+    # aprueba mientras el bot está activo, hay posibilidad de race condition.
+    # Para evitarla, SIEMPRE usa /hoy para aprobar ANTES de que corra el workflow.
     rev_id = f"prog_{int(_time.time())}"
     slot_label = "mediodía" if hora < 16 else "noche"
     texto_prev = (
         f"🗓 <b>Publicación programada — {tipo_label}</b>\n"
-        f"📅 Slot de <b>{slot_label}</b> · {ahora.strftime('%a %d/%m %H:%M')} COL\n"
-        f"👆 Toca <b>✅ Publicar</b> para que salga al aire\n\n"
+        f"📅 Slot <b>{slot_label}</b> · {ahora.strftime('%a %d/%m %H:%M')} COL\n"
+        f"💡 <i>Tip: aprueba desde /hoy antes de las 11:30am/6:30pm para evitar tener que responder aquí</i>\n\n"
         + (f"{item.caption[:600]}\n\n" if item.caption else "")
-        + "<i>¿Apruebas esta publicación?</i>"
+        + "👆 <b>¿Publicar este contenido?</b>"
     )
     botones = {"inline_keyboard": [[
-        {"text": "✅ Publicar", "callback_data": f"pub_aprobar:{rev_id}"},
-        {"text": "⏭ Saltar", "callback_data": f"pub_rechazar:{rev_id}"},
+        {"text": "✅ Publicar ahora", "callback_data": f"prog_si:{rev_id}"},
+        {"text": "⏭ Saltar",         "callback_data": f"prog_no:{rev_id}"},
     ]]}
 
-    # Enviar preview con el media real cuando existe — el usuario ve exactamente lo que se va a publicar
+    # Enviar preview con el media real cuando existe
     _preview_enviado = False
     if cloudinary_url and not item.es_carrusel:
-        # Determinar si es video o imagen por extensión del nombre de archivo
         nombre = item.nombre_archivo.lower()
         es_video_url = any(nombre.endswith(ext) for ext in (".mp4", ".mov", ".avi", ".m4v"))
         if es_video_url:
@@ -1265,25 +1300,37 @@ def publicar_programado(forzar: bool = False, tipo: str | None = None):
     if not _preview_enviado:
         _enviar_mensaje(texto_prev, reply_markup=botones)
 
-    console.print("Preview enviado a Telegram. Esperando aprobación (60 min)...")
+    console.print("Preview enviado a Telegram. Esperando aprobación (20 min)...")
 
-    # ── Esperar respuesta hasta 60 minutos — NUNCA publica sin aprobación ────
-    offset = None
+    # ── Esperar respuesta hasta 20 minutos ────────────────────────────────────
+    # Prefijos prog_si / prog_no son distintos a pub_aprobar / pub_rechazar del bot
+    # para minimizar interferencia. El bot ignora callbacks prog_* desconocidos.
+    poll_offset = None
     decision = None
-    deadline = _time.time() + 60 * 60
+    deadline = _time.time() + 20 * 60  # 20 min
 
     while _time.time() < deadline:
         params_poll = {"timeout": 20, "allowed_updates": ["callback_query"]}
-        if offset:
-            params_poll["offset"] = offset
-        updates = req.get(f"{BASE_URL}/getUpdates", params=params_poll, timeout=35).json().get("result", [])
+        if poll_offset:
+            params_poll["offset"] = poll_offset
+        try:
+            updates = req.get(
+                f"{BASE_URL}/getUpdates", params=params_poll, timeout=35
+            ).json().get("result", [])
+        except Exception as _pe:
+            console.print(f"[yellow]Error polling: {_pe}[/yellow]")
+            _time.sleep(5)
+            continue
         for upd in updates:
-            offset = upd["update_id"] + 1
+            poll_offset = upd["update_id"] + 1
             cb = upd.get("callback_query")
-            if not cb or rev_id not in cb.get("data", ""):
+            if not cb:
                 continue
-            accion = cb["data"].split(":")[0]
-            decision = "aprobar" if accion == "pub_aprobar" else "saltar"
+            cb_data = cb.get("data", "")
+            if rev_id not in cb_data:
+                continue
+            accion_cb = cb_data.split(":")[0]
+            decision = "aprobar" if accion_cb == "prog_si" else "saltar"
             req.post(f"{BASE_URL}/answerCallbackQuery", data={
                 "callback_query_id": cb["id"],
                 "text": "✅ Publicando..." if decision == "aprobar" else "⏭ Saltado",
@@ -1293,34 +1340,20 @@ def publicar_programado(forzar: bool = False, tipo: str | None = None):
             break
 
     if not decision:
-        console.print("[yellow]Sin respuesta en 60 min — publicación cancelada (nunca publica sin aprobación).[/yellow]")
-        _enviar_mensaje(f"⏰ <b>Sin respuesta en 60 min</b> — {tipo_label} no se publicó. Dispara el workflow de nuevo cuando quieras aprobarlo.")
+        console.print("[yellow]Sin respuesta en 20 min — publicación cancelada.[/yellow]")
+        _enviar_mensaje(
+            f"⏰ <b>Sin respuesta en 20 min</b> — {tipo_label} no se publicó.\n\n"
+            f"Para publicar: escribe /hoy y toca <b>📅 Aprobar</b> antes de que corra el siguiente slot."
+        )
         return
 
     if decision == "saltar":
         console.print("Saltado por el usuario.")
+        _enviar_mensaje(f"⏭ {tipo_label} saltado.")
         return
 
     # ── Publicar ──────────────────────────────────────────────────────────────
-    from agente.instagram.publicar_item import publicar_item as _publicar_item
-    console.print(f"Publicando {tipo_pub.upper()}...")
-    media_id = _publicar_item(item)
-
-    if media_id == "SIN_MEDIA":
-        marcar_descartado(item.id)
-        console.print("[yellow]Item descartado — sin archivo ni URL[/yellow]")
-        _enviar_mensaje(f"⚠️ {tipo_pub.upper()} descartado — no tiene archivo ni URL.")
-    elif media_id:
-        marcar_publicado(item.id, media_id)
-        console.print(f"[green bold]✓ Publicado[/green bold] — media_id: {media_id}")
-        _enviar_mensaje(
-            f"{'📸' if tipo_pub == 'post' else '🎬' if tipo_pub == 'reel' else '⭕'} "
-            f"<b>{tipo_pub.upper()} publicado</b>\n"
-            f"<a href='https://www.instagram.com/salsas.bestial/'>Ver en @salsas.bestial →</a>"
-        )
-    else:
-        console.print("[red]Error al publicar[/red]")
-        _enviar_mensaje(f"❌ Error publicando {tipo_pub.upper()}. Revisa los logs.")
+    _ejecutar_publicacion(item, tipo_pub)
 
 
 @cli.command()

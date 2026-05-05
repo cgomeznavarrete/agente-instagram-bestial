@@ -51,6 +51,9 @@ jobs:
           pip install -r requirements.txt
           playwright install chromium --with-deps
 
+      - name: Pull latest (para ver aprobaciones_hoy.json del bot)
+        run: git pull --rebase origin master || true
+
       - name: Publicar según horario
         run: |
           FORZAR="${{ github.event.inputs.forzar }}"
