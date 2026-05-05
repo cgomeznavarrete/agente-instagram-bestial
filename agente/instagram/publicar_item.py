@@ -195,6 +195,18 @@ def publicar_item(item) -> str | None:
             item.nombre_archivo.lower().endswith(e)
             for e in (".jpg", ".jpeg", ".png", ".webp")
         )
+        # Si es imagen y no hay archivo local → descargar de Cloudinary a temp
+        if es_imagen_reel and (not ruta or not ruta.exists()) and cloudinary_url:
+            try:
+                import tempfile, urllib.request as _urlreq
+                sufijo = Path(item.nombre_archivo).suffix or ".jpg"
+                tmp = tempfile.NamedTemporaryFile(suffix=sufijo, delete=False)
+                _urlreq.urlretrieve(cloudinary_url.split(",")[0].strip(), tmp.name)
+                ruta = Path(tmp.name)
+                logger.info("Imagen Reel descargada de Cloudinary a temp: %s", tmp.name)
+            except Exception as e:
+                logger.warning("No se pudo descargar imagen de Cloudinary para reel: %s", e)
+
         if es_imagen_reel and ruta and ruta.exists():
             logger.info("Reel de imagen — convirtiendo a MP4 con música (pilar=%s)", pilar_item)
             url_video = _imagen_a_reel_cloudinary(ruta, pilar_item)
@@ -273,7 +285,23 @@ def publicar_item(item) -> str | None:
     else:
         # Imagen estática → agregar música convirtiéndola a video.
         import random
+        import tempfile
+        import urllib.request
         mood = MOOD_POR_PILAR.get(pilar_item) or random.choice(["chill_food", "upbeat_latino"])
+
+        # Si no hay archivo local pero sí cloudinary_url de imagen → descargar a temp
+        if (not ruta or not ruta.exists()) and cloudinary_url:
+            url_img_check = cloudinary_url.split(",")[0].strip()
+            es_img_url = not ("/video/" in url_img_check or url_img_check.lower().endswith((".mp4", ".mov", ".m4v")))
+            if es_img_url:
+                try:
+                    sufijo = Path(url_img_check.split("?")[0]).suffix or ".jpg"
+                    tmp = tempfile.NamedTemporaryFile(suffix=sufijo, delete=False)
+                    urllib.request.urlretrieve(url_img_check, tmp.name)
+                    ruta = Path(tmp.name)
+                    logger.info("Imagen descargada de Cloudinary a temp: %s", tmp.name)
+                except Exception as e:
+                    logger.warning("No se pudo descargar imagen de Cloudinary: %s", e)
 
         if tipo_pub == "post" and ruta and ruta.exists():
             # Post de imagen → Reel con música (más alcance + audio)
@@ -300,7 +328,7 @@ def publicar_item(item) -> str | None:
         else:
             # Fallback: publicar imagen estática (sin música)
             if cloudinary_url:
-                url_img = cloudinary_url
+                url_img = cloudinary_url.split(",")[0].strip()
             elif ruta and ruta.exists():
                 url_img = cloudinary.uploader.upload(str(ruta), folder="salsas_bestial")["secure_url"]
             else:

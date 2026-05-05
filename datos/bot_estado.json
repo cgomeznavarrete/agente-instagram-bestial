@@ -1,1 +1,18 @@
-{}
+{
+  "123": {
+    "paso": "esperando_decision_carrusel",
+    "datos": {
+      "rutas_slides": [
+        "D:\\20210729\\cgome\\Documents\\Claude\\Agente Instagram\\material_agente\\imagenes_compuestas\\carrusel_html_1777983465\\slide_00_portada.jpg",
+        "D:\\20210729\\cgome\\Documents\\Claude\\Agente Instagram\\material_agente\\imagenes_compuestas\\carrusel_html_1777983465\\slide_01.jpg",
+        "D:\\20210729\\cgome\\Documents\\Claude\\Agente Instagram\\material_agente\\imagenes_compuestas\\carrusel_html_1777983465\\slide_02.jpg",
+        "D:\\20210729\\cgome\\Documents\\Claude\\Agente Instagram\\material_agente\\imagenes_compuestas\\carrusel_html_1777983465\\slide_03.jpg",
+        "D:\\20210729\\cgome\\Documents\\Claude\\Agente Instagram\\material_agente\\imagenes_compuestas\\carrusel_html_1777983465\\slide_04_cierre.jpg"
+      ],
+      "caption": "¿Sabías que el picante tiene más de 9.000 años de historia? 🌶️\n\nDe los antiguos mayas a tu mesa, el chile conquistó el mundo antes de que el mundo lo supiera.\n\nPídela aquí → https://wa.me/573005864523\n\n#SalsasBestial #HistoriaDelPicante #CulturaPickante #SalsaPicante #Gastronomia #Foodie #PicanteColombiano #SalsasArtesanales #AmantesDelPicante #BestialFlavor",
+      "pilar": "educacion_sobre_salsas",
+      "tema": "historia del picante"
+    },
+    "ts": 1777983521.7819862
+  }
+}

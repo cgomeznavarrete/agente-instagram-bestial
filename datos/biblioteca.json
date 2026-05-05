@@ -16,21 +16,6 @@
       "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/video/upload/v1777498679/salsas_bestial/edmttbbyrfbdnog1g8wk.mp4"
     },
     {
-      "id": "reel_1777500357657",
-      "tipo": "reel",
-      "nombre_archivo": "reel_1777500357657.mp4",
-      "ruta_local": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/reels/reel_1777500357657.mp4",
-      "fecha_agregado": 1777500358.6873922,
-      "estado": "publicado",
-      "pilar": "humor_picante",
-      "caption": "",
-      "media_id": "",
-      "fecha_publicado": 1778003445.7588892,
-      "es_carrusel": false,
-      "archivos_carrusel": [],
-      "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/video/upload/v1777500357/salsas_bestial/igwyvapg8kfifdbstpfz.mp4"
-    },
-    {
       "id": "reel_1777500413152",
       "tipo": "reel",
       "nombre_archivo": "reel_1777500413152.mp4",
@@ -287,6 +272,21 @@
         "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/posts/carrusel_1777897957008/slide_05.jpg"
       ],
       "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/image/upload/v1777897957/salsas_bestial/hpir2iupng6ulyfdmdmc.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1777897958/salsas_bestial/ty1r7akgakhuf1vzk6zm.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1777897959/salsas_bestial/qqityndzeznks4lgdxee.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1777897960/salsas_bestial/qbn66aqjl4fso2aq5miu.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1777897961/salsas_bestial/twah2jiutxwkmvp40ned.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1777897962/salsas_bestial/fcmcfz68kuuthu7pspnp.jpg"
+    },
+    {
+      "id": "reel_1777500357657",
+      "tipo": "reel",
+      "nombre_archivo": "reel_1777500357657.mp4",
+      "ruta_local": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/reels/reel_1777500357657.mp4",
+      "fecha_agregado": 1777982283.9665625,
+      "estado": "pendiente",
+      "pilar": "humor_picante",
+      "caption": "",
+      "media_id": "",
+      "fecha_publicado": 0.0,
+      "es_carrusel": false,
+      "archivos_carrusel": [],
+      "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/video/upload/v1777500357/salsas_bestial/igwyvapg8kfifdbstpfz.mp4"
     }
   ]
 }
