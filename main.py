@@ -1153,31 +1153,59 @@ def publicar_programado(forzar: bool = False, tipo: str | None = None):
 
     tipo_label = {"post": "📸 POST", "reel": "🎬 REEL", "story": "⭕ STORY"}.get(tipo_pub, tipo_pub.upper())
 
-    # Generar caption si no tiene
-    if not item.caption and tipo_pub in ("post", "reel"):
+    # Generar caption si no tiene (post, reel y story)
+    if not item.caption:
         from agente.claude.cliente_claude import ClienteClaude
         from config import brand_guidelines as brand
         import re
         cliente = ClienteClaude()
-        caption_raw = cliente.generar(
-            prompt_sistema=(
-                "Eres el community manager de Salsas Bestial. "
-                "Haz que la persona se identifique con la experiencia del picante."
-            ),
-            prompt_usuario=(
-                f"Tipo: {tipo_pub.upper()}. Pilar: {item.pilar}.\n"
-                "Caption para Instagram:\n"
-                "- Primera línea: verdad que los amantes del picante reconocen\n"
-                "- Cuerpo (2-3 líneas): la experiencia\n"
-                f"- CTA de compra: Pídela aquí → {brand.LINK_COMPRA_WHATSAPP}\n"
-                f"- Pregunta de cierre (OBLIGATORIA, última línea antes de hashtags): elige la más apropiada de esta lista: {brand.PREGUNTAS_ENGAGEMENT}\n"
-                f"- Usa exactamente estos hashtags al final (mezcla nicho/amplio ya seleccionada): {' '.join(brand.seleccionar_hashtags())}\n"
-                "- Máximo 3 emojis"
-            ),
-            temperatura=0.85,
-            max_tokens=600,
-        )
+
+        if tipo_pub == "story":
+            caption_raw = cliente.generar(
+                prompt_sistema=(
+                    "Eres el community manager de Salsas Bestial. "
+                    "Escribes textos breves, directos y con personalidad para Stories de Instagram."
+                ),
+                prompt_usuario=(
+                    f"Pilar: {item.pilar}.\n"
+                    "Escribe el texto para una Story de Instagram de Salsas Bestial:\n"
+                    "- 1 línea impactante (máx 10 palabras) — lo que se ve en la pantalla\n"
+                    "- 1 línea de CTA corta: 'Pídela 👇' o 'Desliza para pedir 🌶️'\n"
+                    "- Sin hashtags (las stories no los necesitan)\n"
+                    "- Máximo 2 emojis\n"
+                    "Formato: solo el texto, sin explicaciones."
+                ),
+                temperatura=0.85,
+                max_tokens=150,
+            )
+        else:
+            caption_raw = cliente.generar(
+                prompt_sistema=(
+                    "Eres el community manager de Salsas Bestial. "
+                    "Haz que la persona se identifique con la experiencia del picante."
+                ),
+                prompt_usuario=(
+                    f"Tipo: {tipo_pub.upper()}. Pilar: {item.pilar}.\n"
+                    "Caption para Instagram:\n"
+                    "- Primera línea: verdad que los amantes del picante reconocen\n"
+                    "- Cuerpo (2-3 líneas): la experiencia\n"
+                    f"- CTA de compra: Pídela aquí → {brand.LINK_COMPRA_WHATSAPP}\n"
+                    f"- Pregunta de cierre (OBLIGATORIA, última línea antes de hashtags): elige la más apropiada de esta lista: {brand.PREGUNTAS_ENGAGEMENT}\n"
+                    f"- Usa exactamente estos hashtags al final (mezcla nicho/amplio ya seleccionada): {' '.join(brand.seleccionar_hashtags())}\n"
+                    "- Máximo 3 emojis"
+                ),
+                temperatura=0.85,
+                max_tokens=600,
+            )
         item.caption = limpiar_caption(re.sub(r"\*\*(.+?)\*\*", r"\1", caption_raw))
+        # Guardar caption generado en biblioteca para que persista
+        from agente.gestores.biblioteca import _cargar, _guardar
+        _data = _cargar()
+        for _raw in _data["items"]:
+            if _raw["id"] == item.id:
+                _raw["caption"] = item.caption
+                break
+        _guardar(_data)
 
     # ── Enviar preview a Telegram y esperar aprobación ──────────────────────
     rev_id = f"prog_{int(_time.time())}"
