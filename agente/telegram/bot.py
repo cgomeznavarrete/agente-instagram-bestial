@@ -1037,6 +1037,53 @@ class BotTelegram:
                 _answer_callback(cb_id, "✅ Publicaciones reactivadas")
                 _enviar_mensaje("✅ <b>Publicaciones reactivadas.</b>\nEscribe /hoy para ver el plan.")
 
+            elif accion == "ya_publique" and len(partes) >= 5:
+                # hoy:ya_publique:<item_id>:<slot_key>:<tipo>
+                item_id_pub = partes[2]
+                slot_key_pub = partes[3]
+                tipo_slot = partes[4]
+                hora_label_pub = "12pm" if int(slot_key_pub) < 15 else "7pm"
+                # Marcar como publicado
+                marcar_publicado(item_id_pub)
+                _commit_json_github(
+                    str(BIBLIOTECA_JSON), "datos/biblioteca.json",
+                    f"chore: {item_id_pub} marcado publicado desde /hoy",
+                )
+                _answer_callback(cb_id, f"✅ Marcado como publicado")
+                # Buscar el siguiente ítem que tomará su lugar
+                siguiente = siguiente_pendiente(tipo_slot)
+                if not siguiente:
+                    for t in ["reel", "post", "story"]:
+                        siguiente = siguiente_pendiente(t)
+                        if siguiente:
+                            break
+                if siguiente:
+                    EMOJI_T = {"post": "📸", "reel": "🎬", "story": "⭕", "carrusel": "📖"}
+                    tipo_sig = "carrusel" if siguiente.es_carrusel else siguiente.tipo
+                    primera = str(siguiente.caption).split("\n")[0].strip()[:120] if siguiente.caption else ""
+                    _enviar_mensaje(
+                        f"✅ <b>Publicado</b> — slot {hora_label_pub} actualizado.\n\n"
+                        f"{EMOJI_T.get(tipo_sig,'📌')} Siguiente: <b>{tipo_sig.upper()}</b>\n"
+                        f"🪝 <i>{_html.escape(primera)}</i>\n\n"
+                        f"Escribe /hoy para ver el plan actualizado."
+                    )
+                    # Enviar preview del nuevo ítem
+                    if siguiente.cloudinary_url or siguiente.ruta_local:
+                        caption_sig = f"{EMOJI_T.get(tipo_sig,'📌')} Nuevo material para {hora_label_pub}"
+                        if siguiente.ruta_local and Path(siguiente.ruta_local).exists():
+                            ruta_l = Path(siguiente.ruta_local)
+                            if ruta_l.suffix.lower() in (".mp4", ".mov", ".m4v"):
+                                _enviar_video(ruta_l, caption=caption_sig)
+                            else:
+                                _enviar_foto(ruta_l, caption=caption_sig)
+                        elif siguiente.cloudinary_url:
+                            _enviar_media_url(siguiente.cloudinary_url, caption=caption_sig)
+                else:
+                    _enviar_mensaje(
+                        f"✅ <b>Publicado</b> — biblioteca vacía para este tipo.\n"
+                        f"Envíame más material para seguir publicando."
+                    )
+
             elif accion in ("saltar", "pausar_slot") and len(partes) >= 3:
                 h_min = int(partes[2])
                 hora_label = "12pm" if h_min < 15 else "7pm"
@@ -1871,10 +1918,15 @@ class BotTelegram:
 
             # Botones por slot (solo slots futuros)
             if not ya_paso and not pausado_todo:
+                fila_slot = []
+                if item_slot:
+                    fila_slot.append({"text": f"✅ Ya publiqué {hora_label}", "callback_data": f"hoy:ya_publique:{item_slot.id}:{slot_key}:{tipo}"})
                 if slot_key in slots_pausados:
-                    teclado.append([{"text": f"✅ Reactivar {hora_label}", "callback_data": f"hoy:activar_slot:{slot_key}"}])
+                    fila_slot.append({"text": f"🔄 Reactivar {hora_label}", "callback_data": f"hoy:activar_slot:{slot_key}"})
                 else:
-                    teclado.append([{"text": f"⏭ Saltar {hora_label}", "callback_data": f"hoy:pausar_slot:{slot_key}"}])
+                    fila_slot.append({"text": f"⏭ Saltar {hora_label}", "callback_data": f"hoy:pausar_slot:{slot_key}"})
+                if fila_slot:
+                    teclado.append(fila_slot)
 
         lineas.append(f"\n<i>Hora actual: {ahora.strftime('%H:%M')} COL</i>")
 
