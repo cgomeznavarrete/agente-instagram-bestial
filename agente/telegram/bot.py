@@ -470,11 +470,12 @@ class BotTelegram:
             updates = _get_updates(self.offset, timeout=20)
             for update in updates:
                 self.offset = update["update_id"] + 1
-                # Ignorar mensajes con más de 5 min de antigüedad (evita re-procesar al reiniciar)
+                # Ignorar mensajes con más de 10 min de antigüedad (evita re-procesar al reiniciar)
+                # 10 min cubre el gap de reinicio de GitHub Actions (~3-4 min de setup)
                 msg = update.get("message") or {}
                 msg_date = msg.get("date", 0)
-                if msg_date and time.time() - msg_date > 300:
-                    logger.info("Saltando mensaje antiguo (>5min): update_id=%s", update["update_id"])
+                if msg_date and time.time() - msg_date > 600:
+                    logger.info("Saltando mensaje antiguo (>10min): update_id=%s", update["update_id"])
                     continue
                 logger.info("Update recibido: id=%s tipos=%s", update["update_id"], list(update.keys()))
                 try:
@@ -566,9 +567,30 @@ class BotTelegram:
 
         # ── Video recibido ────────────────────────────────────────────────
         if video:
-            logger.info("Video recibido, procesando...")
+            file_size_mb = round(video.get("file_size", 0) / (1024 * 1024), 1)
+            logger.info("Video recibido (%.1fMB), procesando...", file_size_mb)
+            if video.get("file_size", 0) > 20 * 1024 * 1024:
+                _enviar_mensaje(
+                    f"⚠️ <b>Video demasiado grande</b> ({file_size_mb}MB)\n\n"
+                    "Telegram Bot API tiene un límite de <b>20MB</b>.\n\n"
+                    "Opciones:\n"
+                    "• Comprime el video antes de enviarlo\n"
+                    "• Recórtalo en clips más cortos\n"
+                    "• Usa una app como <b>Video Compress</b> para reducir el tamaño"
+                )
+                return
             file_id = video["file_id"]
             self._recibir_media(file_id, ".mp4", "video", chat_id, media_group_id)
+            return
+
+        # ── Video note (video circular de Telegram) ───────────────────────
+        video_note = msg.get("video_note")
+        if video_note:
+            logger.info("Video note (circular) recibido, procesando...")
+            if video_note.get("file_size", 0) > 20 * 1024 * 1024:
+                _enviar_mensaje("⚠️ Video demasiado grande (>20MB). Recórtalo y envíalo de nuevo.")
+                return
+            self._recibir_media(video_note["file_id"], ".mp4", "video", chat_id, None)
             return
 
         # ── Documento recibido (foto enviada como archivo) ────────────────
@@ -579,6 +601,13 @@ class BotTelegram:
                 ext = ".jpg" if "jpeg" in mime else ".png" if "png" in mime else ".jpg"
                 self._recibir_media(documento["file_id"], ext, "imagen", chat_id, media_group_id)
             elif mime.startswith("video/"):
+                file_size = documento.get("file_size", 0)
+                if file_size > 20 * 1024 * 1024:
+                    _enviar_mensaje(
+                        f"⚠️ <b>Video demasiado grande</b> ({round(file_size/(1024*1024),1)}MB)\n\n"
+                        "Telegram limita archivos a 20MB. Comprime el video antes de enviarlo."
+                    )
+                    return
                 self._recibir_media(documento["file_id"], ".mp4", "video", chat_id, media_group_id)
             else:
                 _enviar_mensaje(
@@ -790,15 +819,18 @@ class BotTelegram:
             logger.info("Álbum completo: %d fotos para chat %s", n, chat_id)
 
             if n == 1:
-                # Solo llegó una — tratar como foto individual
+                # Solo llegó una — tratar como media individual
                 a = archivos[0]
+                tipo_media_album = "video" if a["extension"] in (".mp4", ".mov", ".m4v", ".avi") else "imagen"
+                emoji_album = "🎬" if tipo_media_album == "video" else "📸"
+                label_album = "video" if tipo_media_album == "video" else "imagen"
                 estado[chat_id] = {
                     "paso": "recibido",
-                    "datos": {"file_id": a["file_id"], "extension": a["extension"], "tipo_media": "imagen"},
+                    "datos": {"file_id": a["file_id"], "extension": a["extension"], "tipo_media": tipo_media_album},
                     "ts": ahora,
                 }
                 _enviar_mensaje(
-                    "📸 <b>Foto recibida</b>\n\n¿Qué hago con esta imagen?",
+                    f"{emoji_album} <b>{label_album.title()} recibido</b>\n\n¿Qué hago con este {label_album}?",
                     reply_markup={"inline_keyboard": [
                         [
                             {"text": "📚 Guardar en biblioteca", "callback_data": "accion:biblioteca"},
@@ -1388,6 +1420,8 @@ class BotTelegram:
 
             if extension in (".jpg", ".jpeg", ".png", ".webp"):
                 _enviar_foto(ruta_tmp, caption=texto_rev, reply_markup=botones_rev)
+            elif extension in (".mp4", ".mov", ".m4v", ".avi"):
+                _enviar_video(ruta_tmp, caption=texto_rev, reply_markup=botones_rev)
             else:
                 _enviar_mensaje(texto_rev, reply_markup=botones_rev)
 
@@ -1408,7 +1442,8 @@ class BotTelegram:
                 media_id = _publicar_ahora_imagen(ruta, caption, pilar)
             elif tipo_pub == "story" and not es_video:
                 media_id = _publicar_ahora_story_imagen(ruta)
-            elif tipo_pub == "reel" and es_video:
+            elif tipo_pub in ("post", "reel") and es_video:
+                # Video → publicar como Reel directamente
                 subidor = SubidorCloudinary()
                 url = subidor.subir(ruta, resource_type="video")
                 if url:
