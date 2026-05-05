@@ -337,6 +337,7 @@ class BotTelegram:
         self.offset: Optional[int] = None
         self._estado_path = Path("datos/bot_estado.json")
         self._pausas_path = Path("datos/pausas_hoy.json")
+        self._aprobaciones_path = Path("datos/aprobaciones_hoy.json")
         self._pending_pubs_path = Path("datos/pending_pubs.json")
         self._pending_pubs: dict = self._cargar_pending_pubs()
 
@@ -352,6 +353,20 @@ class BotTelegram:
         self._pausas_path.parent.mkdir(parents=True, exist_ok=True)
         self._pausas_path.write_text(json.dumps(pausas, ensure_ascii=False, indent=2), encoding="utf-8")
         _commit_json_github(str(self._pausas_path), "datos/pausas_hoy.json", "chore: pausas publicacion actualizadas")
+
+    def _leer_aprobaciones_hoy(self) -> dict:
+        """Lee {fecha, aprobados: {slot_key: item_id}}"""
+        try:
+            if self._aprobaciones_path.exists():
+                return json.loads(self._aprobaciones_path.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+        return {}
+
+    def _guardar_aprobaciones_hoy(self, aprobaciones: dict):
+        self._aprobaciones_path.parent.mkdir(parents=True, exist_ok=True)
+        self._aprobaciones_path.write_text(json.dumps(aprobaciones, ensure_ascii=False, indent=2), encoding="utf-8")
+        _commit_json_github(str(self._aprobaciones_path), "datos/aprobaciones_hoy.json", "chore: aprobaciones del dia actualizadas")
 
     def _set_estado(self, chat_id: str, paso: str, datos: dict = None):
         estado = self._leer_estado_disco()
@@ -1036,6 +1051,26 @@ class BotTelegram:
                 self._guardar_pausas_hoy(pausas)
                 _answer_callback(cb_id, "✅ Publicaciones reactivadas")
                 _enviar_mensaje("✅ <b>Publicaciones reactivadas.</b>\nEscribe /hoy para ver el plan.")
+
+            elif accion == "noop":
+                _answer_callback(cb_id, "✅ Ya está aprobado")
+
+            elif accion == "aprobar" and len(partes) >= 4:
+                # hoy:aprobar:<slot_key>:<item_id>
+                slot_key_apr = partes[2]
+                item_id_apr = partes[3]
+                hora_label_apr = "12pm" if int(slot_key_apr) < 15 else "7pm"
+                aprobaciones_data = self._leer_aprobaciones_hoy()
+                if aprobaciones_data.get("fecha") != fecha_hoy:
+                    aprobaciones_data = {"fecha": fecha_hoy, "aprobados": {}}
+                aprobaciones_data["aprobados"][slot_key_apr] = item_id_apr
+                self._guardar_aprobaciones_hoy(aprobaciones_data)
+                _answer_callback(cb_id, f"✅ Aprobado para {hora_label_apr}")
+                _enviar_mensaje(
+                    f"✅ <b>Aprobado para {hora_label_apr}</b>\n\n"
+                    f"El material se publicará automáticamente a las {hora_label_apr}.\n"
+                    f"Si querés cambiarlo, escribe /hoy."
+                )
 
             elif accion == "ya_publique" and len(partes) >= 5:
                 # hoy:ya_publique:<item_id>:<slot_key>:<tipo>
@@ -1841,11 +1876,14 @@ class BotTelegram:
         }
         HORA_LABEL = {10: "12:00pm", 17: "7:00pm"}
 
-        # Leer pausas del día
+        # Leer pausas y aprobaciones del día
         pausas = self._leer_pausas_hoy()
+        aprobaciones = self._leer_aprobaciones_hoy()
         fecha_hoy_str = ahora.strftime("%Y-%m-%d")
         pausado_todo = pausas.get("pausado_todo", False) and pausas.get("fecha") == fecha_hoy_str
         slots_pausados = set(pausas.get("slots_pausados", [])) if pausas.get("fecha") == fecha_hoy_str else set()
+        # aprobados: dict slot_key → item_id (solo si es de hoy)
+        aprobados = aprobaciones.get("aprobados", {}) if aprobaciones.get("fecha") == fecha_hoy_str else {}
 
         # Slots de hoy: mediodía (h_min=10) y noche (h_min=17)
         slots_hoy = []
@@ -1885,13 +1923,19 @@ class BotTelegram:
                         if item_slot:
                             break
 
+            # ¿Está aprobado este slot?
+            item_aprobado_id = aprobados.get(slot_key)
+            slot_aprobado = bool(item_aprobado_id) and item_slot and item_aprobado_id == item_slot.id
+
             # Estado del slot
             if ya_paso:
                 estado_str = "✔️ <i>Slot pasado</i>"
             elif pausado_todo or slot_key in slots_pausados:
                 estado_str = "⏸ <i>Pausado</i>"
+            elif slot_aprobado:
+                estado_str = "✅ <b>Aprobado — se publica automáticamente</b>"
             else:
-                estado_str = "🟢 <i>Programado</i>"
+                estado_str = "🟡 <i>Pendiente aprobación</i>"
 
             if item_slot:
                 tiene_media = "☁️ Cloudinary" if item_slot.cloudinary_url else ("📁 Local" if item_slot.ruta_local else "⚠️ Sin media")
@@ -1916,17 +1960,22 @@ class BotTelegram:
                     f"   ⚠️ <i>Sin material en biblioteca — envía algo al bot</i>"
                 )
 
-            # Botones por slot (solo slots futuros)
-            if not ya_paso and not pausado_todo:
-                fila_slot = []
+            # Botones por slot (solo slots futuros no pausados)
+            if not ya_paso and not pausado_todo and slot_key not in slots_pausados:
+                # Fila 1: Aprobar / Ya aprobado
                 if item_slot:
-                    fila_slot.append({"text": f"✅ Ya publiqué {hora_label}", "callback_data": f"hoy:ya_publique:{item_slot.id}:{slot_key}:{tipo}"})
-                if slot_key in slots_pausados:
-                    fila_slot.append({"text": f"🔄 Reactivar {hora_label}", "callback_data": f"hoy:activar_slot:{slot_key}"})
-                else:
-                    fila_slot.append({"text": f"⏭ Saltar {hora_label}", "callback_data": f"hoy:pausar_slot:{slot_key}"})
-                if fila_slot:
-                    teclado.append(fila_slot)
+                    if slot_aprobado:
+                        teclado.append([{"text": f"✅ Aprobado {hora_label} ✓", "callback_data": f"hoy:noop"}])
+                    else:
+                        teclado.append([{"text": f"📅 Aprobar para {hora_label}", "callback_data": f"hoy:aprobar:{slot_key}:{item_slot.id}"}])
+                # Fila 2: Ya publiqué / Saltar
+                fila2 = []
+                if item_slot:
+                    fila2.append({"text": f"✅ Ya publiqué", "callback_data": f"hoy:ya_publique:{item_slot.id}:{slot_key}:{tipo}"})
+                fila2.append({"text": f"⏭ Saltar", "callback_data": f"hoy:pausar_slot:{slot_key}"})
+                teclado.append(fila2)
+            elif not ya_paso and not pausado_todo and slot_key in slots_pausados:
+                teclado.append([{"text": f"🔄 Reactivar {hora_label}", "callback_data": f"hoy:activar_slot:{slot_key}"}])
 
         lineas.append(f"\n<i>Hora actual: {ahora.strftime('%H:%M')} COL</i>")
 

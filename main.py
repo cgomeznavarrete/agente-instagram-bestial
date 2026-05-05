@@ -1047,8 +1047,38 @@ def publicar_programado(forzar: bool = False, tipo: str | None = None):
         f"Día: {ahora.strftime('%A')} | Hora: {ahora.strftime('%H:%M')} COL | Tipo: {tipo_pub.upper()}"
     ))
 
+    # Verificar si el usuario aprobó un ítem específico para este slot
+    fecha_hoy = ahora.strftime("%Y-%m-%d")
+    aprobaciones_path = Path("datos/aprobaciones_hoy.json")
+    item_aprobado_id = None
+    if aprobaciones_path.exists():
+        try:
+            aprobaciones = json.loads(aprobaciones_path.read_text(encoding="utf-8"))
+            if aprobaciones.get("fecha") == fecha_hoy:
+                # Buscar h_min del slot actual
+                slot_h_min_apr = None
+                for (d, h_min_s, h_max_s), _ in HORARIO.items():
+                    if d == dia_semana and h_min_s <= hora < h_max_s:
+                        slot_h_min_apr = h_min_s
+                        break
+                if slot_h_min_apr is not None:
+                    item_aprobado_id = aprobaciones.get("aprobados", {}).get(str(slot_h_min_apr))
+        except Exception as e:
+            console.print(f"[yellow]No se pudo leer aprobaciones_hoy.json: {e}[/yellow]")
+
     # Intentar tipo preferido; si no hay, cualquier tipo disponible
-    item = siguiente_pendiente(tipo_pub)
+    # Si hay un ítem aprobado específico, usarlo directamente
+    from agente.gestores.biblioteca import listar_pendientes as _listar_pendientes
+    item = None
+    if item_aprobado_id:
+        todos_pendientes = _listar_pendientes()
+        item = next((i for i in todos_pendientes if i.id == item_aprobado_id), None)
+        if item:
+            console.print(f"[green]✅ Publicando ítem aprobado: {item_aprobado_id}[/green]")
+        else:
+            console.print(f"[yellow]Ítem aprobado {item_aprobado_id} no encontrado en pendientes — usando siguiente disponible[/yellow]")
+    if not item:
+        item = siguiente_pendiente(tipo_pub)
     if not item:
         for tipo_alt in ["post", "reel", "story"]:
             if tipo_alt != tipo_pub:
