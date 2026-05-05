@@ -412,18 +412,13 @@ class BotTelegram:
 
     def ejecutar(self):
         """Loop principal de polling."""
-        # Drain stale updates accumulated before this run
-        stale = _get_updates(timeout=0)
-        if stale:
-            self.offset = stale[-1]["update_id"] + 1
-            logger.info("Saltando %d updates previos al inicio del bot", len(stale))
-
         logger.info("Bot Telegram iniciado — escuchando mensajes...")
         _enviar_mensaje(
             "🤖 <b>Agente Salsas Bestial activo</b>\n\n"
             "Mándame una foto o video y te digo qué hacer con él.\n\n"
             "Comandos:\n"
-            "/carrusel <tema> — genera carrusel educativo\n"
+            "/publicar — siguiente pendiente con botones ✅\n"
+            "/hoy — plan de publicación de hoy\n"
             "/estado — ver material en biblioteca\n"
             "/ayuda — ver todos los comandos"
         )
@@ -432,11 +427,24 @@ class BotTelegram:
             updates = _get_updates(self.offset, timeout=20)
             for update in updates:
                 self.offset = update["update_id"] + 1
+                # Ignorar mensajes con más de 5 min de antigüedad (evita re-procesar al reiniciar)
+                msg = update.get("message") or {}
+                msg_date = msg.get("date", 0)
+                if msg_date and time.time() - msg_date > 300:
+                    logger.info("Saltando mensaje antiguo (>5min): update_id=%s", update["update_id"])
+                    continue
                 logger.info("Update recibido: id=%s tipos=%s", update["update_id"], list(update.keys()))
                 try:
                     self._procesar_update(update)
                 except Exception as e:
                     logger.error("Error procesando update %s: %s", update["update_id"], e, exc_info=True)
+                    try:
+                        _enviar_mensaje(
+                            f"⚠️ Error interno: <code>{_html.escape(str(e))}</code>\n\n"
+                            "Escribe /publicar para reintentar."
+                        )
+                    except Exception:
+                        pass
 
             # Procesar álbumes completos (media groups cuyo último mensaje llegó hace >2s)
             self._procesar_albumes_pendientes()
@@ -1957,14 +1965,6 @@ class BotTelegram:
                 logger.warning("Error enviando media local: %s", e)
 
         # 2. Enviar texto completo con caption y botones (sin límite de 1024)
-        caption_preview = _html.escape(item.caption[:900]) if item.caption else "<i>Sin caption — se generará al publicar</i>"
-        texto = (
-            f"🗓 <b>{tipo_label}</b> — 🌶 {pilar_label}\n"
-            + (f"📝 <i>{_html.escape(nota)}</i>\n" if nota else "")
-            + f"👆 Toca ✅ para publicar ahora\n\n"
-            + caption_preview
-            + "\n\n<i>¿Qué hacemos con este contenido?</i>"
-        )
         botones = {"inline_keyboard": [
             [
                 {"text": "✅ Publicar",        "callback_data": f"pub_aprobar:{rev_id}"},
@@ -1973,13 +1973,39 @@ class BotTelegram:
             ],
             [{"text": "✅ Ya lo publiqué",     "callback_data": f"pub_publicado:{rev_id}"}],
         ]}
-        _enviar_mensaje(texto, reply_markup=botones)
+        try:
+            caption_preview = _html.escape(item.caption[:900]) if item.caption else "<i>Sin caption — se generará al publicar</i>"
+            texto = (
+                f"🗓 <b>{tipo_label}</b> — 🌶 {pilar_label}\n"
+                + (f"📝 <i>{_html.escape(nota)}</i>\n" if nota else "")
+                + f"👆 Toca ✅ para publicar ahora\n\n"
+                + caption_preview
+                + "\n\n<i>¿Qué hacemos con este contenido?</i>"
+            )
+            _enviar_mensaje(texto, reply_markup=botones)
+        except Exception as e:
+            logger.error("Error enviando preview con botones: %s", e)
+            # Fallback sin HTML por si el caption tiene caracteres problemáticos
+            _enviar_mensaje("Contenido listo. ¿Qué hacemos?", reply_markup=botones)
 
     def _flujo_publicar_ahora(self, tipo_forzado: str | None = None):
         """
         /publicar — dispara el flujo de preview+aprobación+publicación desde Telegram.
         Funciona a cualquier hora, independiente del cron de GitHub Actions.
-        Maneja el flujo completo internamente sin subprocess.
+        """
+        try:
+            self._flujo_publicar_ahora_impl(tipo_forzado)
+        except Exception as e:
+            logger.error("Error en _flujo_publicar_ahora: %s", e, exc_info=True)
+            _enviar_mensaje(
+                f"❌ <b>Error al ejecutar /publicar</b>\n\n"
+                f"<code>{_html.escape(str(e))}</code>\n\n"
+                "Reintenta con /publicar"
+            )
+
+    def _flujo_publicar_ahora_impl(self, tipo_forzado: str | None = None):
+        """
+        Implementación interna de /publicar.
 
         Orden de prioridad para elegir el tipo:
           1. Tipo explícito del usuario (/publicar reel)
@@ -2035,8 +2061,19 @@ class BotTelegram:
 
         # Generar caption si no tiene
         if not item.caption and tipo_encontrado in ("post", "reel"):
-            _enviar_mensaje("✍️ Generando caption...")
-            item.caption = _generar_caption(tipo_encontrado, getattr(item, "pilar", "recetas_y_maridajes") or "recetas_y_maridajes")
+            _enviar_mensaje("✍️ Generando caption con Claude...")
+            try:
+                item.caption = _generar_caption(
+                    tipo_encontrado,
+                    getattr(item, "pilar", "recetas_y_maridajes") or "recetas_y_maridajes",
+                )
+            except Exception as e:
+                logger.error("Error generando caption: %s", e)
+                _enviar_mensaje(
+                    f"⚠️ No se pudo generar el caption: <code>{_html.escape(str(e))}</code>\n"
+                    "Publicando sin caption — podrás corregirlo después."
+                )
+                item.caption = ""
 
         rev_id = f"bot_{int(time.time())}"
         self._pending_pubs[rev_id] = item
