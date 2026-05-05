@@ -9,6 +9,7 @@ Comando /carrusel <tema> → genera carrusel HTML→PNG y pregunta dónde enviar
 Comando /estado → muestra cuánto material hay en la biblioteca.
 """
 
+import html as _html
 import json
 import logging
 import re
@@ -24,6 +25,7 @@ from agente.claude.cliente_claude import ClienteClaude
 from agente.gestores.biblioteca import (
     agregar_item, agregar_carrusel, siguiente_pendiente,
     contar_pendientes, listar_pendientes, marcar_publicado, marcar_descartado,
+    mover_al_final,
     EXTENSIONES_IMAGEN, EXTENSIONES_VIDEO,
 )
 from agente.telegram.notificador import (
@@ -529,22 +531,12 @@ class BotTelegram:
         # ── Contexto: estado conversacional ──────────────────────────────
         estado = self._get_estado(chat_id)
 
-        # ── Razón de salto ────────────────────────────────────────────────
-        if estado["paso"] == "esperando_razon_salto" and texto:
-            rev_id = estado["datos"].get("rev_id", "")
-            if texto.lower().strip() not in ("/siguiente", "omitir", "skip", "no"):
-                self._guardar_razon_salto(rev_id, texto)
-                _enviar_mensaje(
-                    f"📝 <b>Anotado:</b> «{texto[:150]}»\n\n"
-                    "Gracias — usaré esto para mejorar el contenido futuro. 🙏"
-                )
-            else:
-                _enviar_mensaje("Ok, motivo omitido.")
-            # Now pop the pending pub and persist
-            if rev_id and rev_id in self._pending_pubs:
-                self._pending_pubs.pop(rev_id)
-                self._guardar_pending_pubs()
+        # ── Estado inesperado: esperando_razon_salto (legado — ya no se usa) ──
+        # pub_rechazar ahora muestra botones inline directamente. Si por alguna
+        # razón el estado quedó en este valor (sesión antigua), limpiar y continuar.
+        if estado["paso"] == "esperando_razon_salto":
             self._clear_estado(chat_id)
+            _enviar_mensaje("⏭ Sesión anterior limpiada. Escribe /publicar para continuar.")
             return
 
         # ── Caption rechazado — reescribir ────────────────────────────────
@@ -600,10 +592,66 @@ class BotTelegram:
                 _enviar_mensaje("❌ Error reescribiendo el caption. Intenta de nuevo.")
             return
 
-        # ── Contexto: esperando pilar ─────────────────────────────────────
-        if estado["paso"] == "esperando_pilar_texto" and texto:
-            pilar = estado["datos"].get("pilar", "lifestyle_y_comunidad")
-            self._continuar_flujo_con_pilar(chat_id, pilar)
+        # ── Corrección de caption de biblioteca (/publicar flow) ──────────
+        if estado["paso"] == "esperando_correccion_biblioteca" and texto:
+            rev_id = estado["datos"].get("rev_id", "")
+            item = self._pending_pubs.get(rev_id)
+            if not item:
+                _enviar_mensaje("⚠️ El item ya no está disponible. Escribe /publicar para ver el siguiente.")
+                self._clear_estado(chat_id)
+                return
+            texto_lower = texto.lower().strip()
+            # Detectar intención "ya lo publiqué"
+            ya_publicado_frases = ("ya lo publiqué", "ya publiqué", "ya fue publicado",
+                                   "ya estaba publicado", "ya lo publique", "ya publique")
+            if any(f in texto_lower for f in ya_publicado_frases):
+                self._pending_pubs.pop(rev_id, None)
+                self._guardar_pending_pubs()
+                marcar_publicado(item.id, "manual")
+                try:
+                    _commit_biblioteca()
+                except Exception:
+                    pass
+                self._clear_estado(chat_id)
+                _enviar_mensaje(
+                    f"✅ <b>Marcado como publicado.</b>\n"
+                    f"<code>{_html.escape(item.nombre_archivo)}</code>\n\n"
+                    "Escribe /publicar para ver el siguiente."
+                )
+                return
+            # Tratar como instrucción de corrección de caption
+            _enviar_mensaje("✍️ Aplicando tu corrección con Claude...")
+            try:
+                cliente = ClienteClaude()
+                from agente.claude.cliente_claude import limpiar_caption
+                caption_anterior = item.caption or ""
+                caption_raw = cliente.generar(
+                    prompt_sistema=(
+                        "Eres el community manager de Salsas Bestial, marca colombiana de salsas picantes artesanales. "
+                        "Reescribe el caption según la instrucción del usuario. "
+                        "Tono: cercano, real, apasionado por el picante. Sin frases publicitarias genéricas."
+                    ),
+                    prompt_usuario=(
+                        f"Caption actual:\n{caption_anterior}\n\n"
+                        f"Instrucción: {texto}\n\n"
+                        f"Tipo: {item.tipo.upper()}. Pilar: {item.pilar}.\n"
+                        "Aplica la instrucción y devuelve SOLO el caption reescrito completo. "
+                        f"CTA obligatorio al final: Pídela aquí → {brand.LINK_COMPRA_WHATSAPP}"
+                    ),
+                    temperatura=0.85,
+                    max_tokens=600,
+                )
+                caption_nuevo = limpiar_caption(re.sub(r"\*\*(.+?)\*\*", r"\1", caption_raw))
+                # Actualizar caption en el item y en pending_pubs
+                item.caption = caption_nuevo
+                self._pending_pubs[rev_id] = item
+                self._guardar_pending_pubs()
+                # Enviar nuevo preview
+                self._enviar_preview_biblioteca(item, rev_id, nota="✏️ Caption corregido")
+                self._clear_estado(chat_id)
+            except Exception as e:
+                logger.error("Error corrigiendo caption biblioteca: %s", e, exc_info=True)
+                _enviar_mensaje(f"❌ Error aplicando la corrección: {_html.escape(str(e))}\nIntenta de nuevo.")
             return
 
         # ── Mensaje no reconocido ─────────────────────────────────────────
@@ -765,10 +813,11 @@ class BotTelegram:
             else:
                 botones = [
                     [
-                        {"text": "📸 Post",    "callback_data": "tipo:post"},
-                        {"text": "⭕ Story",   "callback_data": "tipo:story"},
+                        {"text": "📸 Post",  "callback_data": "tipo:post"},
+                        {"text": "🎬 Reel",  "callback_data": "tipo:reel"},
+                        {"text": "⭕ Story", "callback_data": "tipo:story"},
                     ],
-                    [{"text": "❌ Cancelar",   "callback_data": "tipo:cancelar"}],
+                    [{"text": "❌ Cancelar", "callback_data": "tipo:cancelar"}],
                 ]
 
             _enviar_mensaje("¿Qué tipo de publicación es?", reply_markup={"inline_keyboard": botones})
@@ -844,7 +893,12 @@ class BotTelegram:
             if accion == "aprobar":
                 _answer_callback(cb_id, "✅ Publicando...")
                 datos = estado["datos"]
-                self._publicar_aprobado(datos, chat_id)
+                import threading
+                threading.Thread(
+                    target=self._publicar_aprobado,
+                    args=(datos, chat_id),
+                    daemon=True,
+                ).start()
             else:
                 _answer_callback(cb_id, "❌ Descartado")
                 _enviar_mensaje(
@@ -1045,15 +1099,79 @@ class BotTelegram:
 
         if partes[0] == "pub_rechazar" and len(partes) >= 2:
             rev_id = partes[1]
-            # Keep in _pending_pubs until reason is collected (or timeout)
-            _answer_callback(cb_id, "⏭ Saltado")
-            self._set_estado(chat_id, "esperando_razon_salto", {"rev_id": rev_id})
+            _answer_callback(cb_id, "⏭ ¿Qué hacemos?")
             _enviar_mensaje(
-                "⏭ <b>Contenido saltado</b>\n\n"
-                "¿Por qué lo saltaste? Tu feedback me ayuda a mejorar el contenido a futuro. 💡\n\n"
-                "<i>Escribe el motivo (ej: «muy similar al anterior», «tono muy comercial») "
-                "o escribe /siguiente para omitirlo.</i>"
+                "⏭ <b>Saltado — ¿qué quieres hacer?</b>",
+                reply_markup={"inline_keyboard": [
+                    [{"text": "✍️ Corregir caption",  "callback_data": f"pub_corregir:{rev_id}"}],
+                    [{"text": "✅ Ya lo publiqué",     "callback_data": f"pub_publicado:{rev_id}"}],
+                    [{"text": "⏭ Pasar al siguiente", "callback_data": f"pub_skip:{rev_id}"}],
+                ]},
             )
+            return
+
+        if partes[0] == "pub_corregir" and len(partes) >= 2:
+            rev_id = partes[1]
+            item = self._pending_pubs.get(rev_id)
+            if not item:
+                _answer_callback(cb_id, "⚠️ Expirado")
+                _enviar_mensaje("⚠️ Este item ya no está disponible. Escribe /publicar para ver el siguiente.")
+                return
+            _answer_callback(cb_id, "✍️ Escribe la corrección")
+            self._set_estado(chat_id, "esperando_correccion_biblioteca", {"rev_id": rev_id})
+            pilar_label = _html.escape((item.pilar or "").replace("_", " ").title())
+            _enviar_mensaje(
+                f"✍️ <b>Corregir {item.tipo.upper()} — {pilar_label}</b>\n\n"
+                "Escribe qué cambiar. Ejemplos:\n"
+                "• <i>El texto es muy largo, acortalo</i>\n"
+                "• <i>Tono muy comercial, hazlo más personal</i>\n"
+                "• <i>Cambia el hook por algo más impactante</i>\n"
+                "• <i>Ya lo publiqué</i> — para marcarlo como publicado\n\n"
+                "Claude aplica tu instrucción y te manda el nuevo preview al instante."
+            )
+            return
+
+        if partes[0] == "pub_publicado" and len(partes) >= 2:
+            rev_id = partes[1]
+            item = self._pending_pubs.pop(rev_id, None)
+            self._guardar_pending_pubs()
+            _answer_callback(cb_id, "✅ Marcado como publicado")
+            self._clear_estado(chat_id)
+            if item:
+                try:
+                    marcar_publicado(item.id, "manual")
+                    _commit_biblioteca()
+                except Exception as e:
+                    logger.warning("Error marcando publicado: %s", e)
+                _enviar_mensaje(
+                    f"✅ <b>Marcado como publicado.</b>\n"
+                    f"<code>{_html.escape(item.nombre_archivo)}</code>\n\n"
+                    "Escribe /publicar para ver el siguiente."
+                )
+            else:
+                _enviar_mensaje("✅ Marcado como publicado.\n\nEscribe /publicar para ver el siguiente.")
+            return
+
+        if partes[0] == "pub_skip" and len(partes) >= 2:
+            rev_id = partes[1]
+            item = self._pending_pubs.pop(rev_id, None)
+            self._guardar_pending_pubs()
+            _answer_callback(cb_id, "⏭ Saltado")
+            self._clear_estado(chat_id)
+            if item:
+                try:
+                    mover_al_final(item.id)
+                    _commit_biblioteca()
+                except Exception as e:
+                    logger.warning("Error moviendo al final: %s", e)
+                conteo = contar_pendientes()
+                _enviar_mensaje(
+                    f"⏭ <b>Saltado</b> — movido al final de la cola.\n"
+                    f"Cola: {conteo['reel']} reels · {conteo['post']} posts · {conteo['story']} stories\n\n"
+                    "Escribe /publicar para ver el siguiente."
+                )
+            else:
+                _enviar_mensaje("⏭ Saltado.\n\nEscribe /publicar para ver el siguiente.")
             return
 
     def _ejecutar_con_pilar(self, file_id: str, extension: str, tipo_pub: str, destino: str, pilar: str, chat_id: str):
@@ -1119,39 +1237,62 @@ class BotTelegram:
         tipo_pub = datos["tipo_pub"]
         caption = datos["caption"]
         extension = datos.get("extension", ".jpg")
+        pilar = datos.get("pilar", "")
         es_video = extension in (".mp4", ".mov", ".avi", ".m4v")
 
         _enviar_mensaje("📤 Subiendo a Cloudinary y publicando en Instagram...")
 
         media_id = None
-        if tipo_pub == "post" and not es_video:
-            media_id = _publicar_ahora_imagen(ruta, caption)
-        elif tipo_pub == "story" and not es_video:
-            media_id = _publicar_ahora_story_imagen(ruta)
-        elif tipo_pub == "reel" and es_video:
-            from agente.instagram.publicador import Publicador
-            # Usar el publicador existente para reels
-            subidor = SubidorCloudinary()
-            url = subidor.subir(ruta, resource_type="video")
-            if url:
-                media_id = self._publicar_reel_ig(url, caption)
-        elif tipo_pub == "story" and es_video:
-            subidor = SubidorCloudinary()
-            url = subidor.subir(ruta, resource_type="video")
-            if url:
-                media_id = self._publicar_story_video_ig(url)
+        try:
+            if (tipo_pub in ("post", "reel")) and not es_video:
+                # Imagen → siempre convierte a Reel MP4 con música (post y reel dan igual resultado)
+                media_id = _publicar_ahora_imagen(ruta, caption, pilar)
+            elif tipo_pub == "story" and not es_video:
+                media_id = _publicar_ahora_story_imagen(ruta)
+            elif tipo_pub == "reel" and es_video:
+                subidor = SubidorCloudinary()
+                url = subidor.subir(ruta, resource_type="video")
+                if url:
+                    media_id = self._publicar_reel_ig(url, caption)
+                else:
+                    logger.error("No se pudo subir video a Cloudinary")
+            elif tipo_pub == "story" and es_video:
+                subidor = SubidorCloudinary()
+                url = subidor.subir(ruta, resource_type="video")
+                if url:
+                    media_id = self._publicar_story_video_ig(url)
+                else:
+                    logger.error("No se pudo subir story video a Cloudinary")
+            else:
+                logger.error(
+                    "Combinación no manejada: tipo_pub=%s es_video=%s extension=%s",
+                    tipo_pub, es_video, extension,
+                )
+        except Exception as e:
+            logger.error("Error en _publicar_aprobado: %s", e, exc_info=True)
+            _enviar_mensaje(f"❌ Error inesperado al publicar: {_html.escape(str(e))}")
+            ruta.unlink(missing_ok=True)
+            self._clear_estado(chat_id)
+            return
 
         ruta.unlink(missing_ok=True)
         self._clear_estado(chat_id)
 
         if media_id:
+            emoji = "🎬" if (tipo_pub in ("post", "reel") and not es_video) else (
+                "🎬" if tipo_pub == "reel" else "⭕" if tipo_pub == "story" else "📸"
+            )
             _enviar_mensaje(
-                f"{'📸' if tipo_pub == 'post' else '🎬' if tipo_pub == 'reel' else '⭕'} "
-                f"<b>{tipo_pub.upper()} publicado en Instagram</b>\n"
+                f"{emoji} <b>Publicado en Instagram como REEL</b>\n"
                 f"<a href='https://www.instagram.com/salsas.bestial/'>Ver en @salsas.bestial →</a>"
             )
         else:
-            _enviar_mensaje("❌ Error al publicar. Revisa los logs.")
+            _enviar_mensaje(
+                "❌ <b>Error al publicar.</b> Posibles causas:\n"
+                "• El video tardó demasiado en procesarse en Instagram\n"
+                "• Error de conexión con Cloudinary o Instagram\n"
+                "Revisa los logs del bot para el detalle exacto."
+            )
 
     def _publicar_reel_ig(self, url_video: str, caption: str) -> Optional[str]:
         r = requests.post(
@@ -1433,15 +1574,31 @@ class BotTelegram:
         Muestra el plan completo de hoy: entradas del calendario + biblioteca.
         Para cada entrada muestra: hora, tipo, hook del copy, concepto y estado del material.
         """
+        try:
+            self._mostrar_plan_hoy_impl()
+        except Exception as e:
+            logger.error("Error en _mostrar_plan_hoy: %s", e, exc_info=True)
+            _enviar_mensaje(f"⚠️ Error mostrando el plan de hoy: <code>{_html.escape(str(e))}</code>")
+
+    def _mostrar_plan_hoy_impl(self):
+        """Implementación real de /hoy — separada para que los errores sean visibles."""
         import datetime
-        from zoneinfo import ZoneInfo
+        try:
+            from zoneinfo import ZoneInfo
+            tz_col = ZoneInfo("America/Bogota")
+            ahora = datetime.datetime.now(tz_col)
+        except Exception:
+            # Python < 3.9 fallback
+            ahora = datetime.datetime.utcnow() - datetime.timedelta(hours=5)
         from agente.memoria.gestor_memoria import cargar_calendario
 
-        tz_col = ZoneInfo("America/Bogota")
-        ahora = datetime.datetime.now(tz_col)
         hoy = ahora.date()
         dia_semana = ahora.weekday()
         DIAS = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
+
+        def esc(t):
+            """Escapa caracteres HTML especiales en texto dinámico."""
+            return _html.escape(str(t)) if t else ""
 
         EMOJI = {"post": "📸", "reel": "🎬", "story": "⭕", "carrusel": "📖"}
         PILAR_EMOJI = {
@@ -1476,22 +1633,22 @@ class BotTelegram:
                         entradas_hoy.append(e)
                 except Exception:
                     pass
-        entradas_hoy.sort(key=lambda e: e.hora_publicacion)
+        entradas_hoy.sort(key=lambda e: e.hora_publicacion or "00:00")
 
         if entradas_hoy:
             lineas.append("📅 <b>CALENDARIO DE HOY</b>")
             for e in entradas_hoy:
-                emoji = EMOJI.get(e.tipo_contenido, "📌")
-                pilar_e = PILAR_EMOJI.get(e.pilar, "🌶") + " " + e.pilar.replace("_", " ").title()
-                estado_label = ESTADO_LABEL.get(e.estado, e.estado)
+                emoji = EMOJI.get(e.tipo_contenido or "", "📌")
+                pilar_raw = (e.pilar or "sin_pilar").replace("_", " ").title()
+                pilar_e = PILAR_EMOJI.get(e.pilar or "", "🌶") + " " + esc(pilar_raw)
+                estado_label = ESTADO_LABEL.get(e.estado or "", esc(e.estado or ""))
 
-                # Hook del copy (primera línea del caption)
+                # Hook del copy — escapar para HTML
                 hook = ""
                 if e.contenido_copy and hasattr(e.contenido_copy, "hook") and e.contenido_copy.hook:
-                    hook = e.contenido_copy.hook[:100]
+                    hook = esc(e.contenido_copy.hook[:100])
                 elif e.concepto:
-                    # Usar las primeras palabras del concepto
-                    hook = e.concepto[:100]
+                    hook = esc(e.concepto[:100])
 
                 # Estado del material
                 tiene_video = e.video_generado_path and str(e.video_generado_path).strip()
@@ -1504,7 +1661,7 @@ class BotTelegram:
                     material_str = "⚠️ Sin material generado aún"
 
                 lineas.append(
-                    f"\n{emoji} <b>{e.hora_publicacion} — {e.tipo_contenido.upper()}</b>\n"
+                    f"\n{emoji} <b>{esc(e.hora_publicacion or '?')} — {esc((e.tipo_contenido or 'post').upper())}</b>\n"
                     f"   {pilar_e}\n"
                     f"   🪝 <i>{hook}</i>\n"
                     f"   {material_str}\n"
@@ -1526,13 +1683,13 @@ class BotTelegram:
                     continue
                 it = items[0]
                 emoji = EMOJI.get(tipo, "📌")
-                pilar_e = PILAR_EMOJI.get(it.pilar, "🌶") + " " + (it.pilar or "").replace("_", " ").title()
+                pilar_raw = (it.pilar or "").replace("_", " ").title()
+                pilar_e = PILAR_EMOJI.get(it.pilar or "", "🌶") + " " + esc(pilar_raw)
 
-                # Mostrar hook del caption si existe, si no mostrar pilar
+                # Mostrar primera línea del caption escapada
                 if it.caption:
-                    cap = str(it.caption)
-                    primera_linea = cap.split("\n")[0].strip()[:100]
-                    preview = f"🪝 <i>{primera_linea}</i>" if primera_linea else pilar_e
+                    primera_linea = str(it.caption).split("\n")[0].strip()[:100]
+                    preview = f"🪝 <i>{esc(primera_linea)}</i>" if primera_linea else pilar_e
                 else:
                     preview = pilar_e
 
@@ -1558,80 +1715,91 @@ class BotTelegram:
         else:
             teclado.append([{"text": "✅ Reactivar publicaciones hoy", "callback_data": "hoy:activar_todo"}])
 
-        _enviar_mensaje("\n".join(lineas), reply_markup={"inline_keyboard": teclado})
+        resp = _enviar_mensaje("\n".join(lineas), reply_markup={"inline_keyboard": teclado})
+        if not resp.get("ok"):
+            logger.error("_enviar_mensaje /hoy falló: %s", resp)
+            # Reintentar sin HTML en caso de parse error
+            texto_plain = "\n".join(lineas)
+            texto_plain = re.sub(r"<[^>]+>", "", texto_plain)
+            _enviar_mensaje(texto_plain, reply_markup={"inline_keyboard": teclado})
 
         # ── Enviar imágenes y videos de cada entrada ──────────────────────────
-        # Calendario de hoy
         for e in entradas_hoy:
-            caption_media = (
-                f"{EMOJI.get(e.tipo_contenido,'📌')} <b>{e.hora_publicacion} — {e.tipo_contenido.upper()}</b>\n"
-                f"{PILAR_EMOJI.get(e.pilar,'🌶')} {e.pilar.replace('_',' ').title()}\n"
-            )
-            if e.contenido_copy and hasattr(e.contenido_copy, "hook") and e.contenido_copy.hook:
-                caption_media += f"🪝 {e.contenido_copy.hook[:200]}"
-            elif e.concepto:
-                caption_media += f"📝 {e.concepto[:200]}"
+            try:
+                hook_media = ""
+                if e.contenido_copy and hasattr(e.contenido_copy, "hook") and e.contenido_copy.hook:
+                    hook_media = e.contenido_copy.hook[:200]
+                elif e.concepto:
+                    hook_media = e.concepto[:200]
 
-            enviado = False
-            # 1. Video generado local
-            if e.video_generado_path:
-                ruta_v = Path(str(e.video_generado_path))
-                if ruta_v.exists():
-                    _enviar_video(ruta_v, caption=caption_media)
-                    enviado = True
-            # 2. Imagen compuesta local
-            if not enviado and e.imagen_compuesta_path:
-                ruta_i = Path(str(e.imagen_compuesta_path))
-                if ruta_i.exists():
-                    _enviar_foto(ruta_i, caption=caption_media)
-                    enviado = True
-            # 3. Imagen de material_sugerido (si hay archivo local)
-            if not enviado and e.material_sugerido:
-                ruta_s = Path(str(e.material_sugerido))
-                if ruta_s.exists():
-                    if ruta_s.suffix.lower() in (".mp4", ".mov"):
-                        _enviar_video(ruta_s, caption=caption_media)
-                    else:
-                        _enviar_foto(ruta_s, caption=caption_media)
-                    enviado = True
-            time.sleep(0.4)
+                caption_media = (
+                    f"{EMOJI.get(e.tipo_contenido or '','📌')} "
+                    f"<b>{esc(e.hora_publicacion or '?')} — {esc((e.tipo_contenido or 'post').upper())}</b>\n"
+                    f"{PILAR_EMOJI.get(e.pilar or '','🌶')} {esc((e.pilar or '').replace('_',' ').title())}\n"
+                    f"🪝 {esc(hook_media)}"
+                )
+
+                enviado = False
+                if e.video_generado_path:
+                    ruta_v = Path(str(e.video_generado_path))
+                    if ruta_v.exists():
+                        _enviar_video(ruta_v, caption=caption_media)
+                        enviado = True
+                if not enviado and e.imagen_compuesta_path:
+                    ruta_i = Path(str(e.imagen_compuesta_path))
+                    if ruta_i.exists():
+                        _enviar_foto(ruta_i, caption=caption_media)
+                        enviado = True
+                if not enviado and e.material_sugerido:
+                    ruta_s = Path(str(e.material_sugerido))
+                    if ruta_s.exists():
+                        if ruta_s.suffix.lower() in (".mp4", ".mov"):
+                            _enviar_video(ruta_s, caption=caption_media)
+                        else:
+                            _enviar_foto(ruta_s, caption=caption_media)
+                        enviado = True
+                time.sleep(0.4)
+            except Exception as err:
+                logger.warning("Error enviando media de entrada %s: %s", getattr(e, "id", "?"), err)
 
         # Biblioteca: primer ítem de cada tipo con media
-        lineas_bib = []
         for tipo in ["post", "reel", "story", "carrusel"]:
-            items = listar_pendientes(tipo)
-            if not items:
-                continue
-            it = items[0]
+            try:
+                items = listar_pendientes(tipo)
+                if not items:
+                    continue
+                it = items[0]
 
-            caption_bib = (
-                f"{EMOJI.get(tipo,'📌')} <b>BIBLIOTECA — {tipo.upper()}</b>\n"
-                f"{PILAR_EMOJI.get(it.pilar,'🌶')} {(it.pilar or '').replace('_',' ').title()}\n"
-            )
-            if it.caption:
-                primera = str(it.caption).split("\n")[0].strip()[:200]
+                primera = ""
+                if it.caption:
+                    primera = str(it.caption).split("\n")[0].strip()[:200]
+
+                caption_bib = (
+                    f"{EMOJI.get(tipo,'📌')} <b>BIBLIOTECA — {tipo.upper()}</b>\n"
+                    f"{PILAR_EMOJI.get(it.pilar or '','🌶')} {esc((it.pilar or '').replace('_',' ').title())}\n"
+                )
                 if primera:
-                    caption_bib += f"🪝 {primera}"
+                    caption_bib += f"🪝 {esc(primera)}"
 
-            enviado_bib = False
-            # 1. Archivo local
-            if it.ruta_local:
-                ruta_l = Path(it.ruta_local)
-                if ruta_l.exists():
-                    if ruta_l.suffix.lower() in (".mp4", ".mov", ".m4v"):
-                        _enviar_video(ruta_l, caption=caption_bib)
+                enviado_bib = False
+                if it.ruta_local:
+                    ruta_l = Path(it.ruta_local)
+                    if ruta_l.exists():
+                        if ruta_l.suffix.lower() in (".mp4", ".mov", ".m4v"):
+                            _enviar_video(ruta_l, caption=caption_bib)
+                        else:
+                            _enviar_foto(ruta_l, caption=caption_bib)
+                        enviado_bib = True
+                if not enviado_bib and it.cloudinary_url:
+                    url_str = str(it.cloudinary_url)
+                    if "/video/" in url_str or url_str.lower().endswith((".mp4", ".mov")):
+                        _enviar_video_url(url_str, caption=caption_bib)
                     else:
-                        _enviar_foto(ruta_l, caption=caption_bib)
+                        _enviar_foto_url(url_str, caption=caption_bib)
                     enviado_bib = True
-            # 2. URL de Cloudinary
-            if not enviado_bib and it.cloudinary_url:
-                url_str = str(it.cloudinary_url)
-                if "/video/" in url_str or url_str.lower().endswith((".mp4", ".mov")):
-                    _enviar_video_url(url_str, caption=caption_bib)
-                else:
-                    _enviar_foto_url(url_str, caption=caption_bib)
-                enviado_bib = True
-            time.sleep(0.4)
+                time.sleep(0.4)
+            except Exception as err:
+                logger.warning("Error enviando media biblioteca tipo=%s: %s", tipo, err)
 
     def _flujo_venta(self):
         """Genera la serie de 3 stories de conversión a venta con Claude.
@@ -1745,13 +1913,107 @@ class BotTelegram:
             "<i>Consejo: Story 1 funciona sin imagen — solo texto + poll sobre fondo rojo bestial.</i>"
         )
 
+    def _enviar_preview_biblioteca(self, item, rev_id: str, nota: str = ""):
+        """
+        Envía preview de un item de biblioteca con botones de acción completos.
+        Separa la imagen/video del texto para evitar la limitación de 1024 chars
+        en captions de Telegram y evitar truncación de HTML.
+        """
+        pilar_label = _html.escape((item.pilar or "").replace("_", " ").title())
+        tipo_label = {
+            "post": "📸 POST", "reel": "🎬 REEL",
+            "story": "⭕ STORY", "carrusel": "📖 CARRUSEL",
+        }.get(item.tipo, item.tipo.upper())
+
+        # 1. Enviar foto/video como preview visual (caption corto, sin botones)
+        cloudinary_url = getattr(item, "cloudinary_url", "") or ""
+        ruta_local = getattr(item, "ruta_local", "") or ""
+        nombre = item.nombre_archivo.lower()
+        es_video_item = any(nombre.endswith(e) for e in (".mp4", ".mov", ".avi", ".m4v"))
+        caption_corto = f"{tipo_label} — {pilar_label}"
+        if nota:
+            caption_corto += f"\n{_html.escape(nota)}"
+
+        enviado_media = False
+        if cloudinary_url:
+            try:
+                if es_video_item:
+                    r = _enviar_video_url(cloudinary_url, caption=caption_corto)
+                else:
+                    r = _enviar_foto_url(cloudinary_url, caption=caption_corto)
+                enviado_media = r.get("ok", False)
+            except Exception as e:
+                logger.warning("Error enviando media preview: %s", e)
+        if not enviado_media and ruta_local:
+            try:
+                ruta_p = Path(ruta_local)
+                if ruta_p.exists():
+                    if es_video_item:
+                        r = _enviar_video(ruta_p, caption=caption_corto)
+                    else:
+                        r = _enviar_foto(ruta_p, caption=caption_corto)
+                    enviado_media = r.get("ok", False)
+            except Exception as e:
+                logger.warning("Error enviando media local: %s", e)
+
+        # 2. Enviar texto completo con caption y botones (sin límite de 1024)
+        caption_preview = _html.escape(item.caption[:900]) if item.caption else "<i>Sin caption — se generará al publicar</i>"
+        texto = (
+            f"🗓 <b>{tipo_label}</b> — 🌶 {pilar_label}\n"
+            + (f"📝 <i>{_html.escape(nota)}</i>\n" if nota else "")
+            + f"👆 Toca ✅ para publicar ahora\n\n"
+            + caption_preview
+            + "\n\n<i>¿Qué hacemos con este contenido?</i>"
+        )
+        botones = {"inline_keyboard": [
+            [
+                {"text": "✅ Publicar",        "callback_data": f"pub_aprobar:{rev_id}"},
+                {"text": "✍️ Corregir",        "callback_data": f"pub_corregir:{rev_id}"},
+                {"text": "⏭ Saltar",           "callback_data": f"pub_skip:{rev_id}"},
+            ],
+            [{"text": "✅ Ya lo publiqué",     "callback_data": f"pub_publicado:{rev_id}"}],
+        ]}
+        _enviar_mensaje(texto, reply_markup=botones)
+
     def _flujo_publicar_ahora(self, tipo_forzado: str | None = None):
         """
         /publicar — dispara el flujo de preview+aprobación+publicación desde Telegram.
         Funciona a cualquier hora, independiente del cron de GitHub Actions.
         Maneja el flujo completo internamente sin subprocess.
+
+        Orden de prioridad para elegir el tipo:
+          1. Tipo explícito del usuario (/publicar reel)
+          2. Tipo que corresponde al calendario de hoy
+          3. Orden por defecto: reel → post → story
         """
         tipos_validos = {"reel", "post", "story", "carrusel"}
+
+        if not tipo_forzado:
+            # Detectar el tipo que corresponde hoy según el calendario semanal
+            try:
+                import datetime
+                from agente.memoria.gestor_memoria import cargar_calendario
+                try:
+                    from zoneinfo import ZoneInfo
+                    hoy = datetime.datetime.now(ZoneInfo("America/Bogota")).date()
+                except Exception:
+                    hoy = datetime.date.today()
+                cal = cargar_calendario()
+                if cal:
+                    entradas_pendientes = [
+                        e for e in cal.entradas
+                        if e.estado not in ("publicado", "rechazado")
+                        and str(getattr(e, "fecha", "")) == str(hoy)
+                    ]
+                    entradas_pendientes.sort(key=lambda e: e.hora_publicacion or "00:00")
+                    for e in entradas_pendientes:
+                        tipo_cal = getattr(e, "tipo_contenido", "") or ""
+                        if tipo_cal in tipos_validos:
+                            tipo_forzado = tipo_cal
+                            break
+            except Exception as err:
+                logger.warning("No se pudo leer el calendario para detectar tipo: %s", err)
+
         tipos_a_probar = [tipo_forzado] if tipo_forzado in tipos_validos else ["reel", "post", "story"]
 
         item = None
@@ -1776,35 +2038,10 @@ class BotTelegram:
             _enviar_mensaje("✍️ Generando caption...")
             item.caption = _generar_caption(tipo_encontrado, getattr(item, "pilar", "recetas_y_maridajes") or "recetas_y_maridajes")
 
-        tipo_label = {"post": "📸 POST", "reel": "🎬 REEL", "story": "⭕ STORY"}.get(tipo_encontrado, tipo_encontrado.upper())
         rev_id = f"bot_{int(time.time())}"
         self._pending_pubs[rev_id] = item
         self._guardar_pending_pubs()
-
-        texto_prev = (
-            f"🗓 <b>Publicación — {tipo_label}</b>\n"
-            f"👆 Toca ✅ Publicar para que salga al aire\n\n"
-            + (f"{item.caption[:600]}\n\n" if item.caption else "")
-            + "<i>¿Apruebas esta publicación?</i>"
-        )
-        botones = {"inline_keyboard": [[
-            {"text": "✅ Publicar", "callback_data": f"pub_aprobar:{rev_id}"},
-            {"text": "⏭ Saltar",   "callback_data": f"pub_rechazar:{rev_id}"},
-        ]]}
-
-        cloudinary_url = getattr(item, "cloudinary_url", "") or ""
-        nombre = item.nombre_archivo.lower()
-        es_video_url = any(nombre.endswith(e) for e in (".mp4", ".mov", ".avi", ".m4v"))
-
-        enviado = False
-        if cloudinary_url:
-            if es_video_url:
-                r = _enviar_video_url(cloudinary_url, caption=texto_prev, reply_markup=botones)
-            else:
-                r = _enviar_foto_url(cloudinary_url, caption=texto_prev, reply_markup=botones)
-            enviado = r.get("ok", False)
-        if not enviado:
-            _enviar_mensaje(texto_prev, reply_markup=botones)
+        self._enviar_preview_biblioteca(item, rev_id)
 
     def _publicar_en_hilo(self, item) -> None:
         """Publica el item en Instagram en un hilo separado para no bloquear el bot."""
@@ -1857,8 +2094,8 @@ class BotTelegram:
             "<code>/venta</code> — Claude genera serie de 3 stories de conversión (enganche → prueba → CTA)\n\n"
 
             "━━ ⏭ DURANTE UNA APROBACIÓN ━━\n"
-            "Al tocar <b>⏭ Saltar</b> → el bot te pide el motivo para mejorar el contenido futuro\n"
-            "Escribe el motivo libremente o escribe <code>/siguiente</code> para omitirlo\n"
+            "Al tocar <b>⏭ Saltar</b> → opciones: Corregir caption / Ya lo publiqué / Pasar al siguiente\n"
+            "Al corregir: escribe la instrucción (ej: 'acortalo', 'tono más casual') → Claude lo reescribe\n"
             "Al rechazar un caption → escribe qué cambiar y Claude lo reescribe\n"
             "Escribe <code>saltar</code> para descartar sin cambiar\n\n"
 

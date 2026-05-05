@@ -1,6 +1,10 @@
 name: Bot Telegram — siempre activo
 
 on:
+  schedule:
+    # Reinicio automático cada 5 horas → bot vive 24/7 sin PC encendida
+    # (GitHub Actions permite máx 6h por run; cancel-in-progress cancela el anterior)
+    - cron: '0 */5 * * *'
   workflow_dispatch:  # Lanzar manualmente desde GitHub
   push:
     branches: [master]

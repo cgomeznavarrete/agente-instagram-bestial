@@ -188,10 +188,27 @@ def publicar_item(item) -> str | None:
 
     # ── REEL ──────────────────────────────────────────────────────────────────
     if tipo_pub == "reel":
-        if cloudinary_url:
+        pilar_item = getattr(item, "pilar", "") or ""
+        # Detectar si el archivo es imagen (jpg/png) — si lo es, convertir a MP4 con música
+        es_imagen_reel = any(
+            item.nombre_archivo.lower().endswith(e)
+            for e in (".jpg", ".jpeg", ".png", ".webp")
+        )
+        if es_imagen_reel and ruta and ruta.exists():
+            logger.info("Reel de imagen — convirtiendo a MP4 con música (pilar=%s)", pilar_item)
+            url_video = _imagen_a_reel_cloudinary(ruta, pilar_item)
+            if not url_video:
+                logger.error("No se pudo convertir imagen a Reel — abortando")
+                return None
+        elif cloudinary_url and ("/video/" in cloudinary_url or cloudinary_url.lower().endswith((".mp4", ".mov"))):
             url_video = cloudinary_url
         elif ruta and ruta.exists():
+            # Archivo local de video
             url_video = cloudinary.uploader.upload(str(ruta), folder="salsas_bestial", resource_type="video")["secure_url"]
+        elif cloudinary_url:
+            # URL de Cloudinary que no parece video — intentar igual
+            logger.warning("cloudinary_url no parece video pero se intentará como Reel: %s", cloudinary_url[:60])
+            url_video = cloudinary_url
         else:
             logger.error("Sin video para reel")
             return None

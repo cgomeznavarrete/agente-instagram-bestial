@@ -214,6 +214,19 @@ def marcar_descartado(item_id: str):
     _guardar(data)
 
 
+def mover_al_final(item_id: str):
+    """Mueve un item al final de la lista para que sea el último en publicarse (usado al saltar)."""
+    data = _cargar()
+    items = data["items"]
+    idx = next((i for i, r in enumerate(items) if r["id"] == item_id), None)
+    if idx is not None:
+        item_movido = items.pop(idx)
+        item_movido["fecha_agregado"] = time.time()  # timestamp actualizado → va al final del FIFO
+        items.append(item_movido)
+        data["items"] = items
+        _guardar(data)
+
+
 def contar_pendientes() -> dict:
     """Retorna cuántos items pendientes hay por tipo."""
     data = _cargar()
