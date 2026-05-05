@@ -1012,7 +1012,7 @@ class BotTelegram:
                 _answer_callback(cb_id, "✅ Publicaciones reactivadas")
                 _enviar_mensaje("✅ <b>Publicaciones reactivadas.</b>\nEscribe /hoy para ver el plan.")
 
-            elif accion == "saltar" and len(partes) >= 3:
+            elif accion in ("saltar", "pausar_slot") and len(partes) >= 3:
                 h_min = int(partes[2])
                 hora_label = "12pm" if h_min < 15 else "7pm"
                 if h_min not in pausas["slots_pausados"]:
@@ -1021,7 +1021,7 @@ class BotTelegram:
                 _answer_callback(cb_id, f"⏭ Slot {hora_label} saltado")
                 _enviar_mensaje(f"⏭ Slot de <b>{hora_label}</b> no se publicará hoy.\nEscribe /hoy para ver el plan actualizado.")
 
-            elif accion == "activar" and len(partes) >= 3:
+            elif accion in ("activar", "activar_slot") and len(partes) >= 3:
                 h_min = int(partes[2])
                 hora_label = "12pm" if h_min < 15 else "7pm"
                 pausas["slots_pausados"] = [s for s in pausas["slots_pausados"] if s != h_min]
@@ -1633,23 +1633,19 @@ class BotTelegram:
             _enviar_mensaje(f"⚠️ Error mostrando el plan de hoy: <code>{_html.escape(str(e))}</code>")
 
     def _mostrar_plan_hoy_impl(self):
-        """Implementación real de /hoy — separada para que los errores sean visibles."""
+        """Implementación real de /hoy — muestra solo los slots programados para hoy."""
         import datetime
         try:
             from zoneinfo import ZoneInfo
             tz_col = ZoneInfo("America/Bogota")
             ahora = datetime.datetime.now(tz_col)
         except Exception:
-            # Python < 3.9 fallback
             ahora = datetime.datetime.utcnow() - datetime.timedelta(hours=5)
-        from agente.memoria.gestor_memoria import cargar_calendario
 
-        hoy = ahora.date()
         dia_semana = ahora.weekday()
         DIAS = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
 
         def esc(t):
-            """Escapa caracteres HTML especiales en texto dinámico."""
             return _html.escape(str(t)) if t else ""
 
         EMOJI = {"post": "📸", "reel": "🎬", "story": "⭕", "carrusel": "📖"}
@@ -1665,190 +1661,140 @@ class BotTelegram:
             "testimonios_y_ugc": "⭐",
             "beneficios_del_producto": "💪",
         }
-        ESTADO_LABEL = {
-            "generado": "⏳ Pendiente de aprobación",
-            "aprobado": "✅ Aprobado — se publicará automáticamente",
-            "publicado": "✔️ Ya publicado",
-            "rechazado": "❌ Rechazado",
+
+        # Mismo HORARIO que main.py publicar_programado
+        HORARIO = {
+            (0, 10, 16): "post",    (0, 17, 23): "reel",
+            (1, 10, 16): "post",    (1, 17, 23): "reel",
+            (2, 10, 16): "post",    (2, 17, 23): "story",
+            (3, 10, 16): "reel",    (3, 17, 23): "story",
+            (4, 10, 16): "post",    (4, 17, 23): "reel",
+            (5, 10, 16): "post",    (5, 17, 23): "story",
+            (6, 10, 16): "story",   (6, 17, 23): "story",
         }
+        HORA_LABEL = {10: "12:00pm", 17: "7:00pm"}
 
-        lineas = [f"🗓 <b>{DIAS[dia_semana]} {ahora.strftime('%d/%m')} — {ahora.strftime('%H:%M')} COL</b>\n"]
-
-        # ── Sección 1: Entradas del calendario para hoy ───────────────────────
-        cal = cargar_calendario()
-        entradas_hoy = []
-        if cal:
-            for e in cal.entradas:
-                try:
-                    fecha_e = e.fecha if isinstance(e.fecha, datetime.date) else datetime.date.fromisoformat(str(e.fecha))
-                    if fecha_e == hoy and e.estado != "publicado":
-                        entradas_hoy.append(e)
-                except Exception:
-                    pass
-        entradas_hoy.sort(key=lambda e: e.hora_publicacion or "00:00")
-
-        if entradas_hoy:
-            lineas.append("📅 <b>CALENDARIO DE HOY</b>")
-            for e in entradas_hoy:
-                emoji = EMOJI.get(e.tipo_contenido or "", "📌")
-                pilar_raw = (e.pilar or "sin_pilar").replace("_", " ").title()
-                pilar_e = PILAR_EMOJI.get(e.pilar or "", "🌶") + " " + esc(pilar_raw)
-                estado_label = ESTADO_LABEL.get(e.estado or "", esc(e.estado or ""))
-
-                # Hook del copy — escapar para HTML
-                hook = ""
-                if e.contenido_copy and hasattr(e.contenido_copy, "hook") and e.contenido_copy.hook:
-                    hook = esc(e.contenido_copy.hook[:100])
-                elif e.concepto:
-                    hook = esc(e.concepto[:100])
-
-                # Estado del material
-                tiene_video = e.video_generado_path and str(e.video_generado_path).strip()
-                tiene_imagen = e.imagen_compuesta_path and str(e.imagen_compuesta_path).strip()
-                if tiene_video:
-                    material_str = "🎬 Video listo"
-                elif tiene_imagen:
-                    material_str = "🖼 Imagen lista"
-                else:
-                    material_str = "⚠️ Sin material generado aún"
-
-                lineas.append(
-                    f"\n{emoji} <b>{esc(e.hora_publicacion or '?')} — {esc((e.tipo_contenido or 'post').upper())}</b>\n"
-                    f"   {pilar_e}\n"
-                    f"   🪝 <i>{hook}</i>\n"
-                    f"   {material_str}\n"
-                    f"   {estado_label}"
-                )
-            lineas.append("")
-        else:
-            lineas.append("📅 <i>No hay entradas en el calendario para hoy.</i>\n")
-
-        # ── Sección 2: Cola de biblioteca (próximos a publicar) ───────────────
-        conteo = contar_pendientes()
-        total_biblioteca = sum(conteo.values())
-
-        if total_biblioteca > 0:
-            lineas.append(f"📚 <b>BIBLIOTECA ({total_biblioteca} pendientes)</b>")
-            for tipo in ["post", "reel", "story", "carrusel"]:
-                items = listar_pendientes(tipo)
-                if not items:
-                    continue
-                it = items[0]
-                emoji = EMOJI.get(tipo, "📌")
-                pilar_raw = (it.pilar or "").replace("_", " ").title()
-                pilar_e = PILAR_EMOJI.get(it.pilar or "", "🌶") + " " + esc(pilar_raw)
-
-                # Mostrar primera línea del caption escapada
-                if it.caption:
-                    primera_linea = str(it.caption).split("\n")[0].strip()[:100]
-                    preview = f"🪝 <i>{esc(primera_linea)}</i>" if primera_linea else pilar_e
-                else:
-                    preview = pilar_e
-
-                tiene_media = "☁️ En Cloudinary" if it.cloudinary_url else ("📁 Local" if it.ruta_local else "⚠️ Sin media")
-
-                lineas.append(
-                    f"\n{emoji} <b>{tipo.upper()}</b> — {tiene_media}\n"
-                    f"   {preview}\n"
-                    f"   ({conteo[tipo]} en cola)"
-                )
-            lineas.append("")
-
-        lineas.append(f"<i>Hora actual: {ahora.strftime('%H:%M')} COL</i>")
-
-        # ── Botones de control ────────────────────────────────────────────────
+        # Leer pausas del día
         pausas = self._leer_pausas_hoy()
         fecha_hoy_str = ahora.strftime("%Y-%m-%d")
         pausado_todo = pausas.get("pausado_todo", False) and pausas.get("fecha") == fecha_hoy_str
+        slots_pausados = set(pausas.get("slots_pausados", [])) if pausas.get("fecha") == fecha_hoy_str else set()
+
+        # Slots de hoy: mediodía (h_min=10) y noche (h_min=17)
+        slots_hoy = []
+        for (dia, h_min, h_max), tipo in HORARIO.items():
+            if dia == dia_semana:
+                slots_hoy.append((h_min, h_max, tipo))
+        slots_hoy.sort(key=lambda x: x[0])
+
+        lineas = [f"🗓 <b>{DIAS[dia_semana]} {ahora.strftime('%d/%m')} — Plan del día</b>\n"]
+
+        if pausado_todo:
+            lineas.append("🚫 <b>Publicaciones pausadas para hoy</b>\n")
 
         teclado = []
+        items_con_media = []  # (item, label_slot) — para enviar preview después
+
+        for h_min, h_max, tipo in slots_hoy:
+            hora_label = HORA_LABEL.get(h_min, f"{h_min}:00")
+            emoji = EMOJI.get(tipo, "📌")
+            slot_key = str(h_min)
+            ya_paso = ahora.hour >= h_max
+
+            # Buscar el ítem que se publicará en este slot
+            tipos_buscar = [tipo]
+            if tipo == "carrusel":
+                tipos_buscar.append("post")
+            # fallback: si no hay del tipo preferido, buscar cualquier pendiente
+            item_slot = None
+            for t in tipos_buscar:
+                item_slot = siguiente_pendiente(t)
+                if item_slot:
+                    break
+            if not item_slot:
+                for t in ["reel", "post", "story"]:
+                    if t not in tipos_buscar:
+                        item_slot = siguiente_pendiente(t)
+                        if item_slot:
+                            break
+
+            # Estado del slot
+            if ya_paso:
+                estado_str = "✔️ <i>Slot pasado</i>"
+            elif pausado_todo or slot_key in slots_pausados:
+                estado_str = "⏸ <i>Pausado</i>"
+            else:
+                estado_str = "🟢 <i>Programado</i>"
+
+            if item_slot:
+                tiene_media = "☁️ Cloudinary" if item_slot.cloudinary_url else ("📁 Local" if item_slot.ruta_local else "⚠️ Sin media")
+                pilar_raw = (item_slot.pilar or "").replace("_", " ").title()
+                pilar_e = PILAR_EMOJI.get(item_slot.pilar or "", "🌶") + " " + esc(pilar_raw)
+                primera_linea = ""
+                if item_slot.caption:
+                    primera_linea = str(item_slot.caption).split("\n")[0].strip()[:120]
+
+                lineas.append(
+                    f"\n{emoji} <b>{hora_label} — {tipo.upper()}</b>  {estado_str}\n"
+                    f"   {pilar_e}  •  {tiene_media}"
+                )
+                if primera_linea:
+                    lineas.append(f"   🪝 <i>{esc(primera_linea)}</i>")
+
+                if not ya_paso:
+                    items_con_media.append((item_slot, f"{hora_label} — {tipo.upper()}"))
+            else:
+                lineas.append(
+                    f"\n{emoji} <b>{hora_label} — {tipo.upper()}</b>  {estado_str}\n"
+                    f"   ⚠️ <i>Sin material en biblioteca — envía algo al bot</i>"
+                )
+
+            # Botones por slot (solo slots futuros)
+            if not ya_paso and not pausado_todo:
+                if slot_key in slots_pausados:
+                    teclado.append([{"text": f"✅ Reactivar {hora_label}", "callback_data": f"hoy:activar_slot:{slot_key}"}])
+                else:
+                    teclado.append([{"text": f"⏭ Saltar {hora_label}", "callback_data": f"hoy:pausar_slot:{slot_key}"}])
+
+        lineas.append(f"\n<i>Hora actual: {ahora.strftime('%H:%M')} COL</i>")
+
+        # Botón pausar/activar todo
         if not pausado_todo:
             teclado.append([{"text": "🚫 No publicar nada hoy", "callback_data": "hoy:pausar_todo"}])
         else:
-            teclado.append([{"text": "✅ Reactivar publicaciones hoy", "callback_data": "hoy:activar_todo"}])
+            teclado.append([{"text": "✅ Reactivar todo hoy", "callback_data": "hoy:activar_todo"}])
 
         resp = _enviar_mensaje("\n".join(lineas), reply_markup={"inline_keyboard": teclado})
         if not resp.get("ok"):
-            logger.error("_enviar_mensaje /hoy falló: %s", resp)
-            # Reintentar sin HTML en caso de parse error
-            texto_plain = "\n".join(lineas)
-            texto_plain = re.sub(r"<[^>]+>", "", texto_plain)
+            texto_plain = re.sub(r"<[^>]+>", "", "\n".join(lineas))
             _enviar_mensaje(texto_plain, reply_markup={"inline_keyboard": teclado})
 
-        # ── Enviar imágenes y videos de cada entrada ──────────────────────────
-        for e in entradas_hoy:
+        # ── Enviar preview del material de cada slot ──────────────────────────
+        for item_slot, label_slot in items_con_media:
             try:
-                hook_media = ""
-                if e.contenido_copy and hasattr(e.contenido_copy, "hook") and e.contenido_copy.hook:
-                    hook_media = e.contenido_copy.hook[:200]
-                elif e.concepto:
-                    hook_media = e.concepto[:200]
-
-                caption_media = (
-                    f"{EMOJI.get(e.tipo_contenido or '','📌')} "
-                    f"<b>{esc(e.hora_publicacion or '?')} — {esc((e.tipo_contenido or 'post').upper())}</b>\n"
-                    f"{PILAR_EMOJI.get(e.pilar or '','🌶')} {esc((e.pilar or '').replace('_',' ').title())}\n"
-                    f"🪝 {esc(hook_media)}"
+                caption_prev = (
+                    f"{EMOJI.get(item_slot.tipo,'📌')} <b>{esc(label_slot)}</b>\n"
                 )
+                primera = ""
+                if item_slot.caption:
+                    primera = str(item_slot.caption).split("\n")[0].strip()[:200]
+                if primera:
+                    caption_prev += f"🪝 {esc(primera)}"
 
                 enviado = False
-                if e.video_generado_path:
-                    ruta_v = Path(str(e.video_generado_path))
-                    if ruta_v.exists():
-                        _enviar_video(ruta_v, caption=caption_media)
-                        enviado = True
-                if not enviado and e.imagen_compuesta_path:
-                    ruta_i = Path(str(e.imagen_compuesta_path))
-                    if ruta_i.exists():
-                        _enviar_foto(ruta_i, caption=caption_media)
-                        enviado = True
-                if not enviado and e.material_sugerido:
-                    ruta_s = Path(str(e.material_sugerido))
-                    if ruta_s.exists():
-                        if ruta_s.suffix.lower() in (".mp4", ".mov"):
-                            _enviar_video(ruta_s, caption=caption_media)
-                        else:
-                            _enviar_foto(ruta_s, caption=caption_media)
-                        enviado = True
-                time.sleep(0.4)
-            except Exception as err:
-                logger.warning("Error enviando media de entrada %s: %s", getattr(e, "id", "?"), err)
-
-        # Biblioteca: primer ítem de cada tipo con media
-        for tipo in ["post", "reel", "story", "carrusel"]:
-            try:
-                items = listar_pendientes(tipo)
-                if not items:
-                    continue
-                it = items[0]
-
-                primera = ""
-                if it.caption:
-                    primera = str(it.caption).split("\n")[0].strip()[:200]
-
-                caption_bib = (
-                    f"{EMOJI.get(tipo,'📌')} <b>BIBLIOTECA — {tipo.upper()}</b>\n"
-                    f"{PILAR_EMOJI.get(it.pilar or '','🌶')} {esc((it.pilar or '').replace('_',' ').title())}\n"
-                )
-                if primera:
-                    caption_bib += f"🪝 {esc(primera)}"
-
-                enviado_bib = False
-                if it.ruta_local:
-                    ruta_l = Path(it.ruta_local)
+                if item_slot.ruta_local:
+                    ruta_l = Path(item_slot.ruta_local)
                     if ruta_l.exists():
                         if ruta_l.suffix.lower() in (".mp4", ".mov", ".m4v"):
-                            _enviar_video(ruta_l, caption=caption_bib)
+                            _enviar_video(ruta_l, caption=caption_prev)
                         else:
-                            _enviar_foto(ruta_l, caption=caption_bib)
-                        enviado_bib = True
-                if not enviado_bib and it.cloudinary_url:
-                    # _primera_url maneja carruseles con múltiples URLs separadas por coma
-                    _enviar_media_url(it.cloudinary_url, caption=caption_bib)
-                    enviado_bib = True
+                            _enviar_foto(ruta_l, caption=caption_prev)
+                        enviado = True
+                if not enviado and item_slot.cloudinary_url:
+                    _enviar_media_url(item_slot.cloudinary_url, caption=caption_prev)
                 time.sleep(0.4)
             except Exception as err:
-                logger.warning("Error enviando media biblioteca tipo=%s: %s", tipo, err)
+                logger.warning("Error enviando preview slot %s: %s", label_slot, err)
 
     def _flujo_venta(self):
         """Genera la serie de 3 stories de conversión a venta con Claude.
