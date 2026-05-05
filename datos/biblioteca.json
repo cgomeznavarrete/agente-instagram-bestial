@@ -287,6 +287,21 @@
       "es_carrusel": false,
       "archivos_carrusel": [],
       "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/video/upload/v1777500357/salsas_bestial/igwyvapg8kfifdbstpfz.mp4"
+    },
+    {
+      "id": "reel_1778018506721",
+      "tipo": "reel",
+      "nombre_archivo": "reel_1778018506721.mp4",
+      "ruta_local": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/reels/reel_1778018506721.mp4",
+      "fecha_agregado": 1778018507.7401505,
+      "estado": "pendiente",
+      "pilar": "humor_picante",
+      "caption": "",
+      "media_id": "",
+      "fecha_publicado": 0.0,
+      "es_carrusel": false,
+      "archivos_carrusel": [],
+      "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/video/upload/v1778018507/salsas_bestial/or4g0zpah15udd58fb0m.mp4"
     }
   ]
 }
