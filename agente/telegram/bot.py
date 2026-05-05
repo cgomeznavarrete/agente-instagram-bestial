@@ -26,7 +26,7 @@ from agente.gestores.biblioteca import (
     agregar_item, agregar_carrusel, siguiente_pendiente,
     contar_pendientes, listar_pendientes, marcar_publicado, marcar_descartado,
     mover_al_final,
-    EXTENSIONES_IMAGEN, EXTENSIONES_VIDEO,
+    EXTENSIONES_IMAGEN, EXTENSIONES_VIDEO, BIBLIOTECA_JSON,
 )
 from agente.telegram.notificador import (
     _enviar_mensaje, _enviar_foto, _enviar_video,
@@ -512,6 +512,10 @@ class BotTelegram:
             self._mostrar_estado()
             return
 
+        if texto.startswith("/biblioteca"):
+            self._mostrar_biblioteca()
+            return
+
         if texto.startswith("/hoy"):
             self._mostrar_plan_hoy()
             return
@@ -986,6 +990,27 @@ class BotTelegram:
                     Path(ruta_str).unlink(missing_ok=True)
                 _enviar_mensaje("🗑 Descartado.")
             self._clear_estado(chat_id)
+            return
+
+        # ── Biblioteca: marcar publicado / descartar ──────────────────────
+        if partes[0] == "bib" and len(partes) >= 3:
+            accion, item_id = partes[1], partes[2]
+            if accion == "publicado":
+                marcar_publicado(item_id)
+                _commit_json_github(
+                    str(BIBLIOTECA_JSON), "datos/biblioteca.json",
+                    f"chore: {item_id} marcado como publicado desde Telegram",
+                )
+                _answer_callback(cb_id, "✅ Marcado como publicado")
+                _enviar_mensaje(f"✅ <b>Publicado</b> — eliminado de la biblioteca.\n<code>{item_id}</code>")
+            elif accion == "descartar":
+                marcar_descartado(item_id)
+                _commit_json_github(
+                    str(BIBLIOTECA_JSON), "datos/biblioteca.json",
+                    f"chore: {item_id} descartado desde Telegram",
+                )
+                _answer_callback(cb_id, "🗑 Descartado")
+                _enviar_mensaje(f"🗑 <b>Descartado</b> — eliminado de la biblioteca.\n<code>{item_id}</code>")
             return
 
         # ── Control de publicaciones del día (/hoy) ──────────────────────
@@ -1549,6 +1574,101 @@ class BotTelegram:
                 {"text": "🗑 Descartar", "callback_data": "carrusel:descartar"},
             ]]}
         )
+
+    def _mostrar_biblioteca(self):
+        """
+        /biblioteca — muestra cada ítem pendiente con preview y botones:
+          ✅ Ya publiqué  → marcar_publicado → desaparece de la biblioteca
+          🗑 Descartar    → marcar_descartado → desaparece de la biblioteca
+        """
+        try:
+            self._mostrar_biblioteca_impl()
+        except Exception as e:
+            logger.error("Error en _mostrar_biblioteca: %s", e, exc_info=True)
+            _enviar_mensaje(f"⚠️ Error mostrando biblioteca: <code>{_html.escape(str(e))}</code>")
+
+    def _mostrar_biblioteca_impl(self):
+        from datetime import datetime
+
+        EMOJI = {"post": "📸", "reel": "🎬", "story": "⭕", "carrusel": "📖"}
+        PILAR_CORTO = {
+            "recetas_y_maridajes": "Recetas",
+            "lifestyle_y_comunidad": "Lifestyle",
+            "humor_picante": "Humor 🌶",
+            "educacion_sobre_salsas": "Educación",
+            "behind_the_scenes": "BTS",
+            "promociones_y_lanzamientos": "Promo",
+            "testimonios_y_ugc": "Testimonios",
+            "como_comprar": "Cómo comprar",
+        }
+
+        todos = []
+        for tipo in ["reel", "post", "story"]:
+            todos.extend(listar_pendientes(tipo))
+        # Carruseles están guardados como tipo=post con es_carrusel=True — ya incluidos
+        # Ordenar por fecha agregado (más reciente primero)
+        todos.sort(key=lambda i: i.fecha_agregado, reverse=True)
+
+        if not todos:
+            _enviar_mensaje("📚 <b>Biblioteca vacía</b>\n\nNo hay material pendiente. Envíame fotos o videos.")
+            return
+
+        conteo = contar_pendientes()
+        _enviar_mensaje(
+            f"📚 <b>Biblioteca — {len(todos)} ítems pendientes</b>\n"
+            f"📸 {conteo['post']} posts · 🎬 {conteo['reel']} reels · ⭕ {conteo['story']} stories · 📖 {conteo['carrusel']} carruseles\n\n"
+            f"<i>Presiona ✅ si ya lo publicaste manualmente o 🗑 para descartarlo.</i>"
+        )
+        time.sleep(0.3)
+
+        for it in todos:
+            tipo_disp = "carrusel" if it.es_carrusel else it.tipo
+            emoji = EMOJI.get(tipo_disp, "📌")
+            pilar = PILAR_CORTO.get(it.pilar or "", (it.pilar or "").replace("_", " ").title())
+            fecha = datetime.fromtimestamp(it.fecha_agregado).strftime("%d/%m %H:%M")
+
+            # Caption del ítem
+            primera = ""
+            if it.caption:
+                primera = str(it.caption).split("\n")[0].strip()[:120]
+            caption_item = (
+                f"{emoji} <b>{tipo_disp.upper()}</b>  •  {_html.escape(pilar)}\n"
+                f"📅 {fecha}\n"
+            )
+            if primera:
+                caption_item += f"🪝 <i>{_html.escape(primera)}</i>"
+
+            # Botones
+            teclado = {"inline_keyboard": [[
+                {"text": "✅ Ya lo publiqué", "callback_data": f"bib:publicado:{it.id}"},
+                {"text": "🗑 Descartar",      "callback_data": f"bib:descartar:{it.id}"},
+            ]]}
+
+            # Enviar media + botones
+            enviado = False
+            if it.ruta_local:
+                ruta_l = Path(it.ruta_local)
+                if ruta_l.exists() and ruta_l.is_file():
+                    if ruta_l.suffix.lower() in (".mp4", ".mov", ".m4v"):
+                        r = _enviar_video(ruta_l, caption=caption_item, reply_markup=teclado)
+                    else:
+                        r = _enviar_foto(ruta_l, caption=caption_item, reply_markup=teclado)
+                    enviado = r.get("ok", False) if isinstance(r, dict) else bool(r)
+
+            if not enviado and it.cloudinary_url:
+                url1 = _primera_url(it.cloudinary_url)
+                if url1:
+                    if _es_video_url(url1):
+                        r = _enviar_video_url(url1, caption=caption_item, reply_markup=teclado)
+                    else:
+                        r = _enviar_foto_url(url1, caption=caption_item, reply_markup=teclado)
+                    enviado = r.get("ok", False) if isinstance(r, dict) else bool(r)
+
+            if not enviado:
+                # Sin media — solo texto con botones
+                _enviar_mensaje(caption_item, reply_markup=teclado)
+
+            time.sleep(0.4)
 
     def _mostrar_estado(self):
         from datetime import datetime
