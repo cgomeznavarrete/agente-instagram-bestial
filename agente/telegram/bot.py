@@ -502,6 +502,10 @@ class BotTelegram:
             self._flujo_publicar_ahora(tipo_forzado)
             return
 
+        if texto.startswith("/comandos"):
+            self._mostrar_comandos()
+            return
+
         if texto.startswith("/ayuda") or texto.startswith("/start"):
             self._mostrar_ayuda()
             return
@@ -786,6 +790,18 @@ class BotTelegram:
             return
 
         partes = data.split(":")
+
+        # ── Atajos de /comandos ───────────────────────────────────────────
+        if partes[0] == "cmd" and len(partes) >= 2:
+            accion = partes[1]
+            _answer_callback(cb_id)
+            if accion == "hoy":
+                self._mostrar_plan_hoy()
+            elif accion == "publicar":
+                self._flujo_publicar_ahora(None)
+            elif accion == "estado":
+                self._mostrar_estado()
+            return
 
         # ── Acción principal: biblioteca o ahora ──────────────────────────
         if partes[0] == "accion" and len(partes) >= 2:
@@ -2117,6 +2133,45 @@ class BotTelegram:
         except Exception as e:
             logger.error("Error en _publicar_en_hilo: %s", e, exc_info=True)
             _enviar_mensaje(f"❌ Error inesperado: {e}")
+
+    def _mostrar_comandos(self):
+        """Muestra todos los comandos disponibles con botones para ejecutarlos."""
+        from agente.gestores.biblioteca import contar_pendientes
+        conteo = contar_pendientes()
+        total = sum(conteo.values())
+
+        _enviar_mensaje(
+            "🤖 <b>Comandos disponibles</b>\n\n"
+
+            "━━━━━━━━━━━━━━━━\n"
+            "📅 <b>/hoy</b>\n"
+            "Plan de hoy: qué se publica, a qué hora y con qué material.\n\n"
+
+            "🚀 <b>/publicar</b>\n"
+            "Muestra el siguiente item pendiente con botones para publicar, corregir o saltar.\n"
+            f"   Cola actual: {conteo['reel']} reels · {conteo['post']} posts · {conteo['story']} stories\n\n"
+
+            "📚 <b>/estado</b>\n"
+            f"Lista completa de los {total} items en biblioteca con preview visual.\n\n"
+
+            "🎨 <b>/carrusel &lt;tema&gt;</b>\n"
+            "Claude genera un carrusel educativo con datos curiosos sobre el tema.\n"
+            "   <i>Ej: /carrusel historia del chile habanero</i>\n\n"
+
+            "💰 <b>/venta</b>\n"
+            "Genera 3 stories de conversión: enganche → prueba social → CTA de compra.\n\n"
+
+            "━━━━━━━━━━━━━━━━\n"
+            "📸 <b>Enviar foto</b> → el bot pregunta si guardar o publicar ahora\n"
+            "🎬 <b>Enviar video</b> → el bot pregunta el tipo (Reel / Story)\n"
+            "📖 <b>Varias fotos juntas</b> → opción de publicar como carrusel",
+
+            reply_markup={"inline_keyboard": [
+                [{"text": "📅 Ver plan de hoy",          "callback_data": "cmd:hoy"}],
+                [{"text": "🚀 Ver siguiente pendiente",   "callback_data": "cmd:publicar"}],
+                [{"text": "📚 Ver biblioteca completa",   "callback_data": "cmd:estado"}],
+            ]},
+        )
 
     def _mostrar_ayuda(self):
         _enviar_mensaje(
