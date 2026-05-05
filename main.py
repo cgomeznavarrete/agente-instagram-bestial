@@ -1158,54 +1158,77 @@ def publicar_programado(forzar: bool = False, tipo: str | None = None):
         from agente.claude.cliente_claude import ClienteClaude
         from config import brand_guidelines as brand
         import re
-        cliente = ClienteClaude()
+        import logging as _logging
+        _log = _logging.getLogger("publicar_programado")
 
-        if tipo_pub == "story":
-            caption_raw = cliente.generar(
-                prompt_sistema=(
-                    "Eres el community manager de Salsas Bestial. "
-                    "Escribes textos breves, directos y con personalidad para Stories de Instagram."
-                ),
-                prompt_usuario=(
-                    f"Pilar: {item.pilar}.\n"
-                    "Escribe el texto para una Story de Instagram de Salsas Bestial:\n"
-                    "- 1 línea impactante (máx 10 palabras) — lo que se ve en la pantalla\n"
-                    "- 1 línea de CTA corta: 'Pídela 👇' o 'Desliza para pedir 🌶️'\n"
-                    "- Sin hashtags (las stories no los necesitan)\n"
-                    "- Máximo 2 emojis\n"
-                    "Formato: solo el texto, sin explicaciones."
-                ),
-                temperatura=0.85,
-                max_tokens=150,
-            )
-        else:
-            caption_raw = cliente.generar(
-                prompt_sistema=(
-                    "Eres el community manager de Salsas Bestial. "
-                    "Haz que la persona se identifique con la experiencia del picante."
-                ),
-                prompt_usuario=(
-                    f"Tipo: {tipo_pub.upper()}. Pilar: {item.pilar}.\n"
-                    "Caption para Instagram:\n"
-                    "- Primera línea: verdad que los amantes del picante reconocen\n"
-                    "- Cuerpo (2-3 líneas): la experiencia\n"
-                    f"- CTA de compra: Pídela aquí → {brand.LINK_COMPRA_WHATSAPP}\n"
-                    f"- Pregunta de cierre (OBLIGATORIA, última línea antes de hashtags): elige la más apropiada de esta lista: {brand.PREGUNTAS_ENGAGEMENT}\n"
-                    f"- Usa exactamente estos hashtags al final (mezcla nicho/amplio ya seleccionada): {' '.join(brand.seleccionar_hashtags())}\n"
-                    "- Máximo 3 emojis"
-                ),
-                temperatura=0.85,
-                max_tokens=600,
-            )
-        item.caption = limpiar_caption(re.sub(r"\*\*(.+?)\*\*", r"\1", caption_raw))
-        # Guardar caption generado en biblioteca para que persista
-        from agente.gestores.biblioteca import _cargar, _guardar
-        _data = _cargar()
-        for _raw in _data["items"]:
-            if _raw["id"] == item.id:
-                _raw["caption"] = item.caption
-                break
-        _guardar(_data)
+        try:
+            cliente = ClienteClaude()
+
+            if tipo_pub == "story":
+                caption_raw = cliente.generar(
+                    prompt_sistema=(
+                        "Eres el community manager de Salsas Bestial. "
+                        "Escribes textos breves, directos y con personalidad para Stories de Instagram."
+                    ),
+                    prompt_usuario=(
+                        f"Pilar: {item.pilar}.\n"
+                        "Escribe el texto para una Story de Instagram de Salsas Bestial:\n"
+                        "- 1 línea impactante (máx 10 palabras) — lo que se ve en la pantalla\n"
+                        "- 1 línea de CTA corta: 'Pídela 👇' o 'Desliza para pedir 🌶️'\n"
+                        "- Sin hashtags (las stories no los necesitan)\n"
+                        "- Máximo 2 emojis\n"
+                        "Formato: solo el texto, sin explicaciones."
+                    ),
+                    temperatura=0.85,
+                    max_tokens=150,
+                )
+            else:
+                caption_raw = cliente.generar(
+                    prompt_sistema=(
+                        "Eres el community manager de Salsas Bestial. "
+                        "Haz que la persona se identifique con la experiencia del picante."
+                    ),
+                    prompt_usuario=(
+                        f"Tipo: {tipo_pub.upper()}. Pilar: {item.pilar}.\n"
+                        "Caption para Instagram:\n"
+                        "- Primera línea: verdad que los amantes del picante reconocen\n"
+                        "- Cuerpo (2-3 líneas): la experiencia\n"
+                        f"- CTA de compra: Pídela aquí → {brand.LINK_COMPRA_WHATSAPP}\n"
+                        f"- Pregunta de cierre (OBLIGATORIA, última línea antes de hashtags): elige la más apropiada de esta lista: {brand.PREGUNTAS_ENGAGEMENT}\n"
+                        f"- Usa exactamente estos hashtags al final (mezcla nicho/amplio ya seleccionada): {' '.join(brand.seleccionar_hashtags())}\n"
+                        "- Máximo 3 emojis"
+                    ),
+                    temperatura=0.85,
+                    max_tokens=600,
+                )
+
+            caption_limpio = limpiar_caption(re.sub(r"\*\*(.+?)\*\*", r"\1", caption_raw))
+            _log.info("Caption generado (%d chars): %s", len(caption_limpio), caption_limpio[:80])
+
+            # Fallback: si limpiar_caption devolvió vacío, usar el texto crudo
+            if not caption_limpio.strip():
+                _log.warning("limpiar_caption devolvió vacío — usando caption_raw sin limpiar")
+                caption_limpio = caption_raw.strip()
+
+            item.caption = caption_limpio
+
+        except Exception as _e:
+            _log.error("Error generando caption con Claude: %s", _e, exc_info=True)
+            _enviar_mensaje(f"⚠️ No se pudo generar el caption automáticamente: <code>{str(_e)[:200]}</code>\nSe publicará sin texto.")
+
+        # Guardar caption generado en biblioteca para que persista entre runs
+        if item.caption:
+            try:
+                from agente.gestores.biblioteca import _cargar, _guardar
+                _data = _cargar()
+                for _raw in _data["items"]:
+                    if _raw["id"] == item.id:
+                        _raw["caption"] = item.caption
+                        break
+                _guardar(_data)
+                _log.info("Caption guardado en biblioteca para item %s", item.id)
+            except Exception as _e2:
+                _log.warning("No se pudo guardar caption en biblioteca: %s", _e2)
 
     # ── Enviar preview a Telegram y esperar aprobación ──────────────────────
     rev_id = f"prog_{int(_time.time())}"
