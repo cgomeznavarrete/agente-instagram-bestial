@@ -2040,7 +2040,20 @@ class BotTelegram:
             except Exception as err:
                 logger.warning("No se pudo leer el calendario para detectar tipo: %s", err)
 
-        tipos_a_probar = [tipo_forzado] if tipo_forzado in tipos_validos else ["reel", "post", "story"]
+        # Construir lista de tipos con fallback completo.
+        # "carrusel" en el calendario → buscar también en "post" (los carruseles se
+        # almacenan en biblioteca con tipo="post" y es_carrusel=True).
+        _FALLBACK = ["reel", "post", "story"]
+        if tipo_forzado in tipos_validos:
+            tipos_a_probar = [tipo_forzado]
+            if tipo_forzado == "carrusel":
+                tipos_a_probar.append("post")   # sinónimo de carrusel en biblioteca
+            # Agregar fallback para no mostrar "vacía" si el tipo forzado no tiene items
+            for t in _FALLBACK:
+                if t not in tipos_a_probar:
+                    tipos_a_probar.append(t)
+        else:
+            tipos_a_probar = _FALLBACK
 
         item = None
         tipo_encontrado = None
