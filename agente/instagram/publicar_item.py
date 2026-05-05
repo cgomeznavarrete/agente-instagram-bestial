@@ -143,6 +143,7 @@ def publicar_item(item) -> str | None:
     # Si llega aquí desde publicar_pendientes es porque el usuario ya lo aprobó para publicar sin música.
     if item.es_carrusel:
         urls_guardadas = [u for u in (cloudinary_url or "").split(",") if u.startswith("http")]
+        rutas_slides = [Path(r) for r in (getattr(item, "archivos_carrusel", None) or [])]
         creation_ids = []
         for i, slide_ruta in enumerate(rutas_slides):
             if i < len(urls_guardadas):
