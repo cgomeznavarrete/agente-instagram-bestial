@@ -1986,6 +1986,26 @@ class BotTelegram:
                         if item_slot:
                             break
 
+            # Generar caption si el item no tiene uno — el usuario lo necesita para aprobar
+            if item_slot and not item_slot.caption and not ya_paso:
+                try:
+                    _enviar_mensaje(f"✍️ Generando caption para {tipo.upper()} del slot {hora_label}...")
+                    caption_gen = _generar_caption(item_slot.tipo, item_slot.pilar or "lifestyle_y_comunidad")
+                    if caption_gen:
+                        item_slot.caption = caption_gen
+                        # Persistir en biblioteca.json para que publicar_programado lo use
+                        from agente.gestores.biblioteca import _cargar, _guardar
+                        _data_bib = _cargar()
+                        for _raw in _data_bib["items"]:
+                            if _raw["id"] == item_slot.id:
+                                _raw["caption"] = caption_gen
+                                break
+                        _guardar(_data_bib)
+                        _commit_biblioteca(item_slot.id)
+                        logger.info("Caption generado y guardado para %s", item_slot.id)
+                except Exception as _e_cap:
+                    logger.warning("No se pudo generar caption para /hoy: %s", _e_cap)
+
             # ¿Está aprobado este slot?
             item_aprobado_id = aprobados.get(slot_key)
             slot_aprobado = bool(item_aprobado_id) and item_slot and item_aprobado_id == item_slot.id
@@ -2004,16 +2024,18 @@ class BotTelegram:
                 tiene_media = "☁️ Cloudinary" if item_slot.cloudinary_url else ("📁 Local" if item_slot.ruta_local else "⚠️ Sin media")
                 pilar_raw = (item_slot.pilar or "").replace("_", " ").title()
                 pilar_e = PILAR_EMOJI.get(item_slot.pilar or "", "🌶") + " " + esc(pilar_raw)
-                primera_linea = ""
-                if item_slot.caption:
-                    primera_linea = str(item_slot.caption).split("\n")[0].strip()[:120]
 
                 lineas.append(
                     f"\n{emoji} <b>{hora_label} — {tipo.upper()}</b>  {estado_str}\n"
                     f"   {pilar_e}  •  {tiene_media}"
                 )
-                if primera_linea:
-                    lineas.append(f"   🪝 <i>{esc(primera_linea)}</i>")
+                if item_slot.caption:
+                    # Mostrar caption completo (hasta 800 chars) para que el usuario
+                    # pueda leerlo y decidir si aprueba o no
+                    caption_preview = esc(str(item_slot.caption).strip()[:800])
+                    lineas.append(f"\n📝 <i>{caption_preview}</i>")
+                else:
+                    lineas.append("   ⚠️ <i>Sin caption — se generará al publicar</i>")
 
                 if not ya_paso:
                     items_con_media.append((item_slot, f"{hora_label} — {tipo.upper()}"))
@@ -2057,13 +2079,11 @@ class BotTelegram:
         for item_slot, label_slot in items_con_media:
             try:
                 caption_prev = (
-                    f"{EMOJI.get(item_slot.tipo,'📌')} <b>{esc(label_slot)}</b>\n"
+                    f"{EMOJI.get(item_slot.tipo,'📌')} <b>{esc(label_slot)}</b>\n\n"
                 )
-                primera = ""
                 if item_slot.caption:
-                    primera = str(item_slot.caption).split("\n")[0].strip()[:200]
-                if primera:
-                    caption_prev += f"🪝 {esc(primera)}"
+                    # Caption completo en el preview (Telegram trunca automáticamente a 1024)
+                    caption_prev += esc(str(item_slot.caption).strip()[:900])
 
                 enviado = False
                 if item_slot.ruta_local:
