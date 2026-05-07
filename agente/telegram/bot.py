@@ -636,6 +636,59 @@ class BotTelegram:
         # ── Contexto: estado conversacional ──────────────────────────────
         estado = self._get_estado(chat_id)
 
+        # ── Modificar caption desde /hoy ─────────────────────────────────
+        if estado["paso"] == "hoy_modificar_caption" and texto:
+            datos_mod = estado.get("datos", {})
+            item_id_m = datos_mod.get("item_id", "")
+            hora_label_m = datos_mod.get("hora_label", "")
+            caption_ant = datos_mod.get("caption_anterior", "")
+            pilar_m = datos_mod.get("pilar", "lifestyle_y_comunidad")
+            tipo_m = datos_mod.get("tipo", "post")
+            _enviar_mensaje("✍️ Reescribiendo con Claude...")
+            try:
+                from agente.claude.cliente_claude import ClienteClaude, limpiar_caption
+                from config import brand_guidelines as _brand
+                cliente_m = ClienteClaude()
+                caption_raw_m = cliente_m.generar(
+                    prompt_sistema=(
+                        "Eres el community manager de Salsas Bestial, marca colombiana de salsas picantes artesanales. "
+                        "Reescribe el caption según la instrucción del usuario. "
+                        "Tono: cercano, real, apasionado por el picante. Sin frases publicitarias genéricas."
+                    ),
+                    prompt_usuario=(
+                        f"Caption actual:\n{caption_ant}\n\n"
+                        f"Instrucción: {texto}\n\n"
+                        f"Tipo: {tipo_m.upper()}. Pilar: {pilar_m}.\n"
+                        "Aplica la instrucción y devuelve SOLO el caption reescrito completo.\n"
+                        f"CTA obligatorio: Pídela aquí → {_brand.LINK_COMPRA_WHATSAPP}\n"
+                        f"Hashtags al final: {' '.join(_brand.seleccionar_hashtags())}"
+                    ),
+                    temperatura=0.85,
+                    max_tokens=600,
+                )
+                caption_nuevo_m = limpiar_caption(re.sub(r"\*\*(.+?)\*\*", r"\1", caption_raw_m))
+                if not caption_nuevo_m.strip():
+                    caption_nuevo_m = caption_raw_m.strip()
+                # Guardar en biblioteca
+                from agente.gestores.biblioteca import _cargar, _guardar
+                _bib = _cargar()
+                for _r in _bib["items"]:
+                    if _r["id"] == item_id_m:
+                        _r["caption"] = caption_nuevo_m
+                        break
+                _guardar(_bib)
+                _commit_biblioteca(item_id_m)
+                self._clear_estado(chat_id)
+                _enviar_mensaje(
+                    f"✅ <b>Caption actualizado — slot {hora_label_m}</b>\n\n"
+                    f"📝 <i>{_html.escape(caption_nuevo_m[:800])}</i>\n\n"
+                    "Escribe /hoy para aprobar o seguir editando."
+                )
+            except Exception as _e_mod:
+                logger.error("Error modificando caption /hoy: %s", _e_mod, exc_info=True)
+                _enviar_mensaje(f"❌ Error aplicando la corrección: <code>{_html.escape(str(_e_mod))}</code>\nIntenta de nuevo.")
+            return
+
         # ── Estado inesperado: esperando_razon_salto (legado — ya no se usa) ──
         # pub_rechazar ahora muestra botones inline directamente. Si por alguna
         # razón el estado quedó en este valor (sesión antigua), limpiar y continuar.
@@ -1167,6 +1220,40 @@ class BotTelegram:
                         f"✅ <b>Publicado</b> — biblioteca vacía para este tipo.\n"
                         f"Envíame más material para seguir publicando."
                     )
+
+            elif accion == "modificar" and len(partes) >= 4:
+                # hoy:modificar:<item_id>:<slot_key>
+                item_id_mod = partes[2]
+                slot_key_mod = partes[3]
+                hora_label_mod = "12pm" if int(slot_key_mod) < 15 else "7pm"
+                _answer_callback(cb_id, "✍️ Escribe tu corrección")
+                # Cargar caption actual del item
+                from agente.gestores.biblioteca import _cargar as _bib_cargar
+                _bib_data = _bib_cargar()
+                _item_raw = next((r for r in _bib_data["items"] if r["id"] == item_id_mod), None)
+                caption_actual = (_item_raw or {}).get("caption", "") if _item_raw else ""
+                pilar_actual = (_item_raw or {}).get("pilar", "lifestyle_y_comunidad") if _item_raw else "lifestyle_y_comunidad"
+                tipo_actual = (_item_raw or {}).get("tipo", "post") if _item_raw else "post"
+                # Guardar contexto en estado para que el texto del usuario sea procesado
+                self._set_estado(chat_id, "hoy_modificar_caption", {
+                    "item_id": item_id_mod,
+                    "slot_key": slot_key_mod,
+                    "hora_label": hora_label_mod,
+                    "caption_anterior": caption_actual,
+                    "pilar": pilar_actual,
+                    "tipo": tipo_actual,
+                })
+                preview_caption = caption_actual[:400] if caption_actual else "<i>sin caption aún</i>"
+                _enviar_mensaje(
+                    f"✍️ <b>Modificar caption — slot {hora_label_mod}</b>\n\n"
+                    f"Caption actual:\n<i>{_html.escape(preview_caption)}</i>\n\n"
+                    "Escribe qué cambiar. Ejemplos:\n"
+                    "• <i>Hazlo más corto</i>\n"
+                    "• <i>Tono más divertido, menos serio</i>\n"
+                    "• <i>Cambia el hook por algo más impactante</i>\n"
+                    "• <i>Agrega una referencia a la temporada de lluvias</i>\n\n"
+                    "Claude reescribe y guarda el nuevo caption al instante."
+                )
 
             elif accion in ("saltar", "pausar_slot") and len(partes) >= 3:
                 h_min = int(partes[2])
@@ -2047,18 +2134,21 @@ class BotTelegram:
 
             # Botones por slot (solo slots futuros no pausados)
             if not ya_paso and not pausado_todo and slot_key not in slots_pausados:
-                # Fila 1: Aprobar / Ya aprobado
                 if item_slot:
+                    # Fila 1: Aprobar / Ya aprobado
                     if slot_aprobado:
-                        teclado.append([{"text": f"✅ Aprobado {hora_label} ✓", "callback_data": f"hoy:noop"}])
+                        teclado.append([{"text": f"✅ Aprobado {hora_label} ✓", "callback_data": "hoy:noop"}])
                     else:
                         teclado.append([{"text": f"📅 Aprobar para {hora_label}", "callback_data": f"hoy:aprobar:{slot_key}:{item_slot.id}"}])
-                # Fila 2: Ya publiqué / Saltar
-                fila2 = []
-                if item_slot:
-                    fila2.append({"text": f"✅ Ya publiqué", "callback_data": f"hoy:ya_publique:{item_slot.id}:{slot_key}:{tipo}"})
-                fila2.append({"text": f"⏭ Saltar", "callback_data": f"hoy:pausar_slot:{slot_key}"})
-                teclado.append(fila2)
+                    # Fila 2: Modificar caption
+                    teclado.append([{"text": f"✍️ Modificar caption", "callback_data": f"hoy:modificar:{item_slot.id}:{slot_key}"}])
+                    # Fila 3: Ya publiqué / Saltar
+                    teclado.append([
+                        {"text": "✅ Ya publiqué", "callback_data": f"hoy:ya_publique:{item_slot.id}:{slot_key}:{tipo}"},
+                        {"text": "⏭ Saltar",       "callback_data": f"hoy:pausar_slot:{slot_key}"},
+                    ])
+                else:
+                    teclado.append([{"text": f"⏭ Saltar slot {hora_label}", "callback_data": f"hoy:pausar_slot:{slot_key}"}])
             elif not ya_paso and not pausado_todo and slot_key in slots_pausados:
                 teclado.append([{"text": f"🔄 Reactivar {hora_label}", "callback_data": f"hoy:activar_slot:{slot_key}"}])
 
