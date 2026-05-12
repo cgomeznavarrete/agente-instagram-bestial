@@ -25,7 +25,7 @@ from agente.claude.cliente_claude import ClienteClaude
 from agente.gestores.biblioteca import (
     agregar_item, agregar_carrusel, siguiente_pendiente,
     contar_pendientes, listar_pendientes, marcar_publicado, marcar_descartado,
-    mover_al_final,
+    mover_al_final, _cargar as _bib_cargar_global,
     EXTENSIONES_IMAGEN, EXTENSIONES_VIDEO, BIBLIOTECA_JSON,
 )
 from agente.telegram.notificador import (
@@ -72,6 +72,62 @@ def _enviar_media_url(url: str, caption: str = "") -> dict:
     if _es_video_url(url1):
         return _enviar_video_url(url1, caption=caption)
     return _enviar_foto_url(url1, caption=caption)
+
+
+def _tipo_display(item) -> str:
+    """Etiqueta de tipo legible para Telegram — distingue POST de POST-CARRUSEL."""
+    LABELS = {"post": "📸 POST", "reel": "🎬 REEL", "story": "⭕ STORY"}
+    if getattr(item, "es_carrusel", False):
+        return "📖 POST - CARRUSEL"
+    return LABELS.get(getattr(item, "tipo", ""), (getattr(item, "tipo", "") or "").upper())
+
+
+def _enviar_carrusel_telegram(item) -> None:
+    """Envía slides + caption a Telegram para subida manual con música.
+
+    Los carruseles NO se publican via Graph API — el usuario los sube desde la
+    app de Instagram para poder agregar música.  Esta función se usa tanto en
+    el flujo /hoy como en publicar_programado.
+    """
+    import time as _t
+    slide_urls = [
+        u.strip()
+        for u in (getattr(item, "cloudinary_url", "") or "").split(",")
+        if u.strip().startswith("http")
+    ]
+    n = len(slide_urls)
+    if n == 0:
+        _enviar_mensaje(
+            "⚠️ <b>Carrusel sin imágenes</b>\n\n"
+            "No se encontraron URLs de Cloudinary para este carrusel.\n"
+            "Usa /estado para revisar el item."
+        )
+        return
+
+    _enviar_mensaje(
+        f"📖 <b>CARRUSEL listo para subir</b> ({n} slides)\n\n"
+        f"<b>Pasos:</b>\n"
+        f"1️⃣ Guarda las {n} fotos que te envío abajo\n"
+        f"2️⃣ Abre Instagram → <b>+</b> → elige las {n} fotos <b>en orden</b>\n"
+        f"3️⃣ Agrega música desde la app 🎵\n"
+        f"4️⃣ Copia el caption de abajo y pégalo en Instagram\n\n"
+        f"⚠️ Se marca como publicado al recibir este mensaje — no se volverá a mostrar."
+    )
+    for i, url in enumerate(slide_urls, 1):
+        try:
+            _enviar_foto_url(url, caption=f"Slide {i}/{n}")
+            _t.sleep(0.5)
+        except Exception as _se:
+            logger.warning("Error enviando slide %d del carrusel: %s", i, _se)
+
+    caption_txt = getattr(item, "caption", "") or ""
+    if caption_txt:
+        _enviar_mensaje(f"📋 <b>Caption — copia y pega en Instagram:</b>\n\n{caption_txt}")
+    else:
+        _enviar_mensaje("ℹ️ Este carrusel no tiene caption guardado.")
+
+    marcar_publicado(item.id)
+    logger.info("Carrusel %s enviado a Telegram para subida manual", item.id)
 
 
 # ── Helpers de polling ────────────────────────────────────────────────────────
@@ -1162,17 +1218,46 @@ class BotTelegram:
                 slot_key_apr = partes[2]
                 item_id_apr = partes[3]
                 hora_label_apr = "12pm" if int(slot_key_apr) < 15 else "7pm"
-                aprobaciones_data = self._leer_aprobaciones_hoy()
-                if aprobaciones_data.get("fecha") != fecha_hoy:
-                    aprobaciones_data = {"fecha": fecha_hoy, "aprobados": {}}
-                aprobaciones_data["aprobados"][slot_key_apr] = item_id_apr
-                self._guardar_aprobaciones_hoy(aprobaciones_data)
-                _answer_callback(cb_id, f"✅ Aprobado para {hora_label_apr}")
-                _enviar_mensaje(
-                    f"✅ <b>Aprobado para {hora_label_apr}</b>\n\n"
-                    f"El material se publicará automáticamente a las {hora_label_apr}.\n"
-                    f"Si querés cambiarlo, escribe /hoy."
-                )
+
+                # Buscar el item para saber si es carrusel
+                _item_apr = None
+                try:
+                    _bib_data = _bib_cargar_global()
+                    for _raw in _bib_data.get("items", []):
+                        if _raw.get("id") == item_id_apr:
+                            from agente.gestores.biblioteca import ItemBiblioteca
+                            _item_apr = ItemBiblioteca(**{k: v for k, v in _raw.items()})
+                            break
+                except Exception as _e_bib:
+                    logger.warning("No se pudo cargar item %s para verificar carrusel: %s", item_id_apr, _e_bib)
+
+                if _item_apr and _item_apr.es_carrusel:
+                    # Carrusel: enviar slides ahora mismo (no esperar al workflow)
+                    _answer_callback(cb_id, "📖 Enviando slides...")
+                    _enviar_mensaje(
+                        f"📖 <b>Carrusel aprobado — enviando slides ahora</b>\n\n"
+                        f"No necesitás esperar al workflow de las {hora_label_apr}.\n"
+                        f"Subilo a Instagram con música cuando quieras 🎵"
+                    )
+                    import threading
+                    threading.Thread(
+                        target=_enviar_carrusel_telegram,
+                        args=(_item_apr,),
+                        daemon=True,
+                    ).start()
+                else:
+                    # Post/Reel/Story: guardar en aprobaciones para el workflow
+                    aprobaciones_data = self._leer_aprobaciones_hoy()
+                    if aprobaciones_data.get("fecha") != fecha_hoy:
+                        aprobaciones_data = {"fecha": fecha_hoy, "aprobados": {}}
+                    aprobaciones_data["aprobados"][slot_key_apr] = item_id_apr
+                    self._guardar_aprobaciones_hoy(aprobaciones_data)
+                    _answer_callback(cb_id, f"✅ Aprobado para {hora_label_apr}")
+                    _enviar_mensaje(
+                        f"✅ <b>Aprobado para {hora_label_apr}</b>\n\n"
+                        f"El material se publicará automáticamente a las {hora_label_apr}.\n"
+                        f"Si querés cambiarlo, escribe /hoy."
+                    )
 
             elif accion == "ya_publique" and len(partes) >= 5:
                 # hoy:ya_publique:<item_id>:<slot_key>:<tipo>
@@ -1228,8 +1313,7 @@ class BotTelegram:
                 hora_label_mod = "12pm" if int(slot_key_mod) < 15 else "7pm"
                 _answer_callback(cb_id, "✍️ Escribe tu corrección")
                 # Cargar caption actual del item
-                from agente.gestores.biblioteca import _cargar as _bib_cargar
-                _bib_data = _bib_cargar()
+                _bib_data = _bib_cargar_global()
                 _item_raw = next((r for r in _bib_data["items"] if r["id"] == item_id_mod), None)
                 caption_actual = (_item_raw or {}).get("caption", "") if _item_raw else ""
                 pilar_actual = (_item_raw or {}).get("pilar", "lifestyle_y_comunidad") if _item_raw else "lifestyle_y_comunidad"
@@ -1394,7 +1478,7 @@ class BotTelegram:
                 _answer_callback(cb_id, "⚠️ Expirado o ya procesado")
                 return
             _answer_callback(cb_id, "✅ Publicando...")
-            _enviar_mensaje(f"⏳ Publicando {item.tipo.upper()}...")
+            _enviar_mensaje(f"⏳ Publicando {_tipo_display(item)}...")
             import threading
             threading.Thread(
                 target=self._publicar_en_hilo,
@@ -1427,7 +1511,7 @@ class BotTelegram:
             self._set_estado(chat_id, "esperando_correccion_biblioteca", {"rev_id": rev_id})
             pilar_label = _html.escape((item.pilar or "").replace("_", " ").title())
             _enviar_mensaje(
-                f"✍️ <b>Corregir {item.tipo.upper()} — {pilar_label}</b>\n\n"
+                f"✍️ <b>Corregir {_tipo_display(item)} — {pilar_label}</b>\n\n"
                 "Escribe qué cambiar. Ejemplos:\n"
                 "• <i>El texto es muy largo, acortalo</i>\n"
                 "• <i>Tono muy comercial, hazlo más personal</i>\n"
@@ -2132,8 +2216,9 @@ class BotTelegram:
                 pilar_raw = (item_slot.pilar or "").replace("_", " ").title()
                 pilar_e = PILAR_EMOJI.get(item_slot.pilar or "", "🌶") + " " + esc(pilar_raw)
 
+                tipo_slot_lbl = _tipo_display(item_slot)
                 lineas.append(
-                    f"\n{emoji} <b>{hora_label} — {tipo.upper()}</b>  {estado_str}\n"
+                    f"\n{emoji} <b>{hora_label} — {tipo_slot_lbl}</b>  {estado_str}\n"
                     f"   {pilar_e}  •  {tiene_media}"
                 )
                 if item_slot.caption:
@@ -2145,7 +2230,7 @@ class BotTelegram:
                     lineas.append("   ⚠️ <i>Sin caption — se generará al publicar</i>")
 
                 if not ya_paso:
-                    items_con_media.append((item_slot, f"{hora_label} — {tipo.upper()}"))
+                    items_con_media.append((item_slot, f"{hora_label} — {tipo_slot_lbl}"))
             else:
                 lineas.append(
                     f"\n{emoji} <b>{hora_label} — {tipo.upper()}</b>  {estado_str}\n"
@@ -2405,10 +2490,7 @@ class BotTelegram:
         en captions de Telegram y evitar truncación de HTML.
         """
         pilar_label = _html.escape((item.pilar or "").replace("_", " ").title())
-        tipo_label = {
-            "post": "📸 POST", "reel": "🎬 REEL",
-            "story": "⭕ STORY", "carrusel": "📖 CARRUSEL",
-        }.get(item.tipo, item.tipo.upper())
+        tipo_label = _tipo_display(item)
 
         # 1. Enviar foto/video como preview visual (caption corto, sin botones)
         cloudinary_url = getattr(item, "cloudinary_url", "") or ""
@@ -2570,14 +2652,24 @@ class BotTelegram:
         self._enviar_preview_biblioteca(item, rev_id)
 
     def _publicar_en_hilo(self, item) -> None:
-        """Publica el item en Instagram en un hilo separado para no bloquear el bot."""
-        from agente.instagram.publicar_item import publicar_item
+        """Publica el item en Instagram en un hilo separado para no bloquear el bot.
+
+        Los carruseles NO se publican vía API — se envían a Telegram para subida
+        manual con música.
+        """
+        tipo_lbl = _tipo_display(item)
         try:
+            if item.es_carrusel:
+                _enviar_carrusel_telegram(item)
+                _commit_biblioteca(item.id)
+                return
+
+            from agente.instagram.publicar_item import publicar_item
             media_id = publicar_item(item)
             if media_id == "SIN_MEDIA":
                 marcar_descartado(item.id)
                 _enviar_mensaje(
-                    f"⚠️ <b>{item.tipo.upper()} descartado</b> — no tiene archivo ni URL.\n"
+                    f"⚠️ <b>{tipo_lbl} descartado</b> — no tiene archivo ni URL.\n"
                     "Sube el archivo a Google Drive y vuelve a agregarlo."
                 )
                 return
@@ -2585,11 +2677,11 @@ class BotTelegram:
                 marcar_publicado(item.id, media_id)
                 emoji = {"post": "📸", "reel": "🎬", "story": "⭕"}.get(item.tipo, "✅")
                 _enviar_mensaje(
-                    f"{emoji} <b>{item.tipo.upper()} publicado en Instagram</b>\n"
+                    f"{emoji} <b>{tipo_lbl} publicado en Instagram</b>\n"
                     f"<a href='https://www.instagram.com/salsas.bestial/'>Ver en @salsas.bestial →</a>"
                 )
             else:
-                _enviar_mensaje(f"❌ Error publicando {item.tipo.upper()}. Revisa los logs.")
+                _enviar_mensaje(f"❌ Error publicando {tipo_lbl}. Revisa los logs.")
         except Exception as e:
             logger.error("Error en _publicar_en_hilo: %s", e, exc_info=True)
             _enviar_mensaje(f"❌ Error inesperado: {e}")
