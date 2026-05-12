@@ -247,3 +247,16 @@ def listar_pendientes(tipo: str = None) -> list[ItemBiblioteca]:
             if tipo is None or raw["tipo"] == tipo:
                 items.append(ItemBiblioteca(**{k: v for k, v in raw.items()}))
     return items
+
+
+def siguiente_carrusel_pendiente() -> Optional[ItemBiblioteca]:
+    """Devuelve el siguiente carrusel pendiente (FIFO).
+
+    Los carruseles tienen tipo='post' y es_carrusel=True.
+    Esta función los filtra explícitamente para no confundirlos con posts simples.
+    """
+    data = _cargar()
+    for raw in data["items"]:
+        if raw["estado"] == "pendiente" and raw.get("es_carrusel"):
+            return ItemBiblioteca(**{k: v for k, v in raw.items()})
+    return None

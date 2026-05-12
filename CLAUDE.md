@@ -136,9 +136,15 @@ El workflow `bot_telegram.yml` tiene `cron: '0 */5 * * *'` — se reinicia autom
 
 | Día | Mediodía (10–16h) | Noche (17–23h) |
 |---|---|---|
-| Lunes–Viernes | post | reel/story (alternado) |
+| Lunes | post | reel |
+| Martes | post | reel |
+| **Miércoles** | **carrusel** ← slot dedicado | story |
+| Jueves | reel | story |
+| Viernes | post | reel |
 | Sábado | post | story |
 | Domingo | story | story |
+
+**Slot de carrusel (miércoles mediodía):** El workflow busca el siguiente carrusel pendiente en la biblioteca. Si no hay ninguno, auto-genera un carrusel de datos curiosos con `generar_carrusel_html()` sobre un tema rotativo (picante, maridajes, historia de salsas, etc.).
 
 **Dos flujos de aprobación:**
 

@@ -982,20 +982,20 @@ def publicar_programado(forzar: bool = False, tipo: str | None = None):
     #   Noche    (17-23 COL) → reel o story
     HORARIO = {
         # (dia_semana, hora_min, hora_max): tipo_preferido
-        (0, 10, 16): "post",    # Lunes mediodía
-        (0, 17, 23): "reel",    # Lunes noche
-        (1, 10, 16): "post",    # Martes mediodía
-        (1, 17, 23): "reel",    # Martes noche
-        (2, 10, 16): "post",    # Miércoles mediodía
-        (2, 17, 23): "story",   # Miércoles noche
-        (3, 10, 16): "reel",    # Jueves mediodía
-        (3, 17, 23): "story",   # Jueves noche
-        (4, 10, 16): "post",    # Viernes mediodía
-        (4, 17, 23): "reel",    # Viernes noche
-        (5, 10, 16): "post",    # Sábado mediodía
-        (5, 17, 23): "story",   # Sábado noche
-        (6, 10, 16): "story",   # Domingo mediodía
-        (6, 17, 23): "story",   # Domingo noche
+        (0, 10, 16): "post",      # Lunes mediodía
+        (0, 17, 23): "reel",      # Lunes noche
+        (1, 10, 16): "post",      # Martes mediodía
+        (1, 17, 23): "reel",      # Martes noche
+        (2, 10, 16): "carrusel",  # Miércoles mediodía ← slot dedicado a carrusel
+        (2, 17, 23): "story",     # Miércoles noche
+        (3, 10, 16): "reel",      # Jueves mediodía
+        (3, 17, 23): "story",     # Jueves noche
+        (4, 10, 16): "post",      # Viernes mediodía
+        (4, 17, 23): "reel",      # Viernes noche
+        (5, 10, 16): "post",      # Sábado mediodía
+        (5, 17, 23): "story",     # Sábado noche
+        (6, 10, 16): "story",     # Domingo mediodía
+        (6, 17, 23): "story",     # Domingo noche
     }
 
     tipo_pub = None
@@ -1067,7 +1067,25 @@ def publicar_programado(forzar: bool = False, tipo: str | None = None):
 
     # Intentar tipo preferido; si no hay, cualquier tipo disponible
     # Si hay un ítem aprobado específico, usarlo directamente
-    from agente.gestores.biblioteca import listar_pendientes as _listar_pendientes
+    from agente.gestores.biblioteca import (
+        listar_pendientes as _listar_pendientes,
+        siguiente_carrusel_pendiente as _sig_carrusel,
+    )
+
+    # ── Temas rotativos para carruseles auto-generados ────────────────────────
+    TEMAS_CARRUSEL = [
+        "curiosidades del chile habanero",
+        "beneficios de comer picante",
+        "historia de las salsas picantes en Latinoamérica",
+        "tipos de chile y su nivel de picante",
+        "por qué el picante es adictivo",
+        "maridajes perfectos para salsas artesanales",
+        "cómo se hace una salsa tatemada",
+        "diferencia entre salsa fresca y salsa ahumada",
+        "el chile más picante del mundo",
+        "rituales del picante en Colombia y México",
+    ]
+
     item = None
     if item_aprobado_id:
         todos_pendientes = _listar_pendientes()
@@ -1076,8 +1094,43 @@ def publicar_programado(forzar: bool = False, tipo: str | None = None):
             console.print(f"[green]✅ Publicando ítem aprobado: {item_aprobado_id}[/green]")
         else:
             console.print(f"[yellow]Ítem aprobado {item_aprobado_id} no encontrado en pendientes — usando siguiente disponible[/yellow]")
+
     if not item:
-        item = siguiente_pendiente(tipo_pub)
+        if tipo_pub == "carrusel":
+            # Slot dedicado a carrusel (miércoles mediodía):
+            # 1. Buscar cualquier carrusel pendiente en la biblioteca
+            # 2. Si no hay ninguno → auto-generar un carrusel de datos curiosos
+            item = _sig_carrusel()
+            if item:
+                console.print(f"[green]📖 Carrusel pendiente encontrado: {item.id}[/green]")
+                tipo_pub = "post"  # Los carruseles se publican como tipo post
+            else:
+                console.print("[yellow]Sin carruseles en biblioteca — generando carrusel de datos curiosos...[/yellow]")
+                try:
+                    import random as _random
+                    from agente.generadores.carrusel_html import generar_carrusel_html
+                    from agente.gestores.biblioteca import agregar_carrusel
+                    tema_auto = _random.choice(TEMAS_CARRUSEL)
+                    _enviar_mensaje(f"📚 <b>Miércoles = día de carrusel</b>\n\nNo hay carruseles en biblioteca — generando uno automático sobre:\n<b>{tema_auto}</b> 🌶️")
+                    console.print(f"  Tema: '{tema_auto}'")
+                    rutas_auto = generar_carrusel_html(tema=tema_auto, n_slides=3, pilar="educacion_sobre_salsas")
+                    if rutas_auto:
+                        item = agregar_carrusel(rutas_auto, tipo="post", pilar="educacion_sobre_salsas")
+                        console.print(f"  [green]✓[/green] Carrusel auto-generado: {len(rutas_auto)} slides → {item.id}")
+                        _enviar_mensaje(f"✅ Carrusel generado ({len(rutas_auto)} slides). Publicando...")
+                        tipo_pub = "post"
+                    else:
+                        raise RuntimeError("No se generaron slides")
+                except Exception as e:
+                    console.print(f"  [red]Error generando carrusel automático: {e}[/red]")
+                    # Fallback: publicar cualquier post disponible
+                    item = siguiente_pendiente("post")
+                    if item:
+                        tipo_pub = "post"
+                        console.print("[yellow]Fallback → publicando post disponible en lugar del carrusel[/yellow]")
+        else:
+            item = siguiente_pendiente(tipo_pub)
+
     if not item:
         for tipo_alt in ["post", "reel", "story"]:
             if tipo_alt != tipo_pub:
