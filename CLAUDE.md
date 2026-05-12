@@ -148,10 +148,19 @@ El workflow `bot_telegram.yml` tiene `cron: '0 */5 * * *'` — se reinicia autom
 
 **Dos flujos de aprobación:**
 
-- **Flujo A (pre-aprobado):** si el usuario aprobó el item desde `/hoy` antes de que corra el workflow, se publica directamente sin pedir confirmación en Telegram.
+- **Flujo A (pre-aprobado):** si el usuario aprobó el item desde `/hoy` antes de que corra el workflow, se activa directamente sin pedir confirmación en Telegram.
 - **Flujo B (sin pre-aprobación):** el workflow envía el preview en Telegram y espera hasta 20 minutos por `✅ Publicar ahora` o `⏭ Saltar`.
 
 > **Tip:** aprobar desde `/hoy` antes de las 11:30am/6:30pm evita la ventana de 20 minutos y elimina la race condition entre el bot y el workflow.
+
+**Carruseles — flujo manual con música:**
+
+Los carruseles **nunca se auto-publican** en Instagram. En cambio, tanto el Flujo A como el Flujo B llaman a `_enviar_carrusel_manual()` que:
+1. Envía cada slide a Telegram como foto individual (`Slide 1/N`, `Slide 2/N`…)
+2. Envía el caption en un mensaje aparte para copiar y pegar
+3. Marca el item como publicado en `biblioteca.json`
+
+El usuario sube el carrusel manualmente desde la app de Instagram y puede agregar música. Los carruseles auto-generados de datos curiosos siguen el mismo flujo.
 
 ## Biblioteca de contenido (biblioteca.json)
 
@@ -183,7 +192,7 @@ pendiente → publicado
 | Imagen → Post | Convertida a MP4 con música → Graph API `REELS`; si falla → imagen estática |
 | Imagen → Story | Convertida a MP4 con música → Graph API `STORIES`; si falla → imagen estática |
 | Video → Reel/Story | Subido a Cloudinary → Graph API con `media_type=REELS/STORIES` |
-| Carrusel | Sube slides individualmente → container `CAROUSEL` → media_publish |
+| Carrusel | ⚠️ **No se publica via API** — se envía a Telegram para subida manual con música |
 
 **`media_type` correcto:** usar `REELS` (no `VIDEO` — deprecado). Para stories: `STORIES`. Siempre incluir `share_to_feed: true` en Reels.
 
@@ -347,3 +356,5 @@ Estos archivos están en `.gitignore` — no se commitean al repo.
 | May-2026 | Bot enviaba "🤖 Agente activo" cada 5h | Cooldown de 4h usando `bot_ultimo_inicio.json` |
 | May-2026 | Posts publicados sin música (imagen estática) | `ffmpeg` binario no instalado en GitHub Actions → MoviePy fallaba silenciosamente → fallback a imagen. Fix: `sudo apt-get install -y ffmpeg` en ambos workflows |
 | May-2026 | Carruseles sin preview visual al aprobar | `if cloudinary_url and not item.es_carrusel` excluía carruseles del preview. Fix: bloque dedicado que envía todos los slides individualmente antes de los botones |
+| May-2026 | Carruseles se auto-publicaban sin música via Graph API | `publicar_programado` llamaba a `_ejecutar_publicacion()` para carruseles. Fix: helper `_enviar_carrusel_manual()` que envía slides a Telegram para subida manual |
+| May-2026 | `/biblioteca` no mostraba los carruseles | Sort `reverse=True` ponía los items más nuevos al tope; carruseles antiguos quedaban fuera del límite MAX_VISIBLE. Fix: sort FIFO (`reverse=False`) + MAX_VISIBLE subido de 6 a 10 |
