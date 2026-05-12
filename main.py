@@ -1303,17 +1303,73 @@ def publicar_programado(forzar: bool = False, tipo: str | None = None):
             console.print("[red]Error al publicar[/red]")
             _enviar_mensaje(f"❌ Error publicando {tipo_pub_str.upper()}. Revisa los logs.")
 
+    # ── Helper para carruseles: enviar slides + caption a Telegram (subida manual) ──
+    # Los carruseles NO se publican automáticamente — el usuario los sube desde
+    # la app de Instagram para poder agregar música. El sistema sólo envía el
+    # material y el caption, y marca el item como publicado para no repetirlo.
+    def _enviar_carrusel_manual(item_pub):
+        slide_urls = [
+            u.strip()
+            for u in (item_pub.cloudinary_url or "").split(",")
+            if u.strip().startswith("http")
+        ]
+        n = len(slide_urls)
+        if n == 0:
+            console.print("[yellow]Carrusel sin URLs de Cloudinary — no se puede enviar[/yellow]")
+            _enviar_mensaje(
+                "⚠️ <b>Carrusel sin imágenes</b>\n\n"
+                "No se encontraron URLs de Cloudinary para este carrusel.\n"
+                "Usa /estado para revisar el item."
+            )
+            return
+
+        console.print(f"[cyan]Enviando carrusel manual ({n} slides) a Telegram...[/cyan]")
+        _enviar_mensaje(
+            f"📖 <b>CARRUSEL listo para subir</b> ({n} slides)\n\n"
+            f"<b>Pasos:</b>\n"
+            f"1️⃣ Guarda las {n} fotos que te envío abajo\n"
+            f"2️⃣ Abre Instagram → <b>+</b> → elige las {n} fotos <b>en orden</b>\n"
+            f"3️⃣ Agrega música desde la app 🎵\n"
+            f"4️⃣ Copia el caption de abajo y pégalo en Instagram\n\n"
+            f"⚠️ Se marca como publicado al recibir este mensaje — no se volverá a mostrar."
+        )
+        for i, url in enumerate(slide_urls, 1):
+            try:
+                _enviar_foto_url(url, caption=f"Slide {i}/{n}")
+                _time.sleep(0.5)
+            except Exception as _se:
+                console.print(f"[yellow]Error enviando slide {i}: {_se}[/yellow]")
+
+        caption_carrusel = item_pub.caption or ""
+        if caption_carrusel:
+            # Telegram limita mensajes a 4096 chars; el caption ya es corto
+            _enviar_mensaje(
+                f"📋 <b>Caption — copia y pega en Instagram:</b>\n\n{caption_carrusel}"
+            )
+        else:
+            _enviar_mensaje("ℹ️ Este carrusel no tiene caption guardado.")
+
+        marcar_publicado(item_pub.id)
+        console.print("[green bold]✓ Carrusel enviado para subida manual — marcado como publicado[/green bold]")
+
     # ── Flujo A: item pre-aprobado desde /hoy → publicar DIRECTAMENTE ────────
     # Esto evita la race condition donde el bot consume la respuesta del usuario
     # antes de que el workflow de publicación la reciba.
     if item_aprobado_id and item.id == item_aprobado_id:
         slot_label_a = "mediodía" if hora < 16 else "noche"
         console.print(f"[green bold]✅ Pre-aprobado desde /hoy — publicando directamente (sin preview)[/green bold]")
-        _enviar_mensaje(
-            f"🚀 <b>Publicando {tipo_label}</b> — slot {slot_label_a}\n"
-            f"Aprobado previamente desde /hoy · publicando ahora..."
-        )
-        _ejecutar_publicacion(item, tipo_pub)
+        if item.es_carrusel:
+            _enviar_mensaje(
+                f"📖 <b>Carrusel listo</b> — slot {slot_label_a}\n"
+                f"Aprobado desde /hoy · enviando slides para subida manual con música..."
+            )
+            _enviar_carrusel_manual(item)
+        else:
+            _enviar_mensaje(
+                f"🚀 <b>Publicando {tipo_label}</b> — slot {slot_label_a}\n"
+                f"Aprobado previamente desde /hoy · publicando ahora..."
+            )
+            _ejecutar_publicacion(item, tipo_pub)
         return
 
     # ── Flujo B: sin pre-aprobación → enviar preview y esperar tap (20 min) ──
@@ -1484,7 +1540,10 @@ def publicar_programado(forzar: bool = False, tipo: str | None = None):
         return
 
     # ── Publicar ──────────────────────────────────────────────────────────────
-    _ejecutar_publicacion(item, tipo_pub)
+    if item.es_carrusel:
+        _enviar_carrusel_manual(item)
+    else:
+        _ejecutar_publicacion(item, tipo_pub)
 
 
 @cli.command()
