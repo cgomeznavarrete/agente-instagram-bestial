@@ -1812,15 +1812,16 @@ class BotTelegram:
         /biblioteca — muestra cada ítem pendiente con preview y botones:
           ✅ Ya publiqué  → marcar_publicado → desaparece de la biblioteca
           🗑 Descartar    → marcar_descartado → desaparece de la biblioteca
+
+        Corre en hilo separado para no bloquear el bot mientras envía media.
         """
-        try:
-            self._mostrar_biblioteca_impl()
-        except Exception as e:
-            logger.error("Error en _mostrar_biblioteca: %s", e, exc_info=True)
-            _enviar_mensaje(f"⚠️ Error mostrando biblioteca: <code>{_html.escape(str(e))}</code>")
+        import threading
+        threading.Thread(target=self._mostrar_biblioteca_impl, daemon=True).start()
 
     def _mostrar_biblioteca_impl(self):
         from datetime import datetime
+
+        MAX_VISIBLE = 6  # limitar por página para evitar timeouts y flood de Telegram
 
         EMOJI = {"post": "📸", "reel": "🎬", "story": "⭕", "carrusel": "📖"}
         PILAR_CORTO = {
@@ -1834,73 +1835,92 @@ class BotTelegram:
             "como_comprar": "Cómo comprar",
         }
 
-        todos = []
-        for tipo in ["reel", "post", "story"]:
-            todos.extend(listar_pendientes(tipo))
-        # Carruseles están guardados como tipo=post con es_carrusel=True — ya incluidos
-        # Ordenar por fecha agregado (más reciente primero)
-        todos.sort(key=lambda i: i.fecha_agregado, reverse=True)
+        try:
+            todos = []
+            for tipo in ["reel", "post", "story"]:
+                todos.extend(listar_pendientes(tipo))
+            # Carruseles están guardados como tipo=post con es_carrusel=True — ya incluidos
+            # Ordenar por fecha agregado (más reciente primero)
+            todos.sort(key=lambda i: i.fecha_agregado, reverse=True)
 
-        if not todos:
-            _enviar_mensaje("📚 <b>Biblioteca vacía</b>\n\nNo hay material pendiente. Envíame fotos o videos.")
-            return
+            if not todos:
+                _enviar_mensaje("📚 <b>Biblioteca vacía</b>\n\nNo hay material pendiente. Envíame fotos o videos.")
+                return
 
-        conteo = contar_pendientes()
-        _enviar_mensaje(
-            f"📚 <b>Biblioteca — {len(todos)} ítems pendientes</b>\n"
-            f"📸 {conteo['post']} posts · 🎬 {conteo['reel']} reels · ⭕ {conteo['story']} stories · 📖 {conteo['carrusel']} carruseles\n\n"
-            f"<i>Presiona ✅ si ya lo publicaste manualmente o 🗑 para descartarlo.</i>"
-        )
-        time.sleep(0.3)
+            # Contar correctamente — carruseles ≠ posts simples
+            n_reels     = sum(1 for it in todos if it.tipo == "reel")
+            n_posts     = sum(1 for it in todos if it.tipo == "post" and not it.es_carrusel)
+            n_carruseles = sum(1 for it in todos if it.es_carrusel)
+            n_stories   = sum(1 for it in todos if it.tipo == "story")
+            mostrando   = min(MAX_VISIBLE, len(todos))
 
-        for it in todos:
-            tipo_disp = "carrusel" if it.es_carrusel else it.tipo
-            emoji = EMOJI.get(tipo_disp, "📌")
-            pilar = PILAR_CORTO.get(it.pilar or "", (it.pilar or "").replace("_", " ").title())
-            fecha = datetime.fromtimestamp(it.fecha_agregado).strftime("%d/%m %H:%M")
-
-            # Caption del ítem
-            primera = ""
-            if it.caption:
-                primera = str(it.caption).split("\n")[0].strip()[:120]
-            caption_item = (
-                f"{emoji} <b>{tipo_disp.upper()}</b>  •  {_html.escape(pilar)}\n"
-                f"📅 {fecha}\n"
+            _enviar_mensaje(
+                f"📚 <b>Biblioteca — {len(todos)} ítems pendientes</b>\n"
+                f"📸 {n_posts} posts · 🎬 {n_reels} reels · ⭕ {n_stories} stories · 📖 {n_carruseles} carruseles\n\n"
+                f"<i>Presiona ✅ si ya lo publicaste manualmente o 🗑 para descartarlo.\n"
+                f"Mostrando los {mostrando} más recientes.</i>"
             )
-            if primera:
-                caption_item += f"🪝 <i>{_html.escape(primera)}</i>"
+            time.sleep(0.3)
 
-            # Botones
-            teclado = {"inline_keyboard": [[
-                {"text": "✅ Ya lo publiqué", "callback_data": f"bib:publicado:{it.id}"},
-                {"text": "🗑 Descartar",      "callback_data": f"bib:descartar:{it.id}"},
-            ]]}
+            for it in todos[:MAX_VISIBLE]:
+                tipo_disp = "carrusel" if it.es_carrusel else it.tipo
+                emoji = EMOJI.get(tipo_disp, "📌")
+                pilar = PILAR_CORTO.get(it.pilar or "", (it.pilar or "").replace("_", " ").title())
+                fecha = datetime.fromtimestamp(it.fecha_agregado).strftime("%d/%m %H:%M")
 
-            # Enviar media + botones
-            enviado = False
-            if it.ruta_local:
-                ruta_l = Path(it.ruta_local)
-                if ruta_l.exists() and ruta_l.is_file():
-                    if ruta_l.suffix.lower() in (".mp4", ".mov", ".m4v"):
-                        r = _enviar_video(ruta_l, caption=caption_item, reply_markup=teclado)
-                    else:
-                        r = _enviar_foto(ruta_l, caption=caption_item, reply_markup=teclado)
-                    enviado = r.get("ok", False) if isinstance(r, dict) else bool(r)
+                # Caption del ítem
+                primera = ""
+                if it.caption:
+                    primera = str(it.caption).split("\n")[0].strip()[:120]
+                caption_item = (
+                    f"{emoji} <b>{tipo_disp.upper()}</b>  •  {_html.escape(pilar)}\n"
+                    f"📅 {fecha}\n"
+                )
+                if primera:
+                    caption_item += f"🪝 <i>{_html.escape(primera)}</i>"
 
-            if not enviado and it.cloudinary_url:
-                url1 = _primera_url(it.cloudinary_url)
-                if url1:
-                    if _es_video_url(url1):
-                        r = _enviar_video_url(url1, caption=caption_item, reply_markup=teclado)
-                    else:
-                        r = _enviar_foto_url(url1, caption=caption_item, reply_markup=teclado)
-                    enviado = r.get("ok", False) if isinstance(r, dict) else bool(r)
+                # Botones
+                teclado = {"inline_keyboard": [[
+                    {"text": "✅ Ya lo publiqué", "callback_data": f"bib:publicado:{it.id}"},
+                    {"text": "🗑 Descartar",      "callback_data": f"bib:descartar:{it.id}"},
+                ]]}
 
-            if not enviado:
-                # Sin media — solo texto con botones
-                _enviar_mensaje(caption_item, reply_markup=teclado)
+                # Enviar media + botones
+                enviado = False
+                if it.ruta_local:
+                    ruta_l = Path(it.ruta_local)
+                    if ruta_l.exists() and ruta_l.is_file():
+                        if ruta_l.suffix.lower() in (".mp4", ".mov", ".m4v"):
+                            r = _enviar_video(ruta_l, caption=caption_item, reply_markup=teclado)
+                        else:
+                            r = _enviar_foto(ruta_l, caption=caption_item, reply_markup=teclado)
+                        enviado = r.get("ok", False) if isinstance(r, dict) else bool(r)
 
-            time.sleep(0.4)
+                if not enviado and it.cloudinary_url:
+                    url1 = _primera_url(it.cloudinary_url)
+                    if url1:
+                        if _es_video_url(url1):
+                            r = _enviar_video_url(url1, caption=caption_item, reply_markup=teclado)
+                        else:
+                            r = _enviar_foto_url(url1, caption=caption_item, reply_markup=teclado)
+                        enviado = r.get("ok", False) if isinstance(r, dict) else bool(r)
+
+                if not enviado:
+                    # Sin media — solo texto con botones
+                    _enviar_mensaje(caption_item, reply_markup=teclado)
+
+                time.sleep(0.4)
+
+            restantes = len(todos) - MAX_VISIBLE
+            if restantes > 0:
+                _enviar_mensaje(
+                    f"📌 <i>...y {restantes} ítems más en la biblioteca.\n"
+                    f"Usa /publicar para procesarlos uno a uno con música y preview completo.</i>"
+                )
+
+        except Exception as e:
+            logger.error("Error en _mostrar_biblioteca_impl: %s", e, exc_info=True)
+            _enviar_mensaje(f"⚠️ Error mostrando biblioteca: <code>{_html.escape(str(e))}</code>")
 
     def _mostrar_estado(self):
         from datetime import datetime
@@ -2175,8 +2195,84 @@ class BotTelegram:
                     # Caption completo en el preview (Telegram trunca automáticamente a 1024)
                     caption_prev += esc(str(item_slot.caption).strip()[:900])
 
+                # ── Convertir imagen a video con música antes del preview ────
+                # Las imágenes estáticas no tienen música en Instagram.
+                # Convertimos aquí para que el usuario apruebe el resultado final.
+                if not item_slot.es_carrusel:
+                    _nombre_item = (item_slot.nombre_archivo or "").lower()
+                    _es_img = not any(_nombre_item.endswith(e) for e in (".mp4", ".mov", ".avi", ".m4v"))
+                    if _es_img:
+                        _enviar_mensaje("⏳ Preparando preview con música… (~30 seg)")
+                        _ruta_conv = Path(item_slot.ruta_local) if item_slot.ruta_local else None
+                        if _ruta_conv and not _ruta_conv.exists():
+                            _ruta_conv = None
+
+                        # Descargar de Cloudinary si no hay archivo local
+                        _tmp_descargado = None
+                        if _ruta_conv is None and item_slot.cloudinary_url:
+                            try:
+                                import urllib.request as _ul
+                                _url1 = _primera_url(item_slot.cloudinary_url)
+                                _ext_d = Path(_url1.split("?")[0]).suffix or ".jpg"
+                                _tmp_descargado = Path(tempfile.mktemp(suffix=_ext_d))
+                                _ul.urlretrieve(_url1, _tmp_descargado)
+                                _ruta_conv = _tmp_descargado
+                            except Exception as _de:
+                                logger.warning("No se pudo descargar imagen para preview: %s", _de)
+
+                        if _ruta_conv and _ruta_conv.exists():
+                            try:
+                                import cloudinary as _cld
+                                import cloudinary.uploader as _cld_up
+                                from config import settings as _cfg
+                                _cld.config(cloudinary_url=_cfg.CLOUDINARY_URL)
+                                from agente.instagram.publicar_item import _imagen_a_reel_cloudinary
+                                _video_url = _imagen_a_reel_cloudinary(
+                                    _ruta_conv, item_slot.pilar or "lifestyle_y_comunidad"
+                                )
+                                if _video_url:
+                                    # Actualizar item en memoria y persistir en biblioteca
+                                    item_slot.cloudinary_url = _video_url
+                                    _nombre_base = Path(item_slot.nombre_archivo or "media").stem
+                                    item_slot.nombre_archivo = _nombre_base + ".mp4"
+                                    try:
+                                        from agente.gestores.biblioteca import _cargar, _guardar
+                                        _bib = _cargar()
+                                        for _raw in _bib["items"]:
+                                            if _raw["id"] == item_slot.id:
+                                                _raw["cloudinary_url"] = _video_url
+                                                _raw["nombre_archivo"] = item_slot.nombre_archivo
+                                                break
+                                        _guardar(_bib)
+                                        _commit_biblioteca(item_slot.id)
+                                        logger.info("Video con música guardado para %s", item_slot.id)
+                                    except Exception as _se:
+                                        logger.warning("No se pudo guardar video en biblioteca: %s", _se)
+                            except Exception as _ce:
+                                logger.warning("Error convirtiendo imagen a video para /hoy: %s", _ce)
+                            finally:
+                                # Limpiar archivo temporal descargado
+                                if _tmp_descargado and _tmp_descargado.exists():
+                                    try:
+                                        _tmp_descargado.unlink(missing_ok=True)
+                                    except Exception:
+                                        pass
+
                 enviado = False
-                if item_slot.ruta_local:
+                # Carrusel: enviar todos los slides
+                if item_slot.es_carrusel and item_slot.cloudinary_url:
+                    _slide_urls = [u.strip() for u in item_slot.cloudinary_url.split(",") if u.strip().startswith("http")]
+                    if _slide_urls:
+                        r = _enviar_foto_url(_slide_urls[0], caption=caption_prev)
+                        enviado = r.get("ok", False)
+                        for _su in _slide_urls[1:9]:
+                            _enviar_foto_url(_su, caption="")
+                            time.sleep(0.3)
+                # Preferir cloudinary_url si tiene video (puede haber sido actualizada arriba)
+                if not enviado and item_slot.cloudinary_url and _es_video_url(_primera_url(item_slot.cloudinary_url)):
+                    r = _enviar_video_url(_primera_url(item_slot.cloudinary_url), caption=caption_prev)
+                    enviado = r.get("ok", False)
+                if not enviado and item_slot.ruta_local:
                     ruta_l = Path(item_slot.ruta_local)
                     if ruta_l.exists():
                         if ruta_l.suffix.lower() in (".mp4", ".mov", ".m4v"):
