@@ -1821,7 +1821,7 @@ class BotTelegram:
     def _mostrar_biblioteca_impl(self):
         from datetime import datetime
 
-        MAX_VISIBLE = 6  # limitar por página para evitar timeouts y flood de Telegram
+        MAX_VISIBLE = 10  # limitar por página para evitar timeouts y flood de Telegram
 
         EMOJI = {"post": "📸", "reel": "🎬", "story": "⭕", "carrusel": "📖"}
         PILAR_CORTO = {
@@ -1840,8 +1840,8 @@ class BotTelegram:
             for tipo in ["reel", "post", "story"]:
                 todos.extend(listar_pendientes(tipo))
             # Carruseles están guardados como tipo=post con es_carrusel=True — ya incluidos
-            # Ordenar por fecha agregado (más reciente primero)
-            todos.sort(key=lambda i: i.fecha_agregado, reverse=True)
+            # Ordenar FIFO: el más antiguo primero (= el próximo en publicarse)
+            todos.sort(key=lambda i: i.fecha_agregado, reverse=False)
 
             if not todos:
                 _enviar_mensaje("📚 <b>Biblioteca vacía</b>\n\nNo hay material pendiente. Envíame fotos o videos.")
