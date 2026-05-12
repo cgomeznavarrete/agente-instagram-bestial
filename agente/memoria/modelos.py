@@ -163,8 +163,8 @@ class InfoCuenta(BaseModel):
 
 class MetricasSemana(BaseModel):
     semana: str
-    fecha_inicio: date
-    fecha_fin: date
+    fecha_inicio: Optional[date] = None
+    fecha_fin: Optional[date] = None
     metricas_cuenta: dict = Field(default_factory=dict)
     mejores_posts: list[str] = Field(default_factory=list, description="Lista de instagram_media_id")
     peores_posts: list[str] = Field(default_factory=list)

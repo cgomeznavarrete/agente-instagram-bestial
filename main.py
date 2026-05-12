@@ -1267,6 +1267,71 @@ def publicar_programado(forzar: bool = False, tipo: str | None = None):
     # Nota: el bot de Telegram corre 24/7 con el mismo token. Si el usuario
     # aprueba mientras el bot está activo, hay posibilidad de race condition.
     # Para evitarla, SIEMPRE usa /hoy para aprobar ANTES de que corra el workflow.
+
+    # ── Convertir imagen a video con música ANTES del preview ────────────────
+    # Las imágenes estáticas no tienen música vía Instagram Graph API.
+    # Convertimos a MP4 aquí para que el usuario vea el resultado final antes
+    # de aprobar, y guardamos el video en biblioteca para no re-convertir al publicar.
+    if not item.es_carrusel:
+        _nombre_lower = item.nombre_archivo.lower()
+        _es_imagen_preview = not any(_nombre_lower.endswith(e) for e in (".mp4", ".mov", ".avi", ".m4v"))
+        if _es_imagen_preview:
+            console.print("[cyan]Convirtiendo imagen a video con música para preview...[/cyan]")
+            _enviar_mensaje("⏳ Preparando preview con música… (esto puede tardar ~30 seg)")
+
+            _ruta_para_conv = ruta  # Path local o None
+
+            # Si no tenemos el archivo localmente, descargarlo de Cloudinary
+            if (_ruta_para_conv is None or not _ruta_para_conv.exists()) and cloudinary_url:
+                import tempfile
+                import urllib.request as _urllib
+                try:
+                    _ext_dl = Path(cloudinary_url.split("?")[0]).suffix or ".jpg"
+                    _tmp = Path(tempfile.mktemp(suffix=_ext_dl))
+                    _urllib.urlretrieve(cloudinary_url, _tmp)
+                    _ruta_para_conv = _tmp
+                except Exception as _dl_err:
+                    console.print(f"[yellow]No se pudo descargar imagen de Cloudinary: {_dl_err}[/yellow]")
+                    _ruta_para_conv = None
+
+            if _ruta_para_conv and _ruta_para_conv.exists():
+                try:
+                    import cloudinary as _cld
+                    _cld.config(cloudinary_url=settings.CLOUDINARY_URL)
+                    from agente.instagram.publicar_item import _imagen_a_reel_cloudinary
+                    _nuevo_video_url = _imagen_a_reel_cloudinary(_ruta_para_conv, item.pilar or "lifestyle_y_comunidad")
+                    if _nuevo_video_url:
+                        # Actualizar item en memoria y en biblioteca
+                        cloudinary_url = _nuevo_video_url
+                        item.cloudinary_url = _nuevo_video_url
+                        _nombre_base = Path(item.nombre_archivo).stem
+                        item.nombre_archivo = _nombre_base + ".mp4"
+                        try:
+                            from agente.gestores.biblioteca import _cargar, _guardar
+                            _bib = _cargar()
+                            for _raw in _bib["items"]:
+                                if _raw["id"] == item.id:
+                                    _raw["cloudinary_url"] = _nuevo_video_url
+                                    _raw["nombre_archivo"] = item.nombre_archivo
+                                    break
+                            _guardar(_bib)
+                            console.print("[green]✓[/green] Video con música guardado en biblioteca")
+                        except Exception as _sv_err:
+                            console.print(f"[yellow]No se pudo guardar video en biblioteca: {_sv_err}[/yellow]")
+                        # Limpiar archivo temporal si se descargó
+                        if _ruta_para_conv != ruta:
+                            try:
+                                _ruta_para_conv.unlink(missing_ok=True)
+                            except Exception:
+                                pass
+                        ruta = None  # usar cloudinary_url para el preview
+                    else:
+                        console.print("[yellow]No se pudo convertir a video — se enviará imagen estática[/yellow]")
+                except Exception as _conv_err:
+                    console.print(f"[yellow]Error convirtiendo imagen a video: {_conv_err}[/yellow]")
+            else:
+                console.print("[yellow]Sin archivo local para convertir — se enviará imagen estática[/yellow]")
+
     rev_id = f"prog_{int(_time.time())}"
     slot_label = "mediodía" if hora < 16 else "noche"
     texto_prev = (
@@ -1283,7 +1348,20 @@ def publicar_programado(forzar: bool = False, tipo: str | None = None):
 
     # Enviar preview con el media real cuando existe
     _preview_enviado = False
-    if cloudinary_url and not item.es_carrusel:
+
+    # Carrusel: enviar primer slide + resto como álbum sin botones, luego texto con botones
+    if item.es_carrusel and cloudinary_url:
+        _slide_urls = [u.strip() for u in cloudinary_url.split(",") if u.strip().startswith("http")]
+        if _slide_urls:
+            # Primer slide con caption + botones
+            r = _enviar_foto_url(_slide_urls[0], caption=texto_prev, reply_markup=botones)
+            _preview_enviado = r.get("ok", False)
+            # Slides restantes sin caption (hasta 9 más = 10 total)
+            for _su in _slide_urls[1:9]:
+                _enviar_foto_url(_su, caption="")
+                import time as _t; _t.sleep(0.3)
+
+    if not _preview_enviado and cloudinary_url:
         nombre = item.nombre_archivo.lower()
         es_video_url = any(nombre.endswith(ext) for ext in (".mp4", ".mov", ".avi", ".m4v"))
         if es_video_url:

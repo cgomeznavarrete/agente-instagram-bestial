@@ -51,13 +51,15 @@ Todos se usan directamente desde el chat con el bot:
 
 ### Botones al enviar material (foto/video)
 
-Cuando el usuario envía una foto o video al bot:
+Cuando el usuario envía una foto, video o `video_note` (video circular) al bot:
 1. El bot descarga el archivo de Telegram
 2. Pregunta: **📚 Biblioteca** (guardar para después) o **🚀 Publicar ahora**
 3. Pregunta el tipo: **📸 Post / 🎬 Reel / ⭕ Story**
 4. Pregunta el pilar de contenido
 5. Sube a Cloudinary inmediatamente (los archivos temporales se pierden si no)
 6. Guarda en `datos/biblioteca.json` y commitea a GitHub
+
+> Videos en álbum (media group): el tipo se detecta por extensión del archivo (`.mp4/.mov` → video, resto → imagen). No se hardcodea.
 
 ### Botones de aprobación en /publicar
 
@@ -67,6 +69,19 @@ Cuando el usuario envía una foto o video al bot:
 ⏭ Saltar         → submenú: Corregir / Ya lo publiqué / Pasar al siguiente
 ✅ Ya lo publiqué → marca como publicado sin volver a subir
 ```
+
+### Botones en /hoy
+
+Muestra el plan del día con caption completo y un menú por slot:
+
+```
+📅 Aprobar para 12pm/7pm  → guarda en aprobaciones_hoy.json (Flujo A al publicar)
+✍️ Modificar caption      → escribe instrucción → Claude reescribe → guarda en biblioteca
+✅ Ya publiqué            → marca el item como publicado
+⏭ Saltar                 → pausa ese slot para hoy
+```
+
+Si el item no tiene caption al mostrar `/hoy`, se genera automáticamente con Claude en ese momento y se guarda en `biblioteca.json`.
 
 ## Comandos CLI (main.py)
 
@@ -117,10 +132,20 @@ El workflow `bot_telegram.yml` tiene `cron: '0 */5 * * *'` — se reinicia autom
 
 ### Horarios de publicación automática
 
-`publicar_programado.yml` dispara a las **11:30am** y **6:30pm** hora Colombia:
-- Lunes, Miércoles, Viernes → Story + Post
-- Martes, Jueves → Reel
-- El workflow envía preview a Telegram 30 min antes, espera aprobación manual, luego publica
+`publicar_programado.yml` dispara a las **11:30am** y **6:30pm** hora Colombia con ventanas amplias (10h–16h y 17h–23h) para absorber retrasos de GitHub Actions:
+
+| Día | Mediodía (10–16h) | Noche (17–23h) |
+|---|---|---|
+| Lunes–Viernes | post | reel/story (alternado) |
+| Sábado | post | story |
+| Domingo | story | story |
+
+**Dos flujos de aprobación:**
+
+- **Flujo A (pre-aprobado):** si el usuario aprobó el item desde `/hoy` antes de que corra el workflow, se publica directamente sin pedir confirmación en Telegram.
+- **Flujo B (sin pre-aprobación):** el workflow envía el preview en Telegram y espera hasta 20 minutos por `✅ Publicar ahora` o `⏭ Saltar`.
+
+> **Tip:** aprobar desde `/hoy` antes de las 11:30am/6:30pm evita la ventana de 20 minutos y elimina la race condition entre el bot y el workflow.
 
 ## Biblioteca de contenido (biblioteca.json)
 
@@ -148,13 +173,17 @@ pendiente → publicado
 
 | Tipo de archivo | Cómo se publica |
 |---|---|
-| Imagen → Reel | Convertida a MP4 9:16 con música via MoviePy → Cloudinary → Graph API REELS |
-| Imagen → Post | Intentar como Reel con música; si falla → imagen estática |
-| Imagen → Story | Convertida a video con música; si falla → imagen estática |
+| Imagen → Reel | Convertida a MP4 9:16 con música via MoviePy → Cloudinary → Graph API `REELS` |
+| Imagen → Post | Convertida a MP4 con música → Graph API `REELS`; si falla → imagen estática |
+| Imagen → Story | Convertida a MP4 con música → Graph API `STORIES`; si falla → imagen estática |
 | Video → Reel/Story | Subido a Cloudinary → Graph API con `media_type=REELS/STORIES` |
-| Carrusel | Sube slides individualmente → container CAROUSEL → media_publish |
+| Carrusel | Sube slides individualmente → container `CAROUSEL` → media_publish |
 
-**Polling REELS**: después de crear el container, el bot hace polling cada 10s hasta `status_code == FINISHED` (máx 180s). Si hay timeout → aborta con error.
+**`media_type` correcto:** usar `REELS` (no `VIDEO` — deprecado). Para stories: `STORIES`. Siempre incluir `share_to_feed: true` en Reels.
+
+**Polling REELS**: después de crear el container, el agente hace polling cada 10s hasta `status_code == FINISHED` (máx 180s). Si hay timeout → aborta con error.
+
+**Pre-conversión en preview:** cuando el Flujo B envía el preview a Telegram, las imágenes se convierten a MP4 con música **antes** de mandar el mensaje. El video resultante se guarda en `biblioteca.json` (campo `cloudinary_url` + `nombre_archivo → .mp4`) para no volver a convertir al publicar.
 
 ## Token de Instagram — renovación
 
@@ -263,15 +292,52 @@ Los tracks royalty-free están en `/musica/`. Se seleccionan por mood según el 
 
 Para agregar un track nuevo: copiar el MP3 a `/musica/` con el nombre `<mood>_02.mp3` y agregar al array en `config/imagen_params.py → MUSICA_POR_MOOD`.
 
+Tracks actuales en git: `upbeat_latino_01.mp3`, `upbeat_latino_02.mp3`, `chill_food_01.mp3`, `energetico_01.mp3`, `humor_01.mp3`.
+
+## Archivos de estado efímero (no se versionan)
+
+| Archivo | Contenido | Se borra |
+|---|---|---|
+| `datos/aprobaciones_hoy.json` | Items aprobados desde `/hoy` para el día actual | Al día siguiente (fecha no coincide) |
+| `datos/pausas_hoy.json` | Slots pausados desde `/hoy` | Al día siguiente |
+| `datos/bot_ultimo_inicio.json` | Timestamp del último aviso de arranque | Nunca (cooldown 4h) |
+| `datos/bot_estado.json` | Estado interno del bot entre reinicios | Nunca |
+| `datos/pending_pubs.json` | Publicaciones en cola del bot | Nunca |
+
+Estos archivos están en `.gitignore` — no se commitean al repo.
+
+## Callbacks Telegram — prefijos y responsables
+
+| Prefijo | Quién lo procesa | Qué hace |
+|---|---|---|
+| `pub_aprobar:` / `pub_rechazar:` | `bot.py` | Aprobación en flujo `/publicar` del bot |
+| `prog_si:` / `prog_no:` | `publicar_programado` (main.py) | Aprobación en Flujo B del workflow |
+| `hoy:aprobar:` | `bot.py` | Pre-aprobación desde `/hoy` |
+| `hoy:modificar:` | `bot.py` | Modificar caption desde `/hoy` |
+| `hoy:ya_publique:` | `bot.py` | Marcar publicado desde `/hoy` |
+| `hoy:pausar_slot:` | `bot.py` | Pausar slot desde `/hoy` |
+
+> El bot ignora callbacks `prog_si:`/`prog_no:` (son del workflow). El workflow usa offset propio y no compite con el bot porque los prefijos son distintos.
+
 ## Bugs conocidos resueltos (historial)
 
 | Fecha | Bug | Fix |
 |---|---|---|
-| May-2026 | Bot borraba todos los updates al arrancar → `/publicar` no respondía | Eliminado el drain; filtro por edad de 5 min |
+| May-2026 | Bot borraba todos los updates al arrancar → `/publicar` no respondía | Eliminado el drain; filtro por edad de 5 min (luego 10 min) |
 | May-2026 | `tipo_forzado="carrusel"` mostraba "biblioteca vacía" con 16 items | Fallback completo `[reel, post, story]` siempre incluido |
 | May-2026 | `rutas_slides` NameError al publicar carrusel | `rutas_slides = [Path(r) for r in item.archivos_carrusel]` |
+| May-2026 | Carrusel no se publicaba — slides vacíos | Usar `urls_guardadas` directamente cuando existen, sin iterar `rutas_slides` vacío |
+| May-2026 | `media_type: VIDEO` deprecado → error en Graph API | Cambiado a `REELS` en todos los paths de video |
 | May-2026 | Claude falla → excepción silenciosa → sin respuesta al usuario | `try/except` con mensaje de error visible en Telegram |
-| May-2026 | Boton Saltar no mostraba submenú | Submenú con 3 opciones (Corregir / Ya lo publiqué / Siguiente) |
+| May-2026 | Botón Saltar no mostraba submenú | Submenú con 3 opciones (Corregir / Ya lo publiqué / Siguiente) |
 | May-2026 | Imagen enviada como Reel fallaba en Cloudinary | Detectar extensión de imagen y convertir a MP4 primero |
 | May-2026 | Bot se congelaba 3 min durante publicación de video | `_publicar_aprobado` corre en `threading.Thread(daemon=True)` |
 | May-2026 | Caption truncado a 1024 chars en Telegram | Separar preview de media y texto en mensajes distintos |
+| May-2026 | Post aprobado pero nunca publicado (race condition) | Flujo A: pre-aprobados se publican directamente; Flujo B usa prefijos `prog_si/prog_no` distintos al bot |
+| May-2026 | `/hoy` no mostraba el caption | Caption generado on-demand si el item no tiene uno; mostrado completo (800 chars) |
+| May-2026 | Sin opción de modificar caption antes de aprobar | Botón `✍️ Modificar caption` en `/hoy`; Claude reescribe con instrucción del usuario |
+| May-2026 | Video enviado al bot sin respuesta | `video_note` (video circular) sin manejar; tipo de album hardcodeado a "imagen" | Añadido handler `video_note`; tipo detectado por extensión |
+| May-2026 | Imágenes de preview llegaban sin música | Flujo B convierte imagen a MP4+música antes de enviar el preview; guarda URL en biblioteca |
+| May-2026 | Bot enviaba "🤖 Agente activo" cada 5h | Cooldown de 4h usando `bot_ultimo_inicio.json` |
+| May-2026 | Posts publicados sin música (imagen estática) | `ffmpeg` binario no instalado en GitHub Actions → MoviePy fallaba silenciosamente → fallback a imagen. Fix: `sudo apt-get install -y ffmpeg` en ambos workflows |
+| May-2026 | Carruseles sin preview visual al aprobar | `if cloudinary_url and not item.es_carrusel` excluía carruseles del preview. Fix: bloque dedicado que envía todos los slides individualmente antes de los botones |

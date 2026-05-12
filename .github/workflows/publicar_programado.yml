@@ -46,7 +46,10 @@ jobs:
           python-version: '3.11'
           cache: 'pip'
 
-      - name: Instalar dependencias
+      - name: Instalar dependencias del sistema
+        run: sudo apt-get install -y ffmpeg
+
+      - name: Instalar dependencias Python
         run: |
           pip install -r requirements.txt
           playwright install chromium --with-deps
