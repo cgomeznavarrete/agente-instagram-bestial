@@ -64,7 +64,8 @@ Cuando el usuario envía una foto, video o `video_note` (video circular) al bot:
 ### Botones de aprobación en /publicar
 
 ```
-✅ Publicar      → publica en Instagram en un thread (no bloquea el bot)
+✅ Publicar      → post/reel/story: publica en Instagram en un thread
+                   carrusel: envía slides a Telegram para subida manual con música
 ✍️ Corregir      → escribe instrucción → Claude reescribe → nuevo preview
 ⏭ Saltar         → submenú: Corregir / Ya lo publiqué / Pasar al siguiente
 ✅ Ya lo publiqué → marca como publicado sin volver a subir
@@ -75,13 +76,16 @@ Cuando el usuario envía una foto, video o `video_note` (video circular) al bot:
 Muestra el plan del día con caption completo y un menú por slot:
 
 ```
-📅 Aprobar para 12pm/7pm  → guarda en aprobaciones_hoy.json (Flujo A al publicar)
+📅 Aprobar para 12pm/7pm  → post/reel/story: guarda en aprobaciones_hoy.json (Flujo A)
+                             carrusel: envía slides a Telegram INMEDIATAMENTE (sin esperar workflow)
 ✍️ Modificar caption      → escribe instrucción → Claude reescribe → guarda en biblioteca
 ✅ Ya publiqué            → marca el item como publicado
 ⏭ Saltar                 → pausa ese slot para hoy
 ```
 
 Si el item no tiene caption al mostrar `/hoy`, se genera automáticamente con Claude en ese momento y se guarda en `biblioteca.json`.
+
+> **Carruseles en /hoy:** al tocar `📅 Aprobar`, el bot envía las fotos a Telegram en el acto — no hay que esperar al workflow de las 11:30am/6:30pm. El item queda marcado como publicado en `biblioteca.json`.
 
 ## Comandos CLI (main.py)
 
@@ -168,14 +172,18 @@ Todos los items que el usuario envía al bot se guardan en `datos/biblioteca.jso
 
 ### Tipos de item
 
-| tipo | es_carrusel | Descripción |
-|---|---|---|
-| `post` | false | Imagen estática para el feed |
-| `post` | true | Carrusel de múltiples imágenes |
-| `reel` | false | Video o imagen que se publica como Reel con música |
-| `story` | false | Imagen o video para Stories |
+| tipo | es_carrusel | Etiqueta en bot | Descripción |
+|---|---|---|---|
+| `post` | false | `📸 POST` | Imagen estática para el feed |
+| `post` | true | `📖 POST - CARRUSEL` | Carrusel de múltiples imágenes |
+| `reel` | false | `🎬 REEL` | Video o imagen que se publica como Reel con música |
+| `story` | false | `⭕ STORY` | Imagen o video para Stories |
 
 > Los carruseles usan `tipo: "post"` con `es_carrusel: true`. La búsqueda por tipo `"carrusel"` busca automáticamente en `"post"` también.
+
+### /biblioteca — orden y límite
+
+Muestra los items ordenados **FIFO** (más antiguo primero = el próximo en publicarse), hasta un máximo de 10 items por página. Muestra el conteo correcto por tipo: `📸 X posts · 🎬 X reels · ⭕ X stories · 📖 X carruseles`.
 
 ### Estados de un item
 
@@ -183,6 +191,17 @@ Todos los items que el usuario envía al bot se guardan en `datos/biblioteca.jso
 pendiente → publicado
          → descartado
 ```
+
+## Helpers de módulo en bot.py
+
+Dos funciones de módulo (fuera de la clase) reutilizables en todo el bot:
+
+| Helper | Qué hace |
+|---|---|
+| `_tipo_display(item)` | Devuelve la etiqueta de tipo legible (`📸 POST`, `📖 POST - CARRUSEL`, etc.) revisando `es_carrusel` |
+| `_enviar_carrusel_telegram(item)` | Envía slides numerados + caption a Telegram y marca el item como publicado. Usada en `/publicar`, `/hoy` y `publicar_programado` |
+
+> Ambas están en `agente/telegram/bot.py` a nivel de módulo (no dentro de la clase `BotTelegram`). `main.py` tiene su propia copia de `_enviar_carrusel_manual()` con la misma lógica (corre en proceso separado de GitHub Actions).
 
 ## Publicación en Instagram (publicar_item.py)
 
@@ -358,3 +377,5 @@ Estos archivos están en `.gitignore` — no se commitean al repo.
 | May-2026 | Carruseles sin preview visual al aprobar | `if cloudinary_url and not item.es_carrusel` excluía carruseles del preview. Fix: bloque dedicado que envía todos los slides individualmente antes de los botones |
 | May-2026 | Carruseles se auto-publicaban sin música via Graph API | `publicar_programado` llamaba a `_ejecutar_publicacion()` para carruseles. Fix: helper `_enviar_carrusel_manual()` que envía slides a Telegram para subida manual |
 | May-2026 | `/biblioteca` no mostraba los carruseles | Sort `reverse=True` ponía los items más nuevos al tope; carruseles antiguos quedaban fuera del límite MAX_VISIBLE. Fix: sort FIFO (`reverse=False`) + MAX_VISIBLE subido de 6 a 10 |
+| May-2026 | Carrusel mostraba `📸 POST` en lugar de `📖 POST - CARRUSEL` | `tipo_label` usaba `item.tipo` ("post") sin revisar `es_carrusel`. Fix: helper `_tipo_display(item)` en bot.py aplicado en todos los puntos de display |
+| May-2026 | `/hoy aprobar` en carrusel esperaba al workflow (podía auto-publicarse sin música) | Handler `hoy:aprobar` guardaba en `aprobaciones_hoy.json` para todos los tipos. Fix: si `es_carrusel`, llama `_enviar_carrusel_telegram()` en thread daemon inmediatamente |
