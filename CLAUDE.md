@@ -379,3 +379,20 @@ Estos archivos están en `.gitignore` — no se commitean al repo.
 | May-2026 | `/biblioteca` no mostraba los carruseles | Sort `reverse=True` ponía los items más nuevos al tope; carruseles antiguos quedaban fuera del límite MAX_VISIBLE. Fix: sort FIFO (`reverse=False`) + MAX_VISIBLE subido de 6 a 10 |
 | May-2026 | Carrusel mostraba `📸 POST` en lugar de `📖 POST - CARRUSEL` | `tipo_label` usaba `item.tipo` ("post") sin revisar `es_carrusel`. Fix: helper `_tipo_display(item)` en bot.py aplicado en todos los puntos de display |
 | May-2026 | `/hoy aprobar` en carrusel esperaba al workflow (podía auto-publicarse sin música) | Handler `hoy:aprobar` guardaba en `aprobaciones_hoy.json` para todos los tipos. Fix: si `es_carrusel`, llama `_enviar_carrusel_telegram()` en thread daemon inmediatamente |
+
+## Sistema de contexto (Obsidian + context/)
+
+Para mantener coherencia entre sesiones de Claude:
+
+- **`context/current.md`** (gitignored): estado actual del proyecto. Punto de entrada para Claude. Leer al iniciar cualquier sesión antes de hacer cambios.
+- **Bóveda Obsidian**: `D:\20210729\cgome\Documents\Claude\Obsidian-Instagram-Bestial\` (local, fuera del repo)
+  - `00-Context/` — estado activo (ProjectState, OpenThreads, NextActions)
+  - `01-Sessions/` — historial de sesiones (una nota por sesión)
+  - `02-Architecture/` — 10 ADRs con decisiones técnicas documentadas
+  - `03-TribalKnowledge/` — 13 notas con gotchas y conocimiento implícito
+  - `04-Strategy/` — pilares de contenido y experimentos
+  - `05-Runbooks/` — procedimientos operativos paso a paso
+
+> **Separación crítica**: existe una segunda bóveda `Obsidian-Bestial/` para el proyecto App Bestial (Flask). **Nunca** escribir en esa bóveda desde el Agente Instagram.
+
+Al cerrar una sesión significativa: invocar `/save-session-instagram`.

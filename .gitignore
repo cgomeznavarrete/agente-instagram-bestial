@@ -49,6 +49,9 @@ material_usuario/
 Thumbs.db
 desktop.ini
 
+# Contexto de sesión Claude (estado local, no versionar)
+context/
+
 # IDE
 .vscode/
 .idea/
