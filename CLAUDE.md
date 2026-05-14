@@ -43,6 +43,7 @@ Todos se usan directamente desde el chat con el bot:
 /publicar post     → fuerza tipo Post
 /publicar story    → fuerza tipo Story
 /hoy               → plan de publicación de hoy con previews
+/semana            → plan de la semana completa (7 días) + insights de métricas
 /estado            → lista completa de material en biblioteca
 /carrusel <tema>   → genera carrusel educativo (Claude + Pillow)
 /venta             → genera serie de 3 stories de conversión
@@ -148,7 +149,12 @@ El workflow `bot_telegram.yml` tiene `cron: '0 */5 * * *'` — se reinicia autom
 | Sábado | post | story |
 | Domingo | story | story |
 
-**Slot de carrusel (miércoles mediodía):** El workflow busca el siguiente carrusel pendiente en la biblioteca. Si no hay ninguno, auto-genera un carrusel de datos curiosos con `generar_carrusel_html()` sobre un tema rotativo (picante, maridajes, historia de salsas, etc.).
+**Slot de carrusel (miércoles mediodía):** El workflow (`publicar_programado`) busca en este orden:
+1. **Carrusel educativo** (`pilar="educacion_sobre_salsas"`) — generado automáticamente cada lunes por `ejecutar_semana` vía `siguiente_carrusel_educativo()`
+2. **Carrusel del usuario** — cualquier carrusel pendiente en la biblioteca
+3. **Auto-genera en el momento** — si no hay ninguno, genera datos curiosos con `generar_carrusel_html()`
+
+`ejecutar_semana` (lunes 9am COL) genera 1 carrusel de datos curiosos por semana. Si ya hay uno pendiente, no genera otro (evita duplicados). Esto garantiza 1 carrusel educativo por semana sin depender del estado de la biblioteca.
 
 **Dos flujos de aprobación:**
 
@@ -202,6 +208,19 @@ Dos funciones de módulo (fuera de la clase) reutilizables en todo el bot:
 | `_enviar_carrusel_telegram(item)` | Envía slides numerados + caption a Telegram y marca el item como publicado. Usada en `/publicar`, `/hoy` y `publicar_programado` |
 
 > Ambas están en `agente/telegram/bot.py` a nivel de módulo (no dentro de la clase `BotTelegram`). `main.py` tiene su propia copia de `_enviar_carrusel_manual()` con la misma lógica (corre en proceso separado de GitHub Actions).
+
+## Comando /semana
+
+`_mostrar_plan_semana_impl()` en `bot.py` — muestra:
+
+1. **Plan 7 días**: simula la asignación FIFO de la biblioteca para cada slot del HORARIO (sin modificar datos). Indica qué item se publicará en cada slot, el tipo real (si hay fallback de tipo) y el pilar. Marca con ⚠️ los slots sin material.
+2. **Insights de métricas** (desde `datos/metricas_instagram.json` y `datos/reel_ganador.json`):
+   - Formato ganador (reel/post/carrusel) con likes promedio comparativo
+   - Mejor día de la semana y mejor hora COL según historial
+   - Reel ganador de la semana anterior con concepto y link
+3. **Resumen**: slots cubiertos vs total, alerta si hay slots sin material.
+
+La simulación FIFO usa contadores internos por tipo (`consumidos: dict[str, int]`) — no toca `biblioteca.json`.
 
 ## Publicación en Instagram (publicar_item.py)
 
@@ -379,6 +398,7 @@ Estos archivos están en `.gitignore` — no se commitean al repo.
 | May-2026 | `/biblioteca` no mostraba los carruseles | Sort `reverse=True` ponía los items más nuevos al tope; carruseles antiguos quedaban fuera del límite MAX_VISIBLE. Fix: sort FIFO (`reverse=False`) + MAX_VISIBLE subido de 6 a 10 |
 | May-2026 | Carrusel mostraba `📸 POST` en lugar de `📖 POST - CARRUSEL` | `tipo_label` usaba `item.tipo` ("post") sin revisar `es_carrusel`. Fix: helper `_tipo_display(item)` en bot.py aplicado en todos los puntos de display |
 | May-2026 | `/hoy aprobar` en carrusel esperaba al workflow (podía auto-publicarse sin música) | Handler `hoy:aprobar` guardaba en `aprobaciones_hoy.json` para todos los tipos. Fix: si `es_carrusel`, llama `_enviar_carrusel_telegram()` en thread daemon inmediatamente |
+| May-2026 | Carruseles de datos curiosos nunca se generaban (biblioteca tenía carruseles del usuario) | Condición "si vacío → genera" bloqueada por carruseles del usuario. Fix: `ejecutar_semana` genera 1 carrusel educativo cada lunes; slot miércoles prioriza `siguiente_carrusel_educativo()` (`pilar=educacion_sobre_salsas`) |
 
 ## Sistema de contexto (Obsidian + context/)
 
