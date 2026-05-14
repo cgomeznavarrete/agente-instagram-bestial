@@ -186,6 +186,51 @@ def ejecutar_semana():
     for k, v in resultados.items():
         tabla.add_row(k.replace("_", " ").capitalize(), str(v))
     console.print(tabla)
+
+    # ── Generar carrusel de datos curiosos para el miércoles ─────────────────
+    # Se genera 1 carrusel educativo por semana (miércoles = slot dedicado).
+    # El slot buscará primero este carrusel; los carruseles del usuario son fallback.
+    console.print("\n[bold blue]📚 Generando carrusel de datos curiosos para el miércoles...[/bold blue]")
+    try:
+        import random as _random
+        from agente.generadores.carrusel_html import generar_carrusel_html
+        from agente.gestores.biblioteca import agregar_carrusel, siguiente_carrusel_educativo
+
+        TEMAS_DATOS_CURIOSOS = [
+            "curiosidades del chile habanero",
+            "beneficios de comer picante",
+            "historia de las salsas picantes en el mundo",
+            "los chiles más picantes del planeta",
+            "por qué el picante engancha (ciencia del capsaicin)",
+            "maridajes perfectos con salsa picante",
+            "curiosidades de la cocina colombiana y el picante",
+            "el picante en la cultura latinoamericana",
+            "cómo se mide el picante (escala Scoville)",
+            "rituales del picante en Latinoamérica",
+            "beneficios del capsaicin para la salud",
+            "diferencias entre los chiles más populares",
+        ]
+
+        # Solo generar si no hay ya uno educativo pendiente (evitar duplicados)
+        carrusel_existente = siguiente_carrusel_educativo()
+        if carrusel_existente:
+            console.print(
+                f"[yellow]Ya existe un carrusel educativo pendiente ({carrusel_existente.id}) "
+                f"— no se genera uno nuevo esta semana.[/yellow]"
+            )
+        else:
+            tema_semana = _random.choice(TEMAS_DATOS_CURIOSOS)
+            console.print(f"  Tema: [cyan]{tema_semana}[/cyan]")
+            rutas = generar_carrusel_html(tema=tema_semana, n_slides=3, pilar="educacion_sobre_salsas")
+            if rutas:
+                item_carr = agregar_carrusel(rutas, tipo="post", pilar="educacion_sobre_salsas")
+                console.print(f"  [green]✓[/green] Carrusel generado: {len(rutas)} slides → {item_carr.id}")
+            else:
+                console.print("  [yellow]⚠ No se generaron slides para el carrusel educativo[/yellow]")
+    except Exception as _e_carr:
+        console.print(f"  [red]Error generando carrusel de datos curiosos: {_e_carr}[/red]")
+        logger.warning("ejecutar_semana: error generando carrusel educativo: %s", _e_carr)
+
     console.print(Panel(
         "[bold green]Semana generada.[/bold green]\n\n"
         "Revisa y aprueba el contenido en Telegram desde tu celular.\n"
@@ -1070,6 +1115,7 @@ def publicar_programado(forzar: bool = False, tipo: str | None = None):
     from agente.gestores.biblioteca import (
         listar_pendientes as _listar_pendientes,
         siguiente_carrusel_pendiente as _sig_carrusel,
+        siguiente_carrusel_educativo as _sig_carrusel_educativo,
     )
 
     # ── Temas rotativos para carruseles auto-generados ────────────────────────
@@ -1098,13 +1144,20 @@ def publicar_programado(forzar: bool = False, tipo: str | None = None):
     if not item:
         if tipo_pub == "carrusel":
             # Slot dedicado a carrusel (miércoles mediodía):
-            # 1. Buscar cualquier carrusel pendiente en la biblioteca
-            # 2. Si no hay ninguno → auto-generar un carrusel de datos curiosos
-            item = _sig_carrusel()
+            # 1. Prioridad: carrusel educativo (datos curiosos, pilar=educacion_sobre_salsas)
+            #    generado cada lunes por ejecutar_semana
+            # 2. Fallback: cualquier carrusel del usuario pendiente en la biblioteca
+            # 3. Último recurso: auto-generar datos curiosos en el momento
+            item = _sig_carrusel_educativo()
             if item:
-                console.print(f"[green]📖 Carrusel pendiente encontrado: {item.id}[/green]")
-                tipo_pub = "post"  # Los carruseles se publican como tipo post
+                console.print(f"[green]📚 Carrusel educativo encontrado: {item.id}[/green]")
+                tipo_pub = "post"
             else:
+                item = _sig_carrusel()
+                if item:
+                    console.print(f"[green]📖 Carrusel de usuario encontrado: {item.id}[/green]")
+                    tipo_pub = "post"
+            if not item:
                 console.print("[yellow]Sin carruseles en biblioteca — generando carrusel de datos curiosos...[/yellow]")
                 try:
                     import random as _random

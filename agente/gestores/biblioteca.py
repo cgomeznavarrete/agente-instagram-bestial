@@ -260,3 +260,20 @@ def siguiente_carrusel_pendiente() -> Optional[ItemBiblioteca]:
         if raw["estado"] == "pendiente" and raw.get("es_carrusel"):
             return ItemBiblioteca(**{k: v for k, v in raw.items()})
     return None
+
+
+def siguiente_carrusel_educativo() -> Optional[ItemBiblioteca]:
+    """Devuelve el siguiente carrusel de datos curiosos pendiente (FIFO).
+
+    Los carruseles educativos auto-generados tienen pilar='educacion_sobre_salsas'.
+    Usada por el slot de miércoles para priorizar datos curiosos sobre carruseles del usuario.
+    """
+    data = _cargar()
+    for raw in data["items"]:
+        if (
+            raw["estado"] == "pendiente"
+            and raw.get("es_carrusel")
+            and raw.get("pilar") == "educacion_sobre_salsas"
+        ):
+            return ItemBiblioteca(**{k: v for k, v in raw.items()})
+    return None
