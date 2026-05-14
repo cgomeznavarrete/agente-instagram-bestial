@@ -535,6 +535,7 @@ class BotTelegram:
                 "Comandos:\n"
                 "/publicar — siguiente pendiente con botones ✅\n"
                 "/hoy — plan de publicación de hoy\n"
+                "/semana — plan de la semana + insights de métricas\n"
                 "/biblioteca — ver y gestionar todo el material\n"
                 "/ayuda — ver todos los comandos"
             )
@@ -607,6 +608,10 @@ class BotTelegram:
 
         if texto.startswith("/hoy"):
             self._mostrar_plan_hoy()
+            return
+
+        if texto.startswith("/semana"):
+            self._mostrar_plan_semana()
             return
 
         if texto.startswith("/venta"):
@@ -2077,6 +2082,265 @@ class BotTelegram:
                     _enviar_mensaje(f"⚠️ No se pudo previsualizar: {caption_prev}")
                 time.sleep(0.3)
 
+    def _mostrar_plan_semana(self):
+        """Muestra el plan de la semana completo + insights de métricas."""
+        try:
+            self._mostrar_plan_semana_impl()
+        except Exception as e:
+            logger.error("Error en _mostrar_plan_semana: %s", e, exc_info=True)
+            _enviar_mensaje(f"⚠️ Error mostrando el plan semanal: <code>{_html.escape(str(e))}</code>")
+
+    def _mostrar_plan_semana_impl(self):
+        """Implementación de /semana — plan 7 días + análisis de métricas."""
+        import datetime
+        import json as _json
+        from pathlib import Path as _Path
+        from collections import defaultdict
+
+        try:
+            from zoneinfo import ZoneInfo
+            tz_col = ZoneInfo("America/Bogota")
+            ahora = datetime.datetime.now(tz_col)
+        except Exception:
+            ahora = datetime.datetime.utcnow() - datetime.timedelta(hours=5)
+
+        DIAS = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"]
+        DIAS_FULL = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
+        EMOJI_TIPO = {"post": "📸", "reel": "🎬", "story": "⭕", "carrusel": "📖"}
+        LABEL_TIPO = {"post": "POST", "reel": "REEL", "story": "STORY", "carrusel": "CARRUSEL"}
+
+        HORARIO = {
+            (0, 10, 16): "post",    (0, 17, 23): "reel",
+            (1, 10, 16): "post",    (1, 17, 23): "reel",
+            (2, 10, 16): "carrusel",(2, 17, 23): "story",
+            (3, 10, 16): "reel",    (3, 17, 23): "story",
+            (4, 10, 16): "post",    (4, 17, 23): "reel",
+            (5, 10, 16): "post",    (5, 17, 23): "story",
+            (6, 10, 16): "story",   (6, 17, 23): "story",
+        }
+
+        # ── Lunes de la semana actual ──────────────────────────────────────────
+        lunes = ahora - datetime.timedelta(days=ahora.weekday())
+        num_semana = ahora.isocalendar()[1]
+        anio = ahora.year
+
+        # ── Cargar biblioteca: simular asignación FIFO por tipo ────────────────
+        from agente.gestores.biblioteca import _cargar as _bib_cargar
+        bib_data = _bib_cargar()
+        # Separar por tipo en colas FIFO (mismo orden que la biblioteca)
+        colas: dict[str, list] = defaultdict(list)
+        for raw in bib_data.get("items", []):
+            if raw["estado"] != "pendiente":
+                continue
+            tipo_item = raw.get("tipo", "post")
+            es_carr = raw.get("es_carrusel", False)
+            clave = "carrusel" if es_carr else tipo_item
+            colas[clave].append(raw)
+
+        # Índices de consumo por cola (simulación FIFO sin modificar datos)
+        consumidos: dict[str, int] = defaultdict(int)
+
+        def _siguiente_item(tipo_slot: str):
+            """Devuelve el próximo item de la cola para ese tipo (simulado FIFO)."""
+            tipos_fallback = {
+                "carrusel": ["carrusel", "post", "reel", "story"],
+                "post":     ["post", "reel", "story"],
+                "reel":     ["reel", "post", "story"],
+                "story":    ["story", "reel", "post"],
+            }
+            for t in tipos_fallback.get(tipo_slot, [tipo_slot]):
+                cola = colas.get(t, [])
+                idx = consumidos[t]
+                if idx < len(cola):
+                    consumidos[t] += 1
+                    return cola[idx], t
+            return None, tipo_slot
+
+        # ── Analizar métricas ──────────────────────────────────────────────────
+        metricas_path = _Path("datos/metricas_instagram.json")
+        reel_ganador_path = _Path("datos/reel_ganador.json")
+
+        likes_por_tipo: dict[str, list] = defaultdict(list)
+        likes_por_dia: dict[int, list] = defaultdict(list)   # 0=Lunes..6=Dom
+        likes_por_hora: dict[int, list] = defaultdict(list)  # hora UTC-5
+        total_posts = 0
+
+        try:
+            metricas = _json.loads(metricas_path.read_text(encoding="utf-8"))
+            for semana_data in metricas.get("semanas", []):
+                for post in semana_data.get("metricas_cuenta", {}).get("posts_raw", []):
+                    likes = post.get("likes", 0) or 0
+                    tipo_ig = post.get("tipo", "IMAGE")
+                    fecha_str = post.get("fecha", "")
+                    total_posts += 1
+                    # Normalizar tipo
+                    if tipo_ig in ("VIDEO", "REELS"):
+                        tipo_norm = "reel"
+                    elif tipo_ig == "CAROUSEL_ALBUM":
+                        tipo_norm = "carrusel"
+                    else:
+                        tipo_norm = "post"
+                    likes_por_tipo[tipo_norm].append(likes)
+                    # Día y hora COL (UTC-5)
+                    try:
+                        dt_utc = datetime.datetime.strptime(fecha_str[:19], "%Y-%m-%dT%H:%M:%S")
+                        dt_col = dt_utc - datetime.timedelta(hours=5)
+                        likes_por_dia[dt_col.weekday()].append(likes)
+                        likes_por_hora[dt_col.hour].append(likes)
+                    except Exception:
+                        pass
+        except Exception:
+            pass
+
+        def _avg(lst):
+            return round(sum(lst) / len(lst), 1) if lst else 0
+
+        # Formato ganador
+        promedios_tipo = {t: _avg(v) for t, v in likes_por_tipo.items() if v}
+        formato_ganador = max(promedios_tipo, key=promedios_tipo.get) if promedios_tipo else None
+
+        # Mejor día
+        promedios_dia = {d: _avg(v) for d, v in likes_por_dia.items() if v}
+        mejor_dia = max(promedios_dia, key=promedios_dia.get) if promedios_dia else None
+
+        # Mejor hora
+        promedios_hora = {h: _avg(v) for h, v in likes_por_hora.items() if v}
+        mejor_hora = max(promedios_hora, key=promedios_hora.get) if promedios_hora else None
+
+        # Reel ganador
+        reel_ganador_concepto = None
+        try:
+            rg = _json.loads(reel_ganador_path.read_text(encoding="utf-8"))
+            reel_ganador_concepto = rg.get("variacion_concepto", "")
+            reel_er = rg.get("reel_ganador", {}).get("er", 0)
+            reel_permalink = rg.get("reel_ganador", {}).get("permalink", "")
+        except Exception:
+            reel_er = 0
+            reel_permalink = ""
+
+        # ── Armar mensaje ──────────────────────────────────────────────────────
+        lineas = []
+
+        # Encabezado
+        lineas.append(
+            f"📅 <b>Semana {num_semana} — {lunes.strftime('%d/%m')} al "
+            f"{(lunes + datetime.timedelta(days=6)).strftime('%d/%m/%Y')}</b>\n"
+        )
+
+        # Bloque de insights
+        if promedios_tipo or mejor_dia is not None:
+            lineas.append("📊 <b>Insights de tus métricas</b>")
+
+            if formato_ganador:
+                ej = EMOJI_TIPO.get(formato_ganador, "📌")
+                avg_f = promedios_tipo[formato_ganador]
+                otros = {t: v for t, v in promedios_tipo.items() if t != formato_ganador}
+                peor = min(otros, key=otros.get) if otros else None
+                comp = f" vs {_avg(likes_por_tipo[peor]):.1f} en {LABEL_TIPO.get(peor, peor)}s" if peor else ""
+                lineas.append(f"  🏆 Formato ganador: {ej} <b>{LABEL_TIPO.get(formato_ganador, formato_ganador).upper()}</b> ({avg_f} likes prom{comp})")
+
+            if mejor_dia is not None:
+                avg_d = promedios_dia[mejor_dia]
+                lineas.append(f"  📆 Mejor día: <b>{DIAS_FULL[mejor_dia]}</b> ({avg_d} likes prom)")
+
+            if mejor_hora is not None:
+                hora_col = mejor_hora
+                am_pm = "am" if hora_col < 12 else "pm"
+                hora_12 = hora_col if hora_col <= 12 else hora_col - 12
+                hora_12 = 12 if hora_12 == 0 else hora_12
+                lineas.append(f"  ⏰ Mejor hora: <b>{hora_12}{am_pm} COL</b> ({promedios_hora[mejor_hora]} likes prom)")
+
+            if reel_ganador_concepto:
+                lineas.append(
+                    f"  🎬 Reel ganador ({reel_er:.1f}% ER): "
+                    f"<i>{_html.escape(reel_ganador_concepto[:120])}{'...' if len(reel_ganador_concepto) > 120 else ''}</i>"
+                )
+                if reel_permalink:
+                    lineas.append(f"  🔗 <a href='{reel_permalink}'>Ver reel</a>")
+
+            if total_posts:
+                lineas.append(f"  📈 Analizados: {total_posts} publicaciones históricas")
+
+            lineas.append("")
+
+        # Plan día a día
+        lineas.append("━━━━━━━━━━━━━━━━━━━━━━")
+        lineas.append("📋 <b>Plan de la semana</b>")
+
+        slots_sin_material = 0
+        slots_con_material = 0
+        slots_total = 0
+
+        for dia_idx in range(7):
+            fecha_dia = lunes + datetime.timedelta(days=dia_idx)
+            es_hoy = fecha_dia.date() == ahora.date()
+            ya_paso = fecha_dia.date() < ahora.date()
+
+            nombre_dia = DIAS[dia_idx]
+            fecha_str_dia = fecha_dia.strftime("%d/%m")
+            prefijo_dia = "👉 " if es_hoy else ("✔️ " if ya_paso else "   ")
+
+            lineas.append(f"\n{prefijo_dia}<b>{nombre_dia} {fecha_str_dia}</b>{'  ← HOY' if es_hoy else ''}")
+
+            # Dos slots por día
+            slots_dia = sorted(
+                [(h_min, h_max, tipo) for (dia, h_min, h_max), tipo in HORARIO.items() if dia == dia_idx],
+                key=lambda x: x[0]
+            )
+
+            for h_min, _h_max, tipo_slot in slots_dia:
+                slots_total += 1
+                hora_label = "12pm" if h_min == 10 else "7pm"
+                emoji_tipo = EMOJI_TIPO.get(tipo_slot, "📌")
+                label_tipo = LABEL_TIPO.get(tipo_slot, tipo_slot.upper())
+
+                # Obtener item de la cola simulada
+                item_raw, tipo_real = _siguiente_item(tipo_slot)
+
+                if item_raw:
+                    slots_con_material += 1
+                    item_id = item_raw.get("id", "")
+                    item_pilar = item_raw.get("pilar", "")
+                    tipo_mostrar = "carrusel" if item_raw.get("es_carrusel") else tipo_real
+                    emoji_real = EMOJI_TIPO.get(tipo_mostrar, emoji_tipo)
+                    label_real = LABEL_TIPO.get(tipo_mostrar, label_tipo)
+                    # Indicar si es fallback de tipo
+                    cambio = f" <i>(usando {label_real})</i>" if tipo_real != tipo_slot else ""
+                    pilar_tag = f" · {item_pilar.replace('_', ' ')}" if item_pilar else ""
+                    lineas.append(
+                        f"    {hora_label} {emoji_real} {label_real}{cambio}{pilar_tag}"
+                    )
+                else:
+                    slots_sin_material += 1
+                    lineas.append(
+                        f"    {hora_label} {emoji_tipo} {label_tipo} — <i>⚠️ sin material</i>"
+                    )
+
+        # Resumen
+        lineas.append("\n━━━━━━━━━━━━━━━━━━━━━━")
+        lineas.append(
+            f"📦 <b>Material:</b> {slots_con_material}/{slots_total} slots cubiertos"
+        )
+        if slots_sin_material:
+            # Identificar qué tipos faltan
+            tipos_faltantes = set()
+            for dia_idx in range(7):
+                for (dia, h_min, _), tipo in HORARIO.items():
+                    if dia == dia_idx:
+                        pass
+            lineas.append(
+                f"⚠️ <b>{slots_sin_material} slot{'s' if slots_sin_material > 1 else ''} sin material</b> — "
+                f"enviá fotos/videos al bot para cubrir los días vacíos"
+            )
+
+        # Recomendación basada en métricas
+        if formato_ganador and formato_ganador == "reel":
+            lineas.append("💡 <b>Tip:</b> Los Reels generan más engagement — prioriza subir videos")
+        elif formato_ganador == "carrusel":
+            lineas.append("💡 <b>Tip:</b> Los carruseles tienen mejor rendimiento — aprovecha el slot del miércoles")
+
+        _enviar_mensaje("\n".join(lineas))
+
     def _mostrar_plan_hoy(self):
         """
         Muestra el plan completo de hoy: entradas del calendario + biblioteca.
@@ -2743,6 +3007,7 @@ class BotTelegram:
 
             "━━ 📊 ESTADO Y PLAN ━━\n"
             "<code>/hoy</code> — plan de publicación de hoy: qué hay en la biblioteca, a qué hora sale, botones para pausar/activar slots\n"
+            "<code>/semana</code> — plan completo de la semana (7 días) + insights de métricas: formato ganador, mejor día/hora, slots sin material\n"
             "<code>/estado</code> — lista completa del material en biblioteca con preview visual\n\n"
 
             "━━ 🎨 GENERAR CONTENIDO ━━\n"
