@@ -1,0 +1,46 @@
+name: Watchdog — Bot siempre activo
+
+# Verifica cada 30 minutos si el bot está corriendo.
+# Si no hay un run in_progress, lo arranca.
+# Esto cubre los casos donde el cron de bot_telegram.yml falla
+# o el workflow_run self-trigger no funciona correctamente.
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'   # Cada 30 minutos, 24/7
+  workflow_dispatch:           # Lanzar manualmente si hace falta
+
+permissions:
+  actions: write   # Necesario para leer runs y disparar workflows
+
+jobs:
+  watchdog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Verificar si el bot está corriendo
+        id: check
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Buscar runs in_progress del bot
+          RUNNING=$(gh api \
+            repos/${{ github.repository }}/actions/workflows/bot_telegram.yml/runs \
+            --jq '[.workflow_runs[] | select(.status == "in_progress")] | length')
+
+          echo "Runs activos del bot: $RUNNING"
+          echo "bot_running=$RUNNING" >> $GITHUB_OUTPUT
+
+      - name: Arrancar el bot si está caído
+        if: steps.check.outputs.bot_running == '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "⚠️ Bot no está corriendo — disparando bot_telegram.yml..."
+          gh workflow run bot_telegram.yml --repo ${{ github.repository }}
+          echo "✅ Bot relanzado."
+
+      - name: Bot ya está corriendo
+        if: steps.check.outputs.bot_running != '0'
+        run: echo "✅ Bot activo — nada que hacer."
