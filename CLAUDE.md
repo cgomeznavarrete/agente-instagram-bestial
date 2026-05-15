@@ -227,7 +227,7 @@ La simulación FIFO usa contadores internos por tipo (`consumidos: dict[str, int
 | Tipo de archivo | Cómo se publica |
 |---|---|
 | Imagen → Reel | Convertida a MP4 9:16 con música via MoviePy → Cloudinary → Graph API `REELS` |
-| Imagen → Post | Convertida a MP4 con música → Graph API `REELS`; si falla → imagen estática |
+| Imagen → Post | Publicada como imagen estática (Graph API `IMAGE`). El bot envía recomendación de música; el usuario la agrega manualmente en Instagram. |
 | Imagen → Story | Convertida a MP4 con música → Graph API `STORIES`; si falla → imagen estática |
 | Video → Reel/Story | Subido a Cloudinary → Graph API con `media_type=REELS/STORIES` |
 | Carrusel | ⚠️ **No se publica via API** — se envía a Telegram para subida manual con música |
@@ -399,6 +399,7 @@ Estos archivos están en `.gitignore` — no se commitean al repo.
 | May-2026 | Carrusel mostraba `📸 POST` en lugar de `📖 POST - CARRUSEL` | `tipo_label` usaba `item.tipo` ("post") sin revisar `es_carrusel`. Fix: helper `_tipo_display(item)` en bot.py aplicado en todos los puntos de display |
 | May-2026 | `/hoy aprobar` en carrusel esperaba al workflow (podía auto-publicarse sin música) | Handler `hoy:aprobar` guardaba en `aprobaciones_hoy.json` para todos los tipos. Fix: si `es_carrusel`, llama `_enviar_carrusel_telegram()` en thread daemon inmediatamente |
 | May-2026 | Carruseles de datos curiosos nunca se generaban (biblioteca tenía carruseles del usuario) | Condición "si vacío → genera" bloqueada por carruseles del usuario. Fix: `ejecutar_semana` genera 1 carrusel educativo cada lunes; slot miércoles prioriza `siguiente_carrusel_educativo()` (`pilar=educacion_sobre_salsas`) |
+| May-2026 | Posts subían con música embebida (imagen→MP4 Reel) — usuario prefiere poner música manualmente desde Instagram | Cambio de flujo: posts de imagen se publican como imagen estática. Bot envía recomendación de track via `_recomendacion_musica()` al mostrar el preview. Stories siguen convirtiendo a MP4+música. |
 
 ## Sistema de contexto (Obsidian + context/)
 

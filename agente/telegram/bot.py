@@ -130,6 +130,32 @@ def _enviar_carrusel_telegram(item) -> None:
     logger.info("Carrusel %s enviado a Telegram para subida manual", item.id)
 
 
+def _recomendacion_musica(pilar: str) -> str:
+    """Devuelve un mensaje HTML con la recomendación de música para un post de imagen.
+
+    Usa MOOD_POR_PILAR + MUSICA_POR_MOOD para sugerir un track.
+    El usuario lo agrega manualmente desde la app de Instagram.
+    """
+    import random
+    from config.imagen_params import MOOD_POR_PILAR, MUSICA_POR_MOOD
+    mood = MOOD_POR_PILAR.get(pilar or "", None) or "upbeat_latino"
+    tracks = MUSICA_POR_MOOD.get(mood, [])
+    track = random.choice(tracks) if tracks else "upbeat_latino_01.mp3"
+    mood_label = {
+        "upbeat_latino":    "Upbeat Latino 🕺",
+        "chill_food":       "Chill Food 🍽",
+        "energetico":       "Energético ⚡",
+        "humor":            "Humor 😂",
+        "romantico_gastro": "Romántico Gastro 🌹",
+    }.get(mood, mood)
+    return (
+        f"🎵 <b>Música recomendada:</b>\n"
+        f"   🎶 <code>{track}</code>\n"
+        f"   Mood: {mood_label}\n"
+        f"<i>Agrégala desde Instagram al publicar el post.</i>"
+    )
+
+
 # ── Helpers de polling ────────────────────────────────────────────────────────
 
 def _get_updates(offset: Optional[int] = None, timeout: int = 20) -> list:
@@ -2544,13 +2570,16 @@ class BotTelegram:
                     # Caption completo en el preview (Telegram trunca automáticamente a 1024)
                     caption_prev += esc(str(item_slot.caption).strip()[:900])
 
-                # ── Convertir imagen a video con música antes del preview ────
-                # Las imágenes estáticas no tienen música en Instagram.
-                # Convertimos aquí para que el usuario apruebe el resultado final.
+                # ── Preview con música (solo stories/reels de imagen) ────────
+                # Posts de imagen: se publican como imagen estática — sin conversión.
+                # El usuario agrega la música manualmente desde Instagram.
+                # Stories/Reels de imagen: se convierten a MP4 con música para preview.
+                _es_post_imagen = False
                 if not item_slot.es_carrusel:
                     _nombre_item = (item_slot.nombre_archivo or "").lower()
                     _es_img = not any(_nombre_item.endswith(e) for e in (".mp4", ".mov", ".avi", ".m4v"))
-                    if _es_img:
+                    _es_post_imagen = _es_img and item_slot.tipo == "post"
+                    if _es_img and item_slot.tipo in ("reel", "story"):
                         _enviar_mensaje("⏳ Preparando preview con música… (~30 seg)")
                         _ruta_conv = Path(item_slot.ruta_local) if item_slot.ruta_local else None
                         if _ruta_conv and not _ruta_conv.exists():
@@ -2631,6 +2660,11 @@ class BotTelegram:
                         enviado = True
                 if not enviado and item_slot.cloudinary_url:
                     _enviar_media_url(item_slot.cloudinary_url, caption=caption_prev)
+
+                # Recomendación de música para posts de imagen (se pone manualmente)
+                if _es_post_imagen:
+                    _enviar_mensaje(_recomendacion_musica(item_slot.pilar or ""))
+
                 time.sleep(0.4)
             except Exception as err:
                 logger.warning("Error enviando preview slot %s: %s", label_slot, err)
@@ -2797,11 +2831,17 @@ class BotTelegram:
         ]}
         try:
             caption_preview = _html.escape(item.caption[:900]) if item.caption else "<i>Sin caption — se generará al publicar</i>"
+            # Recomendación de música para posts de imagen
+            _es_img_nombre = not any((item.nombre_archivo or "").lower().endswith(e) for e in (".mp4", ".mov", ".avi", ".m4v"))
+            _musica_nota = ""
+            if item.tipo == "post" and not item.es_carrusel and _es_img_nombre:
+                _musica_nota = "\n\n" + _recomendacion_musica(item.pilar or "")
             texto = (
                 f"🗓 <b>{tipo_label}</b> — 🌶 {pilar_label}\n"
                 + (f"📝 <i>{_html.escape(nota)}</i>\n" if nota else "")
                 + f"👆 Toca ✅ para publicar ahora\n\n"
                 + caption_preview
+                + _musica_nota
                 + "\n\n<i>¿Qué hacemos con este contenido?</i>"
             )
             _enviar_mensaje(texto, reply_markup=botones)

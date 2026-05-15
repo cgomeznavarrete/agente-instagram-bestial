@@ -3,9 +3,11 @@ Publicación directa de un item de la biblioteca en Instagram.
 Usado por main.py (CLI) y por bot.py (Telegram).
 
 Política de música:
-  - Posts de imagen y Carruseles → se convierten a Reel MP4 con música antes de publicar.
-    La Instagram Graph API no permite agregar música a imágenes estáticas vía API.
-  - Reels y Stories de video → música embebida en el MP4 generado.
+  - Posts de imagen → se publican como imagen estática. El usuario agrega música
+    manualmente desde la app de Instagram. El bot envía una recomendación de track.
+  - Stories de imagen → se convierten a MP4 con música antes de publicar.
+  - Reels → música embebida en el MP4 generado.
+  - Carruseles → no se publican via API; el usuario los sube manualmente con música.
 """
 import logging
 import time
@@ -326,13 +328,11 @@ def publicar_item(item) -> str | None:
                 except Exception as e:
                     logger.warning("No se pudo descargar imagen de Cloudinary: %s", e)
 
-        if tipo_pub == "post" and ruta and ruta.exists():
-            # Post de imagen → Reel con música (más alcance + audio)
-            logger.info("Post imagen → convirtiendo a Reel con música (%s)", mood)
-            url_video_reel = _imagen_a_reel_cloudinary(ruta, pilar_item)
-            if url_video_reel:
-                return _publicar_video_como_reel(url_video_reel, item.caption)
-            logger.warning("No se pudo convertir imagen a Reel — publicando como post estático")
+        if tipo_pub == "post":
+            # Post de imagen → publicar como imagen estática.
+            # La música la agrega el usuario manualmente desde la app.
+            # El bot envía la recomendación de track en Telegram (ver bot.py).
+            pass
 
         if tipo_pub == "story" and ruta and ruta.exists():
             # Story imagen → video con música
