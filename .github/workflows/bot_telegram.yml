@@ -2,10 +2,14 @@ name: Bot Telegram — siempre activo
 
 on:
   schedule:
-    # Reinicio automático cada 5 horas → bot vive 24/7 sin PC encendida
-    # (GitHub Actions permite máx 6h por run; cancel-in-progress cancela el anterior)
+    # Red de seguridad: reinicio forzado cada 5 horas aunque workflow_run falle
     - cron: '0 */5 * * *'
-  workflow_dispatch:  # Lanzar manualmente desde GitHub
+  workflow_run:
+    # Auto-reinicio inmediato: cuando el bot termina (timeout, error, o éxito)
+    # lo relanza en el acto sin esperar al próximo cron
+    workflows: ["Bot Telegram — siempre activo"]
+    types: [completed]
+  workflow_dispatch:  # Lanzar manualmente desde GitHub o desde gh CLI
   push:
     branches: [master]
     paths:
@@ -24,9 +28,10 @@ concurrency:
 jobs:
   bot:
     runs-on: ubuntu-latest
-    timeout-minutes: 350  # ~6 horas máximo por run de GitHub Actions
+    timeout-minutes: 350  # ~5h 50min — GitHub Actions permite máx 6h por run
     permissions:
       contents: write
+      actions: write  # Necesario para que workflow_run pueda relanzarse
 
     steps:
       - uses: actions/checkout@v4
