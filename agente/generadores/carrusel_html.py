@@ -199,9 +199,9 @@ body {{ background:{fondo}; color:#FFFFFF; }}
   letter-spacing:-12px;opacity:0.95; }}
 .subtexto {{ position:absolute;left:72px;top:590px;
   font-size:68px;font-weight:800;color:#FFFFFF;line-height:1.1; }}
-.linea {{ position:absolute;left:72px;top:718px;
+.linea {{ position:absolute;left:72px;top:755px;
   width:60px;height:5px;background:{header};border-radius:3px; }}
-.tema {{ position:absolute;left:72px;top:758px;
+.tema {{ position:absolute;left:72px;top:795px;
   font-size:{fs_tema};font-weight:700;letter-spacing:3px;
   color:#777;text-transform:uppercase;max-width:900px; }}
 .footer-left {{ position:absolute;bottom:52px;left:72px;
