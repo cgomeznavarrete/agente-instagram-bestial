@@ -1513,8 +1513,23 @@ class BotTelegram:
                             _enviar_mensaje("❌ No se pudieron generar los slides del carrusel.")
                             return
                         item_gc = _agr_car(rutas_gc, tipo="post", pilar="educacion_sobre_salsas")
+
+                        # Generar caption con Claude y guardarlo en la biblioteca
+                        try:
+                            from agente.gestores.biblioteca import _cargar as _bib_gc, _guardar as _save_gc
+                            caption_gc = _generar_caption("post", "educacion_sobre_salsas")
+                            item_gc.caption = caption_gc
+                            _bib_data_gc = _bib_gc()
+                            for _raw_gc in _bib_data_gc["items"]:
+                                if _raw_gc["id"] == item_gc.id:
+                                    _raw_gc["caption"] = caption_gc
+                                    break
+                            _save_gc(_bib_data_gc)
+                        except Exception as _ce_gc:
+                            logger.warning("No se pudo generar caption para carrusel datos curiosos: %s", _ce_gc)
+
                         _commit_biblioteca(item_gc.id)
-                        # Enviar los slides a Telegram para subida manual
+                        # Enviar los slides a Telegram para subida manual (incluye caption)
                         _enviar_carrusel_telegram(item_gc)
                         _enviar_mensaje(
                             f"✅ <b>Carrusel de datos curiosos listo para {hora_l}</b>\n\n"
