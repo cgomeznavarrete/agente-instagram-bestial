@@ -295,24 +295,45 @@ def _descargar_archivo(file_id: str, extension: str, tipo: str = "media") -> Opt
         return None
 
 
-def _generar_caption(tipo: str, pilar: str) -> str:
+def _generar_caption(tipo: str, pilar: str, tema: str | None = None) -> str:
+    """Genera caption para Instagram.
+
+    Si `tema` está presente (p.ej. carruseles educativos), el caption
+    menciona explícitamente el tema del contenido.
+    """
     cliente = ClienteClaude()
+
+    if tema:
+        prompt_usuario = (
+            f"Tipo de publicación: {tipo.upper()}. Pilar: {pilar}.\n"
+            f"Tema del carrusel educativo: «{tema}».\n\n"
+            "Escribe un caption para Instagram que esté directamente relacionado con ese tema:\n"
+            "- Primera línea: dato o pregunta curiosa sobre el tema que enganche al instante\n"
+            "- Cuerpo (2-3 líneas): conecta el tema con la experiencia de disfrutar el picante\n"
+            f"- CTA de compra: Pídela aquí → {brand.LINK_COMPRA_WHATSAPP}\n"
+            f"- Pregunta de cierre (OBLIGATORIA, genera conversación): elige la más apropiada: {brand.PREGUNTAS_ENGAGEMENT}\n"
+            f"- Incluye exactamente estos hashtags al final (no inventes otros): {' '.join(brand.seleccionar_hashtags())}\n"
+            "- Máximo 3 emojis"
+        )
+    else:
+        prompt_usuario = (
+            f"Tipo de publicación: {tipo.upper()}. Pilar: {pilar}.\n\n"
+            "Escribe un caption para Instagram:\n"
+            "- Primera línea: verdad que los amantes del picante reconocen al instante\n"
+            "- Cuerpo (2-3 líneas): la experiencia — olor, sabor, el momento\n"
+            f"- CTA de compra: Pídela aquí → {brand.LINK_COMPRA_WHATSAPP}\n"
+            f"- Pregunta de cierre (OBLIGATORIA, genera conversación): elige la más apropiada: {brand.PREGUNTAS_ENGAGEMENT}\n"
+            f"- Incluye exactamente estos hashtags al final (no inventes otros): {' '.join(brand.seleccionar_hashtags())}\n"
+            "- Máximo 3 emojis"
+        )
+
     caption_raw = cliente.generar(
         prompt_sistema=(
             "Eres el community manager de Salsas Bestial, marca colombiana de salsas picantes. "
             "Haz que la persona se identifique con la experiencia del picante. "
             "Tono: cercano, real, apasionado. Sin frases publicitarias genéricas."
         ),
-        prompt_usuario=(
-            f"Tipo de publicación: {tipo.upper()}. Pilar: {pilar}.\n\n"
-            "Escribe un caption para Instagram:\n"
-            "- Primera línea: verdad que los amantes del picante reconocen al instante\n"
-            "- Cuerpo (2-3 líneas): la experiencia — olor, sabor, el momento\n"
-            f"- CTA de compra: Pídela aquí → {brand.LINK_COMPRA_WHATSAPP}\n"
-            f"- Pregunta de cierre (OBLIGATORIA, genera conversación): elige la más apropiada de esta lista y ponla como última línea antes de los hashtags: {brand.PREGUNTAS_ENGAGEMENT}\n"
-            f"- Incluye exactamente estos hashtags al final (no inventes otros): {' '.join(brand.seleccionar_hashtags())}\n"
-            "- Máximo 3 emojis"
-        ),
+        prompt_usuario=prompt_usuario,
         temperatura=0.85,
         max_tokens=600,
     )
@@ -1514,10 +1535,10 @@ class BotTelegram:
                             return
                         item_gc = _agr_car(rutas_gc, tipo="post", pilar="educacion_sobre_salsas")
 
-                        # Generar caption con Claude y guardarlo en la biblioteca
+                        # Generar caption con Claude relacionado con el tema del carrusel
                         try:
                             from agente.gestores.biblioteca import _cargar as _bib_gc, _guardar as _save_gc
-                            caption_gc = _generar_caption("post", "educacion_sobre_salsas")
+                            caption_gc = _generar_caption("post", "educacion_sobre_salsas", tema=tema_gc)
                             item_gc.caption = caption_gc
                             _bib_data_gc = _bib_gc()
                             for _raw_gc in _bib_data_gc["items"]:

@@ -224,6 +224,43 @@ def ejecutar_semana():
             rutas = generar_carrusel_html(tema=tema_semana, n_slides=3, pilar="educacion_sobre_salsas")
             if rutas:
                 item_carr = agregar_carrusel(rutas, tipo="post", pilar="educacion_sobre_salsas")
+                # Generar caption relacionado con el tema del carrusel
+                try:
+                    from agente.claude.cliente_claude import ClienteClaude, limpiar_caption
+                    from config import brand_guidelines as _brand
+                    import re as _re
+                    _cliente_carr = ClienteClaude()
+                    _caption_raw = _cliente_carr.generar(
+                        prompt_sistema=(
+                            "Eres el community manager de Salsas Bestial, marca colombiana de salsas picantes. "
+                            "Tono: cercano, real, apasionado. Sin frases publicitarias genéricas."
+                        ),
+                        prompt_usuario=(
+                            f"Tipo de publicación: POST (carrusel educativo). Pilar: educacion_sobre_salsas.\n"
+                            f"Tema del carrusel: «{tema_semana}».\n\n"
+                            "Escribe un caption para Instagram directamente relacionado con ese tema:\n"
+                            "- Primera línea: dato o pregunta curiosa sobre el tema que enganche al instante\n"
+                            "- Cuerpo (2-3 líneas): conecta el tema con la experiencia de disfrutar el picante\n"
+                            f"- CTA: Pídela aquí → {_brand.LINK_COMPRA_WHATSAPP}\n"
+                            f"- Pregunta de cierre (OBLIGATORIA): {_brand.PREGUNTAS_ENGAGEMENT}\n"
+                            f"- Hashtags: {' '.join(_brand.seleccionar_hashtags())}\n"
+                            "- Máximo 3 emojis"
+                        ),
+                        temperatura=0.85,
+                        max_tokens=600,
+                    )
+                    _caption_carr = limpiar_caption(_re.sub(r"\*\*(.+?)\*\*", r"\1", _caption_raw))
+                    item_carr.caption = _caption_carr
+                    from agente.gestores.biblioteca import _cargar as _bib_load, _guardar as _bib_save
+                    _bib_data = _bib_load()
+                    for _raw_c in _bib_data["items"]:
+                        if _raw_c["id"] == item_carr.id:
+                            _raw_c["caption"] = _caption_carr
+                            break
+                    _bib_save(_bib_data)
+                    console.print(f"  [green]✓[/green] Caption generado para el carrusel")
+                except Exception as _e_cap:
+                    console.print(f"  [yellow]⚠ No se pudo generar caption: {_e_cap}[/yellow]")
                 console.print(f"  [green]✓[/green] Carrusel generado: {len(rutas)} slides → {item_carr.id}")
             else:
                 console.print("  [yellow]⚠ No se generaron slides para el carrusel educativo[/yellow]")
