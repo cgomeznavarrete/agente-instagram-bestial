@@ -260,9 +260,9 @@ body {{ background:{fondo}; color:#FFFFFF; }}
 .footer-dots {{ position:absolute;bottom:52px;left:72px; }}
 .footer-right {{ position:absolute;bottom:52px;right:72px;
   font-size:17px;font-weight:400;letter-spacing:2px;color:{gris_header}; }}
-/* Línea decorativa lateral */
-.side-line {{ position:absolute;top:340px;left:42px;
-  width:4px;height:420px;background:{header};border-radius:2px;opacity:0.6; }}
+/* Línea decorativa lateral — empieza al mismo nivel que la etiqueta */
+.side-line {{ position:absolute;top:365px;left:42px;
+  width:4px;height:395px;background:{header};border-radius:2px;opacity:0.6; }}
 </style></head><body>
   <div class="hdr-left">{numero:02d} / {total:02d}</div>
   <div class="hdr-right">Salsas Bestial</div>
