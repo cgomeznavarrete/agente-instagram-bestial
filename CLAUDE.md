@@ -81,7 +81,7 @@ Muestra el plan del día con caption completo y un menú por slot:
                              carrusel: envía slides a Telegram INMEDIATAMENTE (sin esperar workflow)
 ✍️ Modificar caption      → escribe instrucción → Claude reescribe → guarda en biblioteca
 ✅ Ya publiqué            → marca el item como publicado
-⏭ Saltar                 → pausa ese slot para hoy
+⏭ Saltar                 → submenú: Cambiar material (biblioteca o datos curiosos) / No publicar hoy
 ```
 
 Si el item no tiene caption al mostrar `/hoy`, se genera automáticamente con Claude en ese momento y se guarda en `biblioteca.json`.
@@ -368,7 +368,11 @@ Estos archivos están en `.gitignore` — no se commitean al repo.
 | `hoy:aprobar:` | `bot.py` | Pre-aprobación desde `/hoy` |
 | `hoy:modificar:` | `bot.py` | Modificar caption desde `/hoy` |
 | `hoy:ya_publique:` | `bot.py` | Marcar publicado desde `/hoy` |
-| `hoy:pausar_slot:` | `bot.py` | Pausar slot desde `/hoy` |
+| `hoy:pausar_slot:` | `bot.py` | Pausar slot (No publicar hoy) desde el submenú Saltar |
+| `hoy:saltar_menu:` | `bot.py` | Submenú al tocar ⏭ Saltar en `/hoy` |
+| `hoy:cambiar_material:` | `bot.py` | Lista biblioteca para elegir reemplazo de material |
+| `hoy:usar_item:` | `bot.py` | Pre-aprueba un ítem de biblioteca para el slot |
+| `hoy:generar_curiosos:` | `bot.py` | Genera carrusel datos curiosos y lo envía a Telegram |
 
 > El bot ignora callbacks `prog_si:`/`prog_no:` (son del workflow). El workflow usa offset propio y no compite con el bot porque los prefijos son distintos.
 

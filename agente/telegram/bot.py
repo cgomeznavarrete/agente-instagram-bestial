@@ -1386,6 +1386,147 @@ class BotTelegram:
                 self._guardar_pausas_hoy(pausas)
                 _answer_callback(cb_id, f"✅ Slot {hora_label} reactivado")
                 _enviar_mensaje(f"✅ Slot de <b>{hora_label}</b> reactivado.\nEscribe /hoy para ver el plan actualizado.")
+
+            elif accion == "saltar_menu" and len(partes) >= 4:
+                # hoy:saltar_menu:<slot_key>:<tipo>
+                # Muestra submenú: Cambiar material / No publicar hoy
+                slot_key_sm = partes[2]
+                tipo_sm = partes[3]
+                hora_label_sm = "12pm" if int(slot_key_sm) < 15 else "7pm"
+                _answer_callback(cb_id, "⏭ ¿Qué hacemos?")
+                _enviar_mensaje(
+                    f"⏭ <b>Slot {hora_label_sm}</b> — ¿Qué hacemos?",
+                    reply_markup={"inline_keyboard": [
+                        [{"text": "🔄 Cambiar material",  "callback_data": f"hoy:cambiar_material:{slot_key_sm}:{tipo_sm}"}],
+                        [{"text": "❌ No publicar hoy",   "callback_data": f"hoy:pausar_slot:{slot_key_sm}"}],
+                    ]}
+                )
+
+            elif accion == "cambiar_material" and len(partes) >= 4:
+                # hoy:cambiar_material:<slot_key>:<tipo>
+                # Lista ítems de la biblioteca; si vacía, ofrece generar datos curiosos
+                slot_key_cm = partes[2]
+                tipo_cm = partes[3]
+                hora_label_cm = "12pm" if int(slot_key_cm) < 15 else "7pm"
+                _answer_callback(cb_id, "📚 Cargando biblioteca...")
+
+                from agente.gestores.biblioteca import listar_pendientes as _lp
+                # Mostrar primero los del mismo tipo que el slot, luego el resto
+                mismo_tipo = [i for i in _lp(tipo_cm) if not i.es_carrusel] if tipo_cm != "carrusel" else _lp("post")
+                otros = [i for t in ["post", "reel", "story"] if t != tipo_cm for i in _lp(t)]
+                carruseles = [i for i in _lp("post") if i.es_carrusel]
+                todos_ordenados = mismo_tipo + carruseles + otros
+                # Deduplicar por id
+                vistos = set()
+                items_cm = []
+                for it in todos_ordenados:
+                    if it.id not in vistos:
+                        vistos.add(it.id)
+                        items_cm.append(it)
+
+                if items_cm:
+                    filas = []
+                    for it in items_cm[:6]:
+                        pilar_short = (it.pilar or "").replace("_", " ").title()[:18]
+                        filas.append([{
+                            "text": f"{_tipo_display(it)} — {pilar_short}",
+                            "callback_data": f"hoy:usar_item:{slot_key_cm}:{it.id}"
+                        }])
+                    filas.append([{"text": "✨ Generar datos curiosos", "callback_data": f"hoy:generar_curiosos:{slot_key_cm}"}])
+                    filas.append([{"text": "❌ No publicar hoy",        "callback_data": f"hoy:pausar_slot:{slot_key_cm}"}])
+                    _enviar_mensaje(
+                        f"📚 <b>Elige material para {hora_label_cm}</b>\n\nSelecciona un ítem de la biblioteca:",
+                        reply_markup={"inline_keyboard": filas}
+                    )
+                else:
+                    _enviar_mensaje(
+                        f"📭 <b>Biblioteca vacía</b>\n\nNo hay material pendiente.\n¿Genero un carrusel de datos curiosos?",
+                        reply_markup={"inline_keyboard": [
+                            [{"text": "✨ Generar datos curiosos", "callback_data": f"hoy:generar_curiosos:{slot_key_cm}"}],
+                            [{"text": "❌ No publicar hoy",        "callback_data": f"hoy:pausar_slot:{slot_key_cm}"}],
+                        ]}
+                    )
+
+            elif accion == "usar_item" and len(partes) >= 4:
+                # hoy:usar_item:<slot_key>:<item_id>
+                # Pre-aprueba el ítem para el slot (igual que hoy:aprobar)
+                slot_key_ui = partes[2]
+                item_id_ui = partes[3]
+                hora_label_ui = "12pm" if int(slot_key_ui) < 15 else "7pm"
+
+                _bib_ui = _bib_cargar_global()
+                item_ui = None
+                for raw_ui in _bib_ui.get("items", []):
+                    if raw_ui["id"] == item_id_ui and raw_ui.get("estado") == "pendiente":
+                        from agente.gestores.biblioteca import ItemBiblioteca as _IBib
+                        item_ui = _IBib(**{k: v for k, v in raw_ui.items()})
+                        break
+
+                if not item_ui:
+                    _answer_callback(cb_id, "⚠️ Ítem no encontrado o ya publicado")
+                    _enviar_mensaje("⚠️ No se encontró el ítem seleccionado. Escribe /hoy para ver el plan actualizado.")
+                    return
+
+                if item_ui.es_carrusel:
+                    # Carrusel → enviar slides a Telegram de inmediato
+                    _answer_callback(cb_id, "📖 Enviando carrusel...")
+                    import threading as _thr_ui
+                    _thr_ui.Thread(target=_enviar_carrusel_telegram, args=(item_ui,), daemon=True).start()
+                else:
+                    aprobaciones_ui = self._leer_aprobaciones_hoy()
+                    if aprobaciones_ui.get("fecha") != fecha_hoy:
+                        aprobaciones_ui = {"fecha": fecha_hoy, "aprobados": {}}
+                    aprobaciones_ui["aprobados"][slot_key_ui] = item_id_ui
+                    self._guardar_aprobaciones_hoy(aprobaciones_ui)
+                    _answer_callback(cb_id, f"✅ Cambiado para {hora_label_ui}")
+                    pilar_ui = (item_ui.pilar or "").replace("_", " ").title()
+                    _enviar_mensaje(
+                        f"✅ <b>Material cambiado para {hora_label_ui}</b>\n\n"
+                        f"{_tipo_display(item_ui)} — {pilar_ui}\n\n"
+                        f"<i>Se publicará a las {hora_label_ui}. Escribe /hoy para ver el plan actualizado.</i>"
+                    )
+
+            elif accion == "generar_curiosos" and len(partes) >= 3:
+                # hoy:generar_curiosos:<slot_key>
+                # Genera carrusel de datos curiosos y lo pre-aprueba para el slot
+                slot_key_gc = partes[2]
+                hora_label_gc = "12pm" if int(slot_key_gc) < 15 else "7pm"
+                _answer_callback(cb_id, "✨ Generando...")
+                _enviar_mensaje("✨ <b>Generando carrusel de datos curiosos…</b>\n\nEsto toma ~1 min.")
+
+                import threading as _thr_gc
+                def _generar_curiosos_thread(slot_k, hora_l):
+                    try:
+                        import random as _rand_gc
+                        from agente.generadores.carrusel_html import generar_carrusel_html as _gen_car
+                        from agente.gestores.biblioteca import agregar_carrusel as _agr_car
+                        temas_gc = [
+                            "curiosidades del picante y la capsaicina",
+                            "historia de las salsas picantes en Latinoamérica",
+                            "beneficios del picante para la salud",
+                            "tipos de chiles y su nivel de picor",
+                            "maridajes perfectos con salsa picante",
+                        ]
+                        tema_gc = _rand_gc.choice(temas_gc)
+                        rutas_gc = _gen_car(tema=tema_gc, n_slides=3)
+                        if not rutas_gc:
+                            _enviar_mensaje("❌ No se pudieron generar los slides del carrusel.")
+                            return
+                        item_gc = _agr_car(rutas_gc, tipo="post", pilar="educacion_sobre_salsas")
+                        _commit_biblioteca(item_gc.id)
+                        # Enviar los slides a Telegram para subida manual
+                        _enviar_carrusel_telegram(item_gc)
+                        _enviar_mensaje(
+                            f"✅ <b>Carrusel de datos curiosos listo para {hora_l}</b>\n\n"
+                            f"<i>Tema: {tema_gc}</i>\n\n"
+                            "Sube los slides a Instagram con música desde la app 🎵"
+                        )
+                    except Exception as _e_gc:
+                        logger.error("Error generando carrusel datos curiosos desde /hoy: %s", _e_gc, exc_info=True)
+                        _enviar_mensaje(f"❌ Error generando carrusel: {_html.escape(str(_e_gc))}")
+
+                _thr_gc.Thread(target=_generar_curiosos_thread, args=(slot_key_gc, hora_label_gc), daemon=True).start()
+
             return
 
         # ── Álbum de fotos del usuario → carrusel ────────────────────────
@@ -2540,10 +2681,10 @@ class BotTelegram:
                     # Fila 3: Ya publiqué / Saltar
                     teclado.append([
                         {"text": "✅ Ya publiqué", "callback_data": f"hoy:ya_publique:{item_slot.id}:{slot_key}:{tipo}"},
-                        {"text": "⏭ Saltar",       "callback_data": f"hoy:pausar_slot:{slot_key}"},
+                        {"text": "⏭ Saltar",       "callback_data": f"hoy:saltar_menu:{slot_key}:{tipo}"},
                     ])
                 else:
-                    teclado.append([{"text": f"⏭ Saltar slot {hora_label}", "callback_data": f"hoy:pausar_slot:{slot_key}"}])
+                    teclado.append([{"text": f"⏭ Saltar slot {hora_label}", "callback_data": f"hoy:saltar_menu:{slot_key}:{tipo}"}])
             elif not ya_paso and not pausado_todo and slot_key in slots_pausados:
                 teclado.append([{"text": f"🔄 Reactivar {hora_label}", "callback_data": f"hoy:activar_slot:{slot_key}"}])
 
@@ -3056,7 +3197,7 @@ class BotTelegram:
             "<code>/venta</code> — Claude genera serie de 3 stories de conversión (enganche → prueba → CTA)\n\n"
 
             "━━ ⏭ DURANTE UNA APROBACIÓN ━━\n"
-            "Al tocar <b>⏭ Saltar</b> → opciones: Corregir caption / Ya lo publiqué / Pasar al siguiente\n"
+            "Al tocar <b>⏭ Saltar</b> en /hoy → submenú: Cambiar material (elige de biblioteca o genera datos curiosos) / No publicar hoy\n"
             "Al corregir: escribe la instrucción (ej: 'acortalo', 'tono más casual') → Claude lo reescribe\n"
             "Al rechazar un caption → escribe qué cambiar y Claude lo reescribe\n"
             "Escribe <code>saltar</code> para descartar sin cambiar\n\n"
