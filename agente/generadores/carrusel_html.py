@@ -217,7 +217,7 @@ body {{ background:{fondo}; color:#FFFFFF; }}
   <div class="linea"></div>
   <div class="tema">Sobre {tema_upper}</div>
   <div class="footer-left">Desliza →</div>
-  <div class="footer-right">@SalsasBestial</div>
+  <div class="footer-right">@salsas.bestial</div>
 </body></html>"""
 
 
@@ -273,7 +273,7 @@ body {{ background:{fondo}; color:#FFFFFF; }}
   <div class="subtitulo">{subtitulo}</div>
   <div class="ghost">{numero:02d}</div>
   <div class="footer-dots">{_dots(total, numero, tema)}</div>
-  <div class="footer-right">@SalsasBestial</div>
+  <div class="footer-right">@salsas.bestial</div>
 </body></html>"""
 
 
@@ -316,7 +316,7 @@ body {{ background:{fondo}; color:#FFFFFF;
   <div class="frase">Ya lo sabes,<br>prueba lo <span class="frase-accent">Bestial</span></div>
   <div class="linea"></div>
   <div class="cta">Link en bio · WhatsApp en bio</div>
-  <div class="handle">@SalsasBestial</div>
+  <div class="handle">@salsas.bestial</div>
 </body></html>"""
 
 
