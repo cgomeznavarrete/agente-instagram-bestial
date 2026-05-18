@@ -7,7 +7,7 @@ import json
 import logging
 import shutil
 import time
-from dataclasses import asdict, dataclass, field
+from dataclasses import asdict, dataclass, field, fields as dc_fields
 from pathlib import Path
 from typing import Optional
 
@@ -43,6 +43,7 @@ class ItemBiblioteca:
     es_carrusel: bool = False
     archivos_carrusel: list = field(default_factory=list)  # para carruseles multi-imagen
     cloudinary_url: str = ""    # URL pública en Cloudinary (persiste entre runners)
+    tema: str = ""              # Tema del carrusel educativo (para caption contextual)
 
 
 def _cargar() -> dict:
@@ -184,12 +185,18 @@ def agregar_carrusel(
     return item
 
 
+def _from_raw(raw: dict) -> "ItemBiblioteca":
+    """Construye ItemBiblioteca ignorando claves desconocidas en el JSON."""
+    campos_validos = {f.name for f in dc_fields(ItemBiblioteca)}
+    return ItemBiblioteca(**{k: v for k, v in raw.items() if k in campos_validos})
+
+
 def siguiente_pendiente(tipo: str) -> Optional[ItemBiblioteca]:
     """Devuelve el siguiente item pendiente de la cola para el tipo dado (FIFO)."""
     data = _cargar()
     for raw in data["items"]:
         if raw["tipo"] == tipo and raw["estado"] == "pendiente":
-            return ItemBiblioteca(**{k: v for k, v in raw.items()})
+            return _from_raw(raw)
     return None
 
 
@@ -245,7 +252,7 @@ def listar_pendientes(tipo: str = None) -> list[ItemBiblioteca]:
     for raw in data["items"]:
         if raw["estado"] == "pendiente":
             if tipo is None or raw["tipo"] == tipo:
-                items.append(ItemBiblioteca(**{k: v for k, v in raw.items()}))
+                items.append(_from_raw(raw))
     return items
 
 
@@ -258,7 +265,7 @@ def siguiente_carrusel_pendiente() -> Optional[ItemBiblioteca]:
     data = _cargar()
     for raw in data["items"]:
         if raw["estado"] == "pendiente" and raw.get("es_carrusel"):
-            return ItemBiblioteca(**{k: v for k, v in raw.items()})
+            return _from_raw(raw)
     return None
 
 
@@ -275,5 +282,5 @@ def siguiente_carrusel_educativo() -> Optional[ItemBiblioteca]:
             and raw.get("es_carrusel")
             and raw.get("pilar") == "educacion_sobre_salsas"
         ):
-            return ItemBiblioteca(**{k: v for k, v in raw.items()})
+            return _from_raw(raw)
     return None
