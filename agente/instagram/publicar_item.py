@@ -373,28 +373,30 @@ def publicar_item(item) -> str | None:
 
     creation_id = r1.json()["id"]
 
-    # Polling para videos
-    if "video_url" in media_data:
-        logger.info("Esperando procesamiento de video en Instagram...")
-        procesado = False
-        for _ in range(24):
-            time.sleep(10)
-            st_resp = req.get(
-                f"https://graph.facebook.com/v21.0/{creation_id}",
-                params={"fields": "status_code,status", "access_token": settings.INSTAGRAM_ACCESS_TOKEN},
-                timeout=30,
-            ).json()
-            st = st_resp.get("status_code", "")
-            logger.info("status_code: %s", st)
-            if st == "FINISHED":
-                procesado = True
-                break
-            if st == "ERROR":
-                logger.error("Error procesando video: %s", st_resp)
-                return None
-        if not procesado:
-            logger.error("Timeout esperando video FINISHED tras 240s — abortando")
+    # Polling hasta FINISHED — necesario para video E imagen (error 9007 si se publica antes)
+    es_video = "video_url" in media_data
+    max_intentos = 24 if es_video else 15   # video: 240s | imagen: 30s
+    sleep_seg   = 10  if es_video else 2
+    logger.info("Esperando procesamiento en Instagram (%s)...", "video" if es_video else "imagen")
+    procesado = False
+    for _ in range(max_intentos):
+        time.sleep(sleep_seg)
+        st_resp = req.get(
+            f"https://graph.facebook.com/v21.0/{creation_id}",
+            params={"fields": "status_code,status", "access_token": settings.INSTAGRAM_ACCESS_TOKEN},
+            timeout=30,
+        ).json()
+        st = st_resp.get("status_code", "")
+        logger.info("status_code: %s", st)
+        if st == "FINISHED":
+            procesado = True
+            break
+        if st == "ERROR":
+            logger.error("Error procesando media: %s", st_resp)
             return None
+    if not procesado:
+        logger.error("Timeout esperando FINISHED (%ds) — abortando", max_intentos * sleep_seg)
+        return None
 
     r2 = req.post(
         f"https://graph.facebook.com/v21.0/{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media_publish",
