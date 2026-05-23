@@ -46,7 +46,7 @@ def _publicar_video_como_reel(url_video: str, caption: str) -> str | None:
 
     creation_id = r1.json()["id"]
     procesado = False
-    for _ in range(18):
+    for _ in range(36):  # 36 × 10s = 360s máx
         time.sleep(10)
         st = req.get(
             f"https://graph.facebook.com/v21.0/{creation_id}",
@@ -61,7 +61,7 @@ def _publicar_video_como_reel(url_video: str, caption: str) -> str | None:
             return None
 
     if not procesado:
-        logger.error("Timeout esperando reel FINISHED — abortando")
+        logger.error("Timeout esperando reel FINISHED tras 360s — abortando")
         return None
 
     r2 = req.post(
@@ -259,7 +259,7 @@ def publicar_item(item) -> str | None:
             return None
         creation_id = r1.json()["id"]
         procesado = False
-        for _ in range(18):
+        for _ in range(36):  # 36 × 10s = 360s máx
             time.sleep(10)
             st = req.get(
                 f"https://graph.facebook.com/v21.0/{creation_id}",
@@ -273,7 +273,7 @@ def publicar_item(item) -> str | None:
                 logger.error("Error procesando reel en Instagram")
                 return None
         if not procesado:
-            logger.error("Timeout esperando reel FINISHED tras 180s — abortando")
+            logger.error("Timeout esperando reel FINISHED tras 360s — abortando")
             return None
         r2 = req.post(
             f"https://graph.facebook.com/v21.0/{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media_publish",
