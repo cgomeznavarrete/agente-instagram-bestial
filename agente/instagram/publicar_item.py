@@ -24,11 +24,70 @@ from agente.gestores.biblioteca import marcar_publicado
 logger = logging.getLogger(__name__)
 
 
+def _normalizar_video_reel(url_video: str) -> str:
+    """
+    Descarga el video, lo re-encoda con FFmpeg a las specs exactas de Instagram
+    (H.264 high, yuv420p, 30fps, AAC 44.1kHz, +faststart) y lo sube a Cloudinary.
+    Retorna la nueva URL o la original si algo falla.
+
+    Instagram procesa en ~2-3min videos ya en formato correcto.
+    Sin normalizar puede tardar 15-20min por transcodificación interna.
+    """
+    import tempfile
+    import subprocess
+    import urllib.request as _urlreq
+
+    try:
+        # Descargar video original a temp
+        with tempfile.NamedTemporaryFile(suffix=".mp4", delete=False) as f_in:
+            ruta_in = f_in.name
+        _urlreq.urlretrieve(url_video, ruta_in)
+
+        ruta_out = ruta_in.replace(".mp4", "_ig.mp4")
+
+        cmd = [
+            "ffmpeg", "-y", "-i", ruta_in,
+            "-c:v", "libx264", "-profile:v", "high", "-level", "4.0",
+            "-pix_fmt", "yuv420p",
+            "-r", "30",
+            "-b:v", "3500k",
+            "-vf", "scale=1080:1920:force_original_aspect_ratio=decrease,pad=1080:1920:(ow-iw)/2:(oh-ih)/2:color=black",
+            "-c:a", "aac", "-ar", "44100", "-ac", "2", "-b:a", "128k",
+            "-movflags", "+faststart",
+            ruta_out,
+        ]
+        result = subprocess.run(cmd, capture_output=True, timeout=180)
+        if result.returncode != 0:
+            logger.warning("FFmpeg normalización falló — usando video original. stderr: %s",
+                           result.stderr.decode(errors="replace")[-400:])
+            return url_video
+
+        nueva_url = cloudinary.uploader.upload(
+            ruta_out,
+            folder="salsas_bestial",
+            resource_type="video",
+        )["secure_url"]
+
+        Path(ruta_in).unlink(missing_ok=True)
+        Path(ruta_out).unlink(missing_ok=True)
+
+        logger.info("Video normalizado para Instagram: %s", nueva_url)
+        return nueva_url
+
+    except Exception as e:
+        logger.warning("No se pudo normalizar video — usando original: %s", e)
+        return url_video
+
+
 def _publicar_video_como_reel(url_video: str, caption: str) -> str | None:
     """
     Crea container de Reel → polling FINISHED → media_publish.
     Retorna media_id o None.
     """
+    # Normalizar a specs exactas de Instagram antes de enviar
+    logger.info("Normalizando video para Instagram...")
+    url_video = _normalizar_video_reel(url_video)
+
     r1 = req.post(
         f"https://graph.facebook.com/v21.0/{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media",
         data={
@@ -246,6 +305,12 @@ def publicar_item(item) -> str | None:
         else:
             logger.error("Sin video para reel")
             return None
+
+        # Normalizar a specs exactas de Instagram antes de enviar
+        # Reduce procesamiento de ~20min a ~2-3min
+        logger.info("Normalizando video para Instagram...")
+        url_video = _normalizar_video_reel(url_video)
+
         r1 = req.post(
             f"https://graph.facebook.com/v21.0/{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media",
             data={
