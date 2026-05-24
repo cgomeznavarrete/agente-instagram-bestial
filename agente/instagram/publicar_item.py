@@ -104,42 +104,26 @@ def _publicar_video_como_reel(url_video: str, caption: str) -> str | None:
         return None
 
     creation_id = r1.json()["id"]
-    procesado = False
-    for _ in range(150):  # 150 × 10s = 1500s (~25min) máx
-        time.sleep(10)
-        st_resp = req.get(
-            f"https://graph.facebook.com/v21.0/{creation_id}",
-            params={"fields": "status_code", "access_token": settings.INSTAGRAM_ACCESS_TOKEN},
-            timeout=30,
-        ).json()
-        st = st_resp.get("status_code", "")
-        if not st:
-            logger.warning("status_code vacío — respuesta: %s", st_resp)
-        else:
-            logger.info("status_code: %s", st)
-        if "error" in st_resp:
-            logger.error("Error API al consultar container: %s", st_resp["error"])
-            return None
-        if st == "FINISHED":
-            procesado = True
-            break
-        if st == "ERROR":
-            logger.error("Error procesando reel en Instagram")
-            return None
-
-    if not procesado:
-        logger.error("Timeout esperando reel FINISHED tras 1500s — abortando")
+    # status_code polling no funciona con nuestro token (Authorization Error 100/33).
+    # Usamos retry en media_publish: si 9007 (not ready) esperar y reintentar.
+    time.sleep(20)  # pausa inicial para que Instagram empiece a procesar
+    for intento in range(30):  # máx 30 × 15s = 450s adicionales (~7.5min)
+        r2 = req.post(
+            f"https://graph.facebook.com/v21.0/{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media_publish",
+            data={"creation_id": creation_id, "access_token": settings.INSTAGRAM_ACCESS_TOKEN},
+            timeout=60,
+        )
+        if r2.status_code == 200:
+            return r2.json().get("id")
+        err = r2.json().get("error", {})
+        if err.get("code") == 9007:
+            logger.info("Reel aún no listo (9007) — reintento %d/30 en 15s...", intento + 1)
+            time.sleep(15)
+            continue
+        logger.error("Error media_publish reel (%d): %s", r2.status_code, r2.text)
         return None
-
-    r2 = req.post(
-        f"https://graph.facebook.com/v21.0/{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media_publish",
-        data={"creation_id": creation_id, "access_token": settings.INSTAGRAM_ACCESS_TOKEN},
-        timeout=60,
-    )
-    if r2.status_code != 200:
-        logger.error("Error media_publish reel: %s", r2.text)
-        return None
-    return r2.json().get("id")
+    logger.error("Timeout esperando reel listo tras ~470s — abortando")
+    return None
 
 
 def _imagen_a_reel_cloudinary(ruta_local: Path, pilar: str) -> str | None:
@@ -331,40 +315,26 @@ def publicar_item(item) -> str | None:
             logger.error("Error creando container reel: %s", r1.text)
             return None
         creation_id = r1.json()["id"]
-        procesado = False
-        for _ in range(150):  # 150 × 10s = 1500s (~25min) máx
-            time.sleep(10)
-            st_resp2 = req.get(
-                f"https://graph.facebook.com/v21.0/{creation_id}",
-                params={"fields": "status_code", "access_token": settings.INSTAGRAM_ACCESS_TOKEN},
-                timeout=30,
-            ).json()
-            st = st_resp2.get("status_code", "")
-            if not st:
-                logger.warning("status_code vacío — respuesta: %s", st_resp2)
-            else:
-                logger.info("status_code: %s", st)
-            if "error" in st_resp2:
-                logger.error("Error API al consultar container: %s", st_resp2["error"])
-                return None
-            if st == "FINISHED":
-                procesado = True
-                break
-            if st == "ERROR":
-                logger.error("Error procesando reel en Instagram")
-                return None
-        if not procesado:
-            logger.error("Timeout esperando reel FINISHED tras 1500s — abortando")
+        # status_code polling no funciona con nuestro token (Authorization Error 100/33).
+        # Retry en media_publish: si 9007 esperar y reintentar.
+        time.sleep(20)
+        for intento in range(30):  # máx 30 × 15s = 450s adicionales
+            r2 = req.post(
+                f"https://graph.facebook.com/v21.0/{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media_publish",
+                data={"creation_id": creation_id, "access_token": settings.INSTAGRAM_ACCESS_TOKEN},
+                timeout=60,
+            )
+            if r2.status_code == 200:
+                return r2.json().get("id")
+            err = r2.json().get("error", {})
+            if err.get("code") == 9007:
+                logger.info("Reel aún no listo (9007) — reintento %d/30 en 15s...", intento + 1)
+                time.sleep(15)
+                continue
+            logger.error("Error media_publish reel (%d): %s", r2.status_code, r2.text)
             return None
-        r2 = req.post(
-            f"https://graph.facebook.com/v21.0/{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media_publish",
-            data={"creation_id": creation_id, "access_token": settings.INSTAGRAM_ACCESS_TOKEN},
-            timeout=60,
-        )
-        if r2.status_code != 200:
-            logger.error("Error media_publish reel: %s", r2.text)
-            return None
-        return r2.json().get("id")
+        logger.error("Timeout esperando reel listo tras ~470s — abortando")
+        return None
 
     # ── POST / STORY ──────────────────────────────────────────────────────────
     pilar_item = getattr(item, "pilar", "") or ""
