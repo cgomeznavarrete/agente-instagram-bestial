@@ -459,11 +459,27 @@ def publicar_item(item) -> str | None:
 
     if es_story:
         # Stories NO soportan polling de status_code (devuelve Authorization Error 100/33).
-        # Se publica directamente tras una pausa fija.
-        pausa = 8 if es_video else 3
-        logger.info("Story — esperando %ds antes de publicar...", pausa)
-        time.sleep(pausa)
-        procesado = True
+        # Se intenta media_publish con retry: si devuelve 9007 (not ready), esperar y reintentar.
+        pausa_inicial = 10 if es_video else 3
+        logger.info("Story — pausa inicial %ds...", pausa_inicial)
+        time.sleep(pausa_inicial)
+        for intento in range(18):  # máx 18 reintentos × 10s = 180s adicionales
+            r2 = req.post(
+                f"https://graph.facebook.com/v21.0/{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media_publish",
+                data={"creation_id": creation_id, "access_token": settings.INSTAGRAM_ACCESS_TOKEN},
+                timeout=60,
+            )
+            if r2.status_code == 200:
+                return r2.json().get("id")
+            err = r2.json().get("error", {})
+            if err.get("code") == 9007:
+                logger.info("Story aún no lista (9007) — reintento %d/18 en 10s...", intento + 1)
+                time.sleep(10)
+                continue
+            logger.error("Error media_publish story (%d): %s", r2.status_code, r2.text)
+            return None
+        logger.error("Timeout esperando story lista tras 180s — abortando")
+        return None
     else:
         # Posts: polling hasta FINISHED (imagen: 2s×15, video: 10s×24)
         max_intentos = 24 if es_video else 15
