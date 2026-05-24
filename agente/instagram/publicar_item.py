@@ -107,11 +107,19 @@ def _publicar_video_como_reel(url_video: str, caption: str) -> str | None:
     procesado = False
     for _ in range(150):  # 150 × 10s = 1500s (~25min) máx
         time.sleep(10)
-        st = req.get(
+        st_resp = req.get(
             f"https://graph.facebook.com/v21.0/{creation_id}",
             params={"fields": "status_code", "access_token": settings.INSTAGRAM_ACCESS_TOKEN},
             timeout=30,
-        ).json().get("status_code", "")
+        ).json()
+        st = st_resp.get("status_code", "")
+        if not st:
+            logger.warning("status_code vacío — respuesta: %s", st_resp)
+        else:
+            logger.info("status_code: %s", st)
+        if "error" in st_resp:
+            logger.error("Error API al consultar container: %s", st_resp["error"])
+            return None
         if st == "FINISHED":
             procesado = True
             break
@@ -326,11 +334,19 @@ def publicar_item(item) -> str | None:
         procesado = False
         for _ in range(150):  # 150 × 10s = 1500s (~25min) máx
             time.sleep(10)
-            st = req.get(
+            st_resp2 = req.get(
                 f"https://graph.facebook.com/v21.0/{creation_id}",
                 params={"fields": "status_code", "access_token": settings.INSTAGRAM_ACCESS_TOKEN},
                 timeout=30,
-            ).json().get("status_code", "")
+            ).json()
+            st = st_resp2.get("status_code", "")
+            if not st:
+                logger.warning("status_code vacío — respuesta: %s", st_resp2)
+            else:
+                logger.info("status_code: %s", st)
+            if "error" in st_resp2:
+                logger.error("Error API al consultar container: %s", st_resp2["error"])
+                return None
             if st == "FINISHED":
                 procesado = True
                 break
@@ -452,7 +468,15 @@ def publicar_item(item) -> str | None:
             timeout=30,
         ).json()
         st = st_resp.get("status_code", "")
-        logger.info("status_code: %s", st)
+        # Loggear respuesta completa cuando status_code está vacío para diagnóstico
+        if not st:
+            logger.warning("status_code vacío — respuesta completa: %s", st_resp)
+        else:
+            logger.info("status_code: %s", st)
+        # Manejar error de API (token expirado, permisos, etc.)
+        if "error" in st_resp:
+            logger.error("Error API al consultar container: %s", st_resp["error"])
+            return None
         if st == "FINISHED":
             procesado = True
             break
