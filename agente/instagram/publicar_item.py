@@ -454,38 +454,46 @@ def publicar_item(item) -> str | None:
 
     creation_id = r1.json()["id"]
 
-    # Polling hasta FINISHED — necesario para video E imagen (error 9007 si se publica antes)
-    es_video = "video_url" in media_data
-    max_intentos = 24 if es_video else 15   # video: 240s | imagen: 30s
-    sleep_seg   = 10  if es_video else 2
-    logger.info("Esperando procesamiento en Instagram (%s)...", "video" if es_video else "imagen")
-    procesado = False
-    for _ in range(max_intentos):
-        time.sleep(sleep_seg)
-        st_resp = req.get(
-            f"https://graph.facebook.com/v21.0/{creation_id}",
-            params={"fields": "status_code,status", "access_token": settings.INSTAGRAM_ACCESS_TOKEN},
-            timeout=30,
-        ).json()
-        st = st_resp.get("status_code", "")
-        # Loggear respuesta completa cuando status_code está vacío para diagnóstico
-        if not st:
-            logger.warning("status_code vacío — respuesta completa: %s", st_resp)
-        else:
-            logger.info("status_code: %s", st)
-        # Manejar error de API (token expirado, permisos, etc.)
-        if "error" in st_resp:
-            logger.error("Error API al consultar container: %s", st_resp["error"])
+    es_story  = media_data.get("media_type") == "STORIES"
+    es_video  = "video_url" in media_data
+
+    if es_story:
+        # Stories NO soportan polling de status_code (devuelve Authorization Error 100/33).
+        # Se publica directamente tras una pausa fija.
+        pausa = 8 if es_video else 3
+        logger.info("Story — esperando %ds antes de publicar...", pausa)
+        time.sleep(pausa)
+        procesado = True
+    else:
+        # Posts: polling hasta FINISHED (imagen: 2s×15, video: 10s×24)
+        max_intentos = 24 if es_video else 15
+        sleep_seg    = 10 if es_video else 2
+        logger.info("Esperando procesamiento en Instagram (%s)...", "video" if es_video else "imagen")
+        procesado = False
+        for _ in range(max_intentos):
+            time.sleep(sleep_seg)
+            st_resp = req.get(
+                f"https://graph.facebook.com/v21.0/{creation_id}",
+                params={"fields": "status_code,status", "access_token": settings.INSTAGRAM_ACCESS_TOKEN},
+                timeout=30,
+            ).json()
+            st = st_resp.get("status_code", "")
+            if not st:
+                logger.warning("status_code vacío — respuesta: %s", st_resp)
+            else:
+                logger.info("status_code: %s", st)
+            if "error" in st_resp:
+                logger.error("Error API al consultar container: %s", st_resp["error"])
+                return None
+            if st == "FINISHED":
+                procesado = True
+                break
+            if st == "ERROR":
+                logger.error("Error procesando media: %s", st_resp)
+                return None
+        if not procesado:
+            logger.error("Timeout esperando FINISHED (%ds) — abortando", max_intentos * sleep_seg)
             return None
-        if st == "FINISHED":
-            procesado = True
-            break
-        if st == "ERROR":
-            logger.error("Error procesando media: %s", st_resp)
-            return None
-    if not procesado:
-        logger.error("Timeout esperando FINISHED (%ds) — abortando", max_intentos * sleep_seg)
-        return None
 
     r2 = req.post(
         f"https://graph.facebook.com/v21.0/{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media_publish",
