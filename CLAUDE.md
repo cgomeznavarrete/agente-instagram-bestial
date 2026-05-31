@@ -130,6 +130,12 @@ GITHUB_TOKEN=...                  # Se inyecta automáticamente en GitHub Action
 | `publicar_programado.yml` | Cron 11:30am y 6:30pm COL | Publica según biblioteca + avisa por Telegram |
 | `ejecutar_semana.yml` | Cron lunes 9am COL | Genera calendario + contenido semanal |
 | `analizar_metricas.yml` | Cron domingo 10pm COL | Descarga métricas y genera reporte |
+| `watchdog_bot.yml` | Cron cada 30 min | Verifica que el bot esté corriendo; lo reinicia si no |
+| ~~`publicar_pendientes.yml`~~ | ~~Deshabilitado~~ | Legacy — reemplazado por `publicar_programado.yml` |
+
+> **Regla workflows**: los comandos Click usan **guiones**, no underscores. Invocar `python main.py ejecutar-semana`, no `ejecutar_semana`. Click convierte `def ejecutar_semana()` → comando `ejecutar-semana` automáticamente.
+
+> **Regla apt-get**: siempre `sudo apt-get update && sudo apt-get install -y <pkg>`. Sin el `update`, los runners de GH Actions tienen cache desactualizado y los paquetes dan 404.
 
 ### Bot 24/7 sin PC
 
@@ -404,6 +410,10 @@ Estos archivos están en `.gitignore` — no se commitean al repo.
 | May-2026 | `/hoy aprobar` en carrusel esperaba al workflow (podía auto-publicarse sin música) | Handler `hoy:aprobar` guardaba en `aprobaciones_hoy.json` para todos los tipos. Fix: si `es_carrusel`, llama `_enviar_carrusel_telegram()` en thread daemon inmediatamente |
 | May-2026 | Carruseles de datos curiosos nunca se generaban (biblioteca tenía carruseles del usuario) | Condición "si vacío → genera" bloqueada por carruseles del usuario. Fix: `ejecutar_semana` genera 1 carrusel educativo cada lunes; slot miércoles prioriza `siguiente_carrusel_educativo()` (`pilar=educacion_sobre_salsas`) |
 | May-2026 | Posts subían con música embebida (imagen→MP4 Reel) — usuario prefiere poner música manualmente desde Instagram | Cambio de flujo: posts de imagen se publican como imagen estática. Bot envía recomendación de track via `_recomendacion_musica()` al mostrar el preview. Stories siguen convirtiendo a MP4+música. |
+| May-2026 | Reels tomaban ~20min en procesarse en Instagram | Videos subidos crudos. Fix: `_normalizar_video_reel()` pre-encoda a H.264/yuv420p/30fps/AAC/+faststart antes de subir → ~2min |
+| May-2026 | `status_code` polling devuelve `Authorization Error 100/33` para reels y stories | `GET /{container-id}?fields=status_code` no funciona con Page Access Token. Fix: retry en `media_publish` cada 15s; si error 9007 reintentar. **NUNCA revertir a status_code polling.** |
+| May-2026 | `/hoy` no respondía — bot caído | `apt-get install ffmpeg` fallaba (libcaca0 404 en mirror desactualizado). Fix: `apt-get update &&` antes del install |
+| May-2026 | Carruseles de datos curiosos nunca aparecían (ejecutar_semana falla silencioso desde mayo 4) | Workflow usaba `ejecutar_semana` (underscore) pero Click expone `ejecutar-semana` (guión). Fix: corregido en `ejecutar_semana.yml` y `analizar_metricas.yml` |
 
 ## Sistema de contexto (Obsidian + context/)
 
@@ -414,7 +424,7 @@ Para mantener coherencia entre sesiones de Claude:
   - `00-Context/` — estado activo (ProjectState, OpenThreads, NextActions)
   - `01-Sessions/` — historial de sesiones (una nota por sesión)
   - `02-Architecture/` — 10 ADRs con decisiones técnicas documentadas
-  - `03-TribalKnowledge/` — 13 notas con gotchas y conocimiento implícito
+  - `03-TribalKnowledge/` — 15 notas con gotchas y conocimiento implícito
   - `04-Strategy/` — pilares de contenido y experimentos
   - `05-Runbooks/` — procedimientos operativos paso a paso
 
