@@ -47,7 +47,7 @@ jobs:
           cache: 'pip'
 
       - name: Instalar dependencias del sistema
-        run: sudo apt-get install -y ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
 
       - name: Instalar dependencias Python
         run: |
