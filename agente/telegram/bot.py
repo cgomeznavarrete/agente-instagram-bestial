@@ -1635,14 +1635,64 @@ class BotTelegram:
             return
 
         # ── Callbacks del workflow publicar_programado (prog_si / prog_no) ──
-        # IMPORTANTE: estos callbacks los escucha el workflow, NO el bot.
-        # El bot los recibe solo si gana la race condition de getUpdates.
-        # En ese caso: responder con texto neutral y NO procesar lógica del bot.
+        # El bot y el workflow comparten el mismo token de Telegram → compiten por
+        # getUpdates. El bot gana la mayoría de las veces. La solución: el bot
+        # publica directamente cuando recibe prog_si:{rev_id}:{item_id}.
+        # El callback incluye item_id desde la v2 del workflow (formato prog_si:rev:id).
         if partes[0] in ("prog_si", "prog_no") and len(partes) >= 2:
-            # El workflow ya no usará pub_aprobar/pub_rechazar para evitar conflictos.
-            # Si el bot llega aquí primero, responder sin hacer nada más.
-            _answer_callback(cb_id, "⏳ Procesando...")
-            logger.info("Bot recibió callback del workflow (%s) — ignorando lógica del bot", data)
+            accion_prog = partes[0]
+            item_id_prog = partes[2] if len(partes) >= 3 else None
+
+            if accion_prog == "prog_si" and item_id_prog:
+                _answer_callback(cb_id, "✅ Publicando... (~2-3 min)")
+
+                def _pub_desde_bot(iid=item_id_prog):
+                    try:
+                        from agente.gestores.biblioteca import (
+                            _cargar, marcar_publicado, marcar_descartado, _from_raw,
+                        )
+                        from agente.instagram.publicar_item import publicar_item as _pub_ig
+                        import cloudinary as _cld
+                        from config import settings as _s
+                        _cld.config(cloudinary_url=_s.CLOUDINARY_URL)
+
+                        bib = _cargar()
+                        raw = next((x for x in bib.get("items", []) if x.get("id") == iid), None)
+                        if not raw:
+                            _enviar_mensaje(f"⚠️ Item {iid} no encontrado en biblioteca.")
+                            return
+                        if raw.get("estado") != "pendiente":
+                            _enviar_mensaje(f"ℹ️ Item {iid} ya está {raw.get('estado')}.")
+                            return
+
+                        item_obj = _from_raw(raw)
+                        emoji = {"post": "📸", "reel": "🎬", "story": "⭕"}.get(item_obj.tipo, "📌")
+                        mid = _pub_ig(item_obj)
+
+                        if mid == "SIN_MEDIA":
+                            marcar_descartado(iid)
+                            _enviar_mensaje(f"⚠️ {emoji} descartado — sin archivo ni URL.")
+                        elif mid:
+                            marcar_publicado(iid, mid)
+                            _enviar_mensaje(
+                                f"{emoji} <b>{item_obj.tipo.upper()} publicado</b>\n"
+                                f"<a href='https://www.instagram.com/salsas.bestial/'>"
+                                f"Ver en @salsas.bestial →</a>"
+                            )
+                        else:
+                            _enviar_mensaje(
+                                f"❌ Error publicando {emoji} {item_obj.tipo.upper()}. Revisa los logs."
+                            )
+                    except Exception as _e:
+                        logger.error("Error publicando item workflow %s: %s", iid, _e, exc_info=True)
+                        _enviar_mensaje(f"❌ Error publicando desde bot: {_e}")
+
+                import threading as _th
+                _th.Thread(target=_pub_desde_bot, daemon=True).start()
+            else:
+                _answer_callback(cb_id, "⏭ Saltado")
+
+            logger.info("Bot manejó callback del workflow (%s) item_id=%s", data, item_id_prog)
             return
 
         # ── Carrusel: publicar ahora o biblioteca ─────────────────────────

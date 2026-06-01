@@ -1540,8 +1540,10 @@ def publicar_programado(forzar: bool = False, tipo: str | None = None):
         + (f"{item.caption[:600]}\n\n" if item.caption else "")
         + "👆 <b>¿Publicar este contenido?</b>"
     )
+    # item.id incluido en callback para que el bot pueda publicar directamente
+    # cuando gana la race condition de getUpdates (formato: prog_si:{rev_id}:{item_id})
     botones = {"inline_keyboard": [[
-        {"text": "✅ Publicar ahora", "callback_data": f"prog_si:{rev_id}"},
+        {"text": "✅ Publicar ahora", "callback_data": f"prog_si:{rev_id}:{item.id}"},
         {"text": "⏭ Saltar",         "callback_data": f"prog_no:{rev_id}"},
     ]]}
 
@@ -1579,61 +1581,45 @@ def publicar_programado(forzar: bool = False, tipo: str | None = None):
 
     console.print("Preview enviado a Telegram. Esperando aprobación (20 min)...")
 
-    # ── Esperar respuesta hasta 20 minutos ────────────────────────────────────
-    # Prefijos prog_si / prog_no son distintos a pub_aprobar / pub_rechazar del bot
-    # para minimizar interferencia. El bot ignora callbacks prog_* desconocidos.
-    poll_offset = None
+    # ── Esperar respuesta hasta 15 minutos (polling de biblioteca, no Telegram) ──
+    # El bot y el workflow compiten por getUpdates con el mismo token → el bot
+    # siempre gana. Solución v2: el bot maneja prog_si directamente y publica
+    # el item. El workflow detecta la publicación leyendo biblioteca vía git pull.
+    import subprocess as _sub
+    from agente.gestores.biblioteca import _cargar as _bib_reload
     decision = None
-    deadline = _time.time() + 20 * 60  # 20 min
+    deadline = _time.time() + 15 * 60  # 15 min
+    console.print("Esperando respuesta del bot (máx 15 min)...")
 
     while _time.time() < deadline:
-        params_poll = {"timeout": 20, "allowed_updates": ["callback_query"]}
-        if poll_offset:
-            params_poll["offset"] = poll_offset
+        _time.sleep(30)
+        # Actualizar biblioteca desde GitHub (el bot commitea al publicar)
         try:
-            updates = req.get(
-                f"{BASE_URL}/getUpdates", params=params_poll, timeout=35
-            ).json().get("result", [])
-        except Exception as _pe:
-            console.print(f"[yellow]Error polling: {_pe}[/yellow]")
-            _time.sleep(5)
-            continue
-        for upd in updates:
-            poll_offset = upd["update_id"] + 1
-            cb = upd.get("callback_query")
-            if not cb:
-                continue
-            cb_data = cb.get("data", "")
-            if rev_id not in cb_data:
-                continue
-            accion_cb = cb_data.split(":")[0]
-            decision = "aprobar" if accion_cb == "prog_si" else "saltar"
-            req.post(f"{BASE_URL}/answerCallbackQuery", data={
-                "callback_query_id": cb["id"],
-                "text": "✅ Publicando..." if decision == "aprobar" else "⏭ Saltado",
-            }, timeout=10)
-            break
-        if decision:
+            _sub.run(
+                ["git", "pull", "--rebase", "origin", "master"],
+                capture_output=True, timeout=30,
+            )
+        except Exception as _ge:
+            console.print(f"[yellow]git pull falló: {_ge}[/yellow]")
+        bib_ahora = _bib_reload()
+        item_ahora = next(
+            (x for x in bib_ahora.get("items", []) if x.get("id") == item.id), None
+        )
+        if item_ahora and item_ahora.get("estado") == "publicado":
+            decision = "publicado_por_bot"
+            console.print("[green]✅ Bot publicó el item — workflow completo[/green]")
             break
 
     if not decision:
-        console.print("[yellow]Sin respuesta en 20 min — publicación cancelada.[/yellow]")
+        console.print("[yellow]Sin respuesta en 15 min — publicación cancelada.[/yellow]")
         _enviar_mensaje(
-            f"⏰ <b>Sin respuesta en 20 min</b> — {tipo_label} no se publicó.\n\n"
-            f"Para publicar: escribe /hoy y toca <b>📅 Aprobar</b> antes de que corra el siguiente slot."
+            f"⏰ <b>Sin respuesta en 15 min</b> — {tipo_label} no se publicó.\n\n"
+            f"Usa <b>/publicar {tipo_pub}</b> para publicarlo ahora desde el bot."
         )
         return
 
-    if decision == "saltar":
-        console.print("Saltado por el usuario.")
-        _enviar_mensaje(f"⏭ {tipo_label} saltado.")
-        return
-
-    # ── Publicar ──────────────────────────────────────────────────────────────
-    if item.es_carrusel:
-        _enviar_carrusel_manual(item)
-    else:
-        _ejecutar_publicacion(item, tipo_pub)
+    # Si el bot publicó, el item ya está marcado como publicado — nada más que hacer
+    console.print(f"[green bold]✓ {tipo_label} publicado por el bot vía Flujo B[/green bold]")
 
 
 @cli.command()
