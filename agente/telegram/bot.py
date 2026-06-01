@@ -26,6 +26,7 @@ from agente.gestores.biblioteca import (
     agregar_item, agregar_carrusel, siguiente_pendiente,
     contar_pendientes, listar_pendientes, marcar_publicado, marcar_descartado,
     mover_al_final, _cargar as _bib_cargar_global,
+    siguiente_carrusel_educativo, _from_raw,
     EXTENSIONES_IMAGEN, EXTENSIONES_VIDEO, BIBLIOTECA_JSON,
 )
 from agente.telegram.notificador import (
@@ -643,6 +644,10 @@ class BotTelegram:
                 _enviar_mensaje("Escribe el tema: <code>/carrusel curiosidades del picante</code>")
                 return
             self._flujo_carrusel(tema, chat_id)
+            return
+
+        if texto.startswith("/datos_curiosos") or texto.startswith("/datoscuriosos"):
+            self._mostrar_datos_curiosos()
             return
 
         if texto.startswith("/estado"):
@@ -1693,6 +1698,39 @@ class BotTelegram:
                 _answer_callback(cb_id, "⏭ Saltado")
 
             logger.info("Bot manejó callback del workflow (%s) item_id=%s", data, item_id_prog)
+            return
+
+        # ── /datos_curiosos callbacks (dc:) ──────────────────────────────
+        if partes[0] == "dc" and len(partes) >= 2:
+            accion_dc = partes[1]
+            item_id_dc = partes[2] if len(partes) >= 3 else None
+
+            if accion_dc == "enviar" and item_id_dc:
+                _answer_callback(cb_id, "📤 Enviando slides...")
+                bib_dc = _bib_cargar_global()
+                raw_dc = next((x for x in bib_dc.get("items", []) if x.get("id") == item_id_dc), None)
+                if raw_dc:
+                    _enviar_carrusel_telegram(_from_raw(raw_dc))
+                else:
+                    _enviar_mensaje("⚠️ Carrusel no encontrado. Puede que ya se publicó.")
+                return
+
+            if accion_dc == "ya_publique" and item_id_dc:
+                _answer_callback(cb_id, "✅ Marcado como publicado")
+                marcar_publicado(item_id_dc)
+                _enviar_mensaje("✅ Marcado como publicado.")
+                # Mostrar el siguiente automáticamente
+                import threading as _th_dc
+                _th_dc.Thread(target=self._mostrar_datos_curiosos, daemon=True).start()
+                return
+
+            if accion_dc == "generar":
+                _answer_callback(cb_id, "✨ Generando...")
+                import threading as _th_dc2
+                _th_dc2.Thread(target=self._generar_carrusel_datos_curiosos, daemon=True).start()
+                return
+
+            _answer_callback(cb_id)
             return
 
         # ── Carrusel: publicar ahora o biblioteca ─────────────────────────
@@ -3256,6 +3294,108 @@ class BotTelegram:
             ]},
         )
 
+    def _mostrar_datos_curiosos(self):
+        """Muestra el siguiente carrusel de datos curiosos pendiente con opciones de acción."""
+        item_dc = siguiente_carrusel_educativo()
+
+        if not item_dc:
+            # No hay pendientes — ofrecer generar uno nuevo
+            _enviar_mensaje(
+                "✨ <b>No hay carruseles de datos curiosos pendientes.</b>\n\n"
+                "¿Genero uno nuevo ahora?",
+                reply_markup={"inline_keyboard": [
+                    [{"text": "✨ Generar carrusel", "callback_data": "dc:generar"}]
+                ]},
+            )
+            return
+
+        # Contar slides disponibles
+        slide_urls = [
+            u.strip()
+            for u in (item_dc.cloudinary_url or "").split(",")
+            if u.strip().startswith("http")
+        ]
+        n_slides = len(slide_urls)
+        caption_prev = (item_dc.caption or "")[:300]
+
+        texto = (
+            f"📖 <b>Carrusel de datos curiosos</b>\n"
+            f"🆔 <code>{item_dc.id}</code>\n"
+            f"📊 {n_slides} slide{'s' if n_slides != 1 else ''}\n\n"
+            + (f"<b>Caption:</b>\n{caption_prev}{'...' if len(item_dc.caption or '') > 300 else ''}\n\n" if caption_prev else "")
+            + "¿Qué hacemos con este carrusel?"
+        )
+        botones = {"inline_keyboard": [
+            [
+                {"text": "📤 Enviar slides ahora", "callback_data": f"dc:enviar:{item_dc.id}"},
+                {"text": "✅ Ya lo publiqué",      "callback_data": f"dc:ya_publique:{item_dc.id}"},
+            ],
+            [{"text": "✨ Generar otro",            "callback_data": "dc:generar"}],
+        ]}
+
+        # Enviar primera slide como preview visual si hay URL
+        if slide_urls:
+            try:
+                _enviar_foto_url(slide_urls[0], caption=f"Preview — Slide 1/{n_slides}")
+            except Exception as _pe:
+                logger.warning("No se pudo enviar preview de slide: %s", _pe)
+
+        _enviar_mensaje(texto, reply_markup=botones)
+
+    def _generar_carrusel_datos_curiosos(self):
+        """Genera un nuevo carrusel de datos curiosos y lo muestra."""
+        import random as _rnd
+        TEMAS = [
+            "por qué el picante engancha neurológicamente",
+            "historia del chile en Colombia",
+            "maridajes sorprendentes con salsa picante",
+            "beneficios del capsaicin para la salud",
+            "scoville: la escala del picante",
+            "fermentación: el secreto de las salsas artesanales",
+            "culturas y picante alrededor del mundo",
+            "cómo el picante potencia el sabor de las proteínas",
+        ]
+        tema = _rnd.choice(TEMAS)
+        _enviar_mensaje(f"✨ <b>Generando carrusel de datos curiosos...</b>\n\nTema: <i>{tema}</i>\n\nEsto toma ~1 min.")
+        try:
+            from agente.generadores.carrusel_html import generar_carrusel_html
+            rutas = generar_carrusel_html(tema=tema, n_slides=3, pilar="educacion_sobre_salsas")
+            if not rutas:
+                _enviar_mensaje("❌ No se pudo generar el carrusel. Intenta de nuevo.")
+                return
+            item_nuevo = agregar_carrusel(rutas, tipo="post", pilar="educacion_sobre_salsas")
+            if not item_nuevo:
+                _enviar_mensaje("❌ No se pudo guardar el carrusel en la biblioteca.")
+                return
+            # Generar caption
+            try:
+                from agente.claude.cliente_claude import ClienteClaude as _CC
+                from config import brand_guidelines as _bg
+                _claude = _CC()
+                caption_nuevo = _claude.generar_caption(
+                    tipo_contenido="post",
+                    pilar="educacion_sobre_salsas",
+                    contexto_extra=f"Carrusel de datos curiosos sobre: {tema}",
+                )
+                if caption_nuevo:
+                    from agente.gestores.biblioteca import _cargar, _guardar
+                    bib_n = _cargar()
+                    for raw_n in bib_n["items"]:
+                        if raw_n["id"] == item_nuevo.id:
+                            raw_n["caption"] = caption_nuevo
+                            break
+                    _guardar(bib_n)
+                    item_nuevo.caption = caption_nuevo
+            except Exception as _ce:
+                logger.warning("No se pudo generar caption: %s", _ce)
+
+            _enviar_mensaje(f"✅ <b>Carrusel generado</b> ({len(rutas)} slides)")
+            # Mostrar el carrusel recién generado
+            self._mostrar_datos_curiosos()
+        except Exception as _e:
+            logger.error("Error generando carrusel datos curiosos: %s", _e, exc_info=True)
+            _enviar_mensaje(f"❌ Error generando carrusel: {_e}")
+
     def _mostrar_ayuda(self):
         _enviar_mensaje(
             "🤖 <b>Agente Salsas Bestial — Comandos</b>\n\n"
@@ -3280,6 +3420,8 @@ class BotTelegram:
             "━━ 🎨 GENERAR CONTENIDO ━━\n"
             "<code>/carrusel &lt;tema&gt;</code> — Claude genera carrusel educativo + preview de slides\n"
             "   <i>Ejemplo: /carrusel beneficios del picante</i>\n"
+            "<code>/datos_curiosos</code> — ver el siguiente carrusel de datos curiosos pendiente\n"
+            "   Opciones: Enviar slides · Ya lo publiqué · Generar otro\n"
             "<code>/venta</code> — Claude genera serie de 3 stories de conversión (enganche → prueba → CTA)\n\n"
 
             "━━ ⏭ DURANTE UNA APROBACIÓN ━━\n"
