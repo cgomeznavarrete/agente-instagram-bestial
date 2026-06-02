@@ -2708,6 +2708,7 @@ class BotTelegram:
 
         teclado = []
         items_con_media = []  # (item, label_slot) — para enviar preview después
+        ids_ya_asignados: set = set()  # evita mostrar el mismo item en dos slots
 
         for h_min, h_max, tipo in slots_hoy:
             hora_label = HORA_LABEL.get(h_min, f"{h_min}:00")
@@ -2715,22 +2716,45 @@ class BotTelegram:
             slot_key = str(h_min)
             ya_paso = ahora.hour >= h_max
 
-            # Buscar el ítem que se publicará en este slot
-            tipos_buscar = [tipo]
-            if tipo == "carrusel":
-                tipos_buscar.append("post")
-            # fallback: si no hay del tipo preferido, buscar cualquier pendiente
+            # ── Paso 1: si hay un item pre-aprobado para este slot, usarlo ───────
+            item_aprobado_id = aprobados.get(slot_key)
             item_slot = None
-            for t in tipos_buscar:
-                item_slot = siguiente_pendiente(t)
-                if item_slot:
-                    break
+            if item_aprobado_id:
+                _bib_tmp = _bib_cargar_global()
+                _raw_ap = next(
+                    (x for x in _bib_tmp.get("items", [])
+                     if x.get("id") == item_aprobado_id and x.get("estado") == "pendiente"),
+                    None,
+                )
+                if _raw_ap:
+                    item_slot = _from_raw(_raw_ap)
+
+            # ── Paso 2: si no hay aprobado, buscar por FIFO excluyendo ya asignados ──
             if not item_slot:
-                for t in ["reel", "post", "story"]:
-                    if t not in tipos_buscar:
-                        item_slot = siguiente_pendiente(t)
-                        if item_slot:
+                tipos_buscar = [tipo]
+                if tipo == "carrusel":
+                    tipos_buscar.append("post")
+                for t in tipos_buscar:
+                    for candidato in listar_pendientes(t):
+                        if candidato.id not in ids_ya_asignados:
+                            item_slot = candidato
                             break
+                    if item_slot:
+                        break
+                # fallback: cualquier tipo si no hay del preferido
+                if not item_slot:
+                    for t in ["reel", "post", "story"]:
+                        if t not in tipos_buscar:
+                            for candidato in listar_pendientes(t):
+                                if candidato.id not in ids_ya_asignados:
+                                    item_slot = candidato
+                                    break
+                            if item_slot:
+                                break
+
+            # Registrar el ID para que el siguiente slot no reutilice el mismo item
+            if item_slot:
+                ids_ya_asignados.add(item_slot.id)
 
             # Generar caption si el item no tiene uno — el usuario lo necesita para aprobar
             if item_slot and not item_slot.caption and not ya_paso:
@@ -2753,8 +2777,8 @@ class BotTelegram:
                     logger.warning("No se pudo generar caption para /hoy: %s", _e_cap)
 
             # ¿Está aprobado este slot?
-            item_aprobado_id = aprobados.get(slot_key)
-            slot_aprobado = bool(item_aprobado_id) and item_slot and item_aprobado_id == item_slot.id
+            # slot_aprobado = hay un item pre-aprobado Y ese item es el que estamos mostrando
+            slot_aprobado = bool(item_aprobado_id) and item_slot is not None and item_aprobado_id == item_slot.id
 
             # Estado del slot
             if ya_paso:
@@ -3367,16 +3391,9 @@ class BotTelegram:
             if not item_nuevo:
                 _enviar_mensaje("❌ No se pudo guardar el carrusel en la biblioteca.")
                 return
-            # Generar caption
+            # Generar caption usando la función de módulo correcta
             try:
-                from agente.claude.cliente_claude import ClienteClaude as _CC
-                from config import brand_guidelines as _bg
-                _claude = _CC()
-                caption_nuevo = _claude.generar_caption(
-                    tipo_contenido="post",
-                    pilar="educacion_sobre_salsas",
-                    contexto_extra=f"Carrusel de datos curiosos sobre: {tema}",
-                )
+                caption_nuevo = _generar_caption("post", "educacion_sobre_salsas", tema=tema)
                 if caption_nuevo:
                     from agente.gestores.biblioteca import _cargar, _guardar
                     bib_n = _cargar()
