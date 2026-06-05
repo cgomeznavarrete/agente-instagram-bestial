@@ -598,11 +598,11 @@
       "nombre_archivo": "story_1780367313349.mp4",
       "ruta_local": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/stories/story_1780367313349.mp4",
       "fecha_agregado": 1780367314.5272717,
-      "estado": "publicado",
+      "estado": "pendiente",
       "pilar": "lifestyle_y_comunidad",
       "caption": "Tu mesa sin salsa bestial es solo... una mesa.\nPídela 👇",
-      "media_id": "17892220809506572",
-      "fecha_publicado": 1780623377.4221723,
+      "media_id": "",
+      "fecha_publicado": 0.0,
       "es_carrusel": false,
       "archivos_carrusel": [],
       "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/video/upload/v1780367313/salsas_bestial/y9een77ncbz7tg5awiuo.mp4",
@@ -682,6 +682,22 @@
         "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/posts/carrusel_1780516866380/slide_04.jpg"
       ],
       "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/image/upload/v1780516866/salsas_bestial/dymu3o387apdwyzklblm.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1780516867/salsas_bestial/naxizjn35ebn7maoh6rc.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1780516867/salsas_bestial/zqlo9gnoteswbqbaug9m.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1780516868/salsas_bestial/e8nq3zirb5vr5zzwxubc.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1780516869/salsas_bestial/me8waoxfyb8m4bl9si5o.jpg",
+      "tema": ""
+    },
+    {
+      "id": "reel_1780625594221",
+      "tipo": "reel",
+      "nombre_archivo": "reel_1780625594221.mp4",
+      "ruta_local": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/reels/reel_1780625594221.mp4",
+      "fecha_agregado": 1780625595.241746,
+      "estado": "pendiente",
+      "pilar": "recetas_y_maridajes",
+      "caption": "",
+      "media_id": "",
+      "fecha_publicado": 0.0,
+      "es_carrusel": false,
+      "archivos_carrusel": [],
+      "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/video/upload/v1780625594/salsas_bestial/dnbi494wkmtgh6wwh9ze.mp4",
       "tema": ""
     }
   ]
