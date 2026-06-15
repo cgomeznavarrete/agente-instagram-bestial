@@ -1,0 +1,13 @@
+{
+  "texto_principal": "¿Ya tienes la tuya?",
+  "texto_secundario": "La semana arranca mañana.",
+  "cta": "Enlace directo a WhatsApp — pide la tuya antes del lunes",
+  "elemento_interactivo": {
+    "tipo": "ninguno",
+    "contenido": null
+  },
+  "descripcion_visual": "Fondo negro profundo con un acento rojo oscuro en degradado sutil desde la esquina inferior izquierda. Texto principal centrado en tipografía blanca bold, tamaño grande, con ligera sombra para contraste. Texto secundario justo encima, en blanco con opacidad al 75%, tipografía más delgada y pequeña. Sticker nativo de cuenta regresiva de Instagram anclado debajo del texto principal, configurado al lunes siguiente a las 6:00am, con etiqueta 'La semana empieza' — colores del sticker en rojo y blanco para mantener coherencia visual. Botón de enlace a WhatsApp (https://wa.me/573005864523) ubicado en la parte inferior centrada, con etiqueta 'Pedir ahora'. Sin filtros de color sobre el frasco ni sobre el logo. Sin elementos decorativos adicionales que saturen la pantalla. Composición limpia, directa, con peso visual en el texto y el countdown.",
+  "hashtags_ocultos": [
+    "#SalsasBestial"
+  ]
+}

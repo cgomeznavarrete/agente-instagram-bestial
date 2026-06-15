@@ -1,0 +1,13 @@
+{
+  "texto_principal": "¿Ya sabes cómo conseguirla?",
+  "texto_secundario": "Un mensaje y la tienes en casa.",
+  "cta": "Toca el enlace — WhatsApp directo, sin vuelta.",
+  "elemento_interactivo": {
+    "tipo": "ninguno",
+    "contenido": null
+  },
+  "descripcion_visual": "Story de 3 frames secuenciales. Frame 1: fondo rojo Bestial sólido, tipografía blanca bold centrada con la pregunta '¿Ya sabes cómo conseguirla?' — sin más elementos, solo impacto. Frame 2: fondo rojo, dos íconos minimalistas en blanco (ícono de WhatsApp + ícono de Instagram) con texto pequeño debajo de cada uno: 'WhatsApp directo' y 'Link en bio' — disposición limpia, aireada, sin saturar. Frame 3: fondo rojo, texto bold 'Un mensaje y la tienes en casa.' en la parte superior, sticker de enlace directo a wa.me/573005864523 centrado en pantalla con etiqueta 'PEDIR AHORA' en blanco. Sin filtros de color sobre logo ni etiqueta. Tipografía consistente en los 3 frames. Ritmo visual: rápido, directo, como un tap inevitable.",
+  "hashtags_ocultos": [
+    "#SalsasBestial"
+  ]
+}

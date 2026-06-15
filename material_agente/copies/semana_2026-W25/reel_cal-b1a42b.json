@@ -1,0 +1,46 @@
+{
+  "hook": "¿Por qué le pones salsa a TODO?",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Fondo negro. Texto blanco gigante aparece con efecto glitch rápido. Sonido de sizzle ahumado al aparecer.",
+      "texto_pantalla": "¿Por qué le pones salsa a TODO?"
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Corte rápido. Fondo rojo intenso. Texto animado entra desde abajo con rebote. Efecto de humo sutil en los bordes.",
+      "texto_pantalla": "A los huevos del desayuno... sí."
+    },
+    {
+      "segundo": "8-13",
+      "visual": "Corte súbito a fondo negro. Texto entra desde la izquierda con vibración. Sonido de sizzle más fuerte.",
+      "texto_pantalla": "En la pizza de la abuela... también."
+    },
+    {
+      "segundo": "13-18",
+      "visual": "Fondo rojo de nuevo. Texto aparece con efecto de destello. Pausa dramática de medio segundo antes del siguiente corte.",
+      "texto_pantalla": "¿Arroz con leche? Especialmente ahí."
+    },
+    {
+      "segundo": "18-25",
+      "visual": "Fondo negro. Logo de Salsas Bestial aparece centrado con efecto de humo ahumado real. Debajo, texto en blanco con tipografía bold. Música baja levemente de volumen.",
+      "texto_pantalla": "Salsa Tatemada Ahumada. Porque sí."
+    }
+  ],
+  "caption": "No es una adicción... es criterio. 🔥 ¿Con qué la combinarías tú?",
+  "cta": "Pídela aquí → https://wa.me/573005864523",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteLatino",
+    "#SalsaArtesanal",
+    "#ComidaPickante",
+    "#Foodie",
+    "#RecetasConSalsa",
+    "#AhumadoNatural",
+    "#SalsaLovers",
+    "#Colombia"
+  ],
+  "mood_musica": "humor",
+  "hook_audio": null
+}

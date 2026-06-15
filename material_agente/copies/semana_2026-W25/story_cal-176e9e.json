@@ -1,0 +1,17 @@
+{
+  "texto_principal": "La galería de los que se atrevieron.",
+  "texto_secundario": "¿Te falta probarla?",
+  "cta": "Enlace en el último frame — pide la tuya por WhatsApp",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "¿Ya la probaste? 🌶 SÍ, me quemó / Todavía me falta valor"
+  },
+  "descripcion_visual": "Serie de frames tipo galería polaroid con fondo negro texturizado. Cada tarjeta tiene color sólido intenso (rojo quemado, naranja oscuro, amarillo mostaza) con la respuesta del usuario en tipografía gruesa blanca y el nombre anonimizado en gris claro abajo. El último frame es más oscuro, con el sticker 🌶 animado al centro, el texto '¿Te falta probarla?' en blanco y el botón de enlace a WhatsApp bien visible en la parte inferior.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#RetoPicante",
+    "#SalsaTatemada",
+    "#PicanteReal",
+    "#ComidaLatina"
+  ]
+}

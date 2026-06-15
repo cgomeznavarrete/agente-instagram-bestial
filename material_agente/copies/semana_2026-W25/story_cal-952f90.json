@@ -1,0 +1,13 @@
+{
+  "texto_principal": "Viernes sin salsa es viernes desperdiciado.",
+  "texto_secundario": "Pídela hoy.",
+  "cta": "Toca el enlace y ordena por WhatsApp",
+  "elemento_interactivo": {
+    "tipo": "ninguno",
+    "contenido": null
+  },
+  "descripcion_visual": "Fondo rojo intenso (#C0001A), sin gradientes ni texturas. Texto principal en tipografía bold sans-serif blanca, tamaño dominante, centrado verticalmente en los dos tercios superiores de la pantalla. Texto secundario 'Pídela hoy.' en tipografía bold blanca, tamaño mediano, separado por espacio generoso del texto principal. Sticker de enlace a WhatsApp ubicado en el tercio inferior, color blanco con ícono de WhatsApp visible, sin sombras ni efectos adicionales. Sin imágenes del producto, sin íconos decorativos, sin emojis. La simpleza es el mensaje: solo rojo, blanco y la llamada directa a la acción.",
+  "hashtags_ocultos": [
+    "#SalsasBestial"
+  ]
+}

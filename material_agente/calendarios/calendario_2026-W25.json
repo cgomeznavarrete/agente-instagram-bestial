@@ -18,29 +18,12 @@
       "material_sugerido": [
         "agente/generar/reel_humor_lunes_w25.mp4"
       ],
-      "contenido_copy": {
-        "hook": "¿Por qué le pones salsa a TODO?",
-        "cuerpo": "No es una adicción... es criterio. 🔥 ¿Con qué la combinarías tú?",
-        "cta": "Pídela aquí → https://wa.me/573005864523",
-        "hashtags": [
-          "#SalsasBestial",
-          "#SalsaTatemada",
-          "#PicanteLatino",
-          "#SalsaArtesanal",
-          "#ComidaPickante",
-          "#Foodie",
-          "#RecetasConSalsa",
-          "#AhumadoNatural",
-          "#SalsaLovers",
-          "#Colombia"
-        ],
-        "hashtags_cantidad": 10
-      },
+      "contenido_copy": null,
       "brief_capcut_path": null,
       "video_generado_path": null,
       "imagen_compuesta_path": null,
       "imagenes_carrusel_paths": [],
-      "estado": "generado",
+      "estado": "pendiente",
       "publicacion_id": null
     },
     {
@@ -55,18 +38,12 @@
       "material_sugerido": [
         "agente/generar/story_poll_lunes_w25.png"
       ],
-      "contenido_copy": {
-        "hook": "",
-        "cuerpo": "",
-        "cta": "Responde aquí abajo — te reposteamos el miércoles",
-        "hashtags": [],
-        "hashtags_cantidad": 0
-      },
+      "contenido_copy": null,
       "brief_capcut_path": null,
       "video_generado_path": null,
-      "imagen_compuesta_path": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/imagenes_compuestas/kontext_retos_y_pruebas_de_picante_story_20260615_182643_cal-217341.jpg",
+      "imagen_compuesta_path": null,
       "imagenes_carrusel_paths": [],
-      "estado": "generado",
+      "estado": "pendiente",
       "publicacion_id": null
     },
     {
@@ -85,29 +62,12 @@
         "agente/generar/carrusel_educacion_martes_w25_slide4.png",
         "agente/generar/carrusel_educacion_martes_w25_slide5.png"
       ],
-      "contenido_copy": {
-        "hook": "",
-        "cuerpo": "",
-        "cta": "",
-        "hashtags": [
-          "#SalsasBestial",
-          "#SalsaTatemada",
-          "#AhumadoArtesanal",
-          "#ChileAhumado",
-          "#SalsasMexicanas",
-          "#CocinaLatina",
-          "#PicanteDeVerdad",
-          "#TatemadoAhumado",
-          "#SalsaArtesanal",
-          "#FoodLovers"
-        ],
-        "hashtags_cantidad": 10
-      },
+      "contenido_copy": null,
       "brief_capcut_path": null,
       "video_generado_path": null,
       "imagen_compuesta_path": null,
       "imagenes_carrusel_paths": [],
-      "estado": "generado",
+      "estado": "pendiente",
       "publicacion_id": null
     },
     {
@@ -122,18 +82,12 @@
       "material_sugerido": [
         "agente/generar/story_como_comprar_martes_w25.png"
       ],
-      "contenido_copy": {
-        "hook": "",
-        "cuerpo": "",
-        "cta": "Toca el enlace — WhatsApp directo, sin vuelta.",
-        "hashtags": [],
-        "hashtags_cantidad": 0
-      },
+      "contenido_copy": null,
       "brief_capcut_path": null,
       "video_generado_path": null,
-      "imagen_compuesta_path": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/imagenes_compuestas/kontext_como_comprar_story_20260615_182710_cal-ea48c9.jpg",
+      "imagen_compuesta_path": null,
       "imagenes_carrusel_paths": [],
-      "estado": "generado",
+      "estado": "pendiente",
       "publicacion_id": null
     },
     {
@@ -148,43 +102,12 @@
       "material_sugerido": [
         "agente/generar/post_ugc_chat_miercoles_w25.png"
       ],
-      "contenido_copy": {
-        "hook": "Alguien metió la Tatemada Ahumada en un sancocho y ya no hay vuelta atrás.",
-        "cuerpo": "Este mensaje llegó a las 11pm y honestamente... lo entendemos todo. El sancocho ya era sagrado. Con la Tatemada se volvió intocable. Hay cosas que no se explican, se prueban.",
-        "cta": "¿Tú también tienes un plato que ya no es el mismo sin ella? Cuéntanos abajo.\n\nPídela aquí → https://wa.me/573005864523",
-        "hashtags": [
-          "#SalsasBestial",
-          "#TatemadaAhumada",
-          "#BestialLovers",
-          "#SaborBestial",
-          "#PicanteBestial",
-          "#SalsaPicante",
-          "#ComidaLatina",
-          "#SancochoLovers",
-          "#RecetasCaseras",
-          "#FoodiesColombia",
-          "#PicanteAddict",
-          "#SalsaArtesanal",
-          "#CocinaLatina",
-          "#AhumadoNatural",
-          "#ComidaReal",
-          "#SalsasHotLovers",
-          "#MomentosFoodie",
-          "#Colombia",
-          "#ComidaCasera",
-          "#Foodstagram",
-          "#CocinaenCasa",
-          "#SaborLatino",
-          "#HotSauce",
-          "#GastronomiaLatina"
-        ],
-        "hashtags_cantidad": 24
-      },
+      "contenido_copy": null,
       "brief_capcut_path": null,
       "video_generado_path": null,
-      "imagen_compuesta_path": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/imagenes_compuestas/kontext_testimonios_y_ugc_post_20260615_182722_cal-e61e60.jpg",
+      "imagen_compuesta_path": null,
       "imagenes_carrusel_paths": [],
-      "estado": "generado",
+      "estado": "pendiente",
       "publicacion_id": null
     },
     {
@@ -199,18 +122,12 @@
       "material_sugerido": [
         "agente/generar/story_repost_poll_miercoles_w25.png"
       ],
-      "contenido_copy": {
-        "hook": "",
-        "cuerpo": "",
-        "cta": "Enlace en el último frame — pide la tuya por WhatsApp",
-        "hashtags": [],
-        "hashtags_cantidad": 0
-      },
+      "contenido_copy": null,
       "brief_capcut_path": null,
       "video_generado_path": null,
-      "imagen_compuesta_path": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/imagenes_compuestas/kontext_retos_y_pruebas_de_picante_story_20260615_182750_cal-176e9e.jpg",
+      "imagen_compuesta_path": null,
       "imagenes_carrusel_paths": [],
-      "estado": "generado",
+      "estado": "pendiente",
       "publicacion_id": null
     },
     {
@@ -225,29 +142,12 @@
       "material_sugerido": [
         "agente/generar/reel_receta_jueves_w25.mp4"
       ],
-      "contenido_copy": {
-        "hook": "Esta combinación la rechazaron 4 de cada 5 personas... hasta que la probaron.",
-        "cuerpo": "El aguacate sin esto es solo... aguacate. La receta completa abajo — ¿tú con qué la combinarías?",
-        "cta": "Pídela aquí → https://wa.me/573005864523",
-        "hashtags": [
-          "#SalsasBestial",
-          "#TatemadaAhumada",
-          "#RecetasFáciles",
-          "#SalsaPicante",
-          "#FoodiesColombia",
-          "#AguacateLovers",
-          "#CocinaLatina",
-          "#PicanteAddict",
-          "#TostadasGourmet",
-          "#SalsaArtesanal"
-        ],
-        "hashtags_cantidad": 10
-      },
+      "contenido_copy": null,
       "brief_capcut_path": null,
       "video_generado_path": null,
       "imagen_compuesta_path": null,
       "imagenes_carrusel_paths": [],
-      "estado": "generado",
+      "estado": "pendiente",
       "publicacion_id": null
     },
     {
@@ -262,44 +162,12 @@
       "material_sugerido": [
         "agente/generar/post_bts_viernes_w25.png"
       ],
-      "contenido_copy": {
-        "hook": "No todo lo bueno se hace rápido.",
-        "cuerpo": "El comal no miente. Cada frasco de Bestial empieza con fuego lento y sin atajos — porque apresurar el tatemado es como saltarse el reposo de una birria. No se hace. Eso es lo que le da el sabor que no encuentras en ningún estante.",
-        "cta": "Pídela aquí → https://wa.me/573005864523\n\n¿Qué comida tuya merece este nivel de intención?",
-        "hashtags": [
-          "#SalsasBestial",
-          "#HechoConIntención",
-          "#BestialTatemada",
-          "#SalsaArtesanal",
-          "#BestialOficial",
-          "#SalsaPicante",
-          "#TatemadoAhumado",
-          "#CocinaMexicana",
-          "#SalsaCasera",
-          "#PicanteDeVerdad",
-          "#FoodieLatino",
-          "#ArtesaniaGastronomica",
-          "#SalsasMexicanas",
-          "#CocinaConAlma",
-          "#ChileHumo",
-          "#SalsaLovers",
-          "#ComidaReal",
-          "#FoodPhotography",
-          "#RecetasMexicanas",
-          "#GastronomiaMexicana",
-          "#SaborAutentico",
-          "#PicanteAddicts",
-          "#MadeWithFire",
-          "#CocinaArtesanal",
-          "#SalsaLife"
-        ],
-        "hashtags_cantidad": 25
-      },
+      "contenido_copy": null,
       "brief_capcut_path": null,
       "video_generado_path": null,
-      "imagen_compuesta_path": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/imagenes_compuestas/kontext_behind_the_scenes_post_20260615_182847_cal-aa9ae2.jpg",
+      "imagen_compuesta_path": null,
       "imagenes_carrusel_paths": [],
-      "estado": "generado",
+      "estado": "pendiente",
       "publicacion_id": null
     },
     {
@@ -314,18 +182,12 @@
       "material_sugerido": [
         "agente/generar/story_conversion_viernes_w25.png"
       ],
-      "contenido_copy": {
-        "hook": "",
-        "cuerpo": "",
-        "cta": "Toca el enlace y ordena por WhatsApp",
-        "hashtags": [],
-        "hashtags_cantidad": 0
-      },
+      "contenido_copy": null,
       "brief_capcut_path": null,
       "video_generado_path": null,
-      "imagen_compuesta_path": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/imagenes_compuestas/kontext_promociones_y_lanzamientos_story_20260615_182858_cal-952f90.jpg",
+      "imagen_compuesta_path": null,
       "imagenes_carrusel_paths": [],
-      "estado": "generado",
+      "estado": "pendiente",
       "publicacion_id": null
     },
     {
@@ -340,42 +202,12 @@
       "material_sugerido": [
         "agente/generar/post_lifestyle_sabado_w25.png"
       ],
-      "contenido_copy": {
-        "hook": "El sábado sin bandeja paisa es solo... otro día.",
-        "cuerpo": "La mesa del sábado tiene sus reglas. Chicharrón que cruje, arepa recién hecha, frijoles que hirvieron toda la mañana — y en el centro, algo que lo amarra todo. No es decoración. Es la Salsa Tatemada Ahumada haciendo lo que sabe: elevar lo que ya era bueno. Así es el ritual. 🔥",
-        "cta": "¿Qué no puede faltar en tu mesa del sábado?",
-        "hashtags": [
-          "#SalsasBestial",
-          "#TatemadaAhumada",
-          "#BestialLoEs",
-          "#SalsaArtesanal",
-          "#PicanteBestial",
-          "#BandejaPaisa",
-          "#ComidaColombiana",
-          "#SabadoColombiano",
-          "#CulturaColombia",
-          "#FoodiesColombia",
-          "#CocinaLatina",
-          "#PicanteAddicto",
-          "#SalsaPicante",
-          "#ComidaTipica",
-          "#ArepasYMas",
-          "#MesaFamiliar",
-          "#Chicharron",
-          "#FoodLovers",
-          "#SaborAutentico",
-          "#GastronomiaColombiana",
-          "#RecetasColombianas",
-          "#SabadoEnFamilia",
-          "#PicanteDeVerdad"
-        ],
-        "hashtags_cantidad": 23
-      },
+      "contenido_copy": null,
       "brief_capcut_path": null,
       "video_generado_path": null,
-      "imagen_compuesta_path": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/imagenes_compuestas/kontext_lifestyle_y_comunidad_post_20260615_182909_cal-a4e87e.jpg",
+      "imagen_compuesta_path": null,
       "imagenes_carrusel_paths": [],
-      "estado": "generado",
+      "estado": "pendiente",
       "publicacion_id": null
     },
     {
@@ -390,18 +222,12 @@
       "material_sugerido": [
         "agente/generar/story_cierre_domingo_w25.png"
       ],
-      "contenido_copy": {
-        "hook": "",
-        "cuerpo": "",
-        "cta": "Enlace directo a WhatsApp — pide la tuya antes del lunes",
-        "hashtags": [],
-        "hashtags_cantidad": 0
-      },
+      "contenido_copy": null,
       "brief_capcut_path": null,
       "video_generado_path": null,
-      "imagen_compuesta_path": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/imagenes_compuestas/kontext_como_comprar_story_20260615_182921_cal-a69a42.jpg",
+      "imagen_compuesta_path": null,
       "imagenes_carrusel_paths": [],
-      "estado": "generado",
+      "estado": "pendiente",
       "publicacion_id": null
     }
   ],

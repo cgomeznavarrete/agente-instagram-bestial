@@ -1,0 +1,53 @@
+{
+  "caption_principal": "El ahumado no es tendencia. Es el truco más viejo del mundo... y la mayoría lo está usando mal. Desliza → te explico qué pasa de verdad cuando el chile toca la brasa.",
+  "cta_caption": "La Tatemada Ahumada de Bestial la consigues por WhatsApp o en el link del bio. ¿Con qué comida la probarías primero?",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#AhumadoArtesanal",
+    "#ChileAhumado",
+    "#SalsasMexicanas",
+    "#CocinaLatina",
+    "#PicanteDeVerdad",
+    "#TatemadoAhumado",
+    "#SalsaArtesanal",
+    "#FoodLovers"
+  ],
+  "slides": [
+    {
+      "numero": 1,
+      "titulo": "El ahumado no es un sabor. Es una memoria.",
+      "subtitulo": "Lo que tu lengua reconoce antes de que tu cerebro lo entienda.",
+      "descripcion_visual": "Fondo negro profundo con brasas naranjas difuminadas en la parte inferior. El título en tipografía sans-serif blanca, grande, centrado. El subtítulo en gris claro, más pequeño. Ilustración minimalista de un chile con una columna de humo que sube. Logotipo de Salsas Bestial en esquina superior derecha, sin modificaciones.",
+      "tipo": "portada"
+    },
+    {
+      "numero": 2,
+      "titulo": "Tatemarlos cambia su química. Literalmente.",
+      "subtitulo": "Cuando el chile toca el fuego directo, los azúcares se caramelizan y los capsaicinoides se transforman — el picante se vuelve más profundo, menos agresivo. No es magia. Es Maillard.",
+      "descripcion_visual": "Fondo oscuro carbón. Ilustración de un chile ancho sobre brasas con líneas de calor. Texto principal en blanco, sans-serif bold. El término 'Maillard' resaltado en un tono ámbar/naranja quemado. Pequeña nota al pie: 'Así funciona el tatemado artesanal.' Sin filtros sobre ningún elemento de marca.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 3,
+      "titulo": "Industrial vs artesanal. No es lo mismo — ni de cerca.",
+      "subtitulo": "La versión industrial usa humo líquido. Un extracto. La artesanal tatema el chile en brasa real, con tiempo, con ojo, con criterio. Uno sabe a proceso. El otro sabe a cocina.",
+      "descripcion_visual": "Fondo negro. División visual en dos mitades: izquierda con ícono de fábrica en gris frío y texto 'Humo líquido / Extracto / Proceso químico'. Derecha con ilustración de brasa y chile en tonos cálidos y texto 'Brasa real / Tiempo / Criterio'. Tipografía blanca sans-serif. La mitad artesanal visualmente más cálida y dominante.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 4,
+      "titulo": "Con esto es donde explota de verdad.",
+      "subtitulo": "Tacos de carne — potencia la grasa. Huevos revueltos — los transforma por completo. Sopas y caldos — les da fondo. Costillas o pollo a la brasa — nivel otro.",
+      "descripcion_visual": "Fondo oscuro. Cuatro ilustraciones minimalistas en línea: taco, huevos, tazón de sopa, costilla. Cada uno con una línea de texto corto debajo en blanco. El título arriba en grande. Estilo de trazo manual, cálido, no corporativo. Sin bullets visuales — las ilustraciones hacen ese trabajo.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 5,
+      "titulo": "La Tatemada Ahumada de Bestial.",
+      "subtitulo": "Disponible por WhatsApp o en el link del bio. Sin intermediarios. Sin excusas.",
+      "descripcion_visual": "Fondo negro con brasa sutil en el borde inferior. Frasco de Salsa Tatemada Ahumada de Salsas Bestial al centro, fotografía real sin filtros de color ni alteraciones. Texto en blanco sobre el fondo, nunca sobre la etiqueta. URL de WhatsApp visible: wa.me/573005864523. Logotipo de Salsas Bestial en su posición original, sin modificaciones. Tono general: cálido, oscuro, artesanal.",
+      "tipo": "cta"
+    }
+  ]
+}

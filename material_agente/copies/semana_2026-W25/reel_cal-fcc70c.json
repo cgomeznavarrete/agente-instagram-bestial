@@ -1,0 +1,41 @@
+{
+  "hook": "Esta combinación la rechazaron 4 de cada 5 personas... hasta que la probaron.",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Pantalla negra con texto blanco en tipografía bold, centrado. Vibración leve de la pantalla al aparecer el texto, como un 'golpe' visual.",
+      "texto_pantalla": "Esta combinación la rechazaron 4 de cada 5 personas... hasta que la probaron."
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Corte rápido a ilustración animada de tostadas doradas apareciendo desde abajo. Luego aguacate cortado en mitades entra desde la izquierda. Limón exprimiéndose en motion gráfico desde arriba. Ritmo sincronizado con el beat de la cumbia.",
+      "texto_pantalla": "Tostada. Aguacate. Limón."
+    },
+    {
+      "segundo": "8-20",
+      "visual": "Ilustración del frasco de Salsa Tatemada Ahumada cae al centro de la pantalla con efecto de impacto — pequeña onda expansiva alrededor. Corte a animación de la salsa cayendo sobre el aguacate aplastado en la tostada. Primer plano ilustrado de la tostada terminada. Zoom in lento al chorrito de salsa. Último frame: la tostada completa con vapor animado saliendo.",
+      "texto_pantalla": "...y esto 🔥 / La Tatemada Ahumada encima. / Nada más. Nada menos."
+    },
+    {
+      "segundo": "20-30",
+      "visual": "Frasco de Salsa Tatemada Ahumada en primer plano ilustrado, fondo oscuro con destellos cálidos tipo brasa. Texto aparece letra por letra al ritmo del beat final de la cumbia.",
+      "texto_pantalla": "La receta completa en comentarios. Pídela aquí → wa.me/573005864523"
+    }
+  ],
+  "caption": "El aguacate sin esto es solo... aguacate. La receta completa abajo — ¿tú con qué la combinarías?",
+  "cta": "Pídela aquí → https://wa.me/573005864523",
+  "hashtags": [
+    "#SalsasBestial",
+    "#TatemadaAhumada",
+    "#RecetasFáciles",
+    "#SalsaPicante",
+    "#FoodiesColombia",
+    "#AguacateLovers",
+    "#CocinaLatina",
+    "#PicanteAddict",
+    "#TostadasGourmet",
+    "#SalsaArtesanal"
+  ],
+  "mood_musica": "upbeat_latino",
+  "hook_audio": null
+}
