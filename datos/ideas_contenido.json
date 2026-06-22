@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "ultima_actualizacion": "2026-06-15T18:29:58.426513",
+  "ultima_actualizacion": "2026-06-22T18:15:38.290168",
   "banco_ideas": [
     {
       "id": "idea-4428a483",
@@ -239,6 +239,126 @@
       "concepto": "Carrusel '5 comidas que pensabas que eran aburridas' mostrando versiones antes y después con la Salsa Tatemada Ahumada. Arroz blanco, pasta simple, papa al horno, sopa de sobre, tostadas sin nada. Fotografías reales, sin producción exagerada, que parezcan de alguien cocinando en casa.",
       "notas": "El formato antes/después aplicado a comida tiene altísimo potencial de guardado. Conecta emocionalmente con el cocinero casero que busca soluciones rápidas y sabrosas.",
       "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-acc85c5d",
+      "fecha_generacion": "2026-06-22",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "humor_picante",
+      "concepto": "Video POV donde alguien recibe el frasco de Salsas Bestial como regalo de cumpleaños y reacciona como si fuera el mejor regalo de su vida, mejor que cualquier otra cosa. Música dramática de telenovela latinoamericana de fondo.",
+      "notas": "El formato POV tiene altísimo engagement. La referencia a telenovelas conecta directamente con el público latinoamericano 22-45. Fácil de producir con un solo actor y el producto.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-e9f7d526",
+      "fecha_generacion": "2026-06-22",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "educacion_sobre_salsas",
+      "concepto": "Carrusel explicando qué es el proceso de tatemar y por qué cambia completamente el perfil de sabor de una salsa. Slide 1: afirmación provocadora. Slides 2-5: el proceso visual explicado. Último slide: el frasco como resultado final.",
+      "notas": "Educa sin aburrir. Posiciona a Salsas Bestial como expertos, no solo vendedores. El contenido educativo en carrusel tiene los mejores tiempos de lectura en Instagram.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-32bca21f",
+      "fecha_generacion": "2026-06-22",
+      "origen": "claude",
+      "tipo_sugerido": "story",
+      "pilar": "retos_y_pruebas_de_picante",
+      "concepto": "Encuesta interactiva en Stories: '¿Cuántas gotas aguantas?' con opciones de 1 a 5+. Al día siguiente, revelar los resultados y retar a los que votaron 5+ a que lo demuestren y lo suban etiquetando la cuenta.",
+      "notas": "Las encuestas de Stories generan respuestas inmediatas. El ciclo de dos días crea anticipación y UGC orgánico sin costo. Fácil de ejecutar repetidamente.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-5038fc59",
+      "fecha_generacion": "2026-06-22",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "recetas_y_maridajes",
+      "concepto": "Foto cenital de un desayuno colombiano clásico —changua, arepa, huevo— con el frasco de Salsas Bestial en el centro. Copy que cuestione por qué nadie habla de poner salsa ahumada en el desayuno.",
+      "notas": "Conecta con la identidad cultural local. La combinación inesperada genera curiosidad y comentarios. Fácil de producir con comida real en casa.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-95d6139a",
+      "fecha_generacion": "2026-06-22",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "behind_the_scenes",
+      "concepto": "Video de 20 segundos mostrando solo las manos trabajando: los chiles tatemándose, el humo, la textura de la salsa terminada. Sin cara, sin texto en pantalla. Solo el sonido real del proceso y una canción instrumental de fondo.",
+      "notas": "El contenido ASMR y sensorial tiene retención altísima. Sin cara elimina la barrera de producción. El misterio visual invita a ver más de una vez, lo que mejora el algoritmo.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-00c8de1b",
+      "fecha_generacion": "2026-06-22",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "testimonios_y_ugc",
+      "concepto": "Carrusel con capturas reales de conversaciones de WhatsApp de clientes, diseñadas en formato limpio. Cada slide es un testimonio diferente con una reacción distinta —sorpresa, adicción, regalo a alguien más. Último slide: cómo comprar.",
+      "notas": "La prueba social en formato conversacional es más creíble que cualquier copy publicitario. El WhatsApp como formato es 100% familiar para el público latinoamericano objetivo.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-5e9b9868",
+      "fecha_generacion": "2026-06-22",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "lifestyle_y_comunidad",
+      "concepto": "Reel de 15 segundos estilo 'cosas que hacen los que tienen Salsas Bestial en la nevera': revisar si queda salsa antes de pedir domicilio, ofrecer la salsa a los amigos con cara de orgullo, esconder el frasco cuando llegan visitas inesperadas.",
+      "notas": "El formato de 'cosas que hace X persona' es perpetuamente viral. Genera identificación inmediata y comentarios de 'yo soy así'. Producción mínima, impacto máximo.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-30ebe162",
+      "fecha_generacion": "2026-06-22",
+      "origen": "claude",
+      "tipo_sugerido": "story",
+      "pilar": "como_comprar",
+      "concepto": "Serie de 3 Stories consecutivas: la primera con una pregunta '¿Cómo llega Salsas Bestial a tu puerta?', la segunda mostrando el proceso de empaque real, la tercera con el link directo a WhatsApp y el CTA claro para pedir.",
+      "notas": "Elimina la fricción de compra mostrando que es simple y directo. Humaniza la marca con el proceso de empaque. Las Stories con CTA claro convierten mejor que los posts.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-6bce30c4",
+      "fecha_generacion": "2026-06-22",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "beneficios_del_producto",
+      "concepto": "Foto del frasco con fondo oscuro y dramático, como si fuera una fotografía de producto de lujo. Copy que hable del ahumado como el ingrediente que los cocineros profesionales usan para hacer que una receta sepa 'a algo más' sin saber exactamente qué.",
+      "notas": "Eleva la percepción del producto sin cambiar el precio. El contraste entre una foto de lujo y un tono coloquial en el copy crea una personalidad de marca memorable.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-82b438b1",
+      "fecha_generacion": "2026-06-22",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "retos_y_pruebas_de_picante",
+      "concepto": "Reel donde alguien pone Salsas Bestial en algo completamente inesperado —un chocorramo, una fruta, un dulce— y la reacción genuina al probarla. Sin edición exagerada. Solo la cara real y el frasco visible.",
+      "notas": "Las pruebas de sabor con combinaciones raras son imparables en engagement. La reacción auténtica sin actuación exagerada genera credibilidad y comentarios de 'yo lo haría' o 'jamás'. Alto potencial de replicación por la comunidad.",
+      "prioridad": "alta",
       "usado": false,
       "fecha_uso": null
     }

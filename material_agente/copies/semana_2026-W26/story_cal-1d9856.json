@@ -1,0 +1,17 @@
+{
+  "texto_principal": "¿Con qué le metes la Tatemada?",
+  "texto_secundario": "Las mejores respuestas las publicamos esta semana 👀",
+  "cta": "Responde abajo — no te quedes con las ganas",
+  "elemento_interactivo": {
+    "tipo": "pregunta",
+    "contenido": "¿Con qué comida le meterías nuestra Salsa Tatemada Ahumada?"
+  },
+  "descripcion_visual": "Fondo color carbón (#1C1C1C) con acento rojo intenso (#C0392B) en franja lateral izquierda o trazo diagonal. Texto principal centrado en tipografía bold blanca, tamaño dominante. Texto secundario en gris claro, tamaño pequeño, posicionado bajo el sticker de pregunta. El frasco de Salsa Tatemada Ahumada aparece en esquina inferior derecha, fotografía real sin filtros de color. Sticker nativo de pregunta de Instagram activado al centro-inferior. Sin elementos recargados — la pregunta es el protagonista.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteColombiano",
+    "#RecetasPicantes",
+    "#SalsaArtesanal"
+  ]
+}

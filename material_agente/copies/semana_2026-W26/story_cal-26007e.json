@@ -1,0 +1,17 @@
+{
+  "texto_principal": "Nadie te había dicho estos 3 combos.",
+  "texto_secundario": "Salsa Tatemada Ahumada + lo que ya tienes en tu nevera.",
+  "cta": "Respóndenos: ¿cuál vas a probar primero?",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "¿Cuál combo vas primero? 🔥 Huevos del domingo / Pizza fría del sábado"
+  },
+  "descripcion_visual": "Serie de 4 frames en story. Fondo oscuro texturizado (negro carbón o marrón ahumado) que evoca el tatemado — sin filtros sobre el frasco. Frame 1: texto animado de entrada con la frase principal en tipografía bold blanca, sin adornos. Frame 2: 'Combo 1 — huevos revueltos del domingo. Unas gotitas y ya no son los mismos de siempre.' Texto corrido, letra mediana, sin bullets. Frame 3: 'Combo 2 — aguacate con limón. Sí, así, directo. Sin más explicación.' Mismo estilo de texto. Frame 4: 'Combo 3 — pizza fría de la nevera... la del sábado que sobró. La que nadie quería — hasta ahora.' Texto corrido. Último frame: encuesta interactiva de Instagram activada, con el frasco de Salsa Tatemada Ahumada al fondo sin filtro de color, bien iluminado y natural.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#RecetasPicantes",
+    "#ComidaLatina",
+    "#SalsaArtesanal"
+  ]
+}

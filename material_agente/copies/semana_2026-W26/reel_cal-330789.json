@@ -1,0 +1,46 @@
+{
+  "hook": "¿En qué nivel de adicto al picante estás tú?",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Pantalla negra con texto grande en blanco que aparece letra por letra, estilo typewriter rápido. Fondo con leve textura ahumada oscura.",
+      "texto_pantalla": "¿En qué nivel de adicto al picante estás tú?"
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Transición rápida con flash rojo. Aparece 'NIVEL 1' en grande con ícono de llama pequeña (🔥 x1). Fondo color naranja quemado. Texto entra desde la izquierda con bounce.",
+      "texto_pantalla": "NIVEL 1 — Le pones Valentina a todo. Hasta al mango. Hasta a la sopa."
+    },
+    {
+      "segundo": "8-15",
+      "visual": "Corte seco. Fondo rojo oscuro. 'NIVEL 2' entra desde arriba con vibración leve. Ícono de llama doble. Ritmo del beat marca el cambio.",
+      "texto_pantalla": "NIVEL 2 — Ya probaste salsas artesanales. Ya no hay vuelta atrás."
+    },
+    {
+      "segundo": "15-20",
+      "visual": "Pantalla casi negra. 'NIVEL 3' aparece con efecto glitch y humo animado saliendo de las letras. Ícono de llama triple. Texto pulsa al ritmo de la música.",
+      "texto_pantalla": "NIVEL 3 — Buscas el tatemado. El ahumado. Lo que duele rico."
+    },
+    {
+      "segundo": "20-25",
+      "visual": "Cierre limpio. Logo de Salsas Bestial centrado sobre fondo negro. Debajo aparece el texto del CTA con flecha animada apuntando a 'enlace en bio'. Sin filtros sobre el logo.",
+      "texto_pantalla": "Si llegaste al nivel 3... ya sabes dónde estamos. 🔗 Link en bio."
+    }
+  ],
+  "caption": "El nivel 3 no es para todo el mundo — pero si llegaste hasta acá, la Tatemada Ahumada ya te estaba esperando. ¿En qué nivel estás tú?",
+  "cta": "Pídela aquí → https://wa.me/573005864523 | ¿En qué nivel caíste? Escríbelo en los comentarios.",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteNivel3",
+    "#SalsaArtesanal",
+    "#PicanteMexicano",
+    "#Foodie",
+    "#SalsaAhumada",
+    "#RetoDelPicante",
+    "#ComidaPicante",
+    "#SaborBestial"
+  ],
+  "mood_musica": "upbeat_latino",
+  "hook_audio": "¿En qué nivel de adicto al picante estás tú?"
+}

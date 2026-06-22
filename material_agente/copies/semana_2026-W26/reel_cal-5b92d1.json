@@ -1,0 +1,41 @@
+{
+  "hook": "La cara de tu familia cuando prueba la salsa por primera vez...",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Fondo negro. Texto grande, blanco, centrado, con entrada tipo 'pop' rápido. Sin más elementos. Corte abrupto al terminar.",
+      "texto_pantalla": "La cara de tu familia cuando prueba la salsa por primera vez..."
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Secuencia flash de 4 ilustraciones tipo meme/emoji exagerado: 1) cara de sorpresa total, 2) cara llorando pero sonriendo, 3) cara soplando como si apagara fuego, 4) cara de 'quiero más'. Cada ilustración dura menos de 1 segundo. Corte rítmico al beat.",
+      "texto_pantalla": "😳 ... 🥲 ... 🔥"
+    },
+    {
+      "segundo": "8-20",
+      "visual": "Fondo negro de nuevo. Texto aparece línea por línea, sincronizado con el beat. Tipografía limpia, bold. Ritmo pausado pero con impacto. Al final, fade rápido.",
+      "texto_pantalla": "Sí. Esa cara.\nLa que no miente.\nSalsa Tatemada Ahumada — sin filtros, sin mentiras."
+    },
+    {
+      "segundo": "20-25",
+      "visual": "Logo Salsas Bestial entra desde abajo con animación suave. Fondo negro. Debajo del logo aparece el CTA en texto más pequeño pero legible. Freeze final de 2 segundos.",
+      "texto_pantalla": "El link pa' pedirla está en bio."
+    }
+  ],
+  "caption": "Esa cara que ponen y aun así le echan otra cucharada... ya los conocemos. 🔥 ¿A quién le mandarías una de estas?",
+  "cta": "Pídela aquí → https://wa.me/573005864523 | ¿A quién le mandarías una de estas?",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteReal",
+    "#SalsaArtesanal",
+    "#ComidaColombiana",
+    "#RetoDelPicante",
+    "#FoodLovers",
+    "#SalsaVerde",
+    "#HumorFoodie",
+    "#MadeInColombia"
+  ],
+  "mood_musica": "humor",
+  "hook_audio": "La cara de tu familia cuando prueba la salsa por primera vez..."
+}

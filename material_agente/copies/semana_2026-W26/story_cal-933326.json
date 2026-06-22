@@ -1,0 +1,16 @@
+{
+  "texto_principal": "Pedir tu salsa es así de fácil 🔥",
+  "texto_secundario": "WhatsApp → confirmas → llega. Sin vuelta.",
+  "cta": "Toca el enlace. Nosotros hacemos el resto.",
+  "elemento_interactivo": {
+    "tipo": "ninguno",
+    "contenido": null
+  },
+  "descripcion_visual": "Secuencia de 2 stories. Story A: fondo negro total, tipografía blanca en bold para el título principal centrado en pantalla. Debajo, tres pasos en tipografía roja minimalista numerados: '1. Escríbenos por WhatsApp / 2. Confirmas tu pedido / 3. La recibes.' Sin íconos recargados, solo números y texto limpio. El emoji de fuego aparece únicamente en el título, alineado al final. Espaciado generoso entre pasos para respirar visualmente. Story B: fondo negro idéntico, texto blanco centrado en dos líneas — 'Toca aquí.' en grande, 'Nosotros hacemos el resto.' en pequeño debajo. Sticker de enlace de WhatsApp activo, color rojo para mantener identidad, ubicado en la parte inferior centrado. Sin elementos decorativos adicionales. Sensación de sobriedad y confianza, no de urgencia.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteArtesanal",
+    "#SalsaAhumada"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "caption_principal": "Llevas años comprando salsa picante sin saber que te estaban vendiendo agua con chile. Desliza → porque esto cambia cómo ves cualquier salsa para siempre.",
+  "cta_caption": "¿Sabías la diferencia entre tatemado y ahumado antes de leer esto? Cuéntanos abajo.",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaArtesanal",
+    "#PicanteDeVerdad",
+    "#SalsaTatemada",
+    "#CocinaLatina",
+    "#SalsaAhumada",
+    "#FoodLovers",
+    "#RecetasMexicanas",
+    "#Chile",
+    "#SaborReal"
+  ],
+  "slides": [
+    {
+      "numero": 1,
+      "titulo": "Llevas años comiendo salsa equivocada. No es tu culpa.",
+      "subtitulo": "Pero ya es hora de que sepas la diferencia.",
+      "descripcion_visual": "Fondo casi negro, tipografía sans-serif bold en blanco para el título. La palabra 'equivocada' resaltada en rojo quemado. Sin imágenes de producto. Composición centrada, mucho espacio negativo para que el texto respire. Número de slide discreto en esquina inferior.",
+      "tipo": "portada"
+    },
+    {
+      "numero": 2,
+      "titulo": "Salsa industrial vs. salsa artesanal",
+      "subtitulo": "No es lo mismo. Para nada.",
+      "descripcion_visual": "Fondo oscuro carbón. Título en blanco bold en la parte superior. Bloque de texto en tipografía regular, tamaño legible, color gris claro. Una línea divisoria fina en rojo quemado separa el título del cuerpo. Sin íconos ni bullets, solo párrafo corrido. Estética limpia y directa.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 3,
+      "titulo": "¿Qué significa que una salsa esté tatemada?",
+      "subtitulo": "Viene de la abuela. Literal.",
+      "descripcion_visual": "Fondo oscuro con una textura sutil tipo piedra o comal, muy suave al fondo, sin que distraiga. Título en blanco bold. Subtítulo en rojo quemado italics. Texto del cuerpo en gris claro, tipografía regular. La palabra 'tatemado' aparece una vez más grande que el resto del párrafo, como si fuera un acento visual.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 4,
+      "titulo": "El ahumado no es un adorno. Es el sabor que no sabías que te faltaba.",
+      "subtitulo": null,
+      "descripcion_visual": "Fondo negro profundo. Título en dos líneas, bold, blanco. Sin subtítulo. El cuerpo del texto ocupa el tercio inferior del slide. Una línea de acento en rojo quemado a la izquierda del bloque de texto, como barra lateral editorial. Atmósfera oscura e intensa, casi como si el slide oliera a humo.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 5,
+      "titulo": "Nuestra Salsa Tatemada Ahumada nació de todo esto.",
+      "subtitulo": "Link en bio para probarla — o escríbenos directo por WhatsApp.",
+      "descripcion_visual": "Fondo oscuro con el logotipo de Salsas Bestial centrado en la parte superior, sin modificaciones ni filtros. Título en blanco bold debajo del logo. Subtítulo en rojo quemado. CTA visual tipo botón minimalista con el texto 'Link en bio' en blanco sobre fondo rojo quemado, esquina inferior centrada. Composición que cierra el carrusel con identidad de marca clara.",
+      "tipo": "cta"
+    }
+  ]
+}
