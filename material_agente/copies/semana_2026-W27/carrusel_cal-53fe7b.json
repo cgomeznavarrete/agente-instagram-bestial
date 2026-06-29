@@ -1,0 +1,62 @@
+{
+  "caption_principal": "El ahumado no es un sabor. Es una decisión. Y hay una razón por la que la Salsa Tatemada Ahumada de Bestial sabe diferente a todo lo que has probado — desliza →",
+  "cta_caption": "Escríbenos por WhatsApp (link en bio) y prueba lo que el fuego hace cuando se aplica bien. ¿Tú ya sabías que el tatemado cambia la química del chile? Cuéntanos abajo.",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#AhumadoNatural",
+    "#SalsaPicante",
+    "#TatemadoMexicano",
+    "#ChileAhumado",
+    "#SalsaArtesanal",
+    "#Umami",
+    "#FoodieLatino",
+    "#CocinaMexicana",
+    "#SalsaLovers",
+    "#PicanteDeVerdad"
+  ],
+  "slides": [
+    {
+      "numero": 1,
+      "titulo": "¿Sabes por qué el ahumado cambia todo en una salsa?",
+      "subtitulo": "No es magia. Es fuego y tiempo.",
+      "descripcion_visual": "Fondo negro carbón con textura sutil de ceniza. Tipografía blanca bold en el centro, grande y directa. Una línea horizontal fina en rojo oscuro bajo el título. Sin imágenes del producto — solo texto y atmósfera. Sensación de brasas apagadas, densa y misteriosa.",
+      "tipo": "portada"
+    },
+    {
+      "numero": 2,
+      "titulo": "Tatemar no es asar. Es otra cosa.",
+      "subtitulo": "Es exponer el chile al fuego directo hasta que la piel se quema — y eso libera todo lo que estaba adentro.",
+      "descripcion_visual": "Ilustración minimalista de un chile sobre flama directa, líneas simples en blanco sobre fondo carbón oscuro. La piel del chile ligeramente ennegrecida dibujada con trazo fino. Ambiente cálido pero austero, sin colores saturados.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 3,
+      "titulo": "Los chiles que aguantan el fuego.",
+      "subtitulo": "Chipotle, pasilla, mulato. No cualquier chile sobrevive el tatemado — solo los que tienen cuerpo.",
+      "descripcion_visual": "Ilustración minimalista de tres siluetas de chiles diferentes, alineadas en fila horizontal sobre fondo oscuro. Cada una con una etiqueta tipográfica simple debajo. Trazo blanco limpio, sin relleno de color. Estética de cartel de mercado antiguo.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 4,
+      "titulo": "El ahumado dispara el umami.",
+      "subtitulo": "Ese sabor profundo que no sabes nombrar pero que hace que repitas — eso es umami. El fuego lo amplifica.",
+      "descripcion_visual": "Ilustración abstracta minimalista: ondas concéntricas que salen de un punto central, como sonido o calor expandiéndose. Líneas blancas sobre fondo negro. En el centro, un pequeño ícono de llama. Sin texto adicional — solo la ilustración y las dos líneas del slide.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 5,
+      "titulo": "Por eso Bestial usa ese proceso.",
+      "subtitulo": "No hay atajo. La Salsa Tatemada Ahumada pasa por fuego real — porque el sabor que buscamos no sale de una botella de humo líquido.",
+      "descripcion_visual": "Fotografía o ilustración del frasco de Salsa Tatemada Ahumada de Bestial sobre fondo oscuro, sin filtros de color sobre la etiqueta. Iluminación lateral cálida que resalta la textura del frasco. El fondo puede tener una sutil voluta de humo natural difuminada.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 6,
+      "titulo": "Ahora que sabes cómo se hace... pruébala.",
+      "subtitulo": null,
+      "descripcion_visual": "Fondo carbón igual al de la portada para cerrar el ciclo visual. Título centrado en tipografía blanca bold. Debajo, ícono de WhatsApp en verde sobre un pequeño botón oscuro con el texto 'Escríbenos directo'. Logo de Salsas Bestial en la parte inferior, sin modificaciones. Sensación de cierre contundente, no de remate comercial.",
+      "tipo": "cta"
+    }
+  ]
+}

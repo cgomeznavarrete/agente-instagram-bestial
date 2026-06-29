@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "ultima_actualizacion": "2026-06-22T18:15:38.290168",
+  "ultima_actualizacion": "2026-06-29T16:54:10.273266",
   "banco_ideas": [
     {
       "id": "idea-4428a483",
@@ -359,6 +359,126 @@
       "concepto": "Reel donde alguien pone Salsas Bestial en algo completamente inesperado —un chocorramo, una fruta, un dulce— y la reacción genuina al probarla. Sin edición exagerada. Solo la cara real y el frasco visible.",
       "notas": "Las pruebas de sabor con combinaciones raras son imparables en engagement. La reacción auténtica sin actuación exagerada genera credibilidad y comentarios de 'yo lo haría' o 'jamás'. Alto potencial de replicación por la comunidad.",
       "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-161a072b",
+      "fecha_generacion": "2026-06-29",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "recetas_y_maridajes",
+      "concepto": "Reel de 30 segundos mostrando 3 usos inesperados de la Salsa Tatemada Ahumada: en aguacate con limón, en un sándwich de queso caliente y en arroz blanco. Sin palabras, solo el sonido del chisporroteo y música de fondo tipo cumbia moderna.",
+      "notas": "El formato silencioso con ASMR de cocina tiene altísimo engagement. Los usos inesperados generan comentarios del tipo '¿en serio funciona en eso?' lo que dispara el alcance orgánico.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-fe8e1064",
+      "fecha_generacion": "2026-06-29",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "humor_picante",
+      "concepto": "Foto del frasco con una nota escrita a mano en papel al lado que dice: 'El médico dijo que comiera más verduras. Aquí estoy.' Estilo cotidiano, sobre mesa de cocina con luz natural.",
+      "notas": "El humor autoconsciente conecta profundamente con los 25-38 años. Genera guardados y compartidos porque la gente se identifica. Producción mínima, impacto máximo.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-724d9920",
+      "fecha_generacion": "2026-06-29",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "behind_the_scenes",
+      "concepto": "Carrusel de 6 fotos mostrando el proceso real del tomatillo tatemado: desde el ingrediente crudo hasta el frasco final. Fotos crudas, sin sobre-producción. Primera imagen: las manos del creador sosteniendo ingredientes frescos.",
+      "notas": "El contenido artesanal sin filtros genera confianza y diferencia de marcas industriales. La autenticidad visual es el mayor argumento de venta para productos premium artesanales.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-272feb8f",
+      "fecha_generacion": "2026-06-29",
+      "origen": "claude",
+      "tipo_sugerido": "story",
+      "pilar": "retos_y_pruebas_de_picante",
+      "concepto": "Serie de 4 stories: encuesta inicial '¿Cuánta salsa le echas normalmente?', después un video de 10 segundos del creador echando el doble de lo normal en un taco, reacción honesta y CTA directo al WhatsApp.",
+      "notas": "Las encuestas en stories aumentan la retención entre un 20-30%. El arco narrativo completo en 4 stories mantiene a la gente viendo hasta el CTA de compra.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-98bbe77a",
+      "fecha_generacion": "2026-06-29",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "testimonios_y_ugc",
+      "concepto": "Reel compilando audios reales de WhatsApp de clientes —con su permiso— reaccionando al primer uso de la salsa. Solo el audio, mientras la cámara hace un paneo lento sobre el frasco y los ingredientes del plato preparado.",
+      "notas": "Los audios de WhatsApp son el formato de testimonio más creíble en Latinoamérica. Nadie duda de un audio de voz. Esto destruye la barrera de desconfianza en compras online.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-2ce4924a",
+      "fecha_generacion": "2026-06-29",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "educacion_sobre_salsas",
+      "concepto": "Foto del frasco junto a un chile seco y un jitomate tatemado partidos. Caption explicando qué significa exactamente 'ahumado' en una salsa y por qué cambia todo el sabor, escrito como si fuera un mensaje de WhatsApp largo.",
+      "notas": "El contenido educativo en formato conversacional genera guardados masivos. Posiciona a Salsas Bestial como referente, no solo como producto.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-9ddee9b1",
+      "fecha_generacion": "2026-06-29",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "lifestyle_y_comunidad",
+      "concepto": "Reel tipo 'domingo en casa': manos preparando unos huevos pericos o revueltos, la salsa entrando al final en cámara lenta, la mesa servida con café. Música tipo lo-fi latinoamericana. Sin texto superpuesto.",
+      "notas": "El contenido de lifestyle de domingo tiene pico de consumo el fin de semana. Genera asociación emocional entre Salsas Bestial y momentos cotidianos cálidos, lo que construye hábito de compra.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-9b58e4f8",
+      "fecha_generacion": "2026-06-29",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "como_comprar",
+      "concepto": "Carrusel de 5 slides titulado internamente 'Así de fácil llega a tu puerta': slide 1 con el frasco como anzuelo visual, slides 2-4 mostrando el proceso de pedido por WhatsApp con capturas reales, slide 5 con el producto en manos del cliente.",
+      "notas": "La fricción de compra online es el principal enemigo. Este carrusel elimina la duda más común: '¿cómo lo pido?'. Directo al embudo de conversión sin rodeos.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-bd164186",
+      "fecha_generacion": "2026-06-29",
+      "origen": "claude",
+      "tipo_sugerido": "story",
+      "pilar": "promociones_y_lanzamientos",
+      "concepto": "Story con cuenta regresiva de 24 horas para un precio especial por WhatsApp. Fondo: video corto del frasco girando sobre una tabla de madera. Texto mínimo: solo el precio y el link directo. Sin explicaciones largas.",
+      "notas": "La urgencia real con cuenta regresiva visible aumenta la conversión en stories hasta un 35%. El link directo a WhatsApp elimina pasos entre el deseo y la compra.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-a0d54ed0",
+      "fecha_generacion": "2026-06-29",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "beneficios_del_producto",
+      "concepto": "Reel de comparación honesta: el mismo plato —unas papas al horno— antes y después de la salsa. Sin dramatismo. Solo el contraste visual del plato y la reacción genuina de quien lo prueba. Narración en off de 15 segundos máximo.",
+      "notas": "El formato 'antes y después' aplicado a comida tiene tracción probada en Instagram. La honestidad sin dramatismo refuerza la credibilidad de la marca ante una audiencia que ya no cree en la publicidad perfecta.",
+      "prioridad": "media",
       "usado": false,
       "fecha_uso": null
     }

@@ -1,0 +1,17 @@
+{
+  "texto_principal": "Antes de que llegue a tu mesa...",
+  "texto_secundario": "pasa por aquí.",
+  "cta": "Desliza para ver cómo nació todo",
+  "elemento_interactivo": {
+    "tipo": "ninguno",
+    "contenido": null
+  },
+  "descripcion_visual": "Slide 1: Fotografía cálida y granulada de un fogón de gas encendido con chiles, jitomates y ajos crudos encima del comal — luz natural lateral, tonos naranjas y negros, sin filtro de color sobre el producto. Texto superpuesto en tipografía sans-serif blanca, peso ligero, alineado a la izquierda en el tercio inferior. Slide 2: Fondo negro sólido, texto centrado en blanco, tipografía serif para el cuerpo — tres líneas cortas con espacio generoso entre ellas: 'Un día quemé los chiles de más. Por accidente. Y quedó mejor que todo lo que había hecho antes.' Última línea separada por espacio doble, en itálica: 'Eso es Bestial. Nada más, nada menos.' Sin emojis en ninguno de los dos slides. Transición entre slides: corte directo, sin animación.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#HechoenColombia",
+    "#PicanteDeVerdad",
+    "#Artesanal"
+  ]
+}

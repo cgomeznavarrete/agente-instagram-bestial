@@ -1,0 +1,41 @@
+{
+  "hook": "El chisporroteo de la sartén — sin música, sin texto. Solo el sonido.",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Plano cerrado: mano vierte la Salsa Tatemada Ahumada sobre huevos pericos en sartén caliente. El aceite chisporrotea fuerte. Sin música. Solo el sonido crudo de la cocina.",
+      "texto_pantalla": ""
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Corte rápido al rostro de quien cocina — no se ve completo, solo la sonrisa satisfecha. Entra música lo-fi latinoamericana suave de fondo.",
+      "texto_pantalla": "El desayuno de los que saben..."
+    },
+    {
+      "segundo": "8-20",
+      "visual": "Serie de cortes rápidos: huevos moviéndose en la sartén con la salsa integrada, vapor subiendo, plato siendo emplatado con cuchara, frasco de Salsa Tatemada Ahumada puesto al lado del plato con naturalidad — sin poses artificiales.",
+      "texto_pantalla": "...no necesita explicación."
+    },
+    {
+      "segundo": "20-25",
+      "visual": "Plano final del plato terminado con el frasco Salsas Bestial al lado. Fondo neutro de cocina real. Nada de estudio.",
+      "texto_pantalla": "Receta completa en los comentarios 👇"
+    }
+  ],
+  "caption": "Huevos pericos + Salsa Tatemada Ahumada — así arrancan los sábados que sí valen la pena. ¿Los tuyos con arepa o con pan?",
+  "cta": "Pídela aquí → https://wa.me/573005864523",
+  "hashtags": [
+    "#SalsasBestial",
+    "#HuevosPerico",
+    "#SalsaAhumada",
+    "#RecetasFáciles",
+    "#DesayunoLatino",
+    "#PicanteDeVerdad",
+    "#CocinaEnCasa",
+    "#SalsaArtesanal",
+    "#FoodLovers",
+    "#TatemadaAhumada"
+  ],
+  "mood_musica": "chill_food",
+  "hook_audio": "El desayuno de los que saben... no necesita explicación."
+}

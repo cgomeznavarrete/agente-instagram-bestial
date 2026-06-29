@@ -1,0 +1,16 @@
+{
+  "texto_principal": "La semana siempre gana. 😅",
+  "texto_secundario": "Buen domingo.",
+  "cta": "Responde con tu combo del domingo",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "¿Tú también?: Sí, siempre 💀 / Yo sí cumplí 🥗"
+  },
+  "descripcion_visual": "Dos paneles lado a lado sobre fondo crema o neutro cálido. Panel izquierdo: ilustración minimalista de plato de ensalada, trazo simple estilo boceto, etiqueta manuscrita 'Yo el lunes'. Panel derecho: ilustración de plato abundante con costillas y frasco de Salsa Tatemada Ahumada bien visible, misma línea de trazo, etiqueta manuscrita 'Yo el domingo'. Texto principal centrado debajo de los paneles en tipografía bold gruesa, estilo casual. Sin filtros sobre el frasco. Paleta: tonos tierra, hueso y rojo oscuro alineados con identidad de marca.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#TatemadaAhumada",
+    "#SalsaPicante",
+    "#DomingosBestiales"
+  ]
+}

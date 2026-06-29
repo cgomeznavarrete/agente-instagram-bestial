@@ -1,0 +1,17 @@
+{
+  "texto_principal": "Seamos honestos — ¿cuántas gotas le echas?",
+  "texto_secundario": "No te vamos a juzgar... mucho.",
+  "cta": "Vota y cuéntanos en el DM si mentiste",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "Opción A: 'Las que caben en la cuchara' | Opción B: 'Hasta que la comida pide auxilio'"
+  },
+  "descripcion_visual": "Fondo textura de madera oscura tipo tabla de cocina rústica. Texto en tipografía bold blanca centrada, con ligero drop shadow para legibilidad. El sticker de encuesta de Instagram posicionado en el tercio inferior de la pantalla. Sin filtros sobre el fondo — la madera habla sola. Atmósfera de cocina de noche, íntima y cálida. Si aparece el frasco de Salsa Tatemada Ahumada, debe estar al natural, sin filtros de color ni alteraciones visuales.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteReal",
+    "#ComidaPicante",
+    "#SalsaArtesanal"
+  ]
+}
