@@ -1,5 +1,7 @@
 {
-  "fecha": "2026-06-23",
-  "slots_pausados": [],
-  "pausado_todo": true
+  "fecha": "2026-06-30",
+  "slots_pausados": [
+    17
+  ],
+  "pausado_todo": false
 }
