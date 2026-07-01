@@ -1021,6 +1021,28 @@
       "archivos_carrusel": [],
       "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/video/upload/v1782743378/salsas_bestial/eqnlw28vohkrusaslfkh.mp4",
       "tema": ""
+    },
+    {
+      "id": "carrusel_1782930143223",
+      "tipo": "post",
+      "nombre_archivo": "carrusel_5_slides",
+      "ruta_local": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/posts/carrusel_1782930143223",
+      "fecha_agregado": 1782930146.9745789,
+      "estado": "pendiente",
+      "pilar": "educacion_sobre_salsas",
+      "caption": "El picante no duele. Te despierta.\n\nHay un momento exacto en que el calor sube por la lengua, el pecho se abre y el cerebro entiende que esto es lo que buscaba. No es sufrimiento — es presencia pura. Eso es lo que pasa cuando una salsa está bien hecha: no tapa el sabor, lo enciende.\n\nPídela aquí → https://wa.me/573005864523\n\n¿La primer vez que probaste picante de verdad, cuál fue tu reacción? 🌶️\n\n#SalsasBestial #SalsaAhumada #SalsaArtesanalColombia #PicanteColombia #SalsaBestial #SalsaTatemada #HotSauce #SalsaCasera #SaborColombia #SalsaPicante #Picante #Gastronomia #RecetasFaciles #Colombia #FoodiesColombia",
+      "media_id": "",
+      "fecha_publicado": 0.0,
+      "es_carrusel": true,
+      "archivos_carrusel": [
+        "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/posts/carrusel_1782930143223/slide_00.jpg",
+        "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/posts/carrusel_1782930143223/slide_01.jpg",
+        "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/posts/carrusel_1782930143223/slide_02.jpg",
+        "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/posts/carrusel_1782930143223/slide_03.jpg",
+        "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/posts/carrusel_1782930143223/slide_04.jpg"
+      ],
+      "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/image/upload/v1782930143/salsas_bestial/kcdxswvfv85x97ulnrch.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1782930144/salsas_bestial/apeuxccrhyfydqsxnvzg.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1782930145/salsas_bestial/je09ekovfbulifigd9pz.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1782930145/salsas_bestial/xwv85yjfjeevwtoosups.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1782930146/salsas_bestial/jmt2c8yhnavheguk9gr6.jpg",
+      "tema": ""
     }
   ]
 }
