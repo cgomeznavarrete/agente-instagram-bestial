@@ -996,11 +996,11 @@
       "nombre_archivo": "story_1782743154471.mp4",
       "ruta_local": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/stories/story_1782743154471.mp4",
       "fecha_agregado": 1782743156.3579433,
-      "estado": "pendiente",
+      "estado": "publicado",
       "pilar": "lifestyle_y_comunidad",
       "caption": "Tu mesa nunca volverá a ser la misma 🔥\n\nPídela 👇",
-      "media_id": "",
-      "fecha_publicado": 0.0,
+      "media_id": "17905171467280595",
+      "fecha_publicado": 1783274369.3535056,
       "es_carrusel": false,
       "archivos_carrusel": [],
       "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/video/upload/v1782743155/salsas_bestial/pqzyyjwot6menwjkgjei.mp4",
@@ -1042,6 +1042,22 @@
         "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/posts/carrusel_1782930143223/slide_04.jpg"
       ],
       "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/image/upload/v1782930143/salsas_bestial/kcdxswvfv85x97ulnrch.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1782930144/salsas_bestial/apeuxccrhyfydqsxnvzg.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1782930145/salsas_bestial/je09ekovfbulifigd9pz.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1782930145/salsas_bestial/xwv85yjfjeevwtoosups.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1782930146/salsas_bestial/jmt2c8yhnavheguk9gr6.jpg",
+      "tema": ""
+    },
+    {
+      "id": "reel_1783274702467",
+      "tipo": "reel",
+      "nombre_archivo": "reel_1783274702467.mp4",
+      "ruta_local": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/reels/reel_1783274702467.mp4",
+      "fecha_agregado": 1783274704.1755927,
+      "estado": "pendiente",
+      "pilar": "lifestyle_y_comunidad",
+      "caption": "",
+      "media_id": "",
+      "fecha_publicado": 0.0,
+      "es_carrusel": false,
+      "archivos_carrusel": [],
+      "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/video/upload/v1783274702/salsas_bestial/g2ah4rgpzptqu734qqud.mp4",
       "tema": ""
     }
   ]
