@@ -1,0 +1,17 @@
+{
+  "texto_principal": "Del 1 al 10 — ¿cuánto aguantas?",
+  "texto_secundario": "Los que llegan al 10... merecen respeto. Nada más.",
+  "cta": "Mueve el slider",
+  "elemento_interactivo": {
+    "tipo": "slider",
+    "contenido": "Slider de emoji entre 🌶 y 💀 — texto encima: '¿Eres de los que piden más salsa o de los que piden agua?'"
+  },
+  "descripcion_visual": "Fondo negro con textura rugosa sutil. El texto principal en tipografía bold blanca, centrado. El slider interactivo ocupa el tercio inferior de la pantalla. En la esquina superior derecha, el logo de Salsas Bestial pequeño, sin filtros ni alteraciones. Iluminación dramática tipo contraluz rojo oscuro detrás del texto, sin tocar la etiqueta del producto si aparece.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#TatemadaAhumada",
+    "#RetoPicante",
+    "#SalsaArtesanal",
+    "#PicanteLovers"
+  ]
+}

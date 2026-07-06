@@ -1,0 +1,16 @@
+{
+  "texto_principal": "¿Ya tienes tu Tatemada Ahumada?",
+  "texto_secundario": "Tres caminos. Uno llega a tu puerta.",
+  "cta": "Toca el enlace — WhatsApp directo, sin vueltas",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "¿Ya la probaste? 🔥 SÍ, es mía | Todavía no..."
+  },
+  "descripcion_visual": "Fondo color negro marca Salsas Bestial. Texto principal en tipografía bold blanca centrada, tamaño dominante. Debajo, tres bloques visuales apilados: '1. WhatsApp 🟢', '2. Link en bio', '3. Página web' — en tipografía más pequeña, espaciados limpiamente. Sticker de enlace nativo de Instagram apuntando a https://wa.me/573005864523 ubicado en la parte inferior centrado. Encuesta interactiva justo arriba del sticker. Sin imágenes del producto — el diseño es 100% tipográfico y limpio. Sin efectos ni filtros.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#TatemadaAhumada",
+    "#SalsaPicante",
+    "#HechoEnColombia"
+  ]
+}

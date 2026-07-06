@@ -1,0 +1,55 @@
+{
+  "caption_principal": "La mayoría de salsas solo pican. Esta, además, cuenta una historia... Desliza y entiende por qué 🔥",
+  "cta_caption": "Ya tienes el conocimiento. Ahora falta la experiencia — link en bio para conseguirla. ¿Tú con qué comida la estrenarías?",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#TatemadaAhumada",
+    "#SalsaArtesanal",
+    "#PicanteConCarácter",
+    "#SalsasMexicanas",
+    "#FoodLovers",
+    "#CocinaCasera",
+    "#AhumadoNatural",
+    "#CulturaPickante",
+    "#RecetasConSalsa",
+    "#SaborReal"
+  ],
+  "slides": [
+    {
+      "numero": 1,
+      "titulo": "No es magia. Es fuego.",
+      "subtitulo": "Por qué una salsa tatemada sabe diferente a todo lo demás.",
+      "descripcion_visual": "Fondo negro total. El título 'No es magia. Es fuego.' en tipografía blanca grande y bold, con la palabra 'fuego' en rojo intenso. Debajo, el subtítulo en blanco tamaño mediano. Logo de Salsas Bestial en esquina inferior derecha sin ningún filtro ni alteración. Sin imágenes del frasco en este slide — solo texto y atmósfera.",
+      "tipo": "portada"
+    },
+    {
+      "numero": 2,
+      "titulo": "Tatemar: asar directo a la llama.",
+      "subtitulo": "Cuando el fuego toca el chile, algo cambia. Los azúcares se caramelizan, la piel se quema justo lo necesario y el sabor se concentra en capas que ninguna salsa cocida puede replicar.",
+      "descripcion_visual": "Fondo negro con textura sutil de carbón o ceniza. Título en blanco bold en la parte superior. Subtítulo en blanco tamaño legible, centrado. Elemento gráfico minimalista: ícono o ilustración de una llama en rojo debajo del título. Sin filtros. Tipografía limpia y directa.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 3,
+      "titulo": "El ahumado no solo sabe. Se siente.",
+      "subtitulo": "El humo activa receptores distintos al picante puro. Primero viene el aroma, luego el calor, después esa profundidad que te hace repetir. No es casualidad — es química real pasando en tu boca.",
+      "descripcion_visual": "Fondo negro. Título en blanco bold, palabra 'siente' en rojo. Subtítulo en blanco, tamaño legible. Elemento gráfico: finas líneas de humo estilizadas en gris claro subiendo desde la parte inferior del slide, efecto minimalista. Sin fotografías del producto aquí. Logo pequeño en esquina.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 4,
+      "titulo": "Va con todo. En serio.",
+      "subtitulo": "Tacos — obvio. Huevos estrellados — revelación. Carne a la parrilla — matrimonio perfecto. Pizza — sí, pizza. La Tatemada Ahumada no pregunta qué estás comiendo. Solo mejora lo que hay.",
+      "descripcion_visual": "Fondo negro. Título en blanco bold y grande, 'todo' en rojo. Subtítulo en blanco con cada alimento separado por guiones, sin bullets, fluye como texto corrido. Opcional: cuatro íconos minimalistas en rojo (taco, huevo, carne, pizza) alineados horizontalmente en la parte inferior del slide. Logo de Salsas Bestial visible sin modificaciones.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 5,
+      "titulo": "Ya sabes el secreto.",
+      "subtitulo": "Ahora pruébalo. — Link en bio.",
+      "descripcion_visual": "Fondo negro. Título 'Ya sabes el secreto.' en blanco bold, grande. Subtítulo 'Ahora pruébalo.' en rojo intenso, mismo tamaño o mayor. Debajo, 'Link en bio.' en blanco más pequeño. Logo de Salsas Bestial centrado y prominente en la parte inferior, sin ningún filtro ni alteración. Diseño limpio, sin distracciones — toda la atención va al CTA y la marca.",
+      "tipo": "cta"
+    }
+  ]
+}

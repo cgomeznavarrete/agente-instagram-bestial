@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "ultima_actualizacion": "2026-06-29T16:54:10.273266",
+  "ultima_actualizacion": "2026-07-06T16:51:50.743384",
   "banco_ideas": [
     {
       "id": "idea-4428a483",
@@ -479,6 +479,126 @@
       "concepto": "Reel de comparación honesta: el mismo plato —unas papas al horno— antes y después de la salsa. Sin dramatismo. Solo el contraste visual del plato y la reacción genuina de quien lo prueba. Narración en off de 15 segundos máximo.",
       "notas": "El formato 'antes y después' aplicado a comida tiene tracción probada en Instagram. La honestidad sin dramatismo refuerza la credibilidad de la marca ante una audiencia que ya no cree en la publicidad perfecta.",
       "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-e4313795",
+      "fecha_generacion": "2026-07-06",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "recetas_y_maridajes",
+      "concepto": "Reel de 20 segundos mostrando una sola comida —unos huevos revueltos— antes y después de agregar la Salsa Tatemada Ahumada. Sin música épica, sin efectos. Solo el sonido real de la sartén y una voz en off diciendo: 'El desayuno de los que saben.'",
+      "notas": "El contraste visual antes/después es uno de los formatos con mayor retención en Reels. Producción mínima, alto impacto. El desayuno conecta con el cotidiano latinoamericano.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-9c551658",
+      "fecha_generacion": "2026-07-06",
+      "origen": "claude",
+      "tipo_sugerido": "story",
+      "pilar": "retos_y_pruebas_de_picante",
+      "concepto": "Encuesta interactiva: 'Pon salsa en todo lo que comes hoy. ¿Aceptas el reto?' con dos opciones —'Ya lo hago siempre' o 'Hoy empieza mi era picante'— y una foto del frasco como fondo sin filtros.",
+      "notas": "Las stories con encuestas duplican el engagement. Este formato genera respuestas, reenvíos y abre conversación directa por DM, lo que alimenta el canal de WhatsApp.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-74236e8d",
+      "fecha_generacion": "2026-07-06",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "educacion_sobre_salsas",
+      "concepto": "Carrusel de 5 slides explicando qué significa que una salsa sea 'artesanal' vs. industrial —sin atacar a nadie— usando fotos reales del proceso y del frasco. Último slide: 'Así se hace Bestial. Sin atajos.'",
+      "notas": "Educa y posiciona la marca como referente de calidad. El tono documental genera confianza y comparte muy bien entre foodies que buscan autenticidad.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-d874e315",
+      "fecha_generacion": "2026-07-06",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "humor_picante",
+      "concepto": "Foto del frasco solo sobre una mesa con el copy: 'Mi ex decía que era demasiado intenso. Tenía razón.' Sin explicación adicional. Solo el producto y esa frase.",
+      "notas": "El humor de ruptura con doble lectura —la persona intensa y la salsa intensa— es altamente compartible. Producción de cero, potencial viral alto en audiencia de 22-35 años.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-5a9a3497",
+      "fecha_generacion": "2026-07-06",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "behind_the_scenes",
+      "concepto": "Reel de 15 segundos mostrando el momento exacto en que se tatemean los ingredientes —el fuego, el humo, el olor que casi se siente— con texto superpuesto: 'Así nace el sabor que no se puede imitar.'",
+      "notas": "El fuego y el ahumado son visualmente magnéticos. Este tipo de behind-the-scenes conecta con la autenticidad que busca el foodlover moderno y refuerza el nombre de la salsa.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-6dcaacd9",
+      "fecha_generacion": "2026-07-06",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "testimonios_y_ugc",
+      "concepto": "Carrusel de capturas reales de mensajes de WhatsApp o comentarios de clientes —sin editar, tal como llegaron— diciendo qué sintieron al probar la salsa. Primer slide: '¿Qué dicen los que ya la probaron? Esto.'",
+      "notas": "La prueba social sin editar es más creíble que cualquier copy. Las capturas de WhatsApp generan cercanía y refuerzan ese canal como punto de venta natural.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-782af75c",
+      "fecha_generacion": "2026-07-06",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "lifestyle_y_comunidad",
+      "concepto": "Foto del frasco sobre una mesa con amigos al fondo —fuera de foco— con el copy: 'Hay gente que lleva el vino. Nosotros llevamos esto.' Nada más.",
+      "notas": "Posiciona la salsa como objeto de identidad social, no solo condimento. Conecta con la cultura de llevar algo especial a las reuniones, muy arraigada en Latinoamérica.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-cc239203",
+      "fecha_generacion": "2026-07-06",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "como_comprar",
+      "concepto": "Reel de 10 segundos mostrando el proceso de compra por WhatsApp: mensaje enviado, respuesta rápida, pedido confirmado. Texto: 'Más fácil que pedirle el Wi-Fi a la familia.' CTA directo al link.",
+      "notas": "Elimina la fricción de compra de forma visual y con humor. Muchos compradores no saben que pueden pedirla por WhatsApp —este reel resuelve esa barrera de forma memorable.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-75cb2212",
+      "fecha_generacion": "2026-07-06",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "beneficios_del_producto",
+      "concepto": "Carrusel de 4 slides mostrando 4 comidas distintas —tacos, arroz, pasta, pizza— con la misma Salsa Tatemada Ahumada encima. Título: 'Una salsa. Todo el menú.' Sin bullets, solo imágenes y frases cortas.",
+      "notas": "Demuestra versatilidad sin decirla —la muestra. El contraste de comidas tan distintas con un solo producto genera sorpresa y amplía el público potencial más allá de los taqueros.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-9859cc77",
+      "fecha_generacion": "2026-07-06",
+      "origen": "claude",
+      "tipo_sugerido": "story",
+      "pilar": "promociones_y_lanzamientos",
+      "concepto": "Story con cuenta regresiva para un drop de frascos disponibles —sin revelar cantidad— con el texto: 'El que llega tarde, llega sin salsa.' Link directo al WhatsApp al finalizar la cuenta.",
+      "notas": "La escasez percibida activa la urgencia de compra. El formato de cuenta regresiva en stories crea anticipación y lleva tráfico caliente directo al canal de venta.",
+      "prioridad": "baja",
       "usado": false,
       "fecha_uso": null
     }

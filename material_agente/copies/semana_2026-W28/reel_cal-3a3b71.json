@@ -1,0 +1,41 @@
+{
+  "hook": "Si tus huevos del desayuno no tienen esto, lo estás haciendo mal.",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Plano cenital de sartén caliente con huevos revueltos moviéndose — vapor visible, tomate y cebolla integrándose. Mano entra al cuadro con espátula.",
+      "texto_pantalla": "Si tus huevos no tienen esto... lo estás haciendo mal."
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Plano cenital continuo. Se ve el proceso: tomate y cebolla ya dorados, huevos cayendo a la sartén. Movimiento rápido de espátula.",
+      "texto_pantalla": "Paso 1: huevos 🍳"
+    },
+    {
+      "segundo": "8-20",
+      "visual": "Corte rápido al plato ya servido, humeante. Luego — mano toma el frasco de Salsa Tatemada Ahumada (sin filtros, etiqueta visible y limpia). Chorro generoso cayendo directo sobre los pericos. Primer plano del chorro. Corte a plano cenital del plato final.",
+      "texto_pantalla": "Paso 2: amor — Paso 3: la Bestial"
+    },
+    {
+      "segundo": "20-25",
+      "visual": "Frasco de Salsa Tatemada Ahumada sobre la mesa junto al plato. Iluminación natural. Sin filtros sobre el producto. Fade suave con logo Salsas Bestial esquina inferior.",
+      "texto_pantalla": "Pídela → Link en bio o WhatsApp"
+    }
+  ],
+  "caption": "Pericos con Tatemada Ahumada. No hay vuelta atrás después de esto — pregúntale a cualquier colombiano que haya probado. ¿A quién de tu casa le mandas estos pericos un lunes?",
+  "cta": "Pídela aquí → https://wa.me/573005864523",
+  "hashtags": [
+    "#SalsasBestial",
+    "#TatemadaAhumada",
+    "#HuevosPericos",
+    "#RecetasColombianas",
+    "#SalsaPicante",
+    "#DesayunoColombiano",
+    "#ComidaReal",
+    "#SalsaArtesanal",
+    "#PicanteLovers",
+    "#FoodLovers"
+  ],
+  "mood_musica": "upbeat_latino",
+  "hook_audio": "Si tus huevos del desayuno no tienen esto... lo estás haciendo mal."
+}

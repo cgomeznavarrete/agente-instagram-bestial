@@ -1,0 +1,41 @@
+{
+  "hook": "El que dijo que no picaba...",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Plano medio de dos amigos. El primero le pasa el frasco de Salsa Tatemada Ahumada al segundo con cara de 'tranquilo, no es para tanto'. Actitud relajada, casi condescendiente.",
+      "texto_pantalla": "El que dijo que no picaba..."
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Corte seco. El segundo amigo echa la salsa sin dudarlo y da un bocado. Silencio de medio segundo. Empieza el sonido dramático de tensión.",
+      "texto_pantalla": "..."
+    },
+    {
+      "segundo": "8-20",
+      "visual": "Primer plano de la cara del amigo. Sin palabras. Los ojos se abren. Una lágrima amenaza. Agarra la mesa. Busca agua con la mirada como quien busca al médico. El primero lo mira con una sonrisa de 'te lo dije'. Corte al frasco de Salsa Tatemada Ahumada en cámara lenta.",
+      "texto_pantalla": "Te lo dije."
+    },
+    {
+      "segundo": "20-25",
+      "visual": "Fondo negro limpio. Logo de Salsas Bestial centrado. Frasco al lado del logo. Sin filtros, sin efectos sobre el producto.",
+      "texto_pantalla": "La Tatemada Ahumada. No avisa — solo actúa. 🔥"
+    }
+  ],
+  "caption": "Hay gente que aprende rápido... y hay gente que necesita probarlo. ¿A quién le mandarías una de estas sin avisarle?",
+  "cta": "Pídela aquí → https://wa.me/573005864523",
+  "hashtags": [
+    "#SalsasBestial",
+    "#TatemadaAhumada",
+    "#SalsaPicante",
+    "#HumorPicante",
+    "#ExpectativaVsRealidad",
+    "#SalsaArtesanal",
+    "#ComidaPicante",
+    "#Foodie",
+    "#PicanteLovers",
+    "#Colombia"
+  ],
+  "mood_musica": "humor",
+  "hook_audio": null
+}
