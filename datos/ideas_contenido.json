@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "ultima_actualizacion": "2026-07-06T16:51:50.743384",
+  "ultima_actualizacion": "2026-07-13T16:25:55.342324",
   "banco_ideas": [
     {
       "id": "idea-4428a483",
@@ -599,6 +599,126 @@
       "concepto": "Story con cuenta regresiva para un drop de frascos disponibles —sin revelar cantidad— con el texto: 'El que llega tarde, llega sin salsa.' Link directo al WhatsApp al finalizar la cuenta.",
       "notas": "La escasez percibida activa la urgencia de compra. El formato de cuenta regresiva en stories crea anticipación y lleva tráfico caliente directo al canal de venta.",
       "prioridad": "baja",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-e2db7c4f",
+      "fecha_generacion": "2026-07-13",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "humor_picante",
+      "concepto": "Reel de 20 segundos con el formato 'expectativa vs realidad': alguien prepara una comida sencilla, la prueba con cara de decepción, le agrega la Salsa Tatemada Ahumada, y la reacción lo cambia todo. Sin palabras, solo expresiones y música.",
+      "notas": "El formato expectativa vs realidad tiene altísimo engagement orgánico. Sin diálogo, funciona para cualquier audiencia hispanohablante y es fácil de producir con un solo actor y el frasco.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-70854b03",
+      "fecha_generacion": "2026-07-13",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "educacion_sobre_salsas",
+      "concepto": "Carrusel de 6 slides explicando qué significa 'tatemado' de verdad: el proceso de asar ingredientes directamente al fuego, por qué cambia el sabor y cómo eso hace diferente a la Salsa Tatemada Ahumada. Diseño oscuro, texto corto por slide.",
+      "notas": "Educa al consumidor y posiciona la marca como experta auténtica. Genera guardados, que es la métrica más valiosa para carruseles educativos en Instagram.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-6b0f2f90",
+      "fecha_generacion": "2026-07-13",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "recetas_y_maridajes",
+      "concepto": "Foto cenital de unos tacos de canasta con la salsa cayendo encima, copy que habla de por qué los tacos de canasta merecen más respeto del que la gente les da. Sin lista de ingredientes, solo la foto brutal y el argumento.",
+      "notas": "Los tacos de canasta son cultura popular latinoamericana total. La foto sola puede parar el scroll y el copy polémico invita a comentar opiniones.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-c032fb61",
+      "fecha_generacion": "2026-07-13",
+      "origen": "claude",
+      "tipo_sugerido": "story",
+      "pilar": "retos_y_pruebas_de_picante",
+      "concepto": "Story interactiva con encuesta: mostrar el frasco y preguntar '¿Cuántas gotas aguantas sin agua?' con opciones exageradas tipo '3 gotas máximo' vs 'Toda la botella'. Al día siguiente publicar los resultados con un comentario sarcástico.",
+      "notas": "Las encuestas en stories disparan la tasa de respuesta y crean conversación. El seguimiento al día siguiente fideliza a quienes respondieron.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-5e33b346",
+      "fecha_generacion": "2026-07-13",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "behind_the_scenes",
+      "concepto": "Reel de 30 segundos mostrando el proceso de ahumado: el humo real, los ingredientes antes y después del fuego, el color que cambia. Sin narración, solo sonidos naturales del proceso y una música que genere tensión.",
+      "notas": "Los videos ASMR de procesos artesanales generan retención altísima. Muestra el trabajo real detrás del producto sin decir nada, eso construye credibilidad mejor que cualquier copy.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-e781b3b1",
+      "fecha_generacion": "2026-07-13",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "testimonios_y_ugc",
+      "concepto": "Carrusel donde cada slide muestra una foto enviada por un cliente con su plato y la salsa, con una sola frase suya en texto grande. Último slide: instrucciones para aparecer en el próximo. Pedirle permiso a cada uno antes de publicar.",
+      "notas": "El UGC es el contenido más creíble que existe. Ver caras y platos reales de personas reales convierte mejor que cualquier foto de estudio.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-3813a2bf",
+      "fecha_generacion": "2026-07-13",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "lifestyle_y_comunidad",
+      "concepto": "Foto del frasco de Salsa Tatemada Ahumada sobre una mesa con comida de domingo familiar: arroz, frijoles, carne. Copy que hable de que hay cosas que siempre tienen que estar en la mesa, sin negociación.",
+      "notas": "La comida del domingo es un ritual profundamente latinoamericano. Conecta emocionalmente con la audiencia y posiciona la salsa como parte de ese ritual.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-ac0d6cf5",
+      "fecha_generacion": "2026-07-13",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "como_comprar",
+      "concepto": "Reel de 15 segundos estilo tutorial rápido: mano sosteniendo el celular, entra al perfil de Instagram, clic en el link de bio, aparece la página web, se hace el pedido. Todo en tiempo real, sin edición fancy. Texto en pantalla: 'Así de fácil llega a tu casa'.",
+      "notas": "Muchos seguidores no compran porque no saben exactamente cómo. Este reel elimina esa fricción de forma directa y sin hacerlo parecer un tutorial corporativo.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-16939525",
+      "fecha_generacion": "2026-07-13",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "beneficios_del_producto",
+      "concepto": "Foto close-up del frasco con luz natural que resalte la textura de la salsa visible a través del vidrio. Copy que hable solo del aroma ahumado, sin mencionar ningún otro beneficio. Una sola idea desarrollada bien.",
+      "notas": "Enfocarse en un solo atributo sensorial crea más impacto que listar varios. El aroma es el beneficio más difícil de comunicar visualmente, hacerlo bien diferencia la marca.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-6a89afa5",
+      "fecha_generacion": "2026-07-13",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "recetas_y_maridajes",
+      "concepto": "Carrusel de 5 slides: 'La Salsa Tatemada Ahumada en 5 comidas que probablemente nunca pensaste'. Slides con fotos reales de combinaciones inesperadas: huevos revueltos, pizza, pasta, pollo al horno, aguacate solo. Sin receta larga, solo la foto y una línea de descripción brutal.",
+      "notas": "Las combinaciones inesperadas generan curiosidad y debate en comentarios. Es contenido que la gente guarda para intentarlo después, lo que aumenta el alcance orgánico.",
+      "prioridad": "alta",
       "usado": false,
       "fecha_uso": null
     }

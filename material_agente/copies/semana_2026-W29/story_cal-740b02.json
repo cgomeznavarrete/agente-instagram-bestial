@@ -1,0 +1,17 @@
+{
+  "texto_principal": "¿Todavía no tienes la Tatemada en casa?",
+  "texto_secundario": "Las últimas unidades de esta semana ya están saliendo...",
+  "cta": "Escríbenos al WhatsApp y la tienes hoy",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "¿Ya la probaste? | Sí, es bestial 🔥 / Aún no la tengo"
+  },
+  "descripcion_visual": "Frame 1 — Fondo negro profundo, texto blanco centrado en tipografía bold, una sola línea dominante. Abajo, en gris suave, el texto secundario con puntos suspensivos para generar tensión sin urgencia falsa. Sin ilustraciones, sin ruido visual. Frame 2 — Mismo fondo oscuro. Tres pasos en tipografía limpia y numerada: '1. Escríbenos al WhatsApp / 2. Dinos tu dirección / 3. Listo.' Sticker de enlace nativo de Instagram apuntando a wa.me/573005864523, colocado en la parte inferior centrado. Sin iconos extra, sin emojis decorativos. El diseño respira.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteArtesanal",
+    "#SalsasArtesanales",
+    "#ComidaPicante"
+  ]
+}

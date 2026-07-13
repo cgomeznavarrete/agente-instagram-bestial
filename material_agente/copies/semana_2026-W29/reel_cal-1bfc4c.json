@@ -1,0 +1,41 @@
+{
+  "hook": "¿Cuántas gotas aguantas antes de pedir agua?",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Plano cerrado de una mano sosteniendo el frasco de Salsa Tatemada Ahumada sobre una tostada vacía. Luz dramática. Silencio tenso.",
+      "texto_pantalla": "¿Cuántas gotas aguantas antes de pedir agua? 🌶"
+    },
+    {
+      "segundo": "3-8",
+      "visual": "El presentador agrega la primera gota lentamente. Mira a cámara con cara de reto. Cuenta en voz alta: 'Una...' Sonido de gota amplificado. Subtítulo aparece en pantalla.",
+      "texto_pantalla": "Gota 1... fácil."
+    },
+    {
+      "segundo": "8-20",
+      "visual": "Corte rápido a gota 2, gota 3. La tensión sube con cada número. En la gota 5 el presentador muerde la tostada — reacción exagerada y auténtica: ojos abiertos, abanico con la mano, busca agua desesperado. Como cuando te pasas de ají en el sancocho de tu abuela.",
+      "texto_pantalla": "Gota 2... Gota 3... Gota 4... Gota 5 — GAME OVER."
+    },
+    {
+      "segundo": "20-25",
+      "visual": "Plano del frasco de Salsa Tatemada Ahumada sobre la mesa. Mano señala el frasco. Presenter sonríe sudando todavía.",
+      "texto_pantalla": "El reto está abierto. ¿Quién se apunta? Etiquétanos."
+    }
+  ],
+  "caption": "Cinco gotas. Eso fue todo lo que aguantó. ¿Tú llegas más lejos o también llamas al agua al segundo mordisco?",
+  "cta": "Pídela aquí → https://wa.me/573005864523 | ¿A quién le mandarías este reto ahora mismo? Etiquétalo en los comentarios.",
+  "hashtags": [
+    "#SalsasBestial",
+    "#RetoPicante",
+    "#SalsaTatemada",
+    "#PicanteReal",
+    "#RetoDeGotas",
+    "#SalsaArtesanal",
+    "#FoodChallenge",
+    "#PicanteColombia",
+    "#TatemadaAhumada",
+    "#Lovers Del Picante"
+  ],
+  "mood_musica": "energetico",
+  "hook_audio": "¿Cuántas gotas aguantas... antes de pedir agua?"
+}

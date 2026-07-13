@@ -18,34 +18,12 @@
       "material_sugerido": [
         "agente/generar/reel_humor_reacciones_tatemada.mp4"
       ],
-      "contenido_copy": {
-        "hook": "El que dice que no le gusta el picante... nunca probó la Tatemada.",
-        "cuerpo": "Hay comidas que necesitan un antes y un después — esta salsa es el después. Pídela aquí → https://wa.me/573005864523",
-        "cta": "Pídela aquí → https://wa.me/573005864523 | ¿A quién le mandarías este video ahorita mismo?",
-        "hashtags": [
-          "#SalsasBestial",
-          "#SalsaTatemada",
-          "#PicanteLatino",
-          "#SalsaArtesanal",
-          "#ComidaPicante",
-          "#Foodie",
-          "#SalsaAhumada",
-          "#RecetasCaseras",
-          "#PicanteDeVerdad",
-          "#HumorFoodie",
-          "#SalsasMexicanas",
-          "#FoodLovers",
-          "#AntojosLatinos",
-          "#SaborReal",
-          "#TatemadaBestial"
-        ],
-        "hashtags_cantidad": 15
-      },
+      "contenido_copy": null,
       "brief_capcut_path": null,
       "video_generado_path": null,
       "imagen_compuesta_path": null,
       "imagenes_carrusel_paths": [],
-      "estado": "generado",
+      "estado": "pendiente",
       "publicacion_id": null
     },
     {
@@ -60,18 +38,12 @@
       "material_sugerido": [
         "agente/generar/story_compra_whatsapp_lunes.png"
       ],
-      "contenido_copy": {
-        "hook": "",
-        "cuerpo": "",
-        "cta": "Toca el enlace y escríbenos ahora",
-        "hashtags": [],
-        "hashtags_cantidad": 0
-      },
+      "contenido_copy": null,
       "brief_capcut_path": null,
       "video_generado_path": null,
-      "imagen_compuesta_path": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/referencia_producto/salsa_tatemada_completa.jpg",
+      "imagen_compuesta_path": null,
       "imagenes_carrusel_paths": [],
-      "estado": "generado",
+      "estado": "pendiente",
       "publicacion_id": null
     },
     {
@@ -86,44 +58,12 @@
       "material_sugerido": [
         "agente/generar/post_educacion_tatemada_proceso.png"
       ],
-      "contenido_copy": {
-        "hook": "La mayoría de salsas nunca tocan el fuego. La nuestra nació en él.",
-        "cuerpo": "Tatemar es asar directo a la llama — sin agua, sin vapor, sin atajos. Ese contacto con el fuego quema la piel del chile, carameliza los azúcares y crea ese sabor ahumado que no se puede fingir ni comprar en un laboratorio. Es por eso que cuando abres un frasco de Bestial, huele diferente. Sabe diferente. Porque lo es.",
-        "cta": "Pídela aquí → https://wa.me/573005864523\n\n¿Tú la habías probado tatemada antes o siempre te habían dado la versión aguada?",
-        "hashtags": [
-          "#SalsasBestial",
-          "#BestialHot",
-          "#SalsaTatemada",
-          "#PicanteBestial",
-          "#HechoConFuego",
-          "#SalsaArtesanal",
-          "#PicanteLatino",
-          "#ChilesAsados",
-          "#SalsaPicante",
-          "#CocinaConSalsa",
-          "#AhumadoNatural",
-          "#CulturaPicante",
-          "#SaborMexicano",
-          "#FoodiesColombia",
-          "#RecetasConSalsa",
-          "#SalsaCasera",
-          "#ComidaPicante",
-          "#FoodLovers",
-          "#CocinaLatina",
-          "#SalsaHot",
-          "#PicanteDeVerdad",
-          "#ChileLover",
-          "#SaborAutentico",
-          "#GastronomiaLatina",
-          "#FoodieLife"
-        ],
-        "hashtags_cantidad": 25
-      },
+      "contenido_copy": null,
       "brief_capcut_path": null,
       "video_generado_path": null,
-      "imagen_compuesta_path": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/referencia_producto/salsa_tatemada_completa.jpg",
+      "imagen_compuesta_path": null,
       "imagenes_carrusel_paths": [],
-      "estado": "generado",
+      "estado": "pendiente",
       "publicacion_id": null
     },
     {
@@ -138,18 +78,12 @@
       "material_sugerido": [
         "agente/generar/story_pregunta_maridaje_martes.png"
       ],
-      "contenido_copy": {
-        "hook": "",
-        "cuerpo": "",
-        "cta": "Responde abajo — queremos saber todo",
-        "hashtags": [],
-        "hashtags_cantidad": 0
-      },
+      "contenido_copy": null,
       "brief_capcut_path": null,
       "video_generado_path": null,
-      "imagen_compuesta_path": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/referencia_producto/salsa_tatemada_completa.jpg",
+      "imagen_compuesta_path": null,
       "imagenes_carrusel_paths": [],
-      "estado": "generado",
+      "estado": "pendiente",
       "publicacion_id": null
     },
     {
@@ -164,29 +98,12 @@
       "material_sugerido": [
         "agente/generar/carrusel_maridajes_tatemada_6slides.png"
       ],
-      "contenido_copy": {
-        "hook": "",
-        "cuerpo": "",
-        "cta": "",
-        "hashtags": [
-          "#SalsasBestial",
-          "#TatemadaAhumada",
-          "#SalsaPicante",
-          "#RecetasColombianas",
-          "#ComidaReal",
-          "#PicanteLovers",
-          "#CocinaEnCasa",
-          "#FoodLovers",
-          "#SalsaArtesanal",
-          "#MaridajesPicantes"
-        ],
-        "hashtags_cantidad": 10
-      },
+      "contenido_copy": null,
       "brief_capcut_path": null,
       "video_generado_path": null,
-      "imagen_compuesta_path": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/referencia_producto/salsa_tatemada_completa.jpg",
+      "imagen_compuesta_path": null,
       "imagenes_carrusel_paths": [],
-      "estado": "generado",
+      "estado": "pendiente",
       "publicacion_id": null
     },
     {
@@ -201,18 +118,12 @@
       "material_sugerido": [
         "agente/generar/story_respuestas_ugc_miercoles.png"
       ],
-      "contenido_copy": {
-        "hook": "",
-        "cuerpo": "",
-        "cta": "Responde la próxima caja y aparece aquí",
-        "hashtags": [],
-        "hashtags_cantidad": 0
-      },
+      "contenido_copy": null,
       "brief_capcut_path": null,
       "video_generado_path": null,
-      "imagen_compuesta_path": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/referencia_producto/salsa_tatemada_completa.jpg",
+      "imagen_compuesta_path": null,
       "imagenes_carrusel_paths": [],
-      "estado": "generado",
+      "estado": "pendiente",
       "publicacion_id": null
     },
     {
@@ -227,29 +138,12 @@
       "material_sugerido": [
         "agente/generar/reel_reto_gotas_tatemada.mp4"
       ],
-      "contenido_copy": {
-        "hook": "¿Cuántas gotas aguantas antes de pedir agua?",
-        "cuerpo": "Cinco gotas. Eso fue todo lo que aguantó. ¿Tú llegas más lejos o también llamas al agua al segundo mordisco?",
-        "cta": "Pídela aquí → https://wa.me/573005864523 | ¿A quién le mandarías este reto ahora mismo? Etiquétalo en los comentarios.",
-        "hashtags": [
-          "#SalsasBestial",
-          "#RetoPicante",
-          "#SalsaTatemada",
-          "#PicanteReal",
-          "#RetoDeGotas",
-          "#SalsaArtesanal",
-          "#FoodChallenge",
-          "#PicanteColombia",
-          "#TatemadaAhumada",
-          "#Lovers Del Picante"
-        ],
-        "hashtags_cantidad": 10
-      },
+      "contenido_copy": null,
       "brief_capcut_path": null,
       "video_generado_path": null,
       "imagen_compuesta_path": null,
       "imagenes_carrusel_paths": [],
-      "estado": "generado",
+      "estado": "pendiente",
       "publicacion_id": null
     },
     {
@@ -264,44 +158,12 @@
       "material_sugerido": [
         "agente/generar/post_bts_filosofia_artesanal.png"
       ],
-      "contenido_copy": {
-        "hook": "Tatemar no es un paso del proceso. Es el proceso.",
-        "cuerpo": "Hay cosas que una máquina no puede hacer... y el sabor lo sabe. Cada ingrediente pasa por el fuego porque sí, porque así se hace, porque los atajos se notan en la boca. No hay fórmula exacta — hay intención, hay humo, hay tiempo. Por eso cada frasco sabe diferente... y eso es exactamente lo que buscamos.",
-        "cta": "Pídela aquí → https://wa.me/573005864523\n\n¿Cuándo fue la última vez que algo hecho a mano te cambió el plato?",
-        "hashtags": [
-          "#SalsasBestial",
-          "#BestialTatemada",
-          "#SalsaArtesanal",
-          "#HechoConFuego",
-          "#BestialLovers",
-          "#SalsaPicante",
-          "#ComidaArtesanal",
-          "#TatemadoAhumado",
-          "#SaborReal",
-          "#ArtesaniaGastronomica",
-          "#SalsasLatinas",
-          "#PicanteDeVerdad",
-          "#ChileAhumado",
-          "#CocinaLatina",
-          "#SalsaHechAMano",
-          "#FoodiesLatam",
-          "#ComidaLatina",
-          "#PicanteLovers",
-          "#SaborArtesanal",
-          "#GastronomiaColombiana",
-          "#ComidaReal",
-          "#SalsaGourmet",
-          "#FoodPhotography",
-          "#AhumadoNatural",
-          "#CocinaConAlma"
-        ],
-        "hashtags_cantidad": 25
-      },
+      "contenido_copy": null,
       "brief_capcut_path": null,
       "video_generado_path": null,
-      "imagen_compuesta_path": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/referencia_producto/salsa_tatemada_completa.jpg",
+      "imagen_compuesta_path": null,
       "imagenes_carrusel_paths": [],
-      "estado": "generado",
+      "estado": "pendiente",
       "publicacion_id": null
     },
     {
@@ -316,18 +178,12 @@
       "material_sugerido": [
         "agente/generar/story_conversion_compra_viernes.png"
       ],
-      "contenido_copy": {
-        "hook": "",
-        "cuerpo": "",
-        "cta": "Escríbenos al WhatsApp y la tienes hoy",
-        "hashtags": [],
-        "hashtags_cantidad": 0
-      },
+      "contenido_copy": null,
       "brief_capcut_path": null,
       "video_generado_path": null,
-      "imagen_compuesta_path": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/referencia_producto/salsa_tatemada_completa.jpg",
+      "imagen_compuesta_path": null,
       "imagenes_carrusel_paths": [],
-      "estado": "generado",
+      "estado": "pendiente",
       "publicacion_id": null
     },
     {
@@ -342,44 +198,12 @@
       "material_sugerido": [
         "agente/generar/post_lifestyle_sabado_familia.png"
       ],
-      "contenido_copy": {
-        "hook": "El sábado sin salsa es solo... sábado.",
-        "cuerpo": "Hay un momento en cada almuerzo familiar donde alguien pregunta '¿y la salsa?' — y ese alguien siempre tiene razón. La Tatemada Ahumada no llega de adorno. Llega a quedarse en la memoria de todos los que estaban en esa mesa. Eso no lo hace cualquier salsa.",
-        "cta": "La tuya está a un mensaje. Pídela aquí → https://wa.me/573005864523\n\n¿Cuál es el plato que NO puede faltar en tu mesa del sábado?",
-        "hashtags": [
-          "#SalsasBestial",
-          "#TatemadaAhumada",
-          "#BestialLovers",
-          "#SaborBestial",
-          "#PickanteBestial",
-          "#SalsaArtesanal",
-          "#ComidaLatina",
-          "#AsadoFamiliar",
-          "#AlmuerzoDominguero",
-          "#SalsaPicante",
-          "#FoodiesLatam",
-          "#CocinaLatina",
-          "#MesaFamiliar",
-          "#SaborAhumado",
-          "#ChileLovers",
-          "#SalsasArtesanales",
-          "#ComidaCasera",
-          "#FoodPhotography",
-          "#RecetasLatinas",
-          "#PicanteLovers",
-          "#GastronomiaLatina",
-          "#SaborAuthentico",
-          "#WeekendVibes",
-          "#AlmuerzoEnFamilia",
-          "#HechoConPasion"
-        ],
-        "hashtags_cantidad": 25
-      },
+      "contenido_copy": null,
       "brief_capcut_path": null,
       "video_generado_path": null,
-      "imagen_compuesta_path": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/referencia_producto/salsa_tatemada_completa.jpg",
+      "imagen_compuesta_path": null,
       "imagenes_carrusel_paths": [],
-      "estado": "generado",
+      "estado": "pendiente",
       "publicacion_id": null
     }
   ],

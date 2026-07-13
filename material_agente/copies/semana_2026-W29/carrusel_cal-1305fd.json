@@ -1,0 +1,67 @@
+{
+  "caption_principal": "Hay cosas que simplemente ella hace mejor. Desliza → y prepárate para sentirte un poco cuestionado en la cocina.",
+  "cta_caption": "¿Con cuál de estas combinaciones te quedas tú? Escríbela abajo — la que más votes la convertimos en receta completa. 🌶",
+  "hashtags": [
+    "#SalsasBestial",
+    "#TatemadaAhumada",
+    "#SalsaPicante",
+    "#RecetasColombianas",
+    "#ComidaReal",
+    "#PicanteLovers",
+    "#CocinaEnCasa",
+    "#FoodLovers",
+    "#SalsaArtesanal",
+    "#MaridajesPicantes"
+  ],
+  "slides": [
+    {
+      "numero": 1,
+      "titulo": "Seis cosas que la Tatemada Ahumada hace mejor que tú en la cocina.",
+      "subtitulo": "Y lo dice con respeto.",
+      "descripcion_visual": "Fondo negro profundo con textura sutil tipo carbón o madera quemada. El título en tipografía sans-serif bold blanca, grande y centrada. El subtítulo en color naranja/ámbar de marca, más pequeño, debajo del título. Logotipo de Salsas Bestial en esquina inferior derecha, sin ningún filtro de color sobre él. Sin fotos de producto.",
+      "tipo": "portada"
+    },
+    {
+      "numero": 2,
+      "titulo": "Huevos pericos del domingo. Antes eran normales. Ahora no puedes volver atrás.",
+      "subtitulo": null,
+      "descripcion_visual": "Fondo oscuro con una línea o detalle gráfico en color naranja de marca en el borde lateral izquierdo. Número '01' en tipografía grande y tenue al fondo como elemento decorativo. El copy en blanco, tipografía bold, centrado o alineado a la izquierda. Ícono o ilustración minimalista de un huevo — sin fotografía real del producto.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 3,
+      "titulo": "Aguacate con limón ya era perfecto. La Tatemada llegó a demostrar que no.",
+      "subtitulo": null,
+      "descripcion_visual": "Fondo negro con textura muy sutil. Número '02' decorativo al fondo en tono gris oscuro. Copy en tipografía blanca bold. Detalle de acento en color verde oscuro o naranja de marca — solo como línea gráfica, sin fotografía de aguacate ni del frasco.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 4,
+      "titulo": "Mazorca asada en la esquina del barrio. Más la Tatemada. Ya es otra historia.",
+      "subtitulo": null,
+      "descripcion_visual": "Fondo oscuro cálido, casi sepia oscuro. Número '03' decorativo tenue. Tipografía blanca bold para el copy. Detalle gráfico en amarillo/naranja de marca evocando el calor de la brasa — solo como elemento gráfico, sin fotos reales.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 5,
+      "titulo": "El arroz con pollo de tu abuela era intocable. Hasta que apareció esto.",
+      "subtitulo": null,
+      "descripcion_visual": "Fondo negro con número '04' tenue al fondo. Copy en blanco, tipografía bold. Pequeño detalle gráfico en color naranja de marca. Tono visual cálido y familiar pero con actitud — sin fotos de comida ni del producto.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 6,
+      "titulo": "Empanada recién frita + Tatemada Ahumada = motivo suficiente para levantarse un sábado.",
+      "subtitulo": null,
+      "descripcion_visual": "Fondo oscuro con número '05' decorativo tenue. Tipografía blanca bold, copy centrado. Detalle de acento en naranja de marca en la parte inferior del slide. Sin fotografías — el texto lo dice todo.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 7,
+      "titulo": "La consegues ahora mismo.",
+      "subtitulo": "Escríbenos al WhatsApp o encuéntranos en el enlace del perfil. 🔥",
+      "descripcion_visual": "Slide de cierre con fondo negro sólido. Logotipo de Salsas Bestial centrado y destacado, sin ningún filtro ni modificación. Texto de CTA en tipografía blanca bold debajo del logo. El número de WhatsApp o indicación 'Link en bio' en naranja de marca. Composición limpia, contundente, sin elementos de relleno. El único slide donde el logo es el protagonista visual.",
+      "tipo": "cta"
+    }
+  ]
+}

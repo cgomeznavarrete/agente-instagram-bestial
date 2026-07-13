@@ -1,0 +1,13 @@
+{
+  "texto_principal": "¿Ya la pediste? Un mensaje y llega.",
+  "texto_secundario": "WhatsApp directo — sin vueltas, sin esperas.",
+  "cta": "Toca el enlace y escríbenos ahora",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "¿Cuántas salsas tienes en tu nevera ahora mismo? | 0-2 (emergencia) | 3 o más (vamos bien)"
+  },
+  "descripcion_visual": "Fondo negro profundo. Tipografía bold blanca en primer frame, centrada, con animación de entrada tipo fade rápido. Logo Salsas Bestial en esquina superior izquierda, sin modificaciones. Sticker de enlace a https://wa.me/573005864523 en la parte inferior, con etiqueta 'Pídela aquí'. Segundo frame: mismo fondo oscuro, encuesta interactiva nativa de Instagram centrada en pantalla, sin fotografía de producto. Todo minimalista — solo texto, logo y el sticker.",
+  "hashtags_ocultos": [
+    "#SalsasBestial"
+  ]
+}

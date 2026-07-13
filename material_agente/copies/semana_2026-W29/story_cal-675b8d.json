@@ -1,0 +1,13 @@
+{
+  "texto_principal": "Respuesta correcta. Punto extra.",
+  "texto_secundario": "@usuario entiende perfectamente de qué va esto 🔥",
+  "cta": "Responde la próxima caja y aparece aquí",
+  "elemento_interactivo": {
+    "tipo": "pregunta",
+    "contenido": "¿Cuál es tu combo favorito con Salsa Tatemada Ahumada?"
+  },
+  "descripcion_visual": "Fondo oscuro texturizado (casi negro, tono carbón) que evoca lo ahumado. El texto de la respuesta del usuario va centrado en tipografía blanca, tamaño medio. Encima, el comentario de la marca en amarillo mostaza bold, como si fuera un sello o sticker manual. El @ del usuario aparece en gris claro, discreto pero visible. Sin filtros sobre el producto. Estética sucia y auténtica, nada pulido ni corporativo.",
+  "hashtags_ocultos": [
+    "#SalsasBestial"
+  ]
+}

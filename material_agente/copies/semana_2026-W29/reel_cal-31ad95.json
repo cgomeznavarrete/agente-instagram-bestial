@@ -1,0 +1,46 @@
+{
+  "hook": "El que dice que no le gusta el picante... nunca probó la Tatemada.",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Texto animado en pantalla, letras grandes, fondo negro. Corte seco al inicio sin intro.",
+      "texto_pantalla": "El que dice que no le gusta el picante... nunca probó la Tatemada. 🔥"
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Persona probando un taco sin salsa. Cara inexpresiva, mastica lento, encoge los hombros, gesto de 'meh'. Corte rápido a otra persona comiendo arroz blanco solo con la misma cara de decepción.",
+      "texto_pantalla": "Sin salsa. Sin emoción. Sin punto."
+    },
+    {
+      "segundo": "8-20",
+      "visual": "Corte rápido — mismas personas, mismo plato, pero ahora con la Salsa Tatemada Ahumada encima. Reacciones exageradas en secuencia: ojos abiertos, golpe de puño en la mesa, baile espontáneo de dos pasos, uno señala el plato como diciendo '¿qué es esto?'. Último corte: alguien intenta hablar y solo puede señalar la salsa con el dedo.",
+      "texto_pantalla": "Con Tatemada. Ya es otra historia."
+    },
+    {
+      "segundo": "20-25",
+      "visual": "Primer plano del frasco de Salsa Tatemada Ahumada sobre una tabla de madera rústica, humo suave de fondo. Luz cálida. El frasco es el protagonista absoluto. Voz en off entra justo aquí.",
+      "texto_pantalla": "El link está en la bio. No digas que no te avisamos."
+    }
+  ],
+  "caption": "Hay comidas que necesitan un antes y un después — esta salsa es el después. Pídela aquí → https://wa.me/573005864523",
+  "cta": "Pídela aquí → https://wa.me/573005864523 | ¿A quién le mandarías este video ahorita mismo?",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteLatino",
+    "#SalsaArtesanal",
+    "#ComidaPicante",
+    "#Foodie",
+    "#SalsaAhumada",
+    "#RecetasCaseras",
+    "#PicanteDeVerdad",
+    "#HumorFoodie",
+    "#SalsasMexicanas",
+    "#FoodLovers",
+    "#AntojosLatinos",
+    "#SaborReal",
+    "#TatemadaBestial"
+  ],
+  "mood_musica": "humor",
+  "hook_audio": "El que dice que no le gusta el picante... es porque nunca probó la Tatemada."
+}
