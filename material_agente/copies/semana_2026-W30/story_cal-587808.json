@@ -1,0 +1,15 @@
+{
+  "texto_principal": "¿La quieres? Escríbenos.",
+  "texto_secundario": "¿No sabes cuánto pedir? Te asesoramos sin compromiso.",
+  "cta": "Toca el enlace arriba — sin vueltas, sin formularios raros.",
+  "elemento_interactivo": {
+    "tipo": "ninguno",
+    "contenido": null
+  },
+  "descripcion_visual": "Story 1 — Fondo negro sólido. Texto blanco en tipografía bold, grande, centrado: '¿La quieres? Escríbenos.' Flecha animada apuntando hacia arriba (blanca, trazo grueso). Sticker de enlace visible en la parte superior pegado al borde: wa.me/573005864523. Sin ruido visual, sin filtros. Story 2 encadenada — Mismo fondo negro. Texto blanco más pequeño, tono íntimo, como nota de voz escrita: '¿No sabes cuánto pedir? Te asesoramos sin compromiso.' Debajo, un ícono de WhatsApp minimalista en verde. Sin logo del producto en pantalla, sin modificar colores de marca. Transición de corte directo entre ambas stories.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteArtesanal"
+  ]
+}

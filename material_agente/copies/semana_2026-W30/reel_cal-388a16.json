@@ -1,0 +1,46 @@
+{
+  "hook": "¿Cuál eres tú?",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Fondo negro, texto grande en blanco irrumpe en pantalla con animación de impacto",
+      "texto_pantalla": "¿CUÁL ERES TÚ? 👀"
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Fondo rojo oscuro, icono o silueta animada de persona con cara de asco cruzando los brazos",
+      "texto_pantalla": "EL QUE DICE: 'yo no como picante'... y termina echándole a TODO."
+    },
+    {
+      "segundo": "8-15",
+      "visual": "Corte rápido a fondo amarillo mostaza, silueta animada de persona con la mano extendida hacia adelante —gesto de 'dame más'—",
+      "texto_pantalla": "EL QUE PIDE MÁS SALSA... antes de probar un solo bocado."
+    },
+    {
+      "segundo": "15-22",
+      "visual": "Corte a fondo verde, silueta animada de persona sudando con cara seria, limpiándose la frente con dignidad",
+      "texto_pantalla": "EL QUE SUDÓ COMPLETO... pero jura que no pica."
+    },
+    {
+      "segundo": "22-28",
+      "visual": "Fondo negro, texto centrado aparece con animación suave, sin producto en cámara",
+      "texto_pantalla": "Etiqueta al que más se parece 👇 — Pídela aquí → wa.me/573005864523"
+    }
+  ],
+  "caption": "En toda mesa colombiana hay uno de estos tres... y tú sabes exactamente cuál eres. Etiquétalo antes de que él te etiquete a ti.",
+  "cta": "Etiqueta al que más se parece 👇 — Pídela aquí → https://wa.me/573005864523",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaPicante",
+    "#HumorColombiano",
+    "#MesaColombiana",
+    "#PicanteLevel",
+    "#ComidaColombiana",
+    "#SalsaArtesanal",
+    "#FoodHumor",
+    "#TiposDePersonas",
+    "#ReelsColombia"
+  ],
+  "mood_musica": "humor",
+  "hook_audio": "¿Cuál eres tú en la mesa?"
+}

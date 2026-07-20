@@ -1,0 +1,69 @@
+{
+  "caption_principal": "Arroz con huevo. Bandeja paisa. Arepa con queso. Pasta. Aguacate. Los conoces de memoria... pero nunca los habías probado así. Desliza → y guarda esto antes de tu próxima comida.",
+  "cta_caption": "¿Con cuál de estos cinco platos la probarías primero? Cuéntanos abajo 👇",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#RecetasConPicante",
+    "#CocinaColombiana",
+    "#SalsaAhumada",
+    "#ComidaReal",
+    "#PicanteAutentico",
+    "#FoodLovers",
+    "#ArepaConTodo",
+    "#BandejaPaisa",
+    "#TrucosDeCocina",
+    "#SalsaArtesanal"
+  ],
+  "slides": [
+    {
+      "numero": 1,
+      "titulo": "Esto no es una receta. Es una transformación.",
+      "subtitulo": "5 platos que ya conoces. Uno que lo cambia todo.",
+      "descripcion_visual": "Fondo carbón oscuro (#1A1A1A). Tipografía sans-serif bold en crema para el título principal, ocupando 70% del slide. Subtítulo en rojo Bestial (#C0392B) en tipografía más delgada debajo. Logo de Salsas Bestial pequeño en esquina inferior derecha. Sin imágenes — solo texto y un trazo diagonal rojo sutil que corta el fondo como una marca de fuego.",
+      "tipo": "portada"
+    },
+    {
+      "numero": 2,
+      "titulo": "Arroz con huevo",
+      "subtitulo": "Media cucharadita directo sobre el huevo frito, antes de romper la yema. Deja que el ahumado entre solo.",
+      "descripcion_visual": "Fondo crema cálido. Ilustración flat minimalista de un plato de arroz con huevo frito encima, estilo línea limpia en tonos negro y dorado. Nombre del plato en tipografía bold rojo Bestial en la parte superior. Instrucción de aplicación en texto negro pequeño debajo de la ilustración. Frase de sabor en cursiva rojo al pie: 'Como si el desayuno de siempre hubiera estado esperando esto.' Sin fotos reales.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 3,
+      "titulo": "Bandeja paisa",
+      "subtitulo": "Una cucharada sobre el chicharrón, otra al lado del frijol. No mezcles todo — deja que cada mordida decida.",
+      "descripcion_visual": "Fondo carbón. Ilustración flat de bandeja paisa completa — bandeja ovalada con frijoles, arroz, chicharrón, chorizo, huevo y aguacate, en líneas crema y rojo. Nombre en crema bold arriba. Instrucción en texto crema pequeño. Frase de sabor en rojo cursiva al pie: 'La bandeja que te criaste comiendo, pero con otra actitud.' Trazo rojo diagonal sutil en esquina superior izquierda.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 4,
+      "titulo": "Arepa con queso",
+      "subtitulo": "Mientras el queso todavía está derritiéndose — pon la salsa encima. El calor hace el trabajo.",
+      "descripcion_visual": "Fondo crema. Ilustración flat de arepa redonda con queso derritiéndose, líneas negras y amarillo suave. Nombre en rojo bold arriba. Instrucción en negro pequeño. Frase de sabor en rojo cursiva al pie: 'La arepa de toda la vida, con el toque que nadie esperaba.' Pequeño detalle de vapor ilustrado saliendo del queso.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 5,
+      "titulo": "Pasta simple",
+      "subtitulo": "Al final del salteado, antes de apagar el fuego — una cucharada. El ahumado se mezcla con el aceite y listo.",
+      "descripcion_visual": "Fondo carbón. Ilustración flat de bowl de pasta con twirl de espagueti, líneas crema y rojo. Nombre en crema bold arriba. Instrucción en crema pequeño. Frase de sabor en rojo cursiva al pie: 'Pasta de estudiante con sabor de chef — sin mentirte.' Sin fotos reales. Estilo línea limpia, minimalista.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 6,
+      "titulo": "Aguacate",
+      "subtitulo": "Directo sobre el aguacate partido. Sal, limón y la Tatemada. Nada más. Nada más.",
+      "descripcion_visual": "Fondo crema. Ilustración flat de medio aguacate partido con semilla visible, líneas negras y verde oliva suave. Nombre en rojo bold arriba. Instrucción en negro pequeño. Frase de sabor en rojo cursiva al pie: 'El aguacate ya era sagrado. Ahora es otra cosa.' Diseño con más espacio negativo — el más minimalista del carrusel.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 7,
+      "titulo": "¿Ya tienes la tuya?",
+      "subtitulo": "Salsa Tatemada Ahumada — pídela directo por WhatsApp o encuéntranos en el link de bio.",
+      "descripcion_visual": "Fondo carbón oscuro. Logo de Salsas Bestial centrado en tamaño grande, en versión crema. Debajo, texto CTA en crema: '¿Ya tienes la tuya?' en tipografía bold grande. Subtítulo en rojo más pequeño. Botón visual simulado en rojo con texto 'Pedir por WhatsApp →' en crema. URL wa.me/573005864523 en texto pequeño crema al pie. Sin ilustraciones de platos — foco total en la marca y la acción.",
+      "tipo": "cta"
+    }
+  ]
+}

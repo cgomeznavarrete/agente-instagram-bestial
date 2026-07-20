@@ -1,0 +1,41 @@
+{
+  "hook": "¿Cuánto aguantas?",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Pantalla negra. Texto en rojo aparece de golpe con efecto de vibración. Silencio total.",
+      "texto_pantalla": "¿CUÁNTO AGUANTAS?"
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Corte seco. Se ve una cuchara sopera llena de Salsa Tatemada Ahumada — primer plano, sin editar, sin filtros. La salsa brilla. Entra efecto de sonido: chispa de fuego encendiéndose.",
+      "texto_pantalla": "Una cuchara. Pura. Sin nada."
+    },
+    {
+      "segundo": "8-20",
+      "visual": "Animación de texto dramático con emojis animados simulando la reacción: primero calma, luego caos. Secuencia en cortes rápidos: emoji de cara neutral → emoji de fuego → emoji de calavera. Cada fotograma dura 2-3 segundos. Fondo negro con destellos rojos al ritmo del audio.",
+      "texto_pantalla": "Segundo 1... tranquilo 😐 — Segundo 3... espera — Segundo 5... 🔥 — Segundo 8... ya no hay vuelta atrás 💀"
+    },
+    {
+      "segundo": "20-25",
+      "visual": "Corte a fondo negro. Logo de Salsas Bestial centrado. Debajo, texto blanco limpio con CTA. Sticker de WhatsApp animado en esquina inferior derecha.",
+      "texto_pantalla": "Salsa Tatemada Ahumada — ¿La quieres? Pídela aquí → wa.me/573005864523 | Etiquétanos si lo intentas 👀"
+    }
+  ],
+  "caption": "El reto es simple — una cuchara, sola, sin escudo. Etiqueta a ese amigo que dice que aguanta todo.",
+  "cta": "Pídela aquí → https://wa.me/573005864523 | ¿A quién le mandarías este reto ahora mismo?",
+  "hashtags": [
+    "#SalsasBestial",
+    "#RetoPicante",
+    "#SalsaTatemada",
+    "#PicanteReal",
+    "#SalsaArtesanal",
+    "#RetoDeComida",
+    "#Foodie",
+    "#SalsasMexicanas",
+    "#PicanteLovers",
+    "#ComidaLatina"
+  ],
+  "mood_musica": "energetico",
+  "hook_audio": null
+}

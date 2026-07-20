@@ -1,0 +1,13 @@
+{
+  "texto_principal": "Esta salsa nació en una cocina de barrio.",
+  "texto_secundario": "No en un laboratorio. No con receta de libro. Alguien quería que el tatemado supiera a lo que siempre supo — y pasaron meses hasta que lo logró. Eso es todo lo que podemos contar... por ahora.",
+  "cta": "Responde este mensaje 👇",
+  "elemento_interactivo": {
+    "tipo": "pregunta",
+    "contenido": "¿Tú también tienes una receta que heredaste de alguien?"
+  },
+  "descripcion_visual": "Fondo negro sólido. Texto en tipografía sans-serif blanca simulando burbuja de chat de WhatsApp — con tilde de 'leído' en azul al final. Sin imágenes del producto. Sin filtros. Estética de mensaje real, no de publicidad. El texto aparece como si estuviera siendo escrito en tiempo real (animación de typing opcional). En la esquina inferior, el sticker de 'Pregunta' de Instagram con fondo oscuro y letras blancas.",
+  "hashtags_ocultos": [
+    "#SalsasBestial"
+  ]
+}

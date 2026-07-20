@@ -1,0 +1,13 @@
+{
+  "texto_principal": "Stock limitado. No prometemos que habrá mañana.",
+  "texto_secundario": "Producción artesanal. Cada semana es diferente.",
+  "cta": "Escríbenos ahora — enlace en bio",
+  "elemento_interactivo": {
+    "tipo": "ninguno",
+    "contenido": null
+  },
+  "descripcion_visual": "Fondo rojo intenso (#CC0000 o similar vibrante). Texto principal en negro bold, tipografía gruesa sin serif, centrado en pantalla. Sticker de countdown de Instagram ubicado debajo del texto secundario apuntando al cierre del lote semanal. Segunda story encadenada: fondo rojo mismo tono, título bold '¿Cómo pedir?' seguido de tres líneas numeradas en negro — 1) Escríbenos al WhatsApp / 2) Dinos cuántas quieres / 3) Coordinamos entrega — y al final botón de enlace directo a wa.me/573005864523. Sin filtros sobre logo ni etiqueta si aparece el frasco.",
+  "hashtags_ocultos": [
+    "#SalsasBestial"
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "ultima_actualizacion": "2026-07-13T16:25:55.342324",
+  "ultima_actualizacion": "2026-07-20T15:49:11.291997",
   "banco_ideas": [
     {
       "id": "idea-4428a483",
@@ -719,6 +719,126 @@
       "concepto": "Carrusel de 5 slides: 'La Salsa Tatemada Ahumada en 5 comidas que probablemente nunca pensaste'. Slides con fotos reales de combinaciones inesperadas: huevos revueltos, pizza, pasta, pollo al horno, aguacate solo. Sin receta larga, solo la foto y una línea de descripción brutal.",
       "notas": "Las combinaciones inesperadas generan curiosidad y debate en comentarios. Es contenido que la gente guarda para intentarlo después, lo que aumenta el alcance orgánico.",
       "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-e7bc52bd",
+      "fecha_generacion": "2026-07-20",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "retos_y_pruebas_de_picante",
+      "concepto": "Reel de 30 segundos donde alguien prueba la Salsa Tatemada Ahumada por primera vez sin saber qué esperar. La cámara enfocada en la cara. Sin cortes. Sin edición dramática. Solo la reacción real.",
+      "notas": "El formato 'reacción sin filtro' genera altísimo engagement porque la audiencia quiere ver autenticidad. El suspenso antes del mordisco engancha los primeros 3 segundos críticos del reel.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-949c9bfa",
+      "fecha_generacion": "2026-07-20",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "lifestyle_y_comunidad",
+      "concepto": "Foto atmosférica nocturna: una mesa con botana, cervezas y el frasco de Salsas Bestial en el centro. Sin personas. Solo el ambiente. Copy evocador que hable de esas noches de viernes que no necesitan mucha explicación.",
+      "notas": "Las imágenes de lifestyle sin producto forzado generan más saves y shares que las fotos comerciales directas. Conecta emocionalmente con el ritual del fin de semana latinoamericano.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-92d3c8b6",
+      "fecha_generacion": "2026-07-20",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "recetas_y_maridajes",
+      "concepto": "Carrusel '3 formas de usar la Tatemada Ahumada que nadie te había dicho': huevos estrellados, pizza casera y aguacate. Fotos reales, imperfectas, tomadas en cocina doméstica. Nada de producción de revista.",
+      "notas": "El número 3 es cognitivamente digerible y el enfoque en usos inesperados genera curiosidad genuina. Las fotos caseras aumentan la credibilidad artesanal de la marca.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-e1c92511",
+      "fecha_generacion": "2026-07-20",
+      "origen": "claude",
+      "tipo_sugerido": "story",
+      "pilar": "como_comprar",
+      "concepto": "Secuencia de 4 stories que simulan una conversación real de WhatsApp: pregunta de un cliente, respuesta rápida, foto del pedido empacado y mensaje de confirmación de entrega. Termina con sticker de enlace directo al WhatsApp.",
+      "notas": "Reduce la fricción de compra mostrando que el proceso es sencillo y humano. El formato conversacional en stories es nativo y no parece publicidad.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-e3950357",
+      "fecha_generacion": "2026-07-20",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "behind_the_scenes",
+      "concepto": "Reel de 45 segundos mostrando el momento exacto en que los chiles se tateman: el fuego real, el humo, el sonido. Cero narración. Solo el audio ambiente y una frase al final en pantalla.",
+      "notas": "El ASMR de cocina tiene millones de reproducciones en Instagram. Mostrar el proceso sin hablar genera intriga y refuerza la autenticidad artesanal mejor que cualquier texto.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-ad9c37bc",
+      "fecha_generacion": "2026-07-20",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "educacion_sobre_salsas",
+      "concepto": "Carrusel '¿Sabes cuánto picante aguanta tu ciudad?' con un mapa informal de México o Latinoamérica y estereotipos juguetones por región. Último slide: Salsas Bestial como el punto medio que todos pueden manejar.",
+      "notas": "El contenido regional genera comentarios de defensa e identificación cultural masivamente. El humor sin ofender es combustible para el algoritmo. Alto potencial de etiquetado entre amigos.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-6b73bc90",
+      "fecha_generacion": "2026-07-20",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "humor_picante",
+      "concepto": "Foto del frasco de Salsas Bestial sobre una impresora de oficina. Copy que hable de que hay personas que ponen salsa hasta en los lunes. Tono absurdo y reconocible para quien odia la semana laboral.",
+      "notas": "El humor de oficina conecta directamente con el rango de 22-35 años. Las fotos de producto en contextos absurdos rompen el feed y generan saves por la originalidad del concepto.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-67d30770",
+      "fecha_generacion": "2026-07-20",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "testimonios_y_ugc",
+      "concepto": "Reel de texto animado reconstruyendo los mensajes más graciosos o exagerados que han llegado por WhatsApp de clientes satisfechos. Fondo neutro, tipografía llamativa, sin mostrar números ni nombres. Termina con CTA al link en bio.",
+      "notas": "La prueba social en formato entretenido convierte mejor que cualquier anuncio directo. El formato texto animado es barato de producir y tiene alta retención en los primeros 5 segundos.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-7102dfa9",
+      "fecha_generacion": "2026-07-20",
+      "origen": "claude",
+      "tipo_sugerido": "story",
+      "pilar": "promociones_y_lanzamientos",
+      "concepto": "Story con cuenta regresiva para una preventa o edición limitada. Foto del frasco ligeramente desenfocado al fondo, número de unidades disponibles en primer plano. Sticker de cuenta regresiva nativo de Instagram activado.",
+      "notas": "La escasez real o percibida activa el FOMO de forma inmediata. El sticker de cuenta regresiva notifica automáticamente a quienes interactúan, generando tráfico orgánico sin costo adicional.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-e6329129",
+      "fecha_generacion": "2026-07-20",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "beneficios_del_producto",
+      "concepto": "Carrusel comparando la experiencia de comer sin salsa vs con Salsa Tatemada Ahumada usando solo fotos antes y después del mismo plato. Sin texto en las imágenes. El copy del caption hace todo el trabajo narrativo.",
+      "notas": "El contraste visual es uno de los formatos con más tiempo de visualización en carruseles. Refuerza el valor del producto de forma implícita sin sonar a argumento de venta forzado.",
+      "prioridad": "baja",
       "usado": false,
       "fecha_uso": null
     }
