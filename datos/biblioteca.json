@@ -1259,6 +1259,22 @@
       ],
       "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/image/upload/v1784742458/salsas_bestial/dwl8xqwqas5nhi642pd5.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1784742459/salsas_bestial/wzkwhflpfi8gs4g7n9yh.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1784742460/salsas_bestial/d5d3isk8hyye41hesgzx.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1784742461/salsas_bestial/o6fn0mpxwjgc2roxffps.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1784742462/salsas_bestial/jizw3093qskbf2zlkl2e.jpg",
       "tema": ""
+    },
+    {
+      "id": "story_1784889596163",
+      "tipo": "story",
+      "nombre_archivo": "story_1784889596163.mp4",
+      "ruta_local": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/stories/story_1784889596163.mp4",
+      "fecha_agregado": 1784889597.4053893,
+      "estado": "pendiente",
+      "pilar": "lifestyle_y_comunidad",
+      "caption": "",
+      "media_id": "",
+      "fecha_publicado": 0.0,
+      "es_carrusel": false,
+      "archivos_carrusel": [],
+      "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/video/upload/v1784889596/salsas_bestial/czo4wqjtel0em7flolez.mp4",
+      "tema": ""
     }
   ]
 }
