@@ -1,0 +1,41 @@
+{
+  "hook": "¿Cuántas gotas aguantas sin agua?",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Primer plano de la mano sosteniendo el frasco de Salsa Tatemada Ahumada sobre un trozo de pan. Luz dramática, fondo oscuro. La mano inclina lentamente el frasco.",
+      "texto_pantalla": "¿Cuántas gotas aguantas sin agua?"
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Cae 1 gota. El personaje muerde el pan. Reacción calmada, asiente con la cabeza — esto está bien. Cae 3 gotas. Muerde. Los ojos se abren un poco. Respira.",
+      "texto_pantalla": "1 gota... fácil. / 3 gotas... espera."
+    },
+    {
+      "segundo": "8-20",
+      "visual": "Caen 5 gotas. Muerde. El personaje empieza a abanicarse la boca, los ojos llorosos, niega con la cabeza sonriendo. Cut rápido: caen 7 gotas. Muerde. La pantalla empieza a teñirse de rojo desde los bordes. El personaje aguanta — pero apenas.",
+      "texto_pantalla": "5 gotas... ya no es un juego. / 7 gotas... 🔥"
+    },
+    {
+      "segundo": "20-25",
+      "visual": "Pantalla completamente roja. El frasco de Tatemada Ahumada aparece centrado, estático, con actitud. Corte limpio al logo de Salsas Bestial.",
+      "texto_pantalla": "Nosotros llegamos a 7. Tu turno. — Cuéntanos en los comentarios hasta dónde llegas."
+    }
+  ],
+  "caption": "Esto no es valentía — es honestidad. ¿Cuántas gotas de Tatemada Ahumada aguantas de verdad, sin agua, sin excusas? 🌶 Comenta el número si te atreves. Pídela aquí → https://wa.me/573005864523",
+  "cta": "Pídela aquí → https://wa.me/573005864523 | ¿El picante es de equipo o de valientes solitarios? Cuéntanos en los comentarios.",
+  "hashtags": [
+    "#SalsasBestial",
+    "#TatemadaAhumada",
+    "#RetoDePicante",
+    "#SalsaArtesanal",
+    "#PicanteReal",
+    "#ComidaLatina",
+    "#SalsasPicantes",
+    "#FoodReto",
+    "#BestialChallenge",
+    "#SinAguaSinExcusas"
+  ],
+  "mood_musica": "energetico",
+  "hook_audio": "¿Cuántas gotas aguantas... sin agua?"
+}

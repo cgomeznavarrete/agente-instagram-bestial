@@ -1,0 +1,16 @@
+{
+  "texto_principal": "Fuego real. Sin atajos. Sin mentiras.",
+  "texto_secundario": "Cada frasco de Tatemada pasa por 40 minutos de tatemar antes de llegar a vos.",
+  "cta": "Responde con tu pregunta 👇",
+  "elemento_interactivo": {
+    "tipo": "pregunta",
+    "contenido": "¿Qué más quieres saber de cómo hacemos la salsa?"
+  },
+  "descripcion_visual": "Fondo blanco tipo hoja en blanco. Tipografía manuscrita negra, irregular, como escrita a mano rápido — no perfecta, no corporativa. Sin bordes ni marcos. El texto principal ocupa el centro con tamaño grande. El texto secundario aparece debajo, más pequeño, como una nota al pie. Sticker de pregunta de Instagram posicionado en la parte inferior. Sin filtros, sin elementos de diseño adicionales. Sensación de nota interna, mensaje de WhatsApp, algo que no estaba pensado para verse bonito — sino para ser honesto.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#TatemadaAhumada",
+    "#SalsaArtesanal",
+    "#HechosConFuego"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "texto_principal": "¿Ya le pusiste Bestial a algo esta semana?",
+  "texto_secundario": "Mándanos la foto — la reposteamos 🔥",
+  "cta": "Etiquétanos en tu historia o escríbenos por DM",
+  "elemento_interactivo": {
+    "tipo": "pregunta",
+    "contenido": "¿A qué le echaste Bestial? Cuéntanos 👇"
+  },
+  "descripcion_visual": "Fondo con textura oscura de marca (negro o carbón con detalles de la identidad visual de Salsas Bestial). Texto principal centrado en tipografía bold blanca o roja de marca, sin filtros sobre el logo. Sin modificar colores de etiqueta si aparece el frasco. Sticker de pregunta nativo de Instagram activado debajo del texto secundario. Sensación visual: íntima, directa, como una historia de WhatsApp de alguien que cocina bien.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaPicante",
+    "#ComidaLatina",
+    "#UGC"
+  ]
+}

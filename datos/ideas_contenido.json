@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "ultima_actualizacion": "2026-07-20T15:49:11.291997",
+  "ultima_actualizacion": "2026-07-27T16:19:57.890422",
   "banco_ideas": [
     {
       "id": "idea-4428a483",
@@ -839,6 +839,126 @@
       "concepto": "Carrusel comparando la experiencia de comer sin salsa vs con Salsa Tatemada Ahumada usando solo fotos antes y después del mismo plato. Sin texto en las imágenes. El copy del caption hace todo el trabajo narrativo.",
       "notas": "El contraste visual es uno de los formatos con más tiempo de visualización en carruseles. Refuerza el valor del producto de forma implícita sin sonar a argumento de venta forzado.",
       "prioridad": "baja",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-d88027b3",
+      "fecha_generacion": "2026-07-27",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "retos_y_pruebas_de_picante",
+      "concepto": "Reel de 30 segundos donde alguien prueba la Salsa Tatemada Ahumada por primera vez sin saber qué esperar. Sin actuación, sin edición dramática. Solo la reacción real, el silencio, y después el comentario inevitable: 'otra vez'.",
+      "notas": "Las reacciones auténticas generan comentarios y etiquetas orgánicas. El formato 'primera vez' es uno de los más compartidos en food content latinoamericano. Fácil de producir con cámara de celular.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-68f017ff",
+      "fecha_generacion": "2026-07-27",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "humor_picante",
+      "concepto": "Foto del frasco sobre una mesa familiar dominicana, colombiana o mexicana —con arroz, frijoles, lo que sea— y un copy que hable de ese familiar que le echa salsa a absolutamente todo, hasta a la sopa de sobre.",
+      "notas": "El humor familiar latinoamericano conecta inmediato. La identificación cultural dispara el 'etiqueta a alguien que conoces', que es el mejor combustible orgánico en Instagram.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-c3626b6c",
+      "fecha_generacion": "2026-07-27",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "educacion_sobre_salsas",
+      "concepto": "Carrusel de 6 slides explicando qué significa 'tatemado' de verdad: el proceso, por qué cambia el sabor, por qué no es lo mismo que simplemente ahumado. Sin tecnicismos, con lenguaje de cocina de abuela.",
+      "notas": "Educa sin aburrir y posiciona a Salsas Bestial como marca con criterio y conocimiento real. Genera guardados, que es la métrica más valiosa en carruseles educativos.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-6dbe1c72",
+      "fecha_generacion": "2026-07-27",
+      "origen": "claude",
+      "tipo_sugerido": "story",
+      "pilar": "como_comprar",
+      "concepto": "Serie de 4 stories estilo 'así de fácil': captura de pantalla del chat de WhatsApp con un pedido real, el frasco empacado, la entrega, y el cliente con su salsa. Sin texto elaborado, solo el proceso en crudo.",
+      "notas": "Elimina la fricción de compra mostrando que el proceso es simple y humano. Ver el WhatsApp real normaliza el canal de venta y genera confianza inmediata en quienes dudan.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-2b6e7d7e",
+      "fecha_generacion": "2026-07-27",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "recetas_y_maridajes",
+      "concepto": "Reel de 20 segundos mostrando cómo la Salsa Tatemada Ahumada convierte unos huevos revueltos básicos en el desayuno que mereces un domingo. Sin voz en off, solo sonido ambiente y música.",
+      "notas": "El desayuno es el contenido de food más consumido los fines de semana. La simplicidad del plato hace que cualquiera sienta que puede replicarlo, lo que dispara el guardado y el 'voy a intentar esto'.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-21450a15",
+      "fecha_generacion": "2026-07-27",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "behind_the_scenes",
+      "concepto": "Foto íntima del proceso: los chiles en la parrilla, la cocina real, las manos trabajando. Sin estudio, sin iluminación perfecta. Un copy corto que cuente por qué se hace así y no de otra forma.",
+      "notas": "El detrás de cámara artesanal genera una percepción de producto genuino que ningún estudio puede replicar. Humaniza la marca y justifica el valor del producto frente a salsas industriales.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-a58ee3df",
+      "fecha_generacion": "2026-07-27",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "testimonios_y_ugc",
+      "concepto": "Carrusel titulado algo como 'Lo que escriben a las 11pm' — screenshots reales de mensajes de clientes pidiendo más frascos, con el frasco en primer plano como portada. Mínimo texto de la marca.",
+      "notas": "La prueba social en formato screenshot es más creíble que cualquier copy publicitario. El horario nocturno en el título crea un guiño cómplice que conecta con la audiencia. Alto potencial de guardado.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-b3c6733c",
+      "fecha_generacion": "2026-07-27",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "lifestyle_y_comunidad",
+      "concepto": "Reel de 15 segundos mostrando el mismo frasco en tres contextos completamente distintos: la parrilla del fin de semana, el almuerzo de oficina en tupper, y la cena de antojo a medianoche. Sin narración, solo cortes rápidos.",
+      "notas": "Demuestra versatilidad sin decirlo explícitamente. El formato de 'tres momentos' es altamente replicable y genera identificación en audiencias con rutinas muy distintas.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-d7bf7d24",
+      "fecha_generacion": "2026-07-27",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "promociones_y_lanzamientos",
+      "concepto": "Foto del frasco con un copy que anuncie una ventana de pedidos limitada —tipo 'solo hasta el viernes'— escrito como si fuera un mensaje de WhatsApp de alguien que avisa a sus amigos antes de que se acabe.",
+      "notas": "La escasez real o percibida activa la decisión de compra inmediata. El tono de aviso entre amigos reduce la percepción de publicidad y aumenta la urgencia de forma orgánica.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-c60ea6d9",
+      "fecha_generacion": "2026-07-27",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "beneficios_del_producto",
+      "concepto": "Carrusel de 5 slides comparando visualmente la Salsa Tatemada Ahumada con salsas de frasco industrial: ingredientes reales vs. lista de conservantes, color natural vs. colorante, proceso artesanal vs. línea de producción. Sin nombrar marcas.",
+      "notas": "Posiciona el producto sin atacar directamente a competidores. Educa al consumidor sobre por qué vale la diferencia de precio y genera conversación en comentarios sobre calidad vs. conveniencia.",
+      "prioridad": "media",
       "usado": false,
       "fecha_uso": null
     }

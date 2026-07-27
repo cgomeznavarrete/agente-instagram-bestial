@@ -1,0 +1,55 @@
+{
+  "caption_principal": "No todas las salsas pasan por fuego real. La Tatemada Ahumada de Bestial sí — y eso se siente en cada gota. Desliza → si alguna vez te preguntaste por qué hay salsas que saben a plástico con chile y otras que te cambian la comida para siempre.",
+  "cta_caption": "Guarda esto si amas saber qué hay detrás de lo que comes. ¿Tú ya sabías la diferencia entre una salsa tatemada y una industrial? Cuéntanos abajo.",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#SalsaArtesanal",
+    "#PicanteDeVerdad",
+    "#SalsaAhumada",
+    "#CocinaMexicana",
+    "#FoodLovers",
+    "#SalsaCasera",
+    "#TatemadaAhumada",
+    "#SaborReal",
+    "#ComidaLatina",
+    "#ArtesanalNoIndustrial"
+  ],
+  "slides": [
+    {
+      "numero": 1,
+      "titulo": "¿Por qué tu salsa sabe a nada? Esto es lo que le falta.",
+      "subtitulo": "La respuesta está en el fuego.",
+      "descripcion_visual": "Fondo texturizado oscuro, casi negro con tonos carbón. Tipografía bold blanca para el título principal, el subtítulo en rojo Bestial. Textura de brasas o ceniza sutil en el fondo. Logo de Salsas Bestial en esquina inferior derecha, pequeño. Sin filtros sobre el logo ni alteración de colores de marca. Sensación de calor y misterio.",
+      "tipo": "portada"
+    },
+    {
+      "numero": 2,
+      "titulo": "Tatema = quemar con intención.",
+      "subtitulo": "No es descuido. Es técnica.",
+      "descripcion_visual": "Fondo crema envejecido con manchas de carbón. Ilustración o fotografía real de ingredientes —chiles, tomate, ajo— directamente sobre comal o llama. Tipografía bold roja para el título. Subtítulo en negro. Pequeña nota al pie en tipografía más delgada: 'El fuego directo carameliza los azúcares naturales y genera ese sabor ahumado que ningún conservante puede imitar.' Sin elementos decorativos innecesarios. El fuego es el protagonista visual.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 3,
+      "titulo": "Los ingredientes importan. Mucho.",
+      "subtitulo": "Sin químicos raros. Sin atajos.",
+      "descripcion_visual": "Fondo negro con detalles en rojo oscuro. Disposición visual tipo flat lay artesanal —no perfecta, real— de ingredientes naturales: chiles secos, ajo, especias, sin revelar proporciones ni receta exacta. Tipografía crema bold para el título. Subtítulo en rojo. Nota visual pequeña: 'Cada ingrediente entra al fuego. Ninguno se agrega crudo.' Paleta estricta negro-rojo-crema. Atmósfera de cocina real, no de laboratorio.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 4,
+      "titulo": "Industrial vs. Tatemada. No es lo mismo.",
+      "subtitulo": null,
+      "descripcion_visual": "Diseño dividido en dos columnas. Columna izquierda fondo gris frío, tipografía apagada: 'Industrial — conservantes, colorantes, proceso en frío, sabor plano, hecha en fábrica.' Columna derecha fondo negro cálido con detalles rojo Bestial, tipografía bold crema: 'Tatemada — fuego real, ingredientes naturales, proceso artesanal, sabor con capas, hecha con manos.' Sin mencionar ni imitar marcas competidoras. El contraste visual hace el argumento solo. Logo Bestial discreto en esquina.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 5,
+      "titulo": "La nuestra está hecha así. Sin apología.",
+      "subtitulo": "¿Ya la probaste?",
+      "descripcion_visual": "Fondo negro sólido. Fotografía real del frasco de Salsa Tatemada Ahumada Bestial —sin filtros de color sobre la etiqueta, sin deformaciones del logo—, centrada y bien iluminada con luz cálida lateral que evoque fuego. Tipografía bold crema para el título. Subtítulo en rojo. CTA abajo: 'Link en bio — o escríbenos directo al WhatsApp.' Logo Bestial en su posición y colores originales. Energía de cierre contundente, no de súplica.",
+      "tipo": "cta"
+    }
+  ]
+}

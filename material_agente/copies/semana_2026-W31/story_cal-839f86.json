@@ -1,0 +1,17 @@
+{
+  "texto_principal": "¿Esto es sacrilegio o genialidad?",
+  "texto_secundario": "El sancocho del domingo te está mirando.",
+  "cta": "Vota y defiende tu posición",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "Opción A: 'Sí, sin miedo' — Opción B: 'Eso no se toca'"
+  },
+  "descripcion_visual": "Fondo cálido en tonos tierra y naranja quemado. Ilustración central de un sancocho humeante servido en olla de barro, con el frasco de Salsa Tatemada Ahumada apoyado al lado como si fuera el invitado sorpresa. El texto principal en tipografía bold blanca con sombra sutil. Encuesta de Instagram posicionada en la parte inferior, por encima del área de respuesta. Sin filtros sobre el frasco ni la etiqueta. Estética artesanal, nada artificial.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#ComidaColombiana",
+    "#Sancocho",
+    "#PicanteConOrgullo"
+  ]
+}

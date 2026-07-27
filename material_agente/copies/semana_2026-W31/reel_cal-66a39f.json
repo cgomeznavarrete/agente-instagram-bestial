@@ -1,0 +1,41 @@
+{
+  "hook": "La salsa que tu mamá te prohibía poner en la comida",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Texto grande en pantalla negra, tipografía bold, corte seco sin intro",
+      "texto_pantalla": "La salsa que tu mamá te prohibía poner en la comida"
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Mano entrando al cuadro desde arriba, vertiendo la Salsa Tatemada Ahumada generosamente sobre un huevo frito con arroz blanco — sin pedir permiso",
+      "texto_pantalla": "...y con razón."
+    },
+    {
+      "segundo": "8-20",
+      "visual": "Reacción exagerada de satisfacción total — ojos cerrados, expresión de éxtasis culinario, el tipo de cara que haces cuando algo está demasiado bueno para explicarlo",
+      "texto_pantalla": "Esto no se comparte. Ni se explica."
+    },
+    {
+      "segundo": "20-25",
+      "visual": "Frasco de Salsa Tatemada Ahumada en primer plano, bien enfocado, fondo neutro o madera rústica",
+      "texto_pantalla": "Salsas Bestial. Ya sabes dónde conseguirla."
+    }
+  ],
+  "caption": "Tu mamá tenía razón en preocuparse. Porque esto no tiene reversa. 🔥 ¿Con qué la probarías tú primero — huevo, arroz o algo que nos sorprenda?",
+  "cta": "Pídela aquí → https://wa.me/573005864523 | ¿Con qué la combinarías tú?",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteLatino",
+    "#SalsaArtesanal",
+    "#ComidaLatina",
+    "#HumorPicante",
+    "#SalsaLovers",
+    "#CocinaLatina",
+    "#Foodie",
+    "#AhumadoBestial"
+  ],
+  "mood_musica": "humor",
+  "hook_audio": null
+}
