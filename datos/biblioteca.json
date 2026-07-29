@@ -1323,6 +1323,28 @@
       "archivos_carrusel": [],
       "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/video/upload/v1785108297/salsas_bestial/zjh93xbmx149xg2ylo6m.mp4",
       "tema": ""
+    },
+    {
+      "id": "carrusel_1785347155912",
+      "tipo": "post",
+      "nombre_archivo": "carrusel_5_slides",
+      "ruta_local": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/posts/carrusel_1785347155912",
+      "fecha_agregado": 1785347159.5781848,
+      "estado": "pendiente",
+      "pilar": "educacion_sobre_salsas",
+      "caption": "Cuando pruebas picante de verdad, el agua ya no te salva — y lo sabes.\n\nHay un momento en que dejas de buscar alivio y empiezas a buscar más. Ese punto en que el calor deja de ser amenaza y se convierte en placer. Eso no se explica: se vive, se repite y se comparte con los que entienden sin que les digas nada. 🔥\n\nPídela aquí → https://wa.me/573005864523\n\n¿La primer vez que probaste picante de verdad, cuál fue tu reacción? 👇\n\n#SalsasBestial #HotSauceArtesanal #SalsaAhumada #SalsaBestial #AhumadoArtesanal #PicanteColombia #SalsaCasera #SaborColombia #ComidaPicante #Picante #SalsasColombia #FoodiesColombia #CocinaLatina #CocinaArtesanal #Gastronomia",
+      "media_id": "",
+      "fecha_publicado": 0.0,
+      "es_carrusel": true,
+      "archivos_carrusel": [
+        "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/posts/carrusel_1785347155912/slide_00.jpg",
+        "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/posts/carrusel_1785347155912/slide_01.jpg",
+        "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/posts/carrusel_1785347155912/slide_02.jpg",
+        "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/posts/carrusel_1785347155912/slide_03.jpg",
+        "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/posts/carrusel_1785347155912/slide_04.jpg"
+      ],
+      "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/image/upload/v1785347156/salsas_bestial/vpw4pddwvhui4elxl5so.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1785347156/salsas_bestial/aakyqdy5yuhmltlmcc8e.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1785347157/salsas_bestial/hvwtlg5fmsmsjz3se54h.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1785347157/salsas_bestial/vgxmqnenir3j1woq2gev.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1785347159/salsas_bestial/bpag7zpsp2hdifzwpg8h.jpg",
+      "tema": ""
     }
   ]
 }
