@@ -1,0 +1,41 @@
+{
+  "hook": "La cara de tu familia cuando sacas la salsa en la reunión del domingo.",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Fondo oscuro texturizado, corte seco al centro de pantalla. Texto aparece letra por letra como si alguien lo estuviera escribiendo rápido.",
+      "texto_pantalla": "La cara de tu familia cuando sacas la salsa en la reunión del domingo."
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Fondo oscuro. Emoji o ícono animado de cara sorprendida. Transición rápida con efecto de sacudida (shake). Sonido: efecto viral de 'ayayay' o reacción exagerada latinoamericana.",
+      "texto_pantalla": "La tía: '¿Eso es de verdad o es broma?'"
+    },
+    {
+      "segundo": "8-16",
+      "visual": "Dos cortes rápidos sobre fondo oscuro, cada uno con texto diferente que entra desde lados opuestos. Ritmo acelerado, sincronizado con el beat del audio viral.",
+      "texto_pantalla": "El primo que nunca come picante: 'Yo me echo un poquito...' — tres segundos después: 'AGUA. AGUA. AGUA.' / El abuelo callado todo el almuerzo: 'Pásame esa cosa otra vez.'"
+    },
+    {
+      "segundo": "16-25",
+      "visual": "Fondo oscuro. Texto aparece centrado, limpio, con tipografía bold. Sin producto en pantalla. Solo actitud. Pausa dramática antes del cierre.",
+      "texto_pantalla": "Salsa Tatemada Ahumada. Para los que saben."
+    }
+  ],
+  "caption": "La reunión familiar nunca fue igual desde que llegó esta salsa... y no es culpa nuestra. 🔥 Pídela aquí → https://wa.me/573005864523",
+  "cta": "Pídela aquí → https://wa.me/573005864523 — ¿A quién de tu familia le mandarías esta salsa sin avisarle qué tan fuerte es?",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteLatino",
+    "#ReunionFamiliar",
+    "#SalsaArtesanal",
+    "#ComidaLatina",
+    "#Foodie",
+    "#SalsaPicante",
+    "#HumorPicante",
+    "#ParaLosQueSaben"
+  ],
+  "mood_musica": "humor",
+  "hook_audio": null
+}

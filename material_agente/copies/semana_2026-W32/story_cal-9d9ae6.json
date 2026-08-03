@@ -1,0 +1,16 @@
+{
+  "texto_principal": "¿Cuánto aguantas... de verdad?",
+  "texto_secundario": "El que diga que no le arde está mintiendo.",
+  "cta": "Responde abajo — después no digas que no te avisamos 🌶",
+  "elemento_interactivo": {
+    "tipo": "pregunta",
+    "contenido": "Cuéntame tu experiencia más picante."
+  },
+  "descripcion_visual": "Fondo con degradado oscuro (negro a rojo vino profundo). Texto principal centrado en tipografía bold blanca, grande. Subtexto en gris claro, más pequeño, justo debajo. Caja de preguntas nativa de Instagram posicionada en el tercio inferior de la pantalla. Sin filtros sobre el producto. Estética cruda, sin adornos innecesarios — que se sienta como una historia real, no un banner publicitario.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#PicanteReal",
+    "#RetoPicante",
+    "#SalsaTatemada"
+  ]
+}

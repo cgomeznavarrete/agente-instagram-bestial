@@ -1,0 +1,17 @@
+{
+  "texto_principal": "Un mensaje. Llega a tu puerta.",
+  "texto_secundario": "Sin vueltas. Sin excusas.",
+  "cta": "Toca el enlace y escríbenos por WhatsApp ahora",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "¿Ya la probaste? ✅ SÍ / ❌ Todavía no (error tuyo)"
+  },
+  "descripcion_visual": "Fondo negro sólido. Texto principal en blanco, tipografía bold centrada, tamaño dominante. Texto secundario en tono tierra/ahumado (#8B5E3C aprox), más pequeño, justo debajo. Sticker de enlace a WhatsApp (https://wa.me/573005864523) posicionado en la parte inferior, discreto pero visible. Encuesta justo encima del enlace. Sin adornos, sin texturas, sin gradientes. Composición con mucho aire para que el texto respire. Estética editorial mínima.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaPicante",
+    "#HechoEnColombia",
+    "#SalsaArtesanal",
+    "#PicanteDeVerdad"
+  ]
+}

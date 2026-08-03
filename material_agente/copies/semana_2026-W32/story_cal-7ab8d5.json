@@ -1,0 +1,17 @@
+{
+  "texto_principal": "¿La pediste ya?",
+  "texto_secundario": "El fin de semana sin salsa es un fin de semana desperdiciado.",
+  "cta": "Toca el enlace — llega antes del viernes",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "¿Tu fin de semana está listo? | Con salsa 🔥 / Sin salsa (error)"
+  },
+  "descripcion_visual": "Fondo negro sólido, tipografía blanca grande y bold centrada para '¿La pediste ya?' — sin adornos, sin ruido. Texto secundario en gris claro, tamaño pequeño, justo debajo. Sticker de cuenta regresiva al viernes noche posicionado en la esquina superior derecha. Botón de enlace a WhatsApp visible en la parte inferior, con fondo rojo oscuro y texto blanco 'Pedir ahora'. Sin filtros sobre ningún elemento de marca. Estética limpia, urgente, directa.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteReal",
+    "#FinDeSemana",
+    "#SalsaArtesanal"
+  ]
+}

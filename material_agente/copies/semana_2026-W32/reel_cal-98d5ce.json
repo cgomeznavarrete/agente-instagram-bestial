@@ -1,0 +1,41 @@
+{
+  "hook": "Esto no sale de una fábrica.",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Texto bold blanco sobre fondo negro, aparece letra por letra con efecto de máquina de escribir. Leve vibración en la pantalla al ritmo de un sonido de fuego encendiéndose.",
+      "texto_pantalla": "Esto no sale de una fábrica."
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Animación de un chile siendo seleccionado a mano — ilustración minimalista estilo línea gruesa. El chile 'brilla' brevemente. Corte rápido a ilustración del chile cayendo directo sobre llamas animadas con partículas de fuego reales en loop.",
+      "texto_pantalla": "Chile elegido a mano. Tatemado al fuego directo."
+    },
+    {
+      "segundo": "8-20",
+      "visual": "Secuencia de 3 escenas animadas en corte rápido: 1) Manos animadas mezclando en molcajete, con vapor que sube. 2) Frasco Salsas Bestial siendo llenado, animación de salsa cayendo en cámara lenta. 3) Frasco cerrado con un sello animado que dice 'HECHO A MANO'. Cada transición con flash blanco de 2 frames y sonido de chispa.",
+      "texto_pantalla": "Mezcla. Equilibrio. Sin atajos. — Envasado con las manos que saben lo que hacen."
+    },
+    {
+      "segundo": "20-28",
+      "visual": "Logo Salsas Bestial aparece centrado con animación de entrada desde abajo, rebote suave. Debajo, texto aparece línea por línea. Fondo negro. Partículas de fuego pequeñas flotan alrededor del logo sin tocarlo.",
+      "texto_pantalla": "Artesanal. De verdad. — Pídela aquí → https://wa.me/573005864523"
+    }
+  ],
+  "caption": "Cada frasco tiene más horas encima que cualquier cosa que sale de una línea de producción. ¿A quién le mandarías una de estas?",
+  "cta": "Pídela aquí → https://wa.me/573005864523",
+  "hashtags": [
+    "#SalsasBestial",
+    "#HechoAMano",
+    "#SalsaArtesanal",
+    "#ProcesoArtesanal",
+    "#SalsaPicante",
+    "#BehindTheScenes",
+    "#TatemadaAhumada",
+    "#FoodLovers",
+    "#CocinaReal",
+    "#SaborSinAtajos"
+  ],
+  "mood_musica": "chill_food",
+  "hook_audio": null
+}

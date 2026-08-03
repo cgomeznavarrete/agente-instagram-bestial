@@ -1,0 +1,17 @@
+{
+  "texto_principal": "¿Cuál eres tú este domingo?",
+  "texto_secundario": "Con Tatemada en la nevera... cambia todo.",
+  "cta": "Vota abajo 👇",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "😩 Sin salsa / 😏 Con Tatemada"
+  },
+  "descripcion_visual": "Dos paneles lado a lado sobre fondo negro mate. Panel izquierdo: emoji 😩 grande con texto 'domingo 9pm' en rojo apagado. Panel derecho: emoji 😏 grande con texto 'nevera cargada' en naranja intenso. Tipografía gruesa estilo meme, sin filtros sobre ningún producto. Si aparece el frasco, fotografía real sin alteraciones de color ni deformación del logo.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#TatemadaAhumada",
+    "#SalsaPicante",
+    "#DomingoPicante",
+    "#ComidaLatina"
+  ]
+}

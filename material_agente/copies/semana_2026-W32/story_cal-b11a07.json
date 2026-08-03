@@ -1,0 +1,17 @@
+{
+  "texto_principal": "Esto nos escribieron. Y sí, les creemos.",
+  "texto_secundario": "La gente habla. Nosotros escuchamos.",
+  "cta": "Desliza y consigue la tuya",
+  "elemento_interactivo": {
+    "tipo": "slider",
+    "contenido": "¿Qué tan bestial eres? 🌶️"
+  },
+  "descripcion_visual": "Fondo oscuro casi negro con textura sutil. Se muestran 3 capturas de pantalla estilo mensaje de WhatsApp, una por slide o apiladas en cascada leve. Cada mensaje tiene burbuja verde oscuro con texto blanco, tipografía tipo sistema, hora visible (ej: 8:47 p.m.), sin foto de perfil para mantener anonimato. Mensajes representativos: 1) 'La puse en los huevos del desayuno... no volví a desayunar sin ella 😭', 2) 'Mi mamá me dijo que estaba exagerando. Ahora ella la pide.', 3) 'Bro la salsa tatemada con aguacate es nivel otro planeta.' Marco de marca Salsas Bestial en esquina inferior derecha: logo sin alteraciones, sin filtros de color sobre el frasco. Tipografía del texto principal en blanco, bold, centrada en la parte superior. Sticker de 'Desliza' animado en la parte inferior con flecha hacia enlace en bio.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteReal",
+    "#HechoEnColombia",
+    "#SalsaArtesanal"
+  ]
+}

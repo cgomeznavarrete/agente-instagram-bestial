@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "ultima_actualizacion": "2026-07-27T16:19:57.890422",
+  "ultima_actualizacion": "2026-08-03T16:18:43.691497",
   "banco_ideas": [
     {
       "id": "idea-4428a483",
@@ -959,6 +959,126 @@
       "concepto": "Carrusel de 5 slides comparando visualmente la Salsa Tatemada Ahumada con salsas de frasco industrial: ingredientes reales vs. lista de conservantes, color natural vs. colorante, proceso artesanal vs. línea de producción. Sin nombrar marcas.",
       "notas": "Posiciona el producto sin atacar directamente a competidores. Educa al consumidor sobre por qué vale la diferencia de precio y genera conversación en comentarios sobre calidad vs. conveniencia.",
       "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-ab9f9e05",
+      "fecha_generacion": "2026-08-03",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "humor_picante",
+      "concepto": "Reel de 15 segundos mostrando la reacción de alguien que dijo 'yo no como picante' antes y después de probar la Salsa Tatemada Ahumada. Sin exageración actuada — cara real, sudor real, sonrisa al final.",
+      "notas": "El formato 'antes/después de reacción' genera comentarios espontáneos del tipo 'así me pasó a mí', lo que dispara el alcance orgánico. Fácil de producir con un celular y una persona real.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-debcb831",
+      "fecha_generacion": "2026-08-03",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "recetas_y_maridajes",
+      "concepto": "Carrusel de 5 slides titulado algo como 'La salsa que va con todo... menos con los cobardes' — cada slide muestra una combinación diferente con la Tatemada Ahumada: tacos, huevos, pizza, aguacate, sopas. Foto real del frasco junto al plato en cada slide.",
+      "notas": "Contenido de alto valor de guardado. El usuario lo guarda para 'intentarlo después', lo que mejora el ranking del algoritmo de Instagram. Además educa sobre versatilidad del producto sin sonar a anuncio.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-47838f2b",
+      "fecha_generacion": "2026-08-03",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "behind_the_scenes",
+      "concepto": "Foto close-up de manos preparando o envasando la salsa — sin filtros, con luz natural. Copy que hable del proceso artesanal sin romantizarlo en exceso. Algo crudo, honesto.",
+      "notas": "El contenido de proceso genera confianza de marca. En un mercado saturado de productos genéricos, mostrar las manos detrás del producto es diferenciador y construye lealtad real.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-7f0cf623",
+      "fecha_generacion": "2026-08-03",
+      "origen": "claude",
+      "tipo_sugerido": "story",
+      "pilar": "retos_y_pruebas_de_picante",
+      "concepto": "Story interactivo con slider de temperatura: '¿En qué nivel estás tú?' — escala de 1 a 5 desde 'le pongo ketchup a todo' hasta 'la Tatemada me parece suave'. Resultado se republica en una segunda story mostrando los datos reales de la audiencia.",
+      "notas": "Los sliders de stories generan participación sin fricción. Publicar los resultados reales en una segunda story crea un loop de engagement y hace sentir a la comunidad parte de algo.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-c4471f86",
+      "fecha_generacion": "2026-08-03",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "educacion_sobre_salsas",
+      "concepto": "Reel de 30 segundos explicando qué hace diferente a una salsa tatemada — el proceso de asar los ingredientes directamente en la llama o comal. Imágenes reales del proceso, voz en off sin guión corporativo. Como si se lo explicaras a un amigo en la cocina.",
+      "notas": "Contenido educativo con ángulo auténtico genera shares en historias porque la gente quiere enseñarle algo nuevo a sus contactos. Posiciona la marca como referente, no solo como vendedor.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-42b26c68",
+      "fecha_generacion": "2026-08-03",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "testimonios_y_ugc",
+      "concepto": "Repost de una foto de cliente usando la salsa — con permiso — y un copy escrito desde la perspectiva de Salsas Bestial respondiendo ese momento. No un testimonio genérico: una conversación real entre marca y cliente.",
+      "notas": "UGC bien ejecutado reduce el costo de producción a cero y genera prueba social. El copy que responde humanamente al cliente fideliza y motiva a otros a compartir sus propias fotos para ser mencionados.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-18d46a3b",
+      "fecha_generacion": "2026-08-03",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "lifestyle_y_comunidad",
+      "concepto": "Reel mostrando una escena cotidiana latinoamericana — un asado, unas empanadas un domingo, un partido de fútbol con amigos — donde la Salsa Tatemada Ahumada aparece naturalmente en la mesa. Sin actuación forzada.",
+      "notas": "Conecta emocionalmente con la identidad cultural del público objetivo. La salsa deja de ser un producto y se convierte en parte de un ritual colectivo. Alto potencial de identificación y compartir.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-e2dffe61",
+      "fecha_generacion": "2026-08-03",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "como_comprar",
+      "concepto": "Carrusel de 3 slides que rompe el mito de que comprar por WhatsApp es complicado — slide 1: el mensaje que mandas, slide 2: lo que recibes, slide 3: tu cara cuando llega. Tono ligero, directo, con el número visible al final.",
+      "notas": "Eliminar fricción de compra es directamente conversión. Muchos clientes potenciales no compran por no saber cómo funciona el proceso. Este carrusel convierte duda en acción con humor.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-0e3aaa97",
+      "fecha_generacion": "2026-08-03",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "beneficios_del_producto",
+      "concepto": "Foto del frasco sobre una tabla de madera rústica, luz natural. Copy que hable del sabor ahumado como experiencia sensorial — no como lista de características. Una sola frase que huela a brasa.",
+      "notas": "Un copy bien escrito sobre sensaciones activa la memoria sensorial del lector. Si ya probaron la salsa, recordarán el sabor. Si no, querrán experimentarlo. Funciona tanto para conversión como para fidelización.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-1d4be951",
+      "fecha_generacion": "2026-08-03",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "promociones_y_lanzamientos",
+      "concepto": "Reel de 10 segundos estilo 'countdown' informal — alguien saca el frasco de una bolsa de mercado, lo pone sobre la mesa, lo destapa y lo huele. Texto en pantalla: 'llegó'. Sin música dramática, sin efectos. Solo el sonido real del ambiente.",
+      "notas": "La simplicidad bien ejecutada genera más engagement que la producción costosa. El formato 'llegó' funciona como señal de comunidad — los seguidores ya saben qué significa. Ideal para reactivar audiencia o anunciar disponibilidad.",
+      "prioridad": "alta",
       "usado": false,
       "fecha_uso": null
     }

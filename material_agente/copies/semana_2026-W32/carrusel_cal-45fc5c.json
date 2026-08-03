@@ -1,0 +1,53 @@
+{
+  "caption_principal": "El picante sin historia es solo dolor. El picante con tatemado... eso es otra cosa. Desliza → y te cuento por qué nuestra salsa no se parece a nada que hayas probado.",
+  "cta_caption": "¿Con qué comida le entrarías tú a la Salsa Tatemada Ahumada?",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteConCaracter",
+    "#AhumadoReal",
+    "#SalsaArtesanal",
+    "#FoodiesLatinos",
+    "#TatemadoMexicano",
+    "#ComidasConAlma",
+    "#PicanteDeVerdad",
+    "#SalsasQueEnamoran"
+  ],
+  "slides": [
+    {
+      "numero": 1,
+      "titulo": "Hay salsas picantes. Y hay salsas que tienen historia.",
+      "subtitulo": "La diferencia está en el fuego.",
+      "descripcion_visual": "Fondo color tierra quemada (terracota oscuro). Tipografía bold blanca centrada, tamaño grande para el título. Subtítulo en tono crema debajo. Ilustración vectorial minimalista de una llama pequeña en la esquina inferior derecha, trazo simple, color ámbar. Sin imágenes de producto. Sensación de calor contenido, sin saturación.",
+      "tipo": "portada"
+    },
+    {
+      "numero": 2,
+      "titulo": "Tatema = quemar con intención.",
+      "subtitulo": "Los chiles se ponen directo al fuego — sin aceite, sin agua, sin atajos — hasta que la piel se ennegrece y el interior se concentra. Ese amargor ahumado que queda... es el sabor que no te da ningún polvo ni extracto.",
+      "descripcion_visual": "Fondo beige arena. Ilustración vectorial de un chile poblano o pasilla con marcas de fuego (líneas negras irregulares simulando el tatemado). Tipografía bold para el título en café oscuro, subtítulo en tipografía regular más pequeña, mismo color. Composición limpia, mucho espacio en blanco. Sensación artesanal.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 3,
+      "titulo": "Picante genérico te pega y se va. Picante ahumado te queda.",
+      "subtitulo": "Una salsa normal ataca la lengua y desaparece. El tatemado construye capas — primero el humo, luego el calor, luego ese retrogusto que te hace repetir el taco sin entender muy bien por qué.",
+      "descripcion_visual": "Fondo dividido: mitad izquierda gris frío (representando lo genérico), mitad derecha terracota cálido (representando el ahumado). Ilustración vectorial minimalista: lado izquierdo con un rayo simple, lado derecho con capas de ondas de humo estilizadas. Tipografía bold centrada que cruza ambas mitades. Contraste visual intencional.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 4,
+      "titulo": "¿Con qué va? Con todo lo que valga la pena comer.",
+      "subtitulo": "Tacos de canasta del domingo. Huevos rancheros de resaca. Carne a la parrilla cuando hay visita. Si tiene proteína y calor... la Tatemada Ahumada le entra.",
+      "descripcion_visual": "Fondo color ocre suave. Tres ilustraciones vectoriales minimalistas dispuestas en fila horizontal: un taco estilizado, un huevo frito con salsa encima, y una pieza de carne a la parrilla con líneas de cocción. Cada ícono con un pequeño texto debajo en tipografía ligera. Estética de menú artesanal, trazo grueso, colores tierra.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 5,
+      "titulo": "¿Quieres una?",
+      "subtitulo": "Link en bio o escríbenos directo — te respondemos hoy mismo.",
+      "descripcion_visual": "Fondo terracota intenso, el más oscuro de toda la paleta. Título en tipografía bold blanca, grande, centrado, con mucho peso visual. Subtítulo en crema debajo. Logo de Salsas Bestial en la parte inferior centrado, versión clara. Ilustración vectorial pequeña de llamas simétricas flanqueando el logo. Sin distracciones — slide de cierre limpio y directo.",
+      "tipo": "cta"
+    }
+  ]
+}
