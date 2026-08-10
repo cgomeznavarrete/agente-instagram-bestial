@@ -1,0 +1,41 @@
+{
+  "hook": "La cara de tu tío cuando le dijiste que no picaba tanto...",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Pantalla negra. Texto entra de golpe con fuente bold blanca, efecto glitch rápido.",
+      "texto_pantalla": "La cara de tu tío cuando le dijiste que no picaba tanto..."
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Secuencia de texto rápido sobre fondo negro, palabras aparecen y desaparecen en ritmo de corte rápido. Simula cámara lenta con palabras que se estiran.",
+      "texto_pantalla": "Los ojos... abiertos. La frente... sudando. El orgullo... muriendo."
+    },
+    {
+      "segundo": "8-20",
+      "visual": "Texto sigue apareciendo en pantalla, ritmo más rápido. Fondo negro empieza a mostrar textura oscura rugosa. Se ve el mockup del frasco de Salsa Tatemada Ahumada entrando desde abajo con movimiento suave.",
+      "texto_pantalla": "Cuatro vasos de agua después... todavía jura que 'no está tan picante'. Clásico tío."
+    },
+    {
+      "segundo": "20-25",
+      "visual": "Frasco de Salsa Tatemada Ahumada centrado sobre fondo oscuro texturizado. Etiqueta bien visible. Texto final aparece con corte limpio.",
+      "texto_pantalla": "No es culpa nuestra. Es culpa tuya por no creerle al frasco."
+    }
+  ],
+  "caption": "El frasco ya te avisó — tú decidiste no escucharlo. 🔥 Etiqueta a ese tío en los comentarios.",
+  "cta": "Pídela aquí → https://wa.me/573005864523 ¿A quién le mandarías una de estas para probar suerte?",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteReal",
+    "#HumorPicante",
+    "#SalsaArtesanal",
+    "#ComidaLatina",
+    "#Foodie",
+    "#Picante",
+    "#ReelsFunny",
+    "#TioChallenge"
+  ],
+  "mood_musica": "humor",
+  "hook_audio": "La cara de tu tío cuando le dijiste que no picaba tanto..."
+}

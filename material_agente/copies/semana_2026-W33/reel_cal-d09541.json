@@ -1,0 +1,41 @@
+{
+  "hook": "Hay tres tipos de personas en toda reunión...",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Fondo negro. Texto grande aparece de golpe, centrado, tipografía bold de marca. Corte seco al ritmo del beat.",
+      "texto_pantalla": "Hay tres tipos de personas en toda reunión 👀"
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Silueta 1 aparece a la izquierda con gesto de 'no pasa nada'. Texto entra desde abajo rápido. Corte al beat.",
+      "texto_pantalla": "El que dice que no le pica... y llora en silencio."
+    },
+    {
+      "segundo": "8-20",
+      "visual": "Silueta 2 aparece al centro, gesto de pedir más con la mano. Corte inmediato. Luego silueta 3 entra caminando con algo bajo el brazo — su propia salsa. Esta última silueta tiene un pequeño destello o efecto de 'estrella' sutil. Cada personaje dura aprox. 4 segundos en pantalla.",
+      "texto_pantalla": "El que pide más... antes de terminar el primer taco. / El que lleva su propia salsa a la reunión. — Ese es nuestro cliente."
+    },
+    {
+      "segundo": "20-25",
+      "visual": "Fondo negro. Logo Salsas Bestial aparece centrado con entrada limpia, sin filtros ni deformaciones. Debajo, texto en tipografía de marca aparece letra por letra o con fade rápido.",
+      "texto_pantalla": "Tú sabes cuál eres. 🌶"
+    }
+  ],
+  "caption": "En toda reunión hay uno que llega con su salsa... ¿tú eres ese o finges que no pica? Pídela aquí → https://wa.me/573005864523",
+  "cta": "Pídela aquí → https://wa.me/573005864523 — ¿Cuál de los tres eres tú? Cuéntanos abajo.",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaPicante",
+    "#FoodiesColombia",
+    "#PicanteDeVerdad",
+    "#TacoLovers",
+    "#SalsaArtesanal",
+    "#LifestyleFood",
+    "#ReunionFamiliar",
+    "#ComidaLatina",
+    "#SalsaTatemada"
+  ],
+  "mood_musica": "humor",
+  "hook_audio": "Hay tres tipos de personas en toda reunión..."
+}

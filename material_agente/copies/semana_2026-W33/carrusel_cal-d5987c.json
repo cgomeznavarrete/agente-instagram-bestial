@@ -1,0 +1,60 @@
+{
+  "caption_principal": "La estabas usando para acompañar. Nada más. Y eso... es un crimen. Desliza → porque hay 5 formas de usarla que probablemente nunca se te cruzaron por la cabeza.",
+  "cta_caption": "¿Con cuál de estas la vas a probar primero? Cuéntanos abajo — o confiesa si ya sabías alguna.",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#RecetasFáciles",
+    "#CocinaLatina",
+    "#SalsaAhumada",
+    "#FoodLovers",
+    "#PicantePero Rico",
+    "#TrucosDeCocina",
+    "#ComidaCasera",
+    "#Foodie"
+  ],
+  "slides": [
+    {
+      "numero": 1,
+      "titulo": "La estabas usando mal.",
+      "subtitulo": "5 cosas que la Tatemada hace mejor de lo que crees.",
+      "descripcion_visual": "Fondo negro total. El frasco de Salsa Tatemada Ahumada centrado, iluminado con luz cálida lateral que resalta la etiqueta sin filtros. Texto en tipografía bold blanca arriba, acento naranja quemado en el subtítulo. Sin elementos adicionales — el frasco habla solo.",
+      "tipo": "portada"
+    },
+    {
+      "numero": 2,
+      "titulo": "Huevos revueltos — al final, no al principio.",
+      "subtitulo": "El calor mata el ahumado. Media cucharadita cuando ya están listos.",
+      "descripcion_visual": "Fotografía cenital de huevos revueltos esponjosos en sartén negra, con un hilo de salsa encima recién aplicado. Fondo negro, acento naranja quemado en el número de slide '01' en esquina superior derecha. Texto blanco superpuesto en la parte inferior con tipografía limpia.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 3,
+      "titulo": "Reemplaza el limón en tu guacamole.",
+      "subtitulo": "Unas gotas. Pruébalo y después nos cuentas.",
+      "descripcion_visual": "Fotografía de guacamole rústico en molcajete de piedra, aguacate partido al fondo ligeramente desenfocado. Dos gotas de salsa visibles sobre la mezcla verde. Fondo negro, número '02' en naranja quemado. Composición cruda, sin styling exagerado.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 4,
+      "titulo": "Marinada para pollo. 20 minutos. Ya.",
+      "subtitulo": "Salsa + ajo + aceite. Eso es todo lo que necesitas.",
+      "descripcion_visual": "Fotografía de muslos de pollo crudos en bowl oscuro con la marinada encima, ajo picado visible. Luz dramática lateral que resalta la textura. Fondo negro, número '03' en naranja quemado. Sensación de cocina real, no de estudio.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 5,
+      "titulo": "Pizza casera — sobre la base, antes del queso.",
+      "subtitulo": "Sí, en serio. Hazlo.",
+      "descripcion_visual": "Fotografía de masa de pizza extendida con la salsa siendo untada directamente sobre ella, antes del queso. Mano visible aplicando la salsa con una cuchara. Fondo negro, número '04' en naranja quemado. Estética de cocina casera auténtica.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 6,
+      "titulo": "La consigues por WhatsApp. 🔥",
+      "subtitulo": "Link en bio — y ya sabes qué hacer.",
+      "descripcion_visual": "Fondo negro con el frasco de Salsa Tatemada Ahumada centrado, sin filtros, etiqueta perfectamente visible. Texto blanco bold arriba. Ícono de WhatsApp en naranja quemado junto al texto del CTA. Logo de Salsas Bestial en esquina inferior sin modificaciones. Slide más limpio de todos — foco total en la acción.",
+      "tipo": "cta"
+    }
+  ]
+}

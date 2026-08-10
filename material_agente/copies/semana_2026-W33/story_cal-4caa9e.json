@@ -1,0 +1,17 @@
+{
+  "texto_principal": "Seamos honestos...",
+  "texto_secundario": "¿Cuántas gotas de Tatemada Ahumada le echas?",
+  "cta": "Vota y cuéntanos la verdad 🌶",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "Opción A: 'Las indicadas (2-3)' | Opción B: 'Toda la que cabe'"
+  },
+  "descripcion_visual": "Fondo negro profundo con textura sutil tipo carbón. Texto principal 'Seamos honestos...' en tipografía bold blanca, centrado en el tercio superior. Texto secundario en gris claro, tamaño menor. Encuesta de Instagram ubicada en el tercio inferior con acento rojo intenso en los bordes de las opciones. Sin filtros sobre el frasco — si aparece el producto, debe ser fotografía real sin alteraciones de color. Atmósfera íntima, casi confesional. Sin efectos de brillo ni plástico.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#TatemadaAhumada",
+    "#SalsaPicante",
+    "#PicanteReal",
+    "#SalsasArtesanales"
+  ]
+}

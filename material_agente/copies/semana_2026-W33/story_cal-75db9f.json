@@ -1,0 +1,17 @@
+{
+  "texto_principal": "¿Ya tienes tu Salsa Tatemada Ahumada?",
+  "texto_secundario": "Un mensaje por WhatsApp y la tienes en camino 🔥",
+  "cta": "Toca el enlace y escríbenos directo",
+  "elemento_interactivo": {
+    "tipo": "ninguno",
+    "contenido": null
+  },
+  "descripcion_visual": "Fondo color carbón (#1A1A1A). Tipografía bold blanca para el texto principal, centrada en el tercio superior de la pantalla. Subtexto en gris claro, tamaño reducido, inmediatamente debajo. Sticker de enlace a https://wa.me/573005864523 posicionado en el tercio inferior, con etiqueta 'Escríbenos ya'. El emoji de fuego aparece como cierre visual del subtexto, alineado al final de la última línea, no flotando. Sin elementos decorativos adicionales. Composición limpia, mucho espacio negativo. El frasco de Salsa Tatemada Ahumada puede aparecer en esquina inferior derecha con ligera sombra, sin filtros ni modificaciones de color.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteReal",
+    "#SalsaArtesanal",
+    "#ComidaPicante"
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "ultima_actualizacion": "2026-08-03T16:18:43.691497",
+  "ultima_actualizacion": "2026-08-10T14:54:29.491101",
   "banco_ideas": [
     {
       "id": "idea-4428a483",
@@ -1079,6 +1079,126 @@
       "concepto": "Reel de 10 segundos estilo 'countdown' informal — alguien saca el frasco de una bolsa de mercado, lo pone sobre la mesa, lo destapa y lo huele. Texto en pantalla: 'llegó'. Sin música dramática, sin efectos. Solo el sonido real del ambiente.",
       "notas": "La simplicidad bien ejecutada genera más engagement que la producción costosa. El formato 'llegó' funciona como señal de comunidad — los seguidores ya saben qué significa. Ideal para reactivar audiencia o anunciar disponibilidad.",
       "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-7c80ba20",
+      "fecha_generacion": "2026-08-10",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "humor_picante",
+      "concepto": "Reel de 20 segundos estilo 'prueba a ciegas' donde alguien prueba la Salsa Tatemada Ahumada sin saber qué es. La cámara captura la reacción genuina: el momento exacto en que el ahumado golpea primero y luego llega el picante. Sin edición dramática. Solo la cara y el silencio incómodo antes del 'oye... ¿qué es esto?'",
+      "notas": "Las reacciones auténticas generan comentarios masivos. El formato es replicable, cuesta casi nada producirlo y tiene alto potencial de shares porque la gente etiqueta amigos para retar.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-cc0bf0ec",
+      "fecha_generacion": "2026-08-10",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "recetas_y_maridajes",
+      "concepto": "Carrusel de 6 slides: 'Lo que le faltaba a tus tacos de canasta del domingo.' Cada slide muestra un taco diferente — frijol, papa, chicharrón — con la salsa encima. Fotografía natural con luz de mañana. El último slide es el precio y el link de compra.",
+      "notas": "Los tacos de canasta son cultura latinoamericana pura. Conecta emocionalmente con el contexto del fin de semana y genera conversación sobre maridajes. Alto potencial de guardados.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-f16d0caa",
+      "fecha_generacion": "2026-08-10",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "behind_the_scenes",
+      "concepto": "Foto documental — sin filtros, sin staging — del momento en que se están tatemando los chiles. Humo real, manos reales, fuego real. Copy que hable del olor que deja en la ropa y que ninguna salsa industrial puede replicar eso.",
+      "notas": "La autenticidad visual es el mayor diferenciador frente a marcas industriales. Una foto cruda y honesta genera más confianza que cualquier producto perfectamente iluminado.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-8555fb8f",
+      "fecha_generacion": "2026-08-10",
+      "origen": "claude",
+      "tipo_sugerido": "story",
+      "pilar": "testimonios_y_ugc",
+      "concepto": "Serie de 3 stories mostrando capturas reales de mensajes de WhatsApp de clientes — con permiso — donde describen cómo usaron la salsa. No editar el lenguaje. Si alguien escribió 'me la eché a los huevos del desayuno y ya no como sin ella', eso va tal cual.",
+      "notas": "El lenguaje sin pulir de los clientes reales es el copy más poderoso que existe. Genera confianza inmediata y normaliza la compra por WhatsApp.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-726902e3",
+      "fecha_generacion": "2026-08-10",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "retos_y_pruebas_de_picante",
+      "concepto": "Reel de 30 segundos: alguien come una cucharada pura de la Salsa Tatemada Ahumada — sin comida de acompañamiento. La cámara no corta. Se ve el proceso completo: la valentía antes, el silencio durante, el caos después. Al final, un letrero: 'No lo hagas. O sí.'",
+      "notas": "El formato de reto en cámara continua es magnético. El cierre ambiguo invita a que otros lo intenten y lo graben, generando UGC orgánico sin pedirlo directamente.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-b9bbe2e0",
+      "fecha_generacion": "2026-08-10",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "educacion_sobre_salsas",
+      "concepto": "Carrusel de 4 slides: 'Por qué el ahumado cambia todo en una salsa.' Explicación visual y directa — sin tecnicismos — de cómo el proceso de tatemado afecta el sabor, el color y el olor. Comparación entre una salsa cruda y una tatemada. Último slide: la Bestial como resultado.",
+      "notas": "Educa sin aburrir. El contenido que explica 'el porqué' detrás de un producto genera autoridad de marca y tiene altísima tasa de guardados entre foodies curiosos.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-842428d7",
+      "fecha_generacion": "2026-08-10",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "lifestyle_y_comunidad",
+      "concepto": "Foto de una reunión entre amigos — botana sobre la mesa, cervezas, el frasco de Salsas Bestial en el centro como si fuera el invitado de honor. Nadie mira a la cámara. Copy sobre ese momento del viernes que ya todos están esperando desde el lunes.",
+      "notas": "Vende el estilo de vida, no el producto. La salsa aparece de forma natural como parte de la escena. Alto potencial de identificación y etiquetado entre amigos.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-0e2eee01",
+      "fecha_generacion": "2026-08-10",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "como_comprar",
+      "concepto": "Reel de 15 segundos estilo 'así de fácil' sin música dramática ni transiciones. Una persona abre Instagram, va al link en bio, escribe por WhatsApp y en el siguiente corte ya tiene el frasco en la mano. Sin narración en off. Solo texto en pantalla con el proceso.",
+      "notas": "Elimina la fricción mental del proceso de compra. Muchos no compran porque no saben cómo. Un video corto y sin adornos resuelve esa duda mejor que cualquier story de texto.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-b6ba03f8",
+      "fecha_generacion": "2026-08-10",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "beneficios_del_producto",
+      "concepto": "Carrusel de 5 slides titulado 'La diferencia entre una salsa que acompaña y una salsa que transforma.' Cada slide compara un platillo genérico con el mismo platillo con la Tatemada Ahumada — antes y después solo en descripción visual y sensorial, sin claims de salud. Fotografía del producto en cada comparación.",
+      "notas": "El formato 'antes y después' aplicado al sabor — no a la salud — es poderoso y no viola ninguna prohibición. Genera deseo de producto de forma honesta y directa.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-79bfaed2",
+      "fecha_generacion": "2026-08-10",
+      "origen": "claude",
+      "tipo_sugerido": "story",
+      "pilar": "promociones_y_lanzamientos",
+      "concepto": "Story con encuesta: '¿Con qué lo combinarías primero?' — dos opciones: tacos vs. huevos rancheros. Al día siguiente, story con el resultado y una foto del ganador bañado en Salsa Tatemada Ahumada. Cierre con link directo a WhatsApp para pedir.",
+      "notas": "Las encuestas de comida generan participación alta porque todos tienen opinión. El seguimiento al día siguiente crea continuidad y hábito de revisitar el perfil. Fácil de producir y ejecutar en 24 horas.",
+      "prioridad": "baja",
       "usado": false,
       "fecha_uso": null
     }

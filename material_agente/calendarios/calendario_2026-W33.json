@@ -19,29 +19,12 @@
         "agente/generar/mockup_frasco_fondo_oscuro.png",
         "agente/generar/animacion_texto_reel_lunes.mp4"
       ],
-      "contenido_copy": {
-        "hook": "La cara de tu tío cuando le dijiste que no picaba tanto...",
-        "cuerpo": "El frasco ya te avisó — tú decidiste no escucharlo. 🔥 Etiqueta a ese tío en los comentarios.",
-        "cta": "Pídela aquí → https://wa.me/573005864523 ¿A quién le mandarías una de estas para probar suerte?",
-        "hashtags": [
-          "#SalsasBestial",
-          "#SalsaTatemada",
-          "#PicanteReal",
-          "#HumorPicante",
-          "#SalsaArtesanal",
-          "#ComidaLatina",
-          "#Foodie",
-          "#Picante",
-          "#ReelsFunny",
-          "#TioChallenge"
-        ],
-        "hashtags_cantidad": 10
-      },
+      "contenido_copy": null,
       "brief_capcut_path": null,
       "video_generado_path": null,
       "imagen_compuesta_path": null,
       "imagenes_carrusel_paths": [],
-      "estado": "generado",
+      "estado": "pendiente",
       "publicacion_id": null
     },
     {
@@ -56,18 +39,12 @@
       "material_sugerido": [
         "agente/generar/story_compra_fondo_carbon.png"
       ],
-      "contenido_copy": {
-        "hook": "",
-        "cuerpo": "",
-        "cta": "Toca el enlace y escríbenos directo",
-        "hashtags": [],
-        "hashtags_cantidad": 0
-      },
+      "contenido_copy": null,
       "brief_capcut_path": null,
       "video_generado_path": null,
-      "imagen_compuesta_path": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/referencia_producto/salsa_tatemada_completa.jpg",
+      "imagen_compuesta_path": null,
       "imagenes_carrusel_paths": [],
-      "estado": "generado",
+      "estado": "pendiente",
       "publicacion_id": null
     },
     {
@@ -82,44 +59,12 @@
       "material_sugerido": [
         "agente/generar/post_educacion_textura_madera_quemada.png"
       ],
-      "contenido_copy": {
-        "hook": "¿Por qué una salsa ahumada cambia el sabor de todo lo que toca? No es magia. Es química.",
-        "cuerpo": "Cuando el chile se tatemada —directo al fuego, sin apuro— sus azúcares naturales se concentran y aparecen notas de madera, tierra, algo casi mineral. Ese proceso activa compuestos que el paladar lee como umami: esa sensación profunda que no sabes nombrar pero que te hace repetir el plato. No es condimento. Es transformación. La Tatemada Ahumada de Salsas Bestial no es decoración. Es el ingrediente que faltaba.",
-        "cta": "Pídela aquí → https://wa.me/573005864523\n\n¿En qué plato le darías la primera oportunidad?",
-        "hashtags": [
-          "#SalsasBestial",
-          "#TatemadaAhumada",
-          "#BestialHot",
-          "#SalsaBestial",
-          "#HechaConFuego",
-          "#SalsaArtesanal",
-          "#SalsaPicante",
-          "#ChileTatemado",
-          "#UmamiEffect",
-          "#SalsasLatinas",
-          "#FoodScienceEsp",
-          "#AhumadoNatural",
-          "#CocinaConActitud",
-          "#SaborProfundo",
-          "#HotSauceLovers",
-          "#RecetasMexicanas",
-          "#CocinaLatina",
-          "#ComidaPicante",
-          "#SalsasArtesanales",
-          "#FoodiesColombia",
-          "#PicanteDeVerdad",
-          "#GastronomiaLatina",
-          "#CocinaCreativa",
-          "#SaborAutentico",
-          "#ArtesanalYPicante"
-        ],
-        "hashtags_cantidad": 25
-      },
+      "contenido_copy": null,
       "brief_capcut_path": null,
       "video_generado_path": null,
-      "imagen_compuesta_path": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/referencia_producto/salsa_tatemada_completa.jpg",
+      "imagen_compuesta_path": null,
       "imagenes_carrusel_paths": [],
-      "estado": "generado",
+      "estado": "pendiente",
       "publicacion_id": null
     },
     {
@@ -134,18 +79,12 @@
       "material_sugerido": [
         "agente/generar/story_encuesta_gotas.png"
       ],
-      "contenido_copy": {
-        "hook": "",
-        "cuerpo": "",
-        "cta": "Vota y cuéntanos la verdad 🌶",
-        "hashtags": [],
-        "hashtags_cantidad": 0
-      },
+      "contenido_copy": null,
       "brief_capcut_path": null,
       "video_generado_path": null,
-      "imagen_compuesta_path": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/referencia_producto/salsa_tatemada_completa.jpg",
+      "imagen_compuesta_path": null,
       "imagenes_carrusel_paths": [],
-      "estado": "generado",
+      "estado": "pendiente",
       "publicacion_id": null
     },
     {
@@ -165,29 +104,12 @@
         "agente/generar/carrusel_slide_05_pizza.png",
         "agente/generar/carrusel_slide_06_cta.png"
       ],
-      "contenido_copy": {
-        "hook": "",
-        "cuerpo": "",
-        "cta": "",
-        "hashtags": [
-          "#SalsasBestial",
-          "#SalsaTatemada",
-          "#RecetasFáciles",
-          "#CocinaLatina",
-          "#SalsaAhumada",
-          "#FoodLovers",
-          "#PicantePero Rico",
-          "#TrucosDeCocina",
-          "#ComidaCasera",
-          "#Foodie"
-        ],
-        "hashtags_cantidad": 10
-      },
+      "contenido_copy": null,
       "brief_capcut_path": null,
       "video_generado_path": null,
-      "imagen_compuesta_path": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/referencia_producto/salsa_tatemada_completa.jpg",
+      "imagen_compuesta_path": null,
       "imagenes_carrusel_paths": [],
-      "estado": "generado",
+      "estado": "pendiente",
       "publicacion_id": null
     },
     {
@@ -202,18 +124,12 @@
       "material_sugerido": [
         "agente/generar/story_bts_texto_degradado.png"
       ],
-      "contenido_copy": {
-        "hook": "",
-        "cuerpo": "",
-        "cta": "Responde esta story con 🔥 si quieres ver cómo se hace",
-        "hashtags": [],
-        "hashtags_cantidad": 0
-      },
+      "contenido_copy": null,
       "brief_capcut_path": null,
       "video_generado_path": null,
-      "imagen_compuesta_path": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/referencia_producto/salsa_tatemada_completa.jpg",
+      "imagen_compuesta_path": null,
       "imagenes_carrusel_paths": [],
-      "estado": "generado",
+      "estado": "pendiente",
       "publicacion_id": null
     },
     {
@@ -228,29 +144,12 @@
       "material_sugerido": [
         "agente/generar/reel_tipos_personas_animado.mp4"
       ],
-      "contenido_copy": {
-        "hook": "Hay tres tipos de personas en toda reunión...",
-        "cuerpo": "En toda reunión hay uno que llega con su salsa... ¿tú eres ese o finges que no pica? Pídela aquí → https://wa.me/573005864523",
-        "cta": "Pídela aquí → https://wa.me/573005864523 — ¿Cuál de los tres eres tú? Cuéntanos abajo.",
-        "hashtags": [
-          "#SalsasBestial",
-          "#SalsaPicante",
-          "#FoodiesColombia",
-          "#PicanteDeVerdad",
-          "#TacoLovers",
-          "#SalsaArtesanal",
-          "#LifestyleFood",
-          "#ReunionFamiliar",
-          "#ComidaLatina",
-          "#SalsaTatemada"
-        ],
-        "hashtags_cantidad": 10
-      },
+      "contenido_copy": null,
       "brief_capcut_path": null,
       "video_generado_path": null,
       "imagen_compuesta_path": null,
       "imagenes_carrusel_paths": [],
-      "estado": "generado",
+      "estado": "pendiente",
       "publicacion_id": null
     },
     {
@@ -265,44 +164,12 @@
       "material_sugerido": [
         "agente/generar/post_testimonio_fondo_kraft.png"
       ],
-      "contenido_copy": {
-        "hook": "Los frijoles de toda la vida... y de repente tu mamá pregunta qué hiciste diferente.",
-        "cuerpo": "Eso pasa con la Tatemada Ahumada. No grita, no compite — solo transforma. Un chorro y el plato de siempre se convierte en el plato del que todos hablan. Sin receta nueva, sin esfuerzo extra.",
-        "cta": "¿A ti qué plato te cambió desde que la probaste? Cuéntanos abajo 🔥\n\nPídela aquí → https://wa.me/573005864523",
-        "hashtags": [
-          "#SalsasBestial",
-          "#TatemadaAhumada",
-          "#BestialLovers",
-          "#SaborBestial",
-          "#HechoBestial",
-          "#SalsaPicante",
-          "#SalsaArtesanal",
-          "#ComidaLatina",
-          "#FoodiesLatam",
-          "#RecetasCaseras",
-          "#PicanteLovers",
-          "#SaborAhumado",
-          "#CocinaEnCasa",
-          "#FoodPhotography",
-          "#ComidaReal",
-          "#SalsasMexicanas",
-          "#FoodLovers",
-          "#GastronomiaColombia",
-          "#ComidasRicas",
-          "#AntojosLatinos",
-          "#CocinaCasera",
-          "#SalsaHot",
-          "#FoodCommunity",
-          "#MejorSalsa",
-          "#PicanteQueEnamora"
-        ],
-        "hashtags_cantidad": 25
-      },
+      "contenido_copy": null,
       "brief_capcut_path": null,
       "video_generado_path": null,
-      "imagen_compuesta_path": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/referencia_producto/salsa_tatemada_completa.jpg",
+      "imagen_compuesta_path": null,
       "imagenes_carrusel_paths": [],
-      "estado": "generado",
+      "estado": "pendiente",
       "publicacion_id": null
     },
     {
@@ -317,18 +184,12 @@
       "material_sugerido": [
         "agente/generar/story_conversion_viernes_noche.png"
       ],
-      "contenido_copy": {
-        "hook": "",
-        "cuerpo": "",
-        "cta": "Pedir ahora — enlace directo al WhatsApp: https://wa.me/573005864523",
-        "hashtags": [],
-        "hashtags_cantidad": 0
-      },
+      "contenido_copy": null,
       "brief_capcut_path": null,
       "video_generado_path": null,
-      "imagen_compuesta_path": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/referencia_producto/salsa_tatemada_completa.jpg",
+      "imagen_compuesta_path": null,
       "imagenes_carrusel_paths": [],
-      "estado": "generado",
+      "estado": "pendiente",
       "publicacion_id": null
     },
     {
@@ -343,44 +204,12 @@
       "material_sugerido": [
         "agente/generar/post_mockup_frasco_cocina_rustica.png"
       ],
-      "contenido_copy": {
-        "hook": "Una salsa que dura en la nevera, no en el plato.",
-        "cuerpo": "El tatemado no es solo sabor — es una técnica de cocción antigua que concentra y sella naturalmente los ingredientes, sin conservantes raros ni químicos que no sabes pronunciar. Un frasco de Tatemada Ahumada en tu nevera es desayuno resuelto, almuerzo con carácter y cena que no aburre. La misma salsa, tres momentos del día, y cada vez sabe diferente según lo que le pongas al lado. 🔥 Eso es lo que vale tener uno siempre a la mano — no buscas inspiración, la abres y ya.",
-        "cta": "La consigues directo por WhatsApp o en el enlace de la bio.\nPídela aquí → https://wa.me/573005864523\n\n¿En cuál de las tres comidas del día no podría faltar en tu casa? 👇",
-        "hashtags": [
-          "#SalsasBestial",
-          "#TatemadaAhumada",
-          "#BestialLovers",
-          "#SaborBestial",
-          "#HechoConActitud",
-          "#SalsaPicante",
-          "#SalsaArtesanal",
-          "#CocinaEnCasa",
-          "#FoodiesLatinos",
-          "#PicanteLovers",
-          "#SalsasMexicanas",
-          "#ComidasalPicante",
-          "#RecetasCaseras",
-          "#SaborAhumado",
-          "#AmaLaComida",
-          "#CocinaReal",
-          "#ComidaCasera",
-          "#SabadoDeCocinero",
-          "#FoodPhotography",
-          "#Foodie",
-          "#ComidaLatina",
-          "#SalsaHot",
-          "#MomentosBestial",
-          "#TuSalsaDeCabecera",
-          "#SaborQueQueda"
-        ],
-        "hashtags_cantidad": 25
-      },
+      "contenido_copy": null,
       "brief_capcut_path": null,
       "video_generado_path": null,
-      "imagen_compuesta_path": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/referencia_producto/salsa_tatemada_completa.jpg",
+      "imagen_compuesta_path": null,
       "imagenes_carrusel_paths": [],
-      "estado": "generado",
+      "estado": "pendiente",
       "publicacion_id": null
     }
   ],
