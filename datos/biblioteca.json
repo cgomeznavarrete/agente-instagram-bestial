@@ -1453,6 +1453,22 @@
       ],
       "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/image/upload/v1786555559/salsas_bestial/whyndbwt5epb4rhjzdbs.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1786555560/salsas_bestial/ldc10x0sjfeugnmr1dok.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1786555560/salsas_bestial/gtn8nulzodcxd4lcpqlt.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1786555561/salsas_bestial/q4w6yijkgpdiuhhyhx26.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1786555561/salsas_bestial/wlxz1md3knn2ygm40isj.jpg",
       "tema": ""
+    },
+    {
+      "id": "reel_1786899589586",
+      "tipo": "reel",
+      "nombre_archivo": "reel_1786899589586.mp4",
+      "ruta_local": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/reels/reel_1786899589586.mp4",
+      "fecha_agregado": 1786899591.1832097,
+      "estado": "pendiente",
+      "pilar": "recetas_y_maridajes",
+      "caption": "",
+      "media_id": "",
+      "fecha_publicado": 0.0,
+      "es_carrusel": false,
+      "archivos_carrusel": [],
+      "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/video/upload/v1786899590/salsas_bestial/renpk2nw0gnclbnfut9e.mp4",
+      "tema": ""
     }
   ]
 }
