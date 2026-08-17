@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "ultima_actualizacion": "2026-08-10T14:54:29.491101",
+  "ultima_actualizacion": "2026-08-17T14:22:52.574238",
   "banco_ideas": [
     {
       "id": "idea-4428a483",
@@ -1199,6 +1199,126 @@
       "concepto": "Story con encuesta: '¿Con qué lo combinarías primero?' — dos opciones: tacos vs. huevos rancheros. Al día siguiente, story con el resultado y una foto del ganador bañado en Salsa Tatemada Ahumada. Cierre con link directo a WhatsApp para pedir.",
       "notas": "Las encuestas de comida generan participación alta porque todos tienen opinión. El seguimiento al día siguiente crea continuidad y hábito de revisitar el perfil. Fácil de producir y ejecutar en 24 horas.",
       "prioridad": "baja",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-79c3bfda",
+      "fecha_generacion": "2026-08-17",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "recetas_y_maridajes",
+      "concepto": "Reel de 30 segundos mostrando cómo la Salsa Tatemada Ahumada transforma un desayuno colombiano básico (huevos con arepa) en algo que nadie esperaba. Sin narración, solo sonidos de cocina reales y el resultado final en pantalla.",
+      "notas": "El desayuno latinoamericano es territorio emocional profundo. Hackear ese momento cotidiano con la salsa genera identificación inmediata y comentarios del tipo 'yo hago eso'. Alto potencial de guardados.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-9bdec131",
+      "fecha_generacion": "2026-08-17",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "educacion_sobre_salsas",
+      "concepto": "Carrusel de 5 slides explicando qué significa realmente 'tatemado' — el proceso de asar ingredientes directamente al fuego hasta que se queman un poco. Slide 1: pregunta provocadora. Slides 2-4: explicación visual con fotos de ingredientes. Slide 5: el frasco como resultado de ese proceso.",
+      "notas": "La mayoría de la gente no sabe qué es 'tatemar'. Educar genera autoridad de marca y saves masivos. Este carrusel puede vivir como contenido evergreen durante meses.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-6f56cb3a",
+      "fecha_generacion": "2026-08-17",
+      "origen": "claude",
+      "tipo_sugerido": "story",
+      "pilar": "retos_y_pruebas_de_picante",
+      "concepto": "Serie de 3 stories: encuesta '¿Cuántas gotas de Salsa Tatemada Ahumada le metes a tu comida?' con opciones absurdas (1 gota / media botella / la botella entera), seguida de respuesta del equipo con video corto reaccionando a los resultados.",
+      "notas": "Las encuestas de stories son el formato con mayor tasa de respuesta orgánica en Instagram. El humor en las opciones baja la barrera de participación y revela datos reales de consumo.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-b33d044d",
+      "fecha_generacion": "2026-08-17",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "behind_the_scenes",
+      "concepto": "Foto de las manos de quien hace la salsa — manchadas, trabajadas, reales — sosteniendo el frasco terminado. Sin edición excesiva. Copy que hable del proceso sin romantizarlo demasiado.",
+      "notas": "Las manos reales humanizan la marca y diferencian radicalmente de productos industriales. Este tipo de imagen genera confianza instantánea en el producto artesanal y conecta con el valor de autenticidad.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-18297536",
+      "fecha_generacion": "2026-08-17",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "humor_picante",
+      "concepto": "Reel editado como tutorial falso: 'Cómo arruinar la Salsa Tatemada Ahumada' — mostrando errores ridículos como no agitarla, usarla en cantidades microscópicas o guardarla sin abrirla nunca. Formato cómico, ritmo rápido.",
+      "notas": "El humor de 'lo que no debes hacer' tiene altísimo engagement porque la gente comparte para reírse con amigos. También educa sobre el uso correcto del producto de forma no obvia.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-1c50cfd4",
+      "fecha_generacion": "2026-08-17",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "testimonios_y_ugc",
+      "concepto": "Carrusel de 4 slides con capturas reales de mensajes de WhatsApp o DMs de clientes hablando de la salsa — sin editar el lenguaje, con errores de tipeo incluidos. Slide final: cómo conseguir el tuyo.",
+      "notas": "Las capturas sin filtrar son el testimonio más creíble que existe. El lenguaje imperfecto de los clientes reales es más persuasivo que cualquier copy pulido. Genera prueba social masiva.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-a464654f",
+      "fecha_generacion": "2026-08-17",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "lifestyle_y_comunidad",
+      "concepto": "Reel estilo 'un día de partido' — la salsa aparece en cada momento: antes del partido untada en algo, en el descanso, celebrando un gol. Sin diálogos. Música de fondo que pegue. El frasco siempre presente pero nunca forzado.",
+      "notas": "El fútbol es el pegamento cultural de Latinoamérica. Insertar la marca en ese ritual emocional sin hacer publicidad obvia es estrategia de lifestyle pura. Alcance orgánico potencial muy alto en días de partido.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-c4277195",
+      "fecha_generacion": "2026-08-17",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "como_comprar",
+      "concepto": "Foto minimalista del frasco con empaque de envío al lado — sin fondo elaborado, sobre una superficie simple. Copy directo explicando exactamente cómo pedirla por WhatsApp en 3 pasos reales, escritos como mensaje de chat.",
+      "notas": "La fricción de compra mata las ventas. Un post que elimina la duda de 'cómo la pido' convierte directamente. Funciona especialmente para seguidores que llevan tiempo viendo el contenido pero nunca han comprado.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-7d24c7ba",
+      "fecha_generacion": "2026-08-17",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "beneficios_del_producto",
+      "concepto": "Reel de 20 segundos mostrando el antes y después de un plato sin y con la Salsa Tatemada Ahumada — misma comida sencilla, mismo plato, mismo ángulo. La diferencia visual y el sonido de quien prueba cuentan todo.",
+      "notas": "El formato antes/después es uno de los más compartidos en redes porque activa curiosidad inmediata. Aplicado a comida con sonido real de reacción genuina, el potencial de viralización es muy alto.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-71375881",
+      "fecha_generacion": "2026-08-17",
+      "origen": "claude",
+      "tipo_sugerido": "story",
+      "pilar": "promociones_y_lanzamientos",
+      "concepto": "Secuencia de 4 stories estilo cuenta regresiva para una promoción o cantidad limitada de frascos — sin revelar qué es hasta el último. Story 1: solo un número. Story 2: una imagen borrosa del frasco. Story 3: el precio. Story 4: el link directo a WhatsApp.",
+      "notas": "El misterio progresivo en stories mantiene a la gente volviendo a ver el perfil. La escasez real o percibida activa urgencia de compra. Formato simple de producir y con altísima tasa de acción directa.",
+      "prioridad": "media",
       "usado": false,
       "fecha_uso": null
     }

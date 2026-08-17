@@ -1,0 +1,67 @@
+{
+  "caption_principal": "La mayoría de salsas que comprás en el supermercado nunca tocaron fuego de verdad. Deslizá → y entendés por qué eso cambia todo.",
+  "cta_caption": "Guardá este carrusel la próxima vez que alguien te diga que 'una salsa es una salsa'. ¿Vos notás la diferencia entre una salsa de verdad y una industrial?",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteDeVerdad",
+    "#SalsaArtesanal",
+    "#TatemadoAhumado",
+    "#CocinaLatina",
+    "#FoodLovers",
+    "#SalsasCaseras",
+    "#AhumadoNatural",
+    "#SaborReal"
+  ],
+  "slides": [
+    {
+      "numero": 1,
+      "titulo": "Una salsa tatemada no se hace. Se quema — a propósito.",
+      "subtitulo": "Y esa es exactamente la diferencia.",
+      "descripcion_visual": "Tipografía grande, sans-serif bold, color crema o blanco roto sobre fondo carbón casi negro. Sin imagen de producto. Una línea de textura sutil tipo ceniza o humo en el fondo, muy discreta. El texto ocupa el 70% del slide. Sensación editorial, como portada de revista de gastronomía.",
+      "tipo": "portada"
+    },
+    {
+      "numero": 2,
+      "titulo": "Tatema: del náhuatl. Significa poner al fuego directo hasta que la piel se quema.",
+      "subtitulo": "No es un accidente. Es la técnica.",
+      "descripcion_visual": "Fondo tierra oscuro, casi marrón quemado. Ilustración minimalista o fotografía en blanco y negro de chiles sobre comal con marcas de fuego visibles. Tipografía mediana, alineada a la izquierda. Atmósfera de cocina tradicional mexicana, sin artificios.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 3,
+      "titulo": "El calor directo rompe la piel, carameliza los azúcares y concentra el sabor en capas que ningún proceso industrial puede replicar.",
+      "subtitulo": null,
+      "descripcion_visual": "Fondo oscuro con textura de madera carbonizada. Dos columnas visuales implícitas: izquierda con el texto narrativo, derecha con una imagen de close-up de chile tatemado partido — piel negra, interior rojo intenso. Contraste dramático de luz. Sin bullets, el texto fluye como párrafo corto.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 4,
+      "titulo": "Una salsa industrial se procesa a temperatura controlada para ser 'consistente'. Una tatemada es consistente en su imperfección — y ahí está su sabor.",
+      "subtitulo": "No hay dos tatemados iguales.",
+      "descripcion_visual": "Fondo dividido en dos mitades: izquierda carbón con textura de fábrica fría, derecha tierra cálida con textura de comal. Sin imágenes de marcas competidoras. Tipografía contrastante en cada lado. El mensaje de desigualdad entre procesos queda claro visualmente sin nombrar a nadie.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 5,
+      "titulo": "El ahumado no es un ingrediente que se agrega. Es el resultado de dejar que el fuego haga lo suyo.",
+      "subtitulo": "Por eso el sabor de nuestra Tatemada Ahumada no lo encontrás en ningún frasco de góndola.",
+      "descripcion_visual": "Fondo carbón con volutas de humo reales fotografiadas, en tonos grises y ocres. Tipografía blanca, tamaño medio, centrada. Ambiente íntimo, casi cinematográfico. El subtítulo en tipografía más pequeña e itálica debajo, como una aclaración honesta.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 6,
+      "titulo": "¿Cómo usarla? En tacos, claro. Pero también en huevos, en arroz, en lo que tengas en la heladera a las 11 de la noche.",
+      "subtitulo": "No tiene reglas — tiene carácter.",
+      "descripcion_visual": "Fondo tierra cálido, iluminación cálida tipo cocina de casa. Imagen real o ilustración de la salsa siendo usada en una preparación cotidiana — no una producción perfecta, algo que parezca real. Tipografía relajada, como si alguien lo estuviera contando en persona.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 7,
+      "titulo": "Si llegaste hasta acá, ya sabés más de salsas tatemadas que el 90% de la gente.",
+      "subtitulo": "La nuestra está en el link en bio. 🔥",
+      "descripcion_visual": "Fondo carbón con el logo de Salsas Bestial bien posicionado, sin modificar, sin filtros sobre él. Tipografía grande y directa. Un solo emoji de fuego al final del subtítulo. Sensación de cierre natural, no de aviso publicitario. El CTA es suave — invita, no empuja.",
+      "tipo": "cta"
+    }
+  ]
+}

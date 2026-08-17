@@ -1,0 +1,13 @@
+{
+  "texto_principal": "Seamos honestos... ¿cuánta le echas?",
+  "texto_secundario": "No te vamos a juzgar. Mentira, sí.",
+  "cta": "Responde la encuesta",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "Opción A: 'La justa' 🫠 | Opción B: 'Hasta que llore'"
+  },
+  "descripcion_visual": "Fondo con gradiente oscuro (negro a rojo profundo, sin filtros sobre producto). Tipografía blanca irregular, como escrita a mano rápido. Sin frasco en esta story — protagoniza el texto. La encuesta de Instagram centrada abajo. Vibra íntima, como un mensaje de alguien que te conoce.",
+  "hashtags_ocultos": [
+    "#SalsasBestial"
+  ]
+}

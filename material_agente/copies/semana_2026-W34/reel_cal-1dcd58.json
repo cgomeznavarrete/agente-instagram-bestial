@@ -1,0 +1,41 @@
+{
+  "hook": "La cara de tu familia cuando pones salsa en todo.",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Pantalla negra total. Texto aparece de golpe, tipografía bold blanca, sin animación suave — aparece y ya.",
+      "texto_pantalla": "La cara de tu familia cuando pones salsa en todo."
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Corte rápido. Fondo negro. Texto cambia cada 1.5 segundos con efecto de 'flash' o zoom rápido. Ritmo cortado, como meme.",
+      "texto_pantalla": "En el arroz. ✓ / En el sancocho. ✓ / En la arepa con queso... / (pausa de medio segundo) / Especialmente en la arepa con queso."
+    },
+    {
+      "segundo": "8-20",
+      "visual": "Secuencia de textos que simulan reacciones familiares. Tipografía cambia de tamaño para dar énfasis. Audio viral de reacción exagerada entra aquí — sonido de horror o drama latinoamericano tipo telenovela.",
+      "texto_pantalla": "Tu mamá: '¿Otra vez?' / Tu abuela: 'Eso te va a dañar el estómago.' / Tu tío que dice que aguanta picante: (emoji cara roja) / Y tú — tranquilo, con tu Salsa Tatemada Ahumada — sin dar explicaciones."
+    },
+    {
+      "segundo": "20-28",
+      "visual": "Fondo negro. Texto centrado, limpio. Nombre de la salsa aparece con corte seco, sin transición suave. CTA debajo en tipografía más pequeña pero legible.",
+      "texto_pantalla": "Salsa Tatemada Ahumada. 🔥 / Pídela → Link en bio."
+    }
+  ],
+  "caption": "Algunos ponemos salsa en todo y no vamos a disculparnos por eso. ¿A quién de tu familia le mandas esta?",
+  "cta": "Pídela aquí → https://wa.me/573005864523 | ¿A quién de tu familia le mandarías una de estas?",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteParaTodo",
+    "#HumorPicante",
+    "#FoodieLatino",
+    "#SalsaArtesanal",
+    "#ComidaLatina",
+    "#Foodlover",
+    "#SalsaLovers",
+    "#ReelsFunny"
+  ],
+  "mood_musica": "humor",
+  "hook_audio": null
+}

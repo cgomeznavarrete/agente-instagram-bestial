@@ -1,0 +1,46 @@
+{
+  "hook": "3 cosas que nunca pensaste ponerle salsa tatemada... y ahora no puedes parar.",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Fondo negro. Texto animado que aparece letra por letra, estilo máquina de escribir, con tipografía bold blanca.",
+      "texto_pantalla": "3 cosas que NUNCA pensaste ponerle salsa tatemada..."
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Corte rápido al beat. Primer plano de una arepa con hogao humeante. La cámara se acerca. Pausa dramática de medio segundo.",
+      "texto_pantalla": "1. La arepa con hogao de tu abuela 🫡"
+    },
+    {
+      "segundo": "8-16",
+      "visual": "Corte directo. Plano de huevos revueltos al estilo americano — nada colombiano, nada esperado. Siguiente corte: pasta con queso parmesano. Cada clip dura máximo 3 segundos. Edición al beat.",
+      "texto_pantalla": "2. Huevos revueltos de domingo... / 3. Pasta con parmesano — sí, en serio."
+    },
+    {
+      "segundo": "16-22",
+      "visual": "Texto grande en pantalla, color rojo quemado sobre fondo oscuro. Sin imágenes. Solo tipografía impactante que entra con zoom rápido.",
+      "texto_pantalla": "Salsa Tatemada Ahumada — Bestial."
+    },
+    {
+      "segundo": "22-28",
+      "visual": "Fondo negro limpio. Texto aparece centrado, tipografía blanca limpia. Último frame estático 2 segundos para que el usuario lo lea.",
+      "texto_pantalla": "Link en bio → pídela ya."
+    }
+  ],
+  "caption": "Lo ahumado cambia todo — y una vez que lo pruebas, ya no hay vuelta atrás. ¿Tú con qué la combinarías?",
+  "cta": "Pídela aquí → https://wa.me/573005864523 | ¿Tú con qué la combinarías?",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteColombiano",
+    "#RecetasConSalsa",
+    "#SalsaArtesanal",
+    "#ComidaColombiana",
+    "#FoodiesLatinos",
+    "#PicanteDeVerdad",
+    "#MaridajesInesperados",
+    "#SalsaLovers"
+  ],
+  "mood_musica": "energetico",
+  "hook_audio": "Tres cosas que nunca pensaste ponerle salsa tatemada... y ahora no puedes parar."
+}

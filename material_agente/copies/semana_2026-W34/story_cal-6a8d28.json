@@ -1,0 +1,17 @@
+{
+  "texto_principal": "¿Ya sabes cómo pedirla?",
+  "texto_secundario": "WhatsApp directo → 573005864523",
+  "cta": "Toca el enlace y pide la tuya ahora",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "¿Ya la tienes en casa? | Sí, soy de los buenos | Aún no... error mío"
+  },
+  "descripcion_visual": "Fondo oscuro casi negro (#0D0D0D), texto principal centrado en blanco roto con tipografía bold sin serif. Flecha gruesa en rojo bestial apuntando hacia abajo donde está el sticker de enlace a WhatsApp. Número de contacto visible en tamaño mediano, color gris claro para no competir con el texto principal. Logo de Salsas Bestial en esquina superior derecha, sin filtros ni modificaciones. Sin frasco en esta pieza — solo texto, flecha y enlace. Diseño limpio, nada de elementos decorativos innecesarios.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaPicante",
+    "#HechoEnColombia",
+    "#Tatemada",
+    "#ComidaPicante"
+  ]
+}

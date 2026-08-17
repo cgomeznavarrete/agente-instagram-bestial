@@ -1,0 +1,13 @@
+{
+  "texto_principal": "¿La quieres o no la quieres?",
+  "texto_secundario": "Escríbenos — te llegará hasta la puerta.",
+  "cta": "Toca el enlace y pide la tuya ahora",
+  "elemento_interactivo": {
+    "tipo": "ninguno",
+    "contenido": null
+  },
+  "descripcion_visual": "Secuencia de 3 slides animados. Slide 1 (negro con tipografía blanca bold en movimiento de zoom-in): '¿La quieres o no la quieres?' — texto aparece rápido, como un golpe visual. Slide 2 (fondo rojo marca, texto blanco que entra de izquierda a derecha): 'Escríbenos al WhatsApp — te llegamos.' Slide 3 (fondo negro, número +57 300 586 4523 en tipografía grande blanca centrada, sticker de enlace de Instagram apuntando al WhatsApp, sin filtros ni efectos sobre ningún elemento de identidad de marca). Transiciones de corte seco entre slides, sin fundidos. Sin imágenes del frasco en esta pieza.",
+  "hashtags_ocultos": [
+    "#SalsasBestial"
+  ]
+}

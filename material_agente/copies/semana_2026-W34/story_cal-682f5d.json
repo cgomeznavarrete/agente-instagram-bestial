@@ -1,0 +1,16 @@
+{
+  "texto_principal": "¿En qué cosa rara le has echado salsa?",
+  "texto_secundario": "Sin juicios. En serio.",
+  "cta": "Responde abajo 👇",
+  "elemento_interactivo": {
+    "tipo": "pregunta",
+    "contenido": "El plato más raro al que le pusiste salsa picante fue..."
+  },
+  "descripcion_visual": "Fondo negro mate, casi sin adornos. Texto principal en tipografía sans-serif blanca, bold, centrado en la mitad superior de la pantalla. Texto secundario en gris claro, tamaño pequeño, justo debajo. Sticker de preguntas de Instagram posicionado en la mitad inferior, con bordes en tono rojo oscuro que haga eco con la marca. Sin filtros sobre ningún producto. Sin ilustraciones recargadas. Atmósfera íntima, como un mensaje de madrugada entre amigos.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaPicante",
+    "#RetoPicante",
+    "#ComidaLatina"
+  ]
+}
