@@ -1581,6 +1581,22 @@
       "archivos_carrusel": [],
       "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/video/upload/v1787539780/salsas_bestial/slgkqk6t1mu5wszxuv6v.mp4",
       "tema": ""
+    },
+    {
+      "id": "story_1787539798699",
+      "tipo": "story",
+      "nombre_archivo": "story_1787539798699.mp4",
+      "ruta_local": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/stories/story_1787539798699.mp4",
+      "fecha_agregado": 1787539800.0158987,
+      "estado": "pendiente",
+      "pilar": "lifestyle_y_comunidad",
+      "caption": "",
+      "media_id": "",
+      "fecha_publicado": 0.0,
+      "es_carrusel": false,
+      "archivos_carrusel": [],
+      "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/video/upload/v1787539799/salsas_bestial/jw2gw7v5clpoprbsuhxs.mp4",
+      "tema": ""
     }
   ]
 }
