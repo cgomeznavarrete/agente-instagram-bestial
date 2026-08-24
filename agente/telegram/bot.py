@@ -328,16 +328,25 @@ def _generar_caption(tipo: str, pilar: str, tema: str | None = None) -> str:
             "- Máximo 3 emojis"
         )
 
-    caption_raw = cliente.generar(
-        prompt_sistema=(
-            "Eres el community manager de Salsas Bestial, marca colombiana de salsas picantes. "
-            "Haz que la persona se identifique con la experiencia del picante. "
-            "Tono: cercano, real, apasionado. Sin frases publicitarias genéricas."
-        ),
-        prompt_usuario=prompt_usuario,
-        temperatura=0.85,
-        max_tokens=600,
-    )
+    try:
+        caption_raw = cliente.generar(
+            prompt_sistema=(
+                "Eres el community manager de Salsas Bestial, marca colombiana de salsas picantes. "
+                "Haz que la persona se identifique con la experiencia del picante. "
+                "Tono: cercano, real, apasionado. Sin frases publicitarias genéricas."
+            ),
+            prompt_usuario=prompt_usuario,
+            temperatura=0.85,
+            max_tokens=600,
+        )
+    except Exception as _e_claude:
+        logger.error("Claude no pudo generar caption: %s", _e_claude, exc_info=True)
+        _enviar_mensaje(
+            f"❌ <b>Error generando caption con Claude</b>\n\n"
+            f"<code>{_html.escape(str(_e_claude))[:300]}</code>\n\n"
+            f"Intenta de nuevo o escribe el caption manualmente con ✍️ Corregir."
+        )
+        return ""
     from agente.claude.cliente_claude import limpiar_caption
     return limpiar_caption(re.sub(r"\*\*(.+?)\*\*", r"\1", caption_raw))
 
