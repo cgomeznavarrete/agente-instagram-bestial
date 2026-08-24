@@ -296,48 +296,171 @@ def _descargar_archivo(file_id: str, extension: str, tipo: str = "media") -> Opt
         return None
 
 
-def _generar_caption(tipo: str, pilar: str, tema: str | None = None) -> str:
-    """Genera caption para Instagram.
+def _generar_caption(tipo: str, pilar: str, tema: str | None = None, item=None) -> str:
+    """Genera caption para Instagram alineado al contenido real.
 
-    Si `tema` está presente (p.ej. carruseles educativos), el caption
-    menciona explícitamente el tema del contenido.
+    - Si `item` tiene imagen local, Claude la analiza con Vision antes de escribir.
+    - Si `tema` está presente (carruseles educativos), el caption lo referencia.
+    - El prompt varía por pilar para evitar hooks repetitivos.
     """
     cliente = ClienteClaude()
 
-    if tema:
-        prompt_usuario = (
-            f"Tipo de publicación: {tipo.upper()}. Pilar: {pilar}.\n"
-            f"Tema del carrusel educativo: «{tema}».\n\n"
-            "Escribe un caption para Instagram que esté directamente relacionado con ese tema:\n"
-            "- Primera línea: dato o pregunta curiosa sobre el tema que enganche al instante\n"
-            "- Cuerpo (2-3 líneas): conecta el tema con la experiencia de disfrutar el picante\n"
-            f"- CTA de compra: Pídela aquí → {brand.LINK_COMPRA_WHATSAPP}\n"
-            f"- Pregunta de cierre (OBLIGATORIA, genera conversación): elige la más apropiada: {brand.PREGUNTAS_ENGAGEMENT}\n"
-            f"- Incluye exactamente estos hashtags al final (no inventes otros): {' '.join(brand.seleccionar_hashtags())}\n"
-            "- Máximo 3 emojis"
-        )
-    else:
-        prompt_usuario = (
-            f"Tipo de publicación: {tipo.upper()}. Pilar: {pilar}.\n\n"
-            "Escribe un caption para Instagram:\n"
-            "- Primera línea: verdad que los amantes del picante reconocen al instante\n"
-            "- Cuerpo (2-3 líneas): la experiencia — olor, sabor, el momento\n"
-            f"- CTA de compra: Pídela aquí → {brand.LINK_COMPRA_WHATSAPP}\n"
-            f"- Pregunta de cierre (OBLIGATORIA, genera conversación): elige la más apropiada: {brand.PREGUNTAS_ENGAGEMENT}\n"
-            f"- Incluye exactamente estos hashtags al final (no inventes otros): {' '.join(brand.seleccionar_hashtags())}\n"
-            "- Máximo 3 emojis"
-        )
+    # ── Paso 1: analizar visualmente la imagen si está disponible ──────────────
+    descripcion_visual = ""
+    if item and not getattr(item, "es_carrusel", False):
+        ruta_candidata = None
+        if getattr(item, "ruta_local", "") and Path(item.ruta_local).exists():
+            _ext = Path(item.ruta_local).suffix.lower()
+            if _ext in (".jpg", ".jpeg", ".png", ".webp"):
+                ruta_candidata = Path(item.ruta_local)
+        if ruta_candidata:
+            try:
+                descripcion_visual = cliente.generar_con_vision(
+                    prompt_sistema=(
+                        "Eres un analista de contenido para Instagram de una marca de salsas picantes colombiana."
+                    ),
+                    prompt_usuario=(
+                        "Describe en 3-4 oraciones específicas y concretas lo que muestra esta imagen:\n"
+                        "- ¿Qué comida, plato o situación se ve?\n"
+                        "- ¿Qué hace la persona (si hay alguien)?\n"
+                        "- ¿Qué hay del producto Salsas Bestial (si aparece)?\n"
+                        "- ¿Cuál es el momento o contexto (desayuno, cena, calle, cocina, amigos…)?\n"
+                        "Sé literal y específico. No interpretes, describe lo que ves."
+                    ),
+                    imagenes=[ruta_candidata],
+                    temperatura=0.3,
+                )
+                logger.info("Caption con vision — descripción obtenida (%d chars)", len(descripcion_visual))
+            except Exception as _ve:
+                logger.warning("Vision no disponible para caption: %s", _ve)
+
+    # ── Paso 2: ángulos de hook por pilar (variedad, sin repetición) ────────────
+    ANGULOS_POR_PILAR = {
+        "recetas_y_maridajes": [
+            "El plato en pantalla + el detalle que lo transforma con salsa",
+            "El momento exacto en que el maridaje funciona (primera mordida, la combinación)",
+            "El secreto detrás de esa receta que nadie te conta",
+            "Por qué este plato nunca será igual sin el picante correcto",
+        ],
+        "behind_the_scenes": [
+            "Lo que pasa antes de que llegue a tu mesa (proceso, elaboración)",
+            "El detalle artesanal que nadie ve pero que marca la diferencia",
+            "La honestidad de cómo se hace de verdad, sin filtros",
+            "Lo que hace que esto sea diferente a cualquier salsa industrial",
+        ],
+        "humor_picante": [
+            "La situación que todo amante del picante ha vivido",
+            "El momento en que alguien descubre que no sabía lo que era el picante real",
+            "La cara que pones vs la cara que finges que pones",
+            "Lo que pasa en la mesa cuando aparece la salsa bestial",
+        ],
+        "educacion_sobre_salsas": [
+            "El dato sobre el picante que cambia cómo lo ves",
+            "Lo que diferencia una salsa artesanal de una industrial (en concreto)",
+            "Por qué el nivel de picante importa menos de lo que crees",
+            "El proceso detrás de la salsa que nadie explica",
+        ],
+        "testimonios_y_ugc": [
+            "La experiencia real, sin adornos",
+            "Ese momento en que el producto habla por sí solo",
+            "La prueba de fuego: primera vez con Salsas Bestial",
+            "La reacción honesta (no el guión de marketing)",
+        ],
+        "promociones_y_lanzamientos": [
+            "Lo que esto resuelve (sin decir 'te presentamos')",
+            "El momento de disponibilidad + urgencia real",
+            "La razón concreta por la que esto vale la pena ahora",
+            "Qué cambia para el que lo prueba hoy",
+        ],
+        "lifestyle_y_comunidad": [
+            "El ritual del picante que une a la gente",
+            "Ese tipo de persona que entiende exactamente de qué hablamos",
+            "El momento en que la comida se vuelve experiencia",
+            "Lo que te dice alguien sobre sí mismo cuando le encanta el picante",
+        ],
+        "retos_y_pruebas_de_picante": [
+            "El antes y el después de atreverse",
+            "La adrenalina del reto contada desde adentro",
+            "Lo que separa a los que aguantan de los que no",
+            "La verdad sobre el umbral del picante",
+        ],
+        "beneficios_del_producto": [
+            "El beneficio concreto mostrado en acción (no listado)",
+            "La diferencia que nota el que lo prueba primera vez",
+            "Lo que hace esta salsa que las demás no pueden",
+            "El uso que no habías pensado hasta que lo viste",
+        ],
+        "como_comprar": [
+            "La fricción eliminada — así de simple es conseguirla",
+            "El proceso real: desde el querer hasta el tener",
+            "Para el que ya la quiere pero no sabe cómo",
+            "Un clic, un mensaje, y ya está en camino",
+        ],
+    }
+    import random as _rnd
+    angulo = _rnd.choice(ANGULOS_POR_PILAR.get(pilar, ANGULOS_POR_PILAR["lifestyle_y_comunidad"]))
+
+    # ── Paso 3: construir el prompt ─────────────────────────────────────────────
+    contexto_visual = (
+        f"\n\nCONTENIDO REAL DE LA IMAGEN/VIDEO:\n{descripcion_visual}\n"
+        "→ El caption DEBE estar anclado a este contenido específico. "
+        "Menciona detalles concretos de lo que se ve, no generalidades."
+        if descripcion_visual else
+        ""
+    )
+
+    contexto_tema = (
+        f"\n\nTEMA DEL CARRUSEL: «{tema}»\n"
+        "→ El caption DEBE mencionar este tema explícitamente desde la primera línea."
+        if tema else ""
+    )
+
+    prohibiciones = (
+        "\n\nFRASES ABSOLUTAMENTE PROHIBIDAS EN EL HOOK (primera línea):\n"
+        "- 'ese olor' / 'ese aroma'\n"
+        "- 'cuando abres' / 'al abrir'\n"
+        "- 'ese sabor que'\n"
+        "- 'hay sabores que'\n"
+        "- 'eso que sientes cuando'\n"
+        "- 'la primera vez que'\n"
+        "- 'imagina que' / 'imagínate'\n"
+        "- '¿Sabías que'\n"
+        "- Cualquier frase que empiece con una afirmación sobre el olor de la salsa\n"
+        "Si el hook te sale con alguna de estas frases, descártala y empieza diferente."
+    )
+
+    prompt_usuario = (
+        f"Tipo: {tipo.upper()} | Pilar: {pilar}\n"
+        f"Ángulo a usar en el hook: {angulo}"
+        f"{contexto_visual}"
+        f"{contexto_tema}"
+        f"{prohibiciones}\n\n"
+        "ESTRUCTURA DEL CAPTION:\n"
+        "1. Hook (primera línea, máx 12 palabras): usa el ángulo dado. "
+        "Debe ser una afirmación provocadora, pregunta retórica incómoda o dato sorpresa. "
+        "Nada genérico. Si hay imagen, ancla el hook a algo concreto de ella.\n"
+        "2. Cuerpo (2-3 líneas): desarrolla el ángulo, cuenta la experiencia, el contexto o el proceso. "
+        "Si hay imagen, describe algo específico de lo que se ve.\n"
+        f"3. CTA de compra: Pídela aquí → {brand.LINK_COMPRA_WHATSAPP}\n"
+        f"4. Pregunta de cierre (OBLIGATORIA): {brand.PREGUNTAS_ENGAGEMENT}\n"
+        f"5. Hashtags: {' '.join(brand.seleccionar_hashtags())}\n\n"
+        "REGLAS: máx 3 emojis · tono colombiano real · sin bullets · sin listas · "
+        "sin 'Descubre' ni frases de anuncio corporativo."
+    )
+
+    prompt_sistema = (
+        "Eres el community manager de Salsas Bestial, marca colombiana de salsas picantes artesanales.\n"
+        "Escribes como alguien que AMA el picante y conoce la marca por dentro — no como un publicista.\n"
+        "Cada caption debe sonar diferente al anterior. Nunca repitas estructuras ni aperturas.\n"
+        f"{brand.REGLAS_COPY_HUMANO}"
+    )
 
     try:
         caption_raw = cliente.generar(
-            prompt_sistema=(
-                "Eres el community manager de Salsas Bestial, marca colombiana de salsas picantes. "
-                "Haz que la persona se identifique con la experiencia del picante. "
-                "Tono: cercano, real, apasionado. Sin frases publicitarias genéricas."
-            ),
+            prompt_sistema=prompt_sistema,
             prompt_usuario=prompt_usuario,
-            temperatura=0.85,
-            max_tokens=600,
+            temperatura=0.9,
+            max_tokens=650,
         )
     except Exception as _e_claude:
         logger.error("Claude no pudo generar caption: %s", _e_claude, exc_info=True)
@@ -1900,7 +2023,13 @@ class BotTelegram:
 
         else:  # publicar ahora
             _enviar_mensaje("✍️ Generando caption con Claude...")
-            caption = _generar_caption(tipo_pub, pilar) if tipo_pub in ("post", "reel") else ""
+            # Crear item temporal para que _generar_caption pueda analizar la imagen con Vision
+            from agente.gestores.biblioteca import ItemBiblioteca as _IB
+            _item_tmp = _IB(
+                id="tmp", tipo=tipo_pub, nombre_archivo=ruta_tmp.name,
+                ruta_local=str(ruta_tmp), pilar=pilar,
+            )
+            caption = _generar_caption(tipo_pub, pilar, item=_item_tmp) if tipo_pub in ("post", "reel") else ""
 
             rev_id = f"rev_{int(time.time())}"
             self._set_estado(chat_id, "esperando_aprobacion", {
@@ -2769,7 +2898,7 @@ class BotTelegram:
             if item_slot and not item_slot.caption and not ya_paso:
                 try:
                     _enviar_mensaje(f"✍️ Generando caption para {tipo.upper()} del slot {hora_label}...")
-                    caption_gen = _generar_caption(item_slot.tipo, item_slot.pilar or "lifestyle_y_comunidad")
+                    caption_gen = _generar_caption(item_slot.tipo, item_slot.pilar or "lifestyle_y_comunidad", item=item_slot)
                     if caption_gen:
                         item_slot.caption = caption_gen
                         # Persistir en biblioteca.json para que publicar_programado lo use
@@ -3239,6 +3368,7 @@ class BotTelegram:
                 item.caption = _generar_caption(
                     tipo_encontrado,
                     getattr(item, "pilar", "recetas_y_maridajes") or "recetas_y_maridajes",
+                    item=item,
                 )
             except Exception as e:
                 logger.error("Error generando caption: %s", e)
