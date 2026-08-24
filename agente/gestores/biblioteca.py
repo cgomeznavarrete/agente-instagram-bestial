@@ -44,6 +44,7 @@ class ItemBiblioteca:
     archivos_carrusel: list = field(default_factory=list)  # para carruseles multi-imagen
     cloudinary_url: str = ""    # URL pública en Cloudinary (persiste entre runners)
     tema: str = ""              # Tema del carrusel educativo (para caption contextual)
+    descripcion: str = ""       # Descripción del contenido escrita por el usuario (ayuda a generar captions)
 
 
 def _cargar() -> dict:
@@ -70,6 +71,7 @@ def agregar_item(
     tipo: str,
     pilar: str = "lifestyle_y_comunidad",
     caption: str = "",
+    descripcion: str = "",
 ) -> ItemBiblioteca:
     """Sube el archivo a Cloudinary y lo registra en la cola.
 
@@ -115,6 +117,7 @@ def agregar_item(
         pilar=pilar,
         caption=caption,
         cloudinary_url=cloudinary_url,
+        descripcion=descripcion,
     )
 
     data = _cargar()

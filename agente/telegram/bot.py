@@ -401,13 +401,23 @@ def _generar_caption(tipo: str, pilar: str, tema: str | None = None, item=None) 
     angulo = _rnd.choice(ANGULOS_POR_PILAR.get(pilar, ANGULOS_POR_PILAR["lifestyle_y_comunidad"]))
 
     # ── Paso 3: construir el prompt ─────────────────────────────────────────────
-    contexto_visual = (
-        f"\n\nCONTENIDO REAL DE LA IMAGEN/VIDEO:\n{descripcion_visual}\n"
-        "→ El caption DEBE estar anclado a este contenido específico. "
-        "Menciona detalles concretos de lo que se ve, no generalidades."
-        if descripcion_visual else
-        ""
-    )
+    # Descripción escrita por el usuario (tiene prioridad sobre visión)
+    descripcion_usuario = getattr(item, "descripcion", "") if item else ""
+
+    if descripcion_usuario:
+        contexto_visual = (
+            f"\n\nDESCRIPCIÓN DEL CONTENIDO (escrita por el creador):\n{descripcion_usuario}\n"
+            "→ El caption DEBE reflejar exactamente esta situación. "
+            "Úsala como base concreta para el hook y el cuerpo."
+        )
+    elif descripcion_visual:
+        contexto_visual = (
+            f"\n\nCONTENIDO REAL DE LA IMAGEN (analizado por visión):\n{descripcion_visual}\n"
+            "→ El caption DEBE estar anclado a este contenido específico. "
+            "Menciona detalles concretos de lo que se ve, no generalidades."
+        )
+    else:
+        contexto_visual = ""
 
     contexto_tema = (
         f"\n\nTEMA DEL CARRUSEL: «{tema}»\n"
@@ -995,6 +1005,19 @@ class BotTelegram:
                 _enviar_mensaje("❌ Error reescribiendo el caption. Intenta de nuevo.")
             return
 
+        # ── Descripción del contenido (paso nuevo post-pilar) ─────────────
+        if estado["paso"] == "esperando_descripcion":
+            datos_desc = estado.get("datos", {})
+            file_id   = datos_desc.get("file_id", "")
+            extension = datos_desc.get("extension", ".jpg")
+            tipo_pub  = datos_desc.get("tipo_pub", "post")
+            destino   = datos_desc.get("destino", "biblioteca")
+            pilar     = datos_desc.get("pilar", "lifestyle_y_comunidad")
+            # /saltar o texto vacío → sin descripción
+            descripcion = "" if (not texto or texto.strip().lower() in ("/saltar", "saltar", "-")) else texto.strip()
+            self._ejecutar_con_pilar(file_id, extension, tipo_pub, destino, pilar, chat_id, descripcion=descripcion)
+            return
+
         # ── Corrección de caption de biblioteca (/publicar flow) ──────────
         if estado["paso"] == "esperando_correccion_biblioteca" and texto:
             rev_id = estado["datos"].get("rev_id", "")
@@ -1295,8 +1318,27 @@ class BotTelegram:
             tipo_pub  = datos.get("tipo_pub", "post")
             destino   = datos.get("destino", "biblioteca")
 
-            _answer_callback(cb_id, "✍️ Procesando...")
-            self._ejecutar_con_pilar(file_id, extension, tipo_pub, destino, pilar, chat_id)
+            _answer_callback(cb_id, "✅ Pilar guardado")
+            # Solo preguntar descripción para posts y reels (stories no tienen caption)
+            if tipo_pub in ("post", "reel"):
+                self._set_estado(chat_id, "esperando_descripcion", {
+                    **datos,
+                    "pilar": pilar,
+                })
+                _enviar_mensaje(
+                    "📝 <b>¿Qué muestra este contenido?</b>\n\n"
+                    "Escribe una descripción breve de lo que se ve en el video o foto "
+                    "(situación, plato, contexto, qué hace la persona…). "
+                    "Esto ayuda a generar un caption más preciso y alineado.\n\n"
+                    "<i>Ejemplos:\n"
+                    "• un pollo a la brasa bañado en la salsa con humo saliendo\n"
+                    "• mano echando la salsa sobre un taco en la calle\n"
+                    "• persona probando la salsa por primera vez, cara de sorpresa\n"
+                    "• frasco de la salsa al lado de una mazorca y una cerveza</i>\n\n"
+                    "O escribe /saltar para dejarlo en blanco."
+                )
+            else:
+                self._ejecutar_con_pilar(file_id, extension, tipo_pub, destino, pilar, chat_id)
             return
 
         # ── Aprobar/rechazar publicación inmediata ────────────────────────
@@ -1992,8 +2034,12 @@ class BotTelegram:
                 _enviar_mensaje("⏭ Saltado.\n\nEscribe /publicar para ver el siguiente.")
             return
 
-    def _ejecutar_con_pilar(self, file_id: str, extension: str, tipo_pub: str, destino: str, pilar: str, chat_id: str):
-        """Descarga el archivo y ejecuta el flujo según destino (biblioteca o ahora)."""
+    def _ejecutar_con_pilar(self, file_id: str, extension: str, tipo_pub: str, destino: str, pilar: str, chat_id: str, descripcion: str = ""):
+        """Descarga el archivo y ejecuta el flujo según destino (biblioteca o ahora).
+
+        `descripcion` es la descripción opcional del contenido que el usuario escribió,
+        usada para generar captions más precisos y alineados al video/foto.
+        """
         _enviar_mensaje("⬇️ Descargando archivo...")
         ruta_tmp = _descargar_archivo(file_id, extension, tipo=tipo_pub)
         if not ruta_tmp:
@@ -2004,14 +2050,16 @@ class BotTelegram:
         if destino == "biblioteca":
             # Guardar directo sin pedir confirmación extra — el caption se genera al publicar
             try:
-                item = agregar_item(ruta_tmp, tipo_pub, pilar)
+                item = agregar_item(ruta_tmp, tipo_pub, pilar, descripcion=descripcion)
                 ruta_tmp.unlink(missing_ok=True)
                 conteo = contar_pendientes()
                 # Commit inmediato a GitHub para que publicar-programado pueda verlo
                 _commit_biblioteca(item.nombre_archivo)
+                desc_confirmacion = f"\nDescripción: <i>{_html.escape(descripcion[:80])}</i>" if descripcion else ""
                 _enviar_mensaje(
                     f"📚 <b>Guardado en biblioteca</b>\n\n"
-                    f"Tipo: {tipo_pub.upper()} | Pilar: {pilar.replace('_', ' ').title()}\n\n"
+                    f"Tipo: {tipo_pub.upper()} | Pilar: {pilar.replace('_', ' ').title()}"
+                    f"{desc_confirmacion}\n\n"
                     f"Cola: {conteo['post']} posts · {conteo['reel']} reels · {conteo['story']} stories\n\n"
                     f"El caption se genera automaticamente cuando se publique."
                 )
@@ -2023,11 +2071,11 @@ class BotTelegram:
 
         else:  # publicar ahora
             _enviar_mensaje("✍️ Generando caption con Claude...")
-            # Crear item temporal para que _generar_caption pueda analizar la imagen con Vision
+            # Crear item temporal con descripcion para que _generar_caption la use
             from agente.gestores.biblioteca import ItemBiblioteca as _IB
             _item_tmp = _IB(
                 id="tmp", tipo=tipo_pub, nombre_archivo=ruta_tmp.name,
-                ruta_local=str(ruta_tmp), pilar=pilar,
+                ruta_local=str(ruta_tmp), pilar=pilar, descripcion=descripcion,
             )
             caption = _generar_caption(tipo_pub, pilar, item=_item_tmp) if tipo_pub in ("post", "reel") else ""
 
