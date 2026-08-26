@@ -901,7 +901,7 @@ class BotTelegram:
             tipo_m = datos_mod.get("tipo", "post")
             _enviar_mensaje("✍️ Reescribiendo con Claude...")
             try:
-                from agente.claude.cliente_claude import ClienteClaude, limpiar_caption
+                from agente.claude.cliente_claude import limpiar_caption
                 from config import brand_guidelines as _brand
                 cliente_m = ClienteClaude()
                 caption_raw_m = cliente_m.generar(
