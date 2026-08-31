@@ -1,0 +1,46 @@
+{
+  "hook": "¿Cuál de estos eres tú en el asado?",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Fondo negro. Texto grande centrado aparece con efecto de golpe. Sin caras, solo tipografía bold blanca.",
+      "texto_pantalla": "¿Cuál de estos eres tú en el asado?"
+    },
+    {
+      "segundo": "3-9",
+      "visual": "Corte rápido. Fondo negro con número '1' en esquina. Animación de texto que entra desde la izquierda. Ícono minimalista de frasco inclinándose.",
+      "texto_pantalla": "El que dice 'yo no como picante'... y se echa medio frasco cuando nadie lo ve 👀"
+    },
+    {
+      "segundo": "9-15",
+      "visual": "Corte seco. Fondo negro con número '2'. Texto aparece línea por línea con timing dramático. Ícono animado de ojo con lágrima.",
+      "texto_pantalla": "El que presume que aguanta TODO. Está llorando. En silencio. Pero aguanta."
+    },
+    {
+      "segundo": "15-21",
+      "visual": "Corte seco. Fondo negro con número '3'. Texto entra con efecto de zoom. Ícono de bolsillo con frasco asomándose.",
+      "texto_pantalla": "El que llegó al asado con su Salsa Tatemada Ahumada en el bolsillo. Preparado. Siempre."
+    },
+    {
+      "segundo": "21-27",
+      "visual": "Primer plano del frasco de Salsa Tatemada Ahumada sobre fondo negro. Luz lateral que resalta la etiqueta. Texto aparece debajo del frasco con tipografía bold, sin efectos extra.",
+      "texto_pantalla": "Tú sabes cuál eres. — Salsas Bestial"
+    }
+  ],
+  "caption": "En todo asado hay uno de estos tres... y los tres terminan con la Bestial en la mano. ¿A cuál de tus amigos le mandas esto? 🔥",
+  "cta": "Pídela aquí → https://wa.me/573005864523 — ¿Cuál de los tres eres tú? Cuéntanos en los comentarios.",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteLatino",
+    "#HumorFoodie",
+    "#AsadoFamiliar",
+    "#SalsaArtesanal",
+    "#FoodiesColombia",
+    "#ComidaPicante",
+    "#Reels",
+    "#SalsaHot"
+  ],
+  "mood_musica": "humor",
+  "hook_audio": null
+}

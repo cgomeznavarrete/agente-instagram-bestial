@@ -1,0 +1,16 @@
+{
+  "texto_principal": "¿La probaste? Muéstranos cómo quedó.",
+  "texto_secundario": "Te compartimos. Las mejores historias las cuentan quienes cocinan.",
+  "cta": "Etiquétanos en tu historia — @salsasbestial",
+  "elemento_interactivo": {
+    "tipo": "pregunta",
+    "contenido": "¿Con qué la usaste? Cuéntanos 👇"
+  },
+  "descripcion_visual": "Fondo crema texturizado, tipografía negra bold en la parte superior con el texto principal centrado. Ícono de cámara estilizado (trazo fino, negro) debajo del texto. Sticker de mención @salsasbestial ubicado en la parte inferior izquierda. Sin filtros sobre el logo ni sobre el frasco si aparece. Estética limpia, artesanal — nada que parezca plantilla genérica.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#TatemadaAhumada",
+    "#SalsaPicante",
+    "#CocinaLatina"
+  ]
+}

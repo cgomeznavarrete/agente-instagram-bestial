@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "ultima_actualizacion": "2026-08-17T14:22:52.574238",
+  "ultima_actualizacion": "2026-08-31T19:49:53.773481",
   "banco_ideas": [
     {
       "id": "idea-4428a483",
@@ -1319,6 +1319,126 @@
       "concepto": "Secuencia de 4 stories estilo cuenta regresiva para una promoción o cantidad limitada de frascos — sin revelar qué es hasta el último. Story 1: solo un número. Story 2: una imagen borrosa del frasco. Story 3: el precio. Story 4: el link directo a WhatsApp.",
       "notas": "El misterio progresivo en stories mantiene a la gente volviendo a ver el perfil. La escasez real o percibida activa urgencia de compra. Formato simple de producir y con altísima tasa de acción directa.",
       "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-b67e9b16",
+      "fecha_generacion": "2026-08-31",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "humor_picante",
+      "concepto": "POV: tu abuela probando la Tatemada Ahumada por primera vez. Alguien graba la reacción auténtica de una persona mayor al probar la salsa directamente del frasco. Sin edición excesiva, solo la cara real y el comentario que venga.",
+      "notas": "Las reacciones auténticas de personas mayores generan comentarios y compartidos masivos. El contraste generacional es contenido que se viraliza solo en Latinoamérica.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-0a53196f",
+      "fecha_generacion": "2026-08-31",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "educacion_sobre_salsas",
+      "concepto": "Slide 1: '¿Tatemada y ahumada no es lo mismo?' Carrusel explicando la diferencia entre tatematear un chile y el proceso de ahumado. Cada slide tiene una foto distinta del frasco con ingredientes reales alrededor. Termina con el copy: 'Nosotros hacemos los dos. A la vez.'",
+      "notas": "Educa sin aburrir. El dato sorpresa en el primer slide para el scroll. Este tipo de contenido se guarda y se comparte entre foodlovers que quieren parecer expertos.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-368ac475",
+      "fecha_generacion": "2026-08-31",
+      "origen": "claude",
+      "tipo_sugerido": "story",
+      "pilar": "testimonios_y_ugc",
+      "concepto": "Serie de stories: 'Esta semana alguien hizo algo bestial con la salsa.' Repostear mensajes reales de WhatsApp o DMs de clientes —con permiso— mostrando cómo usaron el producto. Sin filtros, sin edición. El screenshot con el fondo de WhatsApp ya es el diseño.",
+      "notas": "Prueba social sin costo de producción. Los screenshots de WhatsApp son el formato más creíble que existe en Latinoamérica. Genera confianza inmediata.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-fcf49e0d",
+      "fecha_generacion": "2026-08-31",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "recetas_y_maridajes",
+      "concepto": "El reel del 'antes y después del plato'. Empanada, huevo, arroz blanco —lo más básico posible— se ve apagado. Le cae un chorro de Tatemada Ahumada. El plato cambia. No hay narración. Solo el sonido del chisporroteo y una canción de fondo que pegue.",
+      "notas": "El formato visual de transformación funciona sin depender de edición compleja. Cualquier comida humilde se convierte en el protagonista, lo cual conecta con la realidad del público latinoamericano.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-f5190b56",
+      "fecha_generacion": "2026-08-31",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "behind_the_scenes",
+      "concepto": "Foto de la cocina real donde se hace la salsa —sin arreglar demasiado— con el copy hablando del proceso de tatemado. Que se vea el trabajo, no el estudio fotográfico. Un solo frasco en primer plano, el resto del proceso desenfocado detrás.",
+      "notas": "La autenticidad vende más que la perfección. Ver el 'making of' real genera conexión emocional con marcas artesanales. Diferencia a Bestial de las salsas industriales.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-cd5b6166",
+      "fecha_generacion": "2026-08-31",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "lifestyle_y_comunidad",
+      "concepto": "Carrusel de 6 slides: 'El tipo de persona que usa Salsas Bestial según su primer plato favorito.' Cada slide: un plato icónico latinoamericano —tacos, arepas, bandeja paisa, salchipapas— con la personalidad del que lo come. Humor sin ofender. El último slide: 'Todos los anteriores. Bienvenido.'",
+      "notas": "Contenido de identidad y pertenencia. La gente etiqueta amigos en este tipo de posts. Alta tasa de interacción orgánica y potencial de viralidad por el factor de identificación regional.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-17092061",
+      "fecha_generacion": "2026-08-31",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "retos_y_pruebas_de_picante",
+      "concepto": "Reto silencioso: alguien pone la salsa en algo inesperado —un trozo de mango, un pedazo de chocolate oscuro— lo prueba sin decir nada y la cámara registra solo la cara. Caption: '¿Mal plan o la mejor decisión del año? Tú decides.' Animar a la comunidad a replicarlo.",
+      "notas": "El silencio en los reels genera tensión y reproduce más veces. El maridaje inesperado dispara comentarios de curiosidad y debate. Fácil de replicar por seguidores.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-0bac0434",
+      "fecha_generacion": "2026-08-31",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "como_comprar",
+      "concepto": "Foto del frasco encima de un celular con WhatsApp abierto —no se ve el número, solo la interfaz— con el copy: 'No hay carrito. No hay formulario. Un mensaje y listo.' Directo al canal de venta sin rodeos.",
+      "notas": "Elimina la fricción mental de compra. Muchos no compran porque no saben cómo. Este post normaliza el canal de WhatsApp como algo simple y confiable, no informal.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-b41d322c",
+      "fecha_generacion": "2026-08-31",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "beneficios_del_producto",
+      "concepto": "Carrusel de 4 slides: 'Lo que tiene la Tatemada Ahumada que las salsas del supermercado no tienen.' Sin bullets. Cada slide es una afirmación en texto grande con el frasco de fondo. Slide final: precio y cómo conseguirla. Tono directo, casi retador.",
+      "notas": "Posicionamiento sin nombrar competidores. El tono retador genera comentarios de defensa de marca o curiosidad. El último slide actúa como CTA natural sin sonar a anuncio.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-3cd583b8",
+      "fecha_generacion": "2026-08-31",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "promociones_y_lanzamientos",
+      "concepto": "Reel de 10 segundos estilo 'unboxing casero': alguien recibe el pedido en casa, abre el empaque, sostiene el frasco frente a la cámara y hace el gesto de aprobación sin decir nada. Caption: 'Así llega. Así se queda.' Con el link al bio para pedir.",
+      "notas": "Simula UGC sin serlo. El unboxing es uno de los formatos con mayor retención en reels cortos. Genera deseo de compra inmediato y muestra el producto en contexto real de entrega.",
+      "prioridad": "alta",
       "usado": false,
       "fecha_uso": null
     }

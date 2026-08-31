@@ -1,0 +1,41 @@
+{
+  "hook": "Los colombianos y el picante... una relación complicada.",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Fondo negro con tipografía animada estilo retro latinoamericano. Texto entra con efecto de golpe.",
+      "texto_pantalla": "Los colombianos y el picante... una relación complicada."
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Escala animada del 1 al 5 aparece progresivamente. Cada nivel entra con un sonido cómico. Iconos simplifcados y colores cálidos — amarillo, naranja.",
+      "texto_pantalla": "Nivel 1: Ají de pajaritos de la abuela 🌶 / Nivel 3: Hogao con un toque / Nivel 5: Eso ya pica, ¿no?"
+    },
+    {
+      "segundo": "8-20",
+      "visual": "Escala sigue subiendo. Del nivel 6 al 9 los colores se vuelven más intensos — naranja a rojo oscuro. Tipografía tiembla en niveles altos. Emoji de llanto animado en nivel 7. Teléfono animado en nivel 9.",
+      "texto_pantalla": "Nivel 7: Estás llorando pero sigues comiendo / Nivel 9: Llamaste a tu mamá / Nivel 10: ..."
+    },
+    {
+      "segundo": "20-25",
+      "visual": "Pantalla completa en rojo quemado. Logo de Salsas Bestial entra con impacto. Frasco de Salsa Tatemada Ahumada aparece centrado, estático, sin filtros. Texto final con tipografía bold.",
+      "texto_pantalla": "Salsa Tatemada Ahumada — y los que llegan aquí, saben. Link en bio."
+    }
+  ],
+  "caption": "La escala existe. El nivel 10 también. ¿En qué nivel te quedas tú — o en cuál te quedaste tieso?",
+  "cta": "Pídela aquí → https://wa.me/573005864523 ¿Tú eres de los que llegan al nivel 10 o te devuelves en el 7?",
+  "hashtags": [
+    "#SalsasBestial",
+    "#PicanteColombiano",
+    "#SalsaTatemada",
+    "#RetoDelPicante",
+    "#ComidaColombiana",
+    "#Foodie",
+    "#SalsaArtesanal",
+    "#EscalaDelPicante",
+    "#HumorColombiano",
+    "#Lovers"
+  ],
+  "mood_musica": "humor",
+  "hook_audio": null
+}

@@ -1,0 +1,17 @@
+{
+  "texto_principal": "Sin shortcuts. Así tiene que ser.",
+  "texto_secundario": "Cada frasco de Tatemada Ahumada tarda lo que tiene que tardar. Sin saborizantes artificiales. Sin atajos. — Salsas Bestial.",
+  "cta": "Responde con 🔥 si valoras lo hecho con calma",
+  "elemento_interactivo": {
+    "tipo": "pregunta",
+    "contenido": "¿Notás la diferencia con una salsa de verdad?"
+  },
+  "descripcion_visual": "Fondo blanco roto (off-white, casi hueso), tipografía negra manuscrita digital centrada. El texto principal ocupa dos tercios superiores de la pantalla, grande y con interlineado generoso. El texto secundario aparece debajo en tamaño notablemente menor, como una nota al pie escrita a mano. La firma '— Salsas Bestial.' va en itálica al final del bloque secundario. Sin elementos decorativos, sin filtros, sin gradientes. El logo aparece pequeño en la esquina superior izquierda, sin modificaciones. Sensación de carta personal escrita a mano, no de publicidad.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#TatemadaAhumada",
+    "#HechoConCalma",
+    "#SalsaArtesanal",
+    "#PicanteDeVerdad"
+  ]
+}

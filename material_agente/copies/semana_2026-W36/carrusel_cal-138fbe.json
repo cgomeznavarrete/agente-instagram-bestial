@@ -1,0 +1,53 @@
+{
+  "caption_principal": "La mayoría de salsas se hacen. Esta se quema. A propósito. Desliza → y entiende por qué el fuego cambia todo.",
+  "cta_caption": "Link en bio para pedirla — ¿tú ya sabías la diferencia entre una salsa tatemada y una cocida, o te lo acabamos de cambiar la vida?",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#ChileAhumado",
+    "#SalsaArtesanal",
+    "#PicanteReal",
+    "#TatemadaAhumada",
+    "#CocinaLatina",
+    "#SalsasMexicanas",
+    "#FoodLovers",
+    "#ElSaborQueNoSeExplica"
+  ],
+  "slides": [
+    {
+      "numero": 1,
+      "titulo": "No es magia. Es el fuego directo.",
+      "subtitulo": "Por qué una salsa tatemada sabe diferente a cualquier otra cosa que hayas probado.",
+      "descripcion_visual": "Fondo negro total. Texto principal en blanco, tipografía bold sin serif, tamaño grande y dominante. El subtítulo en naranja quemado (#C04B00), tipografía más delgada debajo. Sin imágenes del producto — solo texto y una línea diagonal en tono tierra que divide visualmente el slide. Composición centrada, mucho espacio negativo para que el texto respire.",
+      "tipo": "portada"
+    },
+    {
+      "numero": 2,
+      "titulo": "El chile va directo a la llama hasta que la piel se quema.",
+      "subtitulo": "Eso no es un error. Ese es exactamente el sabor.",
+      "descripcion_visual": "Fondo en tono tierra oscuro (#2B1A0E). Ilustración tipográfica minimalista: trazos simples en naranja quemado que sugieren llamas o calor directo — sin fotografía. Texto principal en blanco, bold, alineado a la izquierda. Subtítulo en naranja quemado, cursiva ligera. En la esquina inferior derecha, un ícono minimalista de chile con marcas de quemado — líneas simples, estilo grabado. Paleta: negro, tierra, naranja quemado.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 3,
+      "titulo": "No todas las salsas nacen igual.",
+      "subtitulo": null,
+      "descripcion_visual": "Fondo negro. Tres columnas verticales con separadores en tono tierra. Columna 1: ícono de hoja cruda (trazo blanco minimalista) + texto 'CRUDA — sabor fresco, vegetal, sin profundidad'. Columna 2: ícono de olla (trazo blanco) + texto 'COCIDA — sabor suave, integrado, predecible'. Columna 3: ícono de llama (trazo naranja quemado) + texto 'TATEMADA — sabor profundo, ahumado, con carácter'. La columna tatemada está visualmente destacada: fondo interno en naranja quemado oscuro, texto en blanco. Las otras dos columnas en tono gris oscuro. Tipografía sans serif, todo en mayúsculas para los títulos de columna.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 4,
+      "titulo": "El humo no es decorativo.",
+      "subtitulo": "Penetra la fibra del chile y crea notas que ningún condimento en polvo puede imitar. Nunca.",
+      "descripcion_visual": "Fondo en tierra oscuro (#1E1209). Ilustración tipográfica: texto principal en blanco, muy grande, ocupando casi todo el slide. El subtítulo en naranja quemado debajo, tamaño mediano. A la derecha del slide, ilustración minimalista de líneas onduladas en gris claro que representan el humo — abstractas, no literales. Sin fotografía. La palabra 'NUNCA' al final del subtítulo en mayúsculas y bold, destacada visualmente como si estuviera subrayada con una línea naranja quemado.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 5,
+      "titulo": "Salsas Bestial Tatemada Ahumada.",
+      "subtitulo": "Hecha así porque de otra forma no vale la pena.",
+      "descripcion_visual": "Fondo negro total. Texto principal en blanco, bold, centrado, tamaño grande. Subtítulo en naranja quemado, tipografía más delgada, centrado. Debajo del subtítulo, separador horizontal en tono tierra. CTA en blanco: 'Link en bio para pedirla 🌶' — el emoji es el único elemento gráfico del slide. En la esquina inferior izquierda, el logotipo de Salsas Bestial en blanco, respetado sin modificación alguna. Composición centrada, máximo contraste, cierre limpio y directo.",
+      "tipo": "cta"
+    }
+  ]
+}

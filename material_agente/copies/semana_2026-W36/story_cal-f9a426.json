@@ -1,0 +1,17 @@
+{
+  "texto_principal": "3.000 años de historia. Sin atajos.",
+  "texto_secundario": "El chile tatemado nació en México... Colombia lo hizo suyo. Bestial lo puso en frasco.",
+  "cta": "Desliza para conocerla 🔥",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "¿Sabías esto del chile tatemado? | Sí, claro 🌶 / Me acaban de abrir los ojos"
+  },
+  "descripcion_visual": "Fondo color tierra oscuro (#3B1F0E). Tipografía bold sans-serif en blanco roto para el texto principal, ocupando 60% de la pantalla. Texto secundario en gris cálido, tamaño pequeño, centrado debajo. CTA en la parte inferior con tipografía itálica y el emoji de fuego como único acento visual. Sin foto de producto. Sin filtros. Composición limpia, jerarquía tipográfica clara. Sensación artesanal y directa.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#ChileTatemado",
+    "#SalsaArtesanal",
+    "#PicanteReal"
+  ]
+}
