@@ -1,0 +1,13 @@
+{
+  "texto_principal": "Seamos honestos...",
+  "texto_secundario": "¿Aguantas el picante o eres de los que soplan el tenedor?",
+  "cta": "Responde la encuesta — sin mentiras",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "Opción A: 'Soy bestial 🌶' / Opción B: 'Soplo el tenedor y no me da pena'"
+  },
+  "descripcion_visual": "Fondo negro mate con el frasco de Salsa Tatemada Ahumada centrado, ligeramente inclinado. Texto en blanco con tipografía bold para 'Seamos honestos...' y una línea más delgada para la pregunta. Sticker de encuesta nativo de Instagram debajo del texto. Sin filtros sobre el frasco. Iluminación dramática lateral que resalte el frasco sin alterar colores de etiqueta.",
+  "hashtags_ocultos": [
+    "#SalsasBestial"
+  ]
+}

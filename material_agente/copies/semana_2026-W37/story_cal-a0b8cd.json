@@ -1,0 +1,17 @@
+{
+  "texto_principal": "Pero hay Tatemada Ahumada.",
+  "texto_secundario": "Todo cambia.",
+  "cta": "Responde la encuesta",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "¿Tienes tu frasco? | Sí 🔥 / Todavía no"
+  },
+  "descripcion_visual": "Serie de 3 slides con fondo negro puro (#000000). Tipografía blanca, sans-serif, centrada — estilo subtítulo de película europea. Slide 1: 'Domingo por la noche. La nevera medio vacía. El ánimo por el suelo.' — fuente tamaño medio, ritmo lento, sin animación brusca. Slide 2: 'Pero hay Tatemada Ahumada.' — texto más grande, ligero zoom in al aparecer, pausa dramática de 2 segundos. Slide 3: 'Todo cambia.' — texto mínimo, centrado, fade in suave. Sin música estridente — si hay sonido, apenas un bajo ambiente. La encuesta aparece en el Slide 3, discreta, parte inferior de pantalla. Sin logos, sin producto visible. El silencio visual hace el trabajo.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#TatemadaAhumada",
+    "#SalsaPicante",
+    "#DomingoMode",
+    "#ComidaLatina"
+  ]
+}

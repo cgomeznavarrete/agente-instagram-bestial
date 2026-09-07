@@ -1,0 +1,17 @@
+{
+  "texto_principal": "Cada lote se tatemea a mano. Sin atajos.",
+  "texto_secundario": "Por eso sabe así — y no como cualquier cosa.",
+  "cta": "Responde este mensaje si quieres saber cómo se hace 👇",
+  "elemento_interactivo": {
+    "tipo": "pregunta",
+    "contenido": "¿Quieres ver el proceso completo?"
+  },
+  "descripcion_visual": "Fondo negro o gris carbón muy oscuro. Texto en blanco, tipografía sans-serif ligera, alineado a la izquierda como un mensaje de WhatsApp real. Sin marcos ni decoraciones. Un solo detalle sutil: una línea de onda de audio (como nota de voz) debajo del texto principal, en color rojo Bestial apagado. Sin filtros sobre el logo si aparece — solo texto y textura de fondo. Atmósfera: íntimo, crudo, honesto.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#TatemadaAhumada",
+    "#SalsaArtesanal",
+    "#HechoAMano",
+    "#PicanteReal"
+  ]
+}

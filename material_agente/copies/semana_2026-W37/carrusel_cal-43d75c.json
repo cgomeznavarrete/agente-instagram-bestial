@@ -1,0 +1,53 @@
+{
+  "caption_principal": "La mayoría de salsas picantes solo gritan. Esta habla. Hay una diferencia entre picante y sabor — y la mayoría de la gente nunca la ha notado porque nadie se tomó el tiempo de explicarla. Desliza → y te cuento qué pasa cuando el fuego hace el trabajo de verdad.",
+  "cta_caption": "¿Tú cuándo fue la última vez que una salsa te cambió el plato completo? Cuéntanos abajo.",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteDeVerdad",
+    "#SalsaArtesanal",
+    "#TatemadoAlFuego",
+    "#CocinaLatina",
+    "#FoodiesLatam",
+    "#SaborProfundo",
+    "#ChileYFuego",
+    "#SalsaQueEnamora"
+  ],
+  "slides": [
+    {
+      "numero": 1,
+      "titulo": "La mayoría de salsas picantes mienten. Esta no.",
+      "subtitulo": "Por qué una salsa tatemada sabe diferente a todo lo demás.",
+      "descripcion_visual": "Fondo negro profundo. Tipografía grande y bold en blanco para el título principal. El subtítulo en naranja quemado, tamaño más pequeño debajo. Ícono minimalista de llama centrado en la parte superior, en tono naranja quemado. Sin imágenes de producto. Estilo editorial — como la portada de una revista de gastronomía underground. Espaciado generoso entre elementos para dar peso visual al texto.",
+      "tipo": "portada"
+    },
+    {
+      "numero": 2,
+      "titulo": "Tatemar: quemar con propósito.",
+      "subtitulo": "No es accidente. Es técnica.",
+      "descripcion_visual": "Fondo oscuro carbón. Ilustración minimalista de un chile directamente sobre una llama — líneas simples, estilo icónico, en naranja quemado. Título en blanco, bold, mitad superior del slide. Subtítulo en naranja quemado debajo del título. Texto de cuerpo pequeño en blanco tenue: 'Poner los ingredientes directo al fuego — chile, jitomate, ajo — hasta que la piel se quema. Ese quemado controlado libera azúcares, profundiza el sabor y crea el ahumado que ningún colorante artificial puede imitar.' Margen inferior con una línea fina naranja como separador de marca.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 3,
+      "titulo": "El ahumado no es solo olor. Es otra dimensión del sabor.",
+      "subtitulo": null,
+      "descripcion_visual": "Fondo negro. Ícono de ondas de humo estilizadas en naranja quemado, centrado en la parte superior. Título en blanco, tipografía bold, ocupando el centro visual del slide. Texto de cuerpo en blanco tenue, tamaño pequeño: 'El humo activa receptores de sabor distintos al picante puro. No compite con él — lo envuelve. Por eso cada mordida tiene capas: primero el ahumado, luego el calor, luego el sabor del chile. No es una nota. Es una canción.' Sin más elementos decorativos — el texto hace todo el trabajo.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 4,
+      "titulo": "No la uses solo de aderezo. Úsala bien.",
+      "subtitulo": "Cuatro formas que cambian el juego.",
+      "descripcion_visual": "Fondo oscuro. Cuatro íconos minimalistas en naranja quemado dispuestos en cuadrícula 2x2: un huevo, una olla de sopa, una pieza de carne marinando, y un taco. Cada ícono acompañado de una etiqueta en blanco: 'Huevos revueltos', 'Base de marinada', 'Sopas y caldos', 'Tacos y antojitos'. Título en blanco bold en la parte superior. Subtítulo en naranja quemado justo debajo del título. Estética de infografía editorial — limpia, sin ruido visual.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 5,
+      "titulo": "Ahora que sabes lo que es... ¿vas a seguir comiendo salsas normales?",
+      "subtitulo": "Link en bio. Salsas Bestial.",
+      "descripcion_visual": "Fondo negro con textura sutil de quemado — como papel chamuscado en los bordes, muy sutil. Título en blanco bold, centrado, ocupando la mayor parte del slide. Subtítulo en naranja quemado debajo, con el logo de Salsas Bestial en la parte inferior centrado — en blanco, respetando proporciones originales sin modificación. Una línea fina naranja separa el subtítulo del logo. Sin más elementos. Máximo silencio visual para máximo impacto del texto.",
+      "tipo": "cta"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "ultima_actualizacion": "2026-08-31T19:49:53.773481",
+  "ultima_actualizacion": "2026-09-07T18:34:59.975960",
   "banco_ideas": [
     {
       "id": "idea-4428a483",
@@ -1439,6 +1439,126 @@
       "concepto": "Reel de 10 segundos estilo 'unboxing casero': alguien recibe el pedido en casa, abre el empaque, sostiene el frasco frente a la cámara y hace el gesto de aprobación sin decir nada. Caption: 'Así llega. Así se queda.' Con el link al bio para pedir.",
       "notas": "Simula UGC sin serlo. El unboxing es uno de los formatos con mayor retención en reels cortos. Genera deseo de compra inmediato y muestra el producto en contexto real de entrega.",
       "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-c58606e4",
+      "fecha_generacion": "2026-09-07",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "retos_y_pruebas_de_picante",
+      "concepto": "Reel de 30 segundos donde alguien prueba la Salsa Tatemada Ahumada directamente con una cuchara —sin comida— y graba su reacción en tiempo real. Sin edición exagerada, sin actuación. Solo la cara honesta del picante.",
+      "notas": "Las reacciones auténticas al picante son el contenido más compartido en TikTok e Instagram. El formato sin edición genera confianza y comentarios masivos tipo 'yo también quiero intentarlo'.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-1a51383f",
+      "fecha_generacion": "2026-09-07",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "recetas_y_maridajes",
+      "concepto": "Carrusel de 6 slides titulado 'Con qué NO mezclar la Tatemada Ahumada' — cada slide muestra una combinación inesperada que sí funciona (helado de vainilla, aguacate, pizza de pepperoni) con foto real del frasco al lado del alimento.",
+      "notas": "El formato de 'lo que no deberías hacer pero funciona' genera curiosidad y shares. Rompe expectativas y posiciona la salsa como versátil y experimental.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-da78821b",
+      "fecha_generacion": "2026-09-07",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "behind_the_scenes",
+      "concepto": "Foto editorial del frasco de Tatemada Ahumada sobre una mesa rústica con los ingredientes crudos usados en la receta alrededor —chiles, ajo, jitomate tatemado— sin texto superpuesto, solo el copy en el caption.",
+      "notas": "Las fotos de origen e ingredientes generan percepción artesanal y de calidad. Ideal para educar sin aburrir y diferenciarse de salsas industriales.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-a7fd35c8",
+      "fecha_generacion": "2026-09-07",
+      "origen": "claude",
+      "tipo_sugerido": "story",
+      "pilar": "como_comprar",
+      "concepto": "Serie de 3 stories estilo 'tutorial de 60 segundos': Story 1 muestra el frasco con texto '¿Sabes cómo conseguirla?', Story 2 explica el proceso de compra por WhatsApp con capturas reales, Story 3 es un sticker de enlace directo al WhatsApp con CTA urgente.",
+      "notas": "Eliminar la fricción de compra es la táctica más directa para convertir seguidores en clientes. Las stories con proceso claro de compra reducen el abandono.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-f46daa59",
+      "fecha_generacion": "2026-09-07",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "humor_picante",
+      "concepto": "Reel de 15 segundos con formato 'expectativa vs realidad': la expectativa es alguien añadiendo una gotita tímida de salsa a su comida, la realidad es el mismo frasco casi vacío encima del plato. Audio trending latinoamericano de contraste.",
+      "notas": "El humor de identificación —'así soy yo'— es el motor principal de shares orgánicos. El formato corto lo hace ideal para ser compartido en chats de WhatsApp entre amigos.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-1859a910",
+      "fecha_generacion": "2026-09-07",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "educacion_sobre_salsas",
+      "concepto": "Carrusel de 5 slides: 'Por qué el ahumado cambia todo' — explica de forma simple qué es el proceso de tatemado, cómo afecta el sabor y por qué no es lo mismo que solo agregar chile. Diseño limpio con foto del producto en la última slide.",
+      "notas": "El contenido educativo bien explicado genera guardados masivos, que es la métrica que más favorece el algoritmo de Instagram actualmente.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-813e9246",
+      "fecha_generacion": "2026-09-07",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "testimonios_y_ugc",
+      "concepto": "Foto del frasco con una cita real de un cliente en el caption —sin gráfica sobreproducida— escrita exactamente como el cliente la dijo, jerga y todo. La autenticidad del lenguaje es el punto.",
+      "notas": "Los testimonios sin editar generan más credibilidad que los testimonios pulidos. El contraste entre foto limpia del producto y texto crudo del cliente es visualmente efectivo.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-3b7f0a7c",
+      "fecha_generacion": "2026-09-07",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "lifestyle_y_comunidad",
+      "concepto": "Reel de 20 segundos grabado en una reunión informal —asado, partido de fútbol, tarde de tacos— donde la Salsa Tatemada aparece naturalmente en la mesa y alguien la agarra sin que sea el centro de atención. El producto integrado al momento, no al revés.",
+      "notas": "El contenido de producto-en-contexto-real tiene tasas de conversión más altas que el contenido de producto-en-primer-plano. Conecta emocionalmente con la audiencia objetivo latina de 22-45 años.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-2d1f0f60",
+      "fecha_generacion": "2026-09-07",
+      "origen": "claude",
+      "tipo_sugerido": "story",
+      "pilar": "promociones_y_lanzamientos",
+      "concepto": "Story con temporizador real de cuenta regresiva hacia el cierre de un lote disponible —sin fecha de reposición confirmada— con foto del frasco y el número de unidades que quedan escritas a mano sobre la imagen.",
+      "notas": "La escasez real —no fabricada— es el disparador de compra más poderoso. El número escrito a mano refuerza la sensación artesanal y de edición limitada.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-86436d59",
+      "fecha_generacion": "2026-09-07",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "beneficios_del_producto",
+      "concepto": "Carrusel de 4 slides titulado 'Lo que pasa cuando dejas de comer salsa sin sabor' — cada slide contrasta una comida aburrida con la misma comida con Tatemada Ahumada. Sin texto motivacional genérico, solo imágenes directas y copy seco.",
+      "notas": "El contraste visual antes/después en formato carrusel retiene la atención hasta el último slide. El tono seco y sin exageración encaja con la identidad de marca atrevida y directa.",
+      "prioridad": "media",
       "usado": false,
       "fecha_uso": null
     }

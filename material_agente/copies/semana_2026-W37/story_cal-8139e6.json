@@ -1,0 +1,16 @@
+{
+  "texto_principal": "¿Quieres la Tatemada Ahumada? Un mensaje.",
+  "texto_secundario": "Sin apps raras. Sin cuentas. Sin vuelta.",
+  "cta": "Toca el enlace y escríbenos por WhatsApp ahora",
+  "elemento_interactivo": {
+    "tipo": "ninguno",
+    "contenido": null
+  },
+  "descripcion_visual": "Slide 1: Fondo en color de marca (rojo intenso o negro según paleta Bestial), texto principal centrado en blanco, tipografía bold y grande. Logo de Salsas Bestial en esquina superior izquierda sin deformar ni recortar, sin ningún filtro encima. Sticker de enlace de WhatsApp (https://wa.me/573005864523) posicionado en la parte inferior central, con texto 'Escríbenos'. Sin efectos ni filtros sobre el logo. Slide 2: Mismo fondo de marca, texto secundario centrado en blanco con tipografía ligeramente más pequeña, tono limpio y directo. Sin elementos adicionales que distraigan.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#TatemadaAhumada",
+    "#SalsaPicante",
+    "#HechoConActitud"
+  ]
+}

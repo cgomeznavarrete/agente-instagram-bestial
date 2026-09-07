@@ -1,0 +1,46 @@
+{
+  "hook": "Tu familia en el asado tiene exactamente 3 tipos de personas.",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Fondo negro. Tipografía blanca bold, letras grandes que aparecen de golpe con efecto de impacto.",
+      "texto_pantalla": "Tu familia en el asado tiene exactamente 3 tipos de personas."
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Fondo negro. Aparece ícono simple animado de un tío con bigote. Texto entra desde la izquierda con efecto slide.",
+      "texto_pantalla": "🔥 EL TÍO: 'Yo le pongo a todo. Desde niño. No me hace nada.'"
+    },
+    {
+      "segundo": "8-14",
+      "visual": "Fondo negro. Ícono animado de mamá con cuchara. Texto entra desde arriba, tipografía más suave pero igual de grande.",
+      "texto_pantalla": "LA MAMÁ: 'Eso hace daño, mijo. El médico me dijo...'"
+    },
+    {
+      "segundo": "14-20",
+      "visual": "Fondo negro. Ícono animado de primo con lágrimas y tenedor en mano. Texto tiembla levemente, efecto shake.",
+      "texto_pantalla": "EL PRIMO: *llora* *sigue comiendo* *no para*"
+    },
+    {
+      "segundo": "20-27",
+      "visual": "Fondo negro total. Aparece el nombre SALSAS BESTIAL en tipografía impactante centrada. Subtexto pequeño debajo. Sin producto en cámara.",
+      "texto_pantalla": "Tú ya sabes cuál eres. — Salsas Bestial."
+    }
+  ],
+  "caption": "En cada familia hay uno de cada tipo... y todos terminan pidiéndola de nuevo. ¿Cuál eres tú? 👇",
+  "cta": "Pídela aquí → https://wa.me/573005864523 | ¿A quién de tu familia le mandarías una de estas?",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaPicante",
+    "#HumorLatino",
+    "#FamiliaLatina",
+    "#AsadoFamiliar",
+    "#PicanteReal",
+    "#SalsaArtesanal",
+    "#TalemadaAhumada",
+    "#ComidaLatina",
+    "#ReelsColombia"
+  ],
+  "mood_musica": "humor",
+  "hook_audio": "Tu familia en el asado tiene exactamente tres tipos de personas. Y todos — sin excepción — terminan pidiéndola de nuevo."
+}
