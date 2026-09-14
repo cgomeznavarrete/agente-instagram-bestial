@@ -34,7 +34,7 @@ class ItemBiblioteca:
     tipo: str          # post | reel | story | carrusel
     nombre_archivo: str
     ruta_local: str
-    fecha_agregado: float
+    fecha_agregado: float = field(default_factory=time.time)
     estado: str = "pendiente"   # pendiente | publicado | descartado
     pilar: str = "lifestyle_y_comunidad"
     caption: str = ""
