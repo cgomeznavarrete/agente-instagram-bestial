@@ -1,0 +1,16 @@
+{
+  "texto_principal": "¿Todavía lo estás pensando?",
+  "texto_secundario": "La salsa no se va a pedir sola.",
+  "cta": "Enlace directo al WhatsApp — escríbenos ya 👇",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "¿Ya pediste tu Salsa Tatemada? | Sí, ya la tengo 🔥 / Aún no... me animo hoy"
+  },
+  "descripcion_visual": "Frame 1: Fondo rojo quemado texturizado, texto blanco en tipografía bold centrada. El texto '¿Todavía lo estás pensando?' aparece con fade in lento (0.8s). Debajo, con un delay de 1 segundo, aparece en tipografía más pequeña y ligera: 'La salsa no se va a pedir sola.' Sin filtros sobre el frasco si aparece — luz natural lateral. Frame 2: Mismo fondo. Texto '¿Qué esperas?' en grande, fade in. Sticker de enlace pegado justo debajo apuntando a https://wa.me/573005864523. Encuesta interactiva de Instagram visible en la parte inferior. Transición entre frames: corte seco, sin disolvencia.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteReal",
+    "#HechoEnColombia"
+  ]
+}

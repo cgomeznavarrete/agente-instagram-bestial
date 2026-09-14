@@ -1,0 +1,15 @@
+{
+  "texto_principal": "¿Ya tienes tu Tatemada Ahumada?",
+  "texto_secundario": "Escríbenos — en 24h la tienes en casa.",
+  "cta": "Enlace directo al WhatsApp 👆",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "¿Ya la probaste? | Sí, es brutal / Todavía no 😬"
+  },
+  "descripcion_visual": "Fondo negro sólido. Texto principal en blanco, tipografía bold sans-serif, centrado en pantalla. La palabra 'Tatemada Ahumada' resaltada en rojo intenso (#CC0000). Texto secundario debajo, blanco, tamaño menor, estilo casual. Sticker de enlace a https://wa.me/573005864523 posicionado en la parte inferior, con etiqueta 'Pedir aquí'. Sin fotografía del frasco ni filtros. Sin elementos decorativos extra — solo texto y el sticker. Diseño tipo mensaje directo, sin ruido visual.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteArtesanal"
+  ]
+}

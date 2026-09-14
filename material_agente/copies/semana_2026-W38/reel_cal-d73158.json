@@ -1,0 +1,41 @@
+{
+  "hook": "El que desayuna sin salsa... ¿en qué está pensando?",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Plano cenital cerrado: mano vierte lentamente la Salsa Tatemada Ahumada sobre huevos revueltos humeantes. El chisporroteo ASMR llena el audio. Nada más.",
+      "texto_pantalla": "El que desayuna sin salsa..."
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Corte rápido al texto completándose en pantalla. Luego plano medio del cocinero mirando el plato con cara de 'esto ya era perfecto... pero ahora es otra cosa'.",
+      "texto_pantalla": "¿en qué está pensando?"
+    },
+    {
+      "segundo": "8-20",
+      "visual": "El cocinero da el primer mordisco. Pausa de 1 segundo. Cierra los ojos. Reacción: sacude la mano como si quemara, suelta un 'ajá' silencioso con la cabeza, sonrisa imposible de ocultar. No actúa — reacciona. El reggaetón clásico entra suave de fondo.",
+      "texto_pantalla": "Salsa Tatemada Ahumada 🔥 — el desayuno ya no es el mismo"
+    },
+    {
+      "segundo": "20-25",
+      "visual": "Plano del frasco de Salsa Tatemada Ahumada sobre la mesa junto al plato. Logo de Salsas Bestial aparece limpio en esquina. Voz ambiente del cocinero dice en off natural: 'Link en bio'.",
+      "texto_pantalla": "Pídela → link en bio"
+    }
+  ],
+  "caption": "El desayuno era bueno. Con Bestial... ya es un problema — porque no vas a querer parar. ¿A quién de tu casa le urge probar esto?",
+  "cta": "Pídela aquí → https://wa.me/573005864523 | ¿A quién de tu casa le urge probar esto?",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#DesayunoConActitud",
+    "#PicanteDeVerdad",
+    "#SalsaArtesanal",
+    "#HuevosRevueltos",
+    "#FoodLovers",
+    "#CocinaLatina",
+    "#AhumadoYPicante",
+    "#RetoDelPicante"
+  ],
+  "mood_musica": "upbeat_latino",
+  "hook_audio": null
+}

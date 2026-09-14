@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "ultima_actualizacion": "2026-09-07T18:34:59.975960",
+  "ultima_actualizacion": "2026-09-14T19:02:50.142873",
   "banco_ideas": [
     {
       "id": "idea-4428a483",
@@ -1559,6 +1559,126 @@
       "concepto": "Carrusel de 4 slides titulado 'Lo que pasa cuando dejas de comer salsa sin sabor' — cada slide contrasta una comida aburrida con la misma comida con Tatemada Ahumada. Sin texto motivacional genérico, solo imágenes directas y copy seco.",
       "notas": "El contraste visual antes/después en formato carrusel retiene la atención hasta el último slide. El tono seco y sin exageración encaja con la identidad de marca atrevida y directa.",
       "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-7bb37c15",
+      "fecha_generacion": "2026-09-14",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "recetas_y_maridajes",
+      "concepto": "Reel de 30 segundos mostrando cómo transformar unos simples huevos revueltos del domingo con dos gotas de Salsa Tatemada Ahumada. Sin texto en pantalla, solo el sonido del chisporroteo y una canción regional mexicana de fondo. Cierra con el plato terminado y el frasco al lado.",
+      "notas": "El desayuno del domingo es un ritual latinoamericano. Contenido fácil de replicar por usuarios, alto potencial de UGC espontáneo. Sin ingredientes raros, accesible para cualquiera.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-13bc665e",
+      "fecha_generacion": "2026-09-14",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "humor_picante",
+      "concepto": "Foto del frasco con copy directo estilo confesión: 'Le puse salsa a la pizza de mi novia sin avisarle. Ya no es mi novia.' Imagen limpia, fondo neutro, frasco centrado. Solo el copy hace el trabajo.",
+      "notas": "Formato meme pero sin ser meme. Copy corto con alta probabilidad de compartirse por identificación. No requiere producción costosa.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-554582b0",
+      "fecha_generacion": "2026-09-14",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "educacion_sobre_salsas",
+      "concepto": "Carrusel de 5 slides: 'Las 5 salsas que todo colombiano conoce... y la que falta.' Slides 1-5 mencionan salsas clásicas locales con humor. El slide final presenta la Tatemada Ahumada como 'la que nadie te había presentado'. Diseño gráfico sencillo, tipografía bold.",
+      "notas": "Ancla la marca en el contexto culinario local colombiano. Genera debate en comentarios sobre cuál salsa es favorita. El formato lista-con-giro-final retiene al usuario hasta el final.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-6c4da555",
+      "fecha_generacion": "2026-09-14",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "retos_y_pruebas_de_picante",
+      "concepto": "Reel de reacción honesta: alguien de confianza (familiar, amigo del equipo) prueba la salsa por primera vez sin saber qué esperar. Sin edición exagerada, sin actuación. Solo la reacción real, el sudor real, la sonrisa real al final.",
+      "notas": "La autenticidad de las reacciones genuinas supera cualquier producción elaborada. Muy compartible. Invita a la audiencia a enviar sus propias reacciones por WhatsApp.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-a0d76aec",
+      "fecha_generacion": "2026-09-14",
+      "origen": "claude",
+      "tipo_sugerido": "story",
+      "pilar": "como_comprar",
+      "concepto": "Serie de 3 stories tipo 'tutorial rápido': Story 1 - pregunta '¿Sabes cómo pedirla?' Story 2 - GIF o video corto mostrando el proceso real de pedir por WhatsApp (pantalla del chat). Story 3 - confirmación del pedido con sticker de conteo regresivo.",
+      "notas": "Elimina la fricción de compra. Muchos usuarios no saben cómo pedir por WhatsApp directo. Convertir la duda en acción con pasos visuales simples.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-ec36bfcb",
+      "fecha_generacion": "2026-09-14",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "behind_the_scenes",
+      "concepto": "Foto cercana de las manos sosteniendo chiles tatemados recién salidos del fuego, con el frasco de la salsa final en el fondo ligeramente desenfocado. Copy que hable del proceso sin romanticizarlo demasiado - crudo y honesto.",
+      "notas": "Conecta el producto final con el origen artesanal. La imagen del proceso manual genera confianza y diferenciación frente a salsas industriales.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-043a9cc4",
+      "fecha_generacion": "2026-09-14",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "testimonios_y_ugc",
+      "concepto": "Carrusel de 4 slides con frases reales de clientes convertidas en diseño tipográfico. No capturas de pantalla - las frases rediseñadas en formato visual limpio. Slide final: invitación a compartir su experiencia por WhatsApp para aparecer en el próximo.",
+      "notas": "Prueba social presentada de forma estética. Genera comunidad y motiva a más clientes a enviar testimonios. Crea un ciclo de contenido sostenible.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-b602c8bc",
+      "fecha_generacion": "2026-09-14",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "lifestyle_y_comunidad",
+      "concepto": "Reel de 20 segundos mostrando el momento exacto en que alguien saca el frasco de Salsas Bestial en una reunión de amigos viendo fútbol. Las reacciones del grupo, el ritual de pasarlo de mano en mano, nadie pide permiso para usarla.",
+      "notas": "El fútbol y las reuniones son cultura colombiana pura. El frasco como protagonista social, no solo culinario. Alta identificación con el momento representado.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-918b6a48",
+      "fecha_generacion": "2026-09-14",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "beneficios_del_producto",
+      "concepto": "Foto del frasco abierto con vapor sutil visible - fotografía de producto bien ejecutada. Copy que hable del ahumado como sabor, no como tendencia: 'Esto no es moda. Es la forma en que se cocinaba antes de que existieran los atajos.'",
+      "notas": "Posiciona la artesanalidad como valor diferencial sin sonar pretencioso. El copy apela a la nostalgia y al anti-industrialismo que resuena en la audiencia objetivo.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-1d6ce272",
+      "fecha_generacion": "2026-09-14",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "recetas_y_maridajes",
+      "concepto": "Carrusel de 6 slides: 'Con qué NO va la Tatemada Ahumada' - el giro es que todos los maridajes 'prohibidos' en realidad sí funcionan. Slide 1: 'Con helado... no, espera.' Slide final revela que probaron todo y el resultado fue inesperadamente bueno.",
+      "notas": "El formato de expectativa-subversión retiene la atención en todos los slides. Genera comentarios de incredulidad y curiosidad. Invita a replicar los experimentos en casa.",
+      "prioridad": "alta",
       "usado": false,
       "fecha_uso": null
     }

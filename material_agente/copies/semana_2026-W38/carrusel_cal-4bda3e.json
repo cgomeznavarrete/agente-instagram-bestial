@@ -1,0 +1,72 @@
+{
+  "caption_principal": "El chile tatemado tiene más historia que la mayoría de recetas que conoces. Y más sabor del que te imaginas. Desliza → porque el dato del slide 4 te va a cambiar cómo piensas en el picante.",
+  "cta_caption": "La Salsa Tatemada Ahumada de Bestial nació de todo esto. No de un laboratorio — de fuego real. Encuéntrala en el link de la bio. ¿Ya sabías que el ahumado cambia cómo sentimos el picante? Cuéntanos abajo.",
+  "hashtags": [
+    "#SalsasBestial",
+    "#ChileTatemado",
+    "#SalsaArtesanal",
+    "#CulturaChilera",
+    "#AhumadoArtesanal",
+    "#SalsaPicante",
+    "#GastronomíaMexicana",
+    "#TatemadoReal",
+    "#FoodieLatinoamerica",
+    "#PicanteConCarácter"
+  ],
+  "slides": [
+    {
+      "numero": 1,
+      "titulo": "5 cosas que no sabías sobre el chile tatemado",
+      "subtitulo": "(y una que te va a dar hambre)",
+      "descripcion_visual": "Fondo negro carbón con textura rugosa sutil. Texto grande en crema, tipografía bold con carácter artesanal. Una llama ilustrada en rojo quemado que envuelve el número '5' desde abajo. Sin fotografías de producto en este slide. Ambiente oscuro, dramático, como brasa encendida.",
+      "tipo": "portada"
+    },
+    {
+      "numero": 2,
+      "titulo": "Tatemar no es asar. Es otra cosa.",
+      "subtitulo": null,
+      "descripcion_visual": "Fondo rojo quemado oscuro. Texto en crema centrado, tipografía mediana con espaciado generoso. Ilustración minimalista de un chile sobre brasas directas — sin sartén, sin parrilla convencional. El chile casi toca el fuego. Ambiente crudo, ancestral.",
+      "descripcion_copy": "Asar es indirecto. Tatemar es poner el chile directo sobre la llama o el comal sin aceite, sin agua — solo fuego y tiempo. La piel se quema. Y eso no es un error. Eso es el punto.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 3,
+      "titulo": "Esto lo hacían antes de que existiera tu receta favorita.",
+      "subtitulo": null,
+      "descripcion_visual": "Fondo negro carbón. Texto principal en crema. Elemento gráfico sutil: silueta de pirámide mesoamericana o glifo estilizado en rojo quemado muy tenue en el fondo. Tipografía con carácter histórico pero legible. Sensación de antigüedad sin ser kitsch.",
+      "descripcion_copy": "La técnica del tatemado viene de las cocinas mesoamericanas — mucho antes del molcajete de TikTok. Las culturas prehispánicas ya usaban el fuego directo para concentrar sabores en chiles y jitomates. No es tendencia. Es memoria.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 4,
+      "titulo": "El ahumado no solo da sabor. Engaña a tu cerebro.",
+      "subtitulo": null,
+      "descripcion_visual": "Fondo negro con volutas de humo ilustradas en gris muy sutil. Texto en crema con la palabra 'engaña' resaltada en rojo quemado. Composición asimétrica, dinámica. Sensación de algo revelándose — como un secreto.",
+      "descripcion_copy": "Los compuestos del ahumado interactúan con los receptores del dolor en tu boca. El resultado: percibes el picante más intenso de lo que marca la escala Scoville. No es que el chile sea más picante. Es que el humo amplifica la experiencia. Literalmente.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 5,
+      "titulo": "El color negro de la piel no se desperdicia.",
+      "subtitulo": null,
+      "descripcion_visual": "Fondo rojo quemado profundo. Texto en crema. Ilustración detallada de un chile tatemado con piel ennegrecida — ese negro que parece quemado pero es perfecto. Sin filtros artificiales. Estética raw, honesta.",
+      "descripcion_copy": "Mucha gente pela el chile tatemado y bota la piel negra. Error. Ahí está concentrado el ahumado, el amargor que equilibra el picante, la complejidad. Las salsas artesanales serias — las que saben a algo — respetan esa piel.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 6,
+      "titulo": "Por eso la Bestial sabe diferente.",
+      "subtitulo": null,
+      "descripcion_visual": "Fondo negro carbón. Texto en crema con 'Bestial' en rojo quemado bold. Fotografía real del frasco de Salsa Tatemada Ahumada sin filtros de color — iluminación natural dramática, fondo oscuro, frasco protagonista. La etiqueta debe verse nítida, sin alteraciones.",
+      "descripcion_copy": "La Salsa Tatemada Ahumada de Bestial usa ese proceso — el real, el que lleva tiempo, el que mancha las manos. No hay atajos. El ahumado es artesanal, el tatemado es directo. Y se nota en el primer toque.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 7,
+      "titulo": "Pruébala.",
+      "subtitulo": "Link en bio. 🔥",
+      "descripcion_visual": "Fondo dividido: mitad negro carbón, mitad rojo quemado. Texto 'Pruébala.' en crema muy grande, casi minimalista. Subtitulo 'Link en bio.' en tamaño menor. Logo de Salsas Bestial centrado en la parte inferior, sin modificaciones ni filtros. Composición limpia, directa, sin elementos decorativos adicionales. Máximo impacto con mínimos elementos.",
+      "tipo": "cta"
+    }
+  ]
+}

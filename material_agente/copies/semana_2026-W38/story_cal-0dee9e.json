@@ -1,0 +1,13 @@
+{
+  "texto_principal": "¿Y tú, qué le metes esta semana?",
+  "texto_secundario": "Las mejores respuestas van en el domingo. 🔥",
+  "cta": "Responde abajo — te reposteamos el domingo",
+  "elemento_interactivo": {
+    "tipo": "pregunta",
+    "contenido": "¿Qué le pondrías la Bestial esta semana?"
+  },
+  "descripcion_visual": "Fondo negro sólido, texto en blanco con tipografía bold y tamaño grande centrado. El sticker de pregunta nativo de Instagram va debajo del texto principal, en color rojo o naranja para que contraste. Sin filtros. Sin gráficos recargados. Solo el texto, el sticker y actitud.",
+  "hashtags_ocultos": [
+    "#SalsasBestial"
+  ]
+}
