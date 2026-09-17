@@ -1818,11 +1818,34 @@ class BotTelegram:
         # getUpdates. El bot gana la mayoría de las veces. La solución: el bot
         # publica directamente cuando recibe prog_si:{rev_id}:{item_id}.
         # El callback incluye item_id desde la v2 del workflow (formato prog_si:rev:id).
-        if partes[0] in ("prog_si", "prog_no") and len(partes) >= 2:
+        if partes[0] in ("prog_si", "prog_no", "prog_publicado") and len(partes) >= 2:
             accion_prog = partes[0]
             item_id_prog = partes[2] if len(partes) >= 3 else None
 
-            if accion_prog == "prog_si" and item_id_prog:
+            if accion_prog == "prog_publicado" and item_id_prog:
+                # Usuario tocó "✅ Ya lo publiqué" — marcar como publicado sin llamar API
+                _answer_callback(cb_id, "✅ Marcado como publicado")
+                def _marcar_pub(iid=item_id_prog):
+                    try:
+                        from agente.gestores.biblioteca import _cargar, marcar_publicado, _from_raw
+                        bib = _cargar()
+                        raw = next((x for x in bib.get("items", []) if x.get("id") == iid), None)
+                        if not raw:
+                            _enviar_mensaje(f"⚠️ Item {iid} no encontrado.")
+                            return
+                        if raw.get("estado") != "pendiente":
+                            _enviar_mensaje(f"ℹ️ Item ya estaba {raw.get('estado')}.")
+                            return
+                        marcar_publicado(iid)
+                        _commit_biblioteca(iid)
+                        _enviar_mensaje("✅ <b>Marcado como publicado</b> — no se volverá a mostrar.")
+                    except Exception as _e:
+                        logger.error("Error marcando publicado workflow: %s", _e, exc_info=True)
+                        _enviar_mensaje(f"❌ Error: {_e}")
+                import threading as _th
+                _th.Thread(target=_marcar_pub, daemon=True).start()
+
+            elif accion_prog == "prog_si" and item_id_prog:
                 _answer_callback(cb_id, "✅ Publicando... (~2-3 min)")
 
                 def _pub_desde_bot(iid=item_id_prog):
@@ -1830,7 +1853,6 @@ class BotTelegram:
                         from agente.gestores.biblioteca import (
                             _cargar, marcar_publicado, marcar_descartado, _from_raw,
                         )
-                        from agente.instagram.publicar_item import publicar_item as _pub_ig
                         import cloudinary as _cld
                         from config import settings as _s
                         _cld.config(cloudinary_url=_s.CLOUDINARY_URL)
@@ -1846,6 +1868,14 @@ class BotTelegram:
 
                         item_obj = _from_raw(raw)
                         emoji = {"post": "📸", "reel": "🎬", "story": "⭕"}.get(item_obj.tipo, "📌")
+
+                        # Carruseles: enviar slides a Telegram para subida manual (no API)
+                        if item_obj.es_carrusel:
+                            _enviar_carrusel_telegram(item_obj)
+                            _commit_biblioteca(iid)
+                            return
+
+                        from agente.instagram.publicar_item import publicar_item as _pub_ig
                         mid = _pub_ig(item_obj)
 
                         if mid == "SIN_MEDIA":

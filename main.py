@@ -1542,10 +1542,13 @@ def publicar_programado(forzar: bool = False, tipo: str | None = None):
     )
     # item.id incluido en callback para que el bot pueda publicar directamente
     # cuando gana la race condition de getUpdates (formato: prog_si:{rev_id}:{item_id})
-    botones = {"inline_keyboard": [[
-        {"text": "✅ Publicar ahora", "callback_data": f"prog_si:{rev_id}:{item.id}"},
-        {"text": "⏭ Saltar",         "callback_data": f"prog_no:{rev_id}"},
-    ]]}
+    botones = {"inline_keyboard": [
+        [
+            {"text": "✅ Publicar ahora",  "callback_data": f"prog_si:{rev_id}:{item.id}"},
+            {"text": "⏭ Saltar",           "callback_data": f"prog_no:{rev_id}"},
+        ],
+        [{"text": "✅ Ya lo publiqué",     "callback_data": f"prog_publicado:{rev_id}:{item.id}"}],
+    ]}
 
     # Enviar preview con el media real cuando existe
     _preview_enviado = False
