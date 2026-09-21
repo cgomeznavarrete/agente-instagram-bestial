@@ -24,6 +24,35 @@ from agente.gestores.biblioteca import marcar_publicado
 logger = logging.getLogger(__name__)
 
 
+def _lanzar_error_api(contexto: str, response) -> None:
+    """Lanza RuntimeError con el mensaje de error real de la Graph API.
+
+    Detecta errores comunes (token expirado, permisos) y agrega contexto
+    legible para que llegue directamente a Telegram.
+    """
+    try:
+        err = response.json().get("error", {})
+        codigo = err.get("code", response.status_code)
+        msg = err.get("message", response.text[:300])
+        subtipo = err.get("error_subcode", "")
+    except Exception:
+        codigo = response.status_code
+        msg = response.text[:300]
+        subtipo = ""
+
+    logger.error("Instagram API error %s [%s/%s]: %s", contexto, codigo, subtipo, msg)
+
+    # Detectar token expirado o inválido
+    if codigo in (190, 102, 200) or "token" in msg.lower() or "expired" in msg.lower() or "OAuthException" in str(err.get("type", "")):
+        raise RuntimeError(
+            f"🔑 TOKEN EXPIRADO — renovar INSTAGRAM_ACCESS_TOKEN\n"
+            f"(error {codigo}: {msg[:150]})\n\n"
+            f"Ir a developers.facebook.com/tools/explorer → Salsas.Bestial → generar nuevo token."
+        )
+
+    raise RuntimeError(f"Instagram API [{contexto}] error {codigo}: {msg[:200]}")
+
+
 def _normalizar_video_reel(url_video: str) -> str:
     """
     Descarga el video, lo re-encoda con FFmpeg a las specs exactas de Instagram
@@ -100,8 +129,7 @@ def _publicar_video_como_reel(url_video: str, caption: str) -> str | None:
         timeout=120,
     )
     if r1.status_code != 200:
-        logger.error("Error creando container reel: %s", r1.text)
-        return None
+        _lanzar_error_api("creando container reel", r1)
 
     creation_id = r1.json()["id"]
     # status_code polling no funciona con nuestro token (Authorization Error 100/33).
@@ -120,10 +148,8 @@ def _publicar_video_como_reel(url_video: str, caption: str) -> str | None:
             logger.info("Reel aún no listo (9007) — reintento %d/30 en 15s...", intento + 1)
             time.sleep(15)
             continue
-        logger.error("Error media_publish reel (%d): %s", r2.status_code, r2.text)
-        return None
-    logger.error("Timeout esperando reel listo tras ~470s — abortando")
-    return None
+        _lanzar_error_api("publicando reel (media_publish)", r2)
+    raise RuntimeError("Timeout: reel no quedó listo tras ~470s de espera en Instagram")
 
 
 def _imagen_a_reel_cloudinary(ruta_local: Path, pilar: str) -> str | None:
@@ -235,8 +261,7 @@ def publicar_item(item) -> str | None:
             else:
                 logger.error("Error slide %d carrusel: %s", i, r_c.text)
         if not creation_ids:
-            logger.error("No se pudieron crear containers para los slides del carrusel")
-            return None
+            raise RuntimeError("Carrusel: no se pudo crear ningún container de slide en Instagram")
         r_car = req.post(
             f"https://graph.facebook.com/v21.0/{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media",
             data={
@@ -247,17 +272,15 @@ def publicar_item(item) -> str | None:
             }, timeout=60,
         )
         if r_car.status_code != 200:
-            logger.error("Error creando container carrusel: %s", r_car.text)
-            return None
+            _lanzar_error_api("creando container carrusel", r_car)
         r_pub = req.post(
             f"https://graph.facebook.com/v21.0/{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media_publish",
             data={"creation_id": r_car.json()["id"], "access_token": settings.INSTAGRAM_ACCESS_TOKEN},
             timeout=60,
         )
-        media_id = r_pub.json().get("id") if r_pub.status_code == 200 else None
-        if not media_id:
-            logger.error("Error publicando carrusel: %s", r_pub.text)
-        return media_id
+        if r_pub.status_code != 200:
+            _lanzar_error_api("publicando carrusel (media_publish)", r_pub)
+        return r_pub.json().get("id")
 
     # ── REEL ──────────────────────────────────────────────────────────────────
     if tipo_pub == "reel":
@@ -283,8 +306,7 @@ def publicar_item(item) -> str | None:
             logger.info("Reel de imagen — convirtiendo a MP4 con música (pilar=%s)", pilar_item)
             url_video = _imagen_a_reel_cloudinary(ruta, pilar_item)
             if not url_video:
-                logger.error("No se pudo convertir imagen a Reel — abortando")
-                return None
+                raise RuntimeError("No se pudo convertir la imagen a MP4 para el Reel (ffmpeg/MoviePy fallaron)")
         elif cloudinary_url and ("/video/" in cloudinary_url or cloudinary_url.lower().endswith((".mp4", ".mov"))):
             url_video = cloudinary_url
         elif ruta and ruta.exists():
@@ -295,8 +317,7 @@ def publicar_item(item) -> str | None:
             logger.warning("cloudinary_url no parece video pero se intentará como Reel: %s", cloudinary_url[:60])
             url_video = cloudinary_url
         else:
-            logger.error("Sin video para reel")
-            return None
+            raise RuntimeError("Reel sin video — no hay archivo local ni URL de Cloudinary válida")
 
         # Normalizar a specs exactas de Instagram antes de enviar
         # Reduce procesamiento de ~20min a ~2-3min
@@ -312,8 +333,7 @@ def publicar_item(item) -> str | None:
             }, timeout=120,
         )
         if r1.status_code != 200:
-            logger.error("Error creando container reel: %s", r1.text)
-            return None
+            _lanzar_error_api("creando container reel", r1)
         creation_id = r1.json()["id"]
         # status_code polling no funciona con nuestro token (Authorization Error 100/33).
         # Retry en media_publish: si 9007 esperar y reintentar.
@@ -331,10 +351,8 @@ def publicar_item(item) -> str | None:
                 logger.info("Reel aún no listo (9007) — reintento %d/30 en 15s...", intento + 1)
                 time.sleep(15)
                 continue
-            logger.error("Error media_publish reel (%d): %s", r2.status_code, r2.text)
-            return None
-        logger.error("Timeout esperando reel listo tras ~470s — abortando")
-        return None
+            _lanzar_error_api("publicando reel (media_publish)", r2)
+        raise RuntimeError("Timeout: reel no quedó listo tras ~470s de espera en Instagram")
 
     # ── POST / STORY ──────────────────────────────────────────────────────────
     pilar_item = getattr(item, "pilar", "") or ""
@@ -347,8 +365,7 @@ def publicar_item(item) -> str | None:
         elif ruta and ruta.exists():
             url_video = cloudinary.uploader.upload(str(ruta), folder="salsas_bestial", resource_type="video")["secure_url"]
         else:
-            logger.error("Sin video para story/post")
-            return None
+            raise RuntimeError("Sin video para story/post — no hay archivo local ni Cloudinary URL")
         media_data = {
             "video_url": url_video,
             "media_type": "STORIES" if tipo_pub == "story" else "REELS",
@@ -406,8 +423,7 @@ def publicar_item(item) -> str | None:
             elif ruta and ruta.exists():
                 url_img = cloudinary.uploader.upload(str(ruta), folder="salsas_bestial")["secure_url"]
             else:
-                logger.error("Sin imagen para post/story")
-                return None
+                raise RuntimeError("Sin imagen para post/story — no hay archivo local ni Cloudinary URL")
             media_data = {"image_url": url_img, "access_token": settings.INSTAGRAM_ACCESS_TOKEN}
             if tipo_pub == "story":
                 media_data["media_type"] = "STORIES"
@@ -419,8 +435,7 @@ def publicar_item(item) -> str | None:
         data=media_data, timeout=120,
     )
     if r1.status_code != 200:
-        logger.error("Error creando container post/story (%d): %s", r1.status_code, r1.text)
-        return None
+        _lanzar_error_api("creando container post/story", r1)
 
     creation_id = r1.json()["id"]
 
@@ -446,10 +461,8 @@ def publicar_item(item) -> str | None:
                 logger.info("Story aún no lista (9007) — reintento %d/18 en 10s...", intento + 1)
                 time.sleep(10)
                 continue
-            logger.error("Error media_publish story (%d): %s", r2.status_code, r2.text)
-            return None
-        logger.error("Timeout esperando story lista tras 180s — abortando")
-        return None
+            _lanzar_error_api("publicando story (media_publish)", r2)
+        raise RuntimeError("Timeout: story no quedó lista tras 180s de espera en Instagram")
     else:
         # Posts: polling hasta FINISHED (imagen: 2s×15, video: 10s×24)
         max_intentos = 24 if es_video else 15
@@ -469,17 +482,15 @@ def publicar_item(item) -> str | None:
             else:
                 logger.info("status_code: %s", st)
             if "error" in st_resp:
-                logger.error("Error API al consultar container: %s", st_resp["error"])
-                return None
+                err_api = st_resp["error"]
+                raise RuntimeError(f"Error API consultando container: {err_api.get('message', st_resp)[:200]}")
             if st == "FINISHED":
                 procesado = True
                 break
             if st == "ERROR":
-                logger.error("Error procesando media: %s", st_resp)
-                return None
+                raise RuntimeError(f"Instagram rechazó el media durante procesamiento: {st_resp}")
         if not procesado:
-            logger.error("Timeout esperando FINISHED (%ds) — abortando", max_intentos * sleep_seg)
-            return None
+            raise RuntimeError(f"Timeout esperando FINISHED tras {max_intentos * sleep_seg}s — Instagram no procesó el media")
 
     r2 = req.post(
         f"https://graph.facebook.com/v21.0/{settings.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media_publish",
@@ -487,6 +498,5 @@ def publicar_item(item) -> str | None:
         timeout=60,
     )
     if r2.status_code != 200:
-        logger.error("Error media_publish (%d): %s", r2.status_code, r2.text)
-        return None
+        _lanzar_error_api("publicando post/story (media_publish)", r2)
     return r2.json().get("id")
