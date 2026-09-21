@@ -1,0 +1,41 @@
+{
+  "hook": "Hay dos tipos de personas en Colombia...",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Fondo negro total. Texto blanco aparece letra por letra, estilo máquina de escribir, con música de suspenso tipo telenovela de las 8.",
+      "texto_pantalla": "Hay dos tipos de personas en Colombia."
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Corte brusco. Persona 1: come, mira el plato sin emoción, mastica, traga. Cara plana. Silencio incómodo. Fondo neutro.",
+      "texto_pantalla": "Los que comen."
+    },
+    {
+      "segundo": "8-20",
+      "visual": "Corte dramático con efecto de luz cálida. Persona 2: le cae el primer bocado con Salsa Tatemada Ahumada, hace una pausa, cierra los ojos lentamente, inclina la cabeza hacia atrás. La música sube. Todo en cámara lenta.",
+      "texto_pantalla": "Y los que SIENTEN."
+    },
+    {
+      "segundo": "20-25",
+      "visual": "Fondo negro de nuevo. Texto centrado, minimalista. Sin producto en cámara. Solo la verdad.",
+      "texto_pantalla": "Salsa Tatemada Ahumada. El link está en el bio. Vos ya sabés."
+    }
+  ],
+  "caption": "Vos sabés en cuál de los dos estás. 🔥 El frasco está en el link del bio — y no, no hay vuelta atrás. ¿A quién le mandarías esto ahorita mismo? 👇",
+  "cta": "Pídela aquí → https://wa.me/573005864523 | ¿A quién le mandarías este video ahorita mismo?",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteColombiano",
+    "#HumorPicante",
+    "#SalsaArtesanal",
+    "#ComidaConActitud",
+    "#DosTiposDe",
+    "#Foodie",
+    "#PicanteSi",
+    "#Colombia"
+  ],
+  "mood_musica": "humor",
+  "hook_audio": "Hay dos tipos de personas en Colombia..."
+}

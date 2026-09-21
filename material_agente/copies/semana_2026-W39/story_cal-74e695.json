@@ -1,0 +1,16 @@
+{
+  "texto_principal": "Un mensaje. La salsa. Listo.",
+  "texto_secundario": "Sin vueltas. Por WhatsApp ahora mismo.",
+  "cta": "Toca el enlace y escríbenos directo 🌶",
+  "elemento_interactivo": {
+    "tipo": "ninguno",
+    "contenido": null
+  },
+  "descripcion_visual": "Fondo color tierra quemada (#7A3B1E). Texto principal en blanco puro, tipografía bold sin serif, centrado verticalmente. Texto secundario debajo en tamaño menor, mismo color blanco pero peso regular. Sticker de enlace directo a https://wa.me/573005864523 en la parte inferior centrado, con fondo oscuro y texto blanco. Sin ilustraciones, sin texturas, sin adornos. El silencio visual es el mensaje.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteReal",
+    "#ComidaLatina"
+  ]
+}

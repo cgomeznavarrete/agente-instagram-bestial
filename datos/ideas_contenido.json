@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "ultima_actualizacion": "2026-09-14T19:02:50.142873",
+  "ultima_actualizacion": "2026-09-21T19:03:42.178671",
   "banco_ideas": [
     {
       "id": "idea-4428a483",
@@ -1679,6 +1679,126 @@
       "concepto": "Carrusel de 6 slides: 'Con qué NO va la Tatemada Ahumada' - el giro es que todos los maridajes 'prohibidos' en realidad sí funcionan. Slide 1: 'Con helado... no, espera.' Slide final revela que probaron todo y el resultado fue inesperadamente bueno.",
       "notas": "El formato de expectativa-subversión retiene la atención en todos los slides. Genera comentarios de incredulidad y curiosidad. Invita a replicar los experimentos en casa.",
       "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-d3ead7d6",
+      "fecha_generacion": "2026-09-21",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "retos_y_pruebas_de_picante",
+      "concepto": "Reel de 30 segundos donde alguien muestra su cara ANTES de probar la Tatemada Ahumada (confiado, casi retador) y DESPUÉS (sin exagerar, solo la reacción honesta). Sin música dramática. Solo el sonido ambiente y un comentario seco al final tipo 'ya sé lo que es el respeto'.",
+      "notas": "El contraste antes/después sin sobreactuación genera más credibilidad y comentarios. El humor seco latinoamericano conecta directo con el target 22-45. Alto potencial de que otros lo repliquen.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-bcaf0a23",
+      "fecha_generacion": "2026-09-21",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "educacion_sobre_salsas",
+      "concepto": "Carrusel de 5 slides titulado 'Por qué una salsa tatemada no es lo mismo que una salsa normal'. Slide 1: afirmación provocadora. Slides 2-4: diferencias reales del proceso de tatemar (asar directo al fuego, el ahumado, la textura). Slide 5: cierre con foto del frasco y CTA a WhatsApp.",
+      "notas": "Educa sin ser aburrido. La gente guarda este tipo de contenido. Posiciona a Salsas Bestial como marca con conocimiento real, no solo producto. Alto valor de guardados = buen alcance orgánico.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-c619b8c5",
+      "fecha_generacion": "2026-09-21",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "humor_picante",
+      "concepto": "Foto del frasco sobre una mesa cualquiera, sin producción elaborada. Copy que diga algo como: 'Tu familia tiene secretos. Nosotros también. La diferencia es que el nuestro queda en la etiqueta.' Tono directo, sin explicar el chiste.",
+      "notas": "Posts de frase + producto bien encuadrado funcionan para romper el feed sin necesitar producción costosa. El humor críptico invita a comentarios tipo 'jajaja qué' y eso dispara el alcance.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-585e75dd",
+      "fecha_generacion": "2026-09-21",
+      "origen": "claude",
+      "tipo_sugerido": "story",
+      "pilar": "testimonios_y_ugc",
+      "concepto": "Story con captura de pantalla de un mensaje de WhatsApp real de un cliente (con permiso) donde describa con sus propias palabras qué sintió al probar la salsa. Sin editar el mensaje. Solo un sticker o texto encima que diga: 'Nosotros no lo pudimos haber dicho mejor.'",
+      "notas": "La autenticidad del mensaje sin editar genera más confianza que cualquier copy pulido. Refuerza la prueba social. Fácil de producir y muy replicable semanalmente.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-4b4a8a19",
+      "fecha_generacion": "2026-09-21",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "recetas_y_maridajes",
+      "concepto": "Reel de 20 segundos mostrando cómo preparar unos huevos pericos con la Tatemada Ahumada encima. Plano fijo cenital, manos reales trabajando, sin voz en off. Solo el sonido del chisporroteo del huevo en el sartén. Último plano: el tenedor rompiendo la yema con la salsa cayendo.",
+      "notas": "Los reels de desayunos con salsa son de los más guardados y compartidos. El ASMR del sartén retiene hasta el final. Costo de producción casi cero y muy replicable.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-eddd2f22",
+      "fecha_generacion": "2026-09-21",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "behind_the_scenes",
+      "concepto": "Carrusel de 4 slides mostrando el proceso real de producción de la Tatemada Ahumada: los chiles tatemándose, la textura en proceso, el frasco siendo llenado, y el frasco terminado listo para salir. Sin filtros. Fotos crudas, reales. Copy mínimo.",
+      "notas": "El behind the scenes artesanal diferencia brutalmente a Salsas Bestial de salsas industriales. La gente quiere ver que hay manos y proceso reales. Genera conexión emocional con el producto.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-a69a8d7c",
+      "fecha_generacion": "2026-09-21",
+      "origen": "claude",
+      "tipo_sugerido": "story",
+      "pilar": "como_comprar",
+      "concepto": "Serie de 2 stories: la primera con la pregunta '¿Cuánto tiempo te tarda pedir tu salsa?' con sticker de encuesta (opciones: 'demasiado' / 'lo que sea'). Segunda story: un GIF o video de 5 segundos simulando abrir WhatsApp y escribir 'quiero mi Bestial' con el número de contacto y enlace directo.",
+      "notas": "Simplifica el proceso de compra de forma entretenida. La encuesta genera interacción que mejora el alcance de las stories. El segundo slide convierte directamente. Muy fácil de hacer semanalmente.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-aaa5fb60",
+      "fecha_generacion": "2026-09-21",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "lifestyle_y_comunidad",
+      "concepto": "Foto lifestyle de un grupo de amigos en una reunión informal (asado, domino, fútbol de sala) con el frasco de Tatemada Ahumada en la mesa entre las cervezas y la comida. Sin texto encima. Copy que hable de que hay reuniones y hay reuniones con Bestial.",
+      "notas": "Posiciona la salsa como parte del ritual social latinoamericano, no solo como condimento. El estilo de vida aspiracional pero alcanzable conecta con el target. Ideal para anuncio pagado también.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-5fac5448",
+      "fecha_generacion": "2026-09-21",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "beneficios_del_producto",
+      "concepto": "Reel de 25 segundos estilo 'prueba ciega': alguien prueba un plato sin salsa y su reacción es neutral. Luego le agregan la Tatemada Ahumada, vuelve a probar. Sin palabras. Solo expresiones. Final: texto en pantalla 'La diferencia no necesita explicación'.",
+      "notas": "Demuestra el valor del producto sin decirlo en voz alta. El formato prueba ciega es universalmente entretenido y fácil de entender en cualquier idioma. Alto potencial de shares y comentarios.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-69a82da3",
+      "fecha_generacion": "2026-09-21",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "promociones_y_lanzamientos",
+      "concepto": "Carrusel de 3 slides para cuando haya stock limitado disponible. Slide 1: solo el número de frascos disponibles en tipografía grande. Slide 2: foto del frasco con luz natural, sin texto. Slide 3: instrucciones de compra en 3 pasos cortos (sin bullets, en prosa). CTA: WhatsApp.",
+      "notas": "La escasez comunicada visualmente (número grande) genera urgencia real sin necesitar palabras de marketing. El formato limpio contrasta con el ruido del feed y detiene el scroll. Muy efectivo para conversión directa.",
+      "prioridad": "media",
       "usado": false,
       "fecha_uso": null
     }

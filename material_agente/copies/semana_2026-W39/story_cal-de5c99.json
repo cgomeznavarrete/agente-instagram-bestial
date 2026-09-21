@@ -1,0 +1,17 @@
+{
+  "texto_principal": "La pregunta del millón de calorías...",
+  "texto_secundario": "¿Con qué la estrenás?",
+  "cta": "Vota y defiende tu elección",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "¿Primera víctima de la Tatemada Ahumada? — A: Arepa con huevo 🥚 / B: Bandeja paisa"
+  },
+  "descripcion_visual": "Fondo negro mate, sin producto físico. Texto en blanco roto, tipografía bold irregular centrada. Sticker de encuesta nativa de Instagram pegado debajo del texto secundario, con los colores propios de la app sin modificar. Sin filtros, sin gráficos recargados — solo el texto, la encuesta y mucho silencio oscuro alrededor que haga que los ojos vayan directo a votar.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#TatemadaAhumada",
+    "#SalsaPicante",
+    "#ComidasColombianas",
+    "#FoodLovers"
+  ]
+}

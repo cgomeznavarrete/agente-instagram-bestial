@@ -1,0 +1,13 @@
+{
+  "texto_principal": "Los suficientes para que no te aburras.",
+  "texto_secundario": "— Conversación real de cocina, 7am.",
+  "cta": "Responde: ¿cuántos chiles aguantas tú?",
+  "elemento_interactivo": {
+    "tipo": "pregunta",
+    "contenido": "¿Cuántos chiles eres capaz de aguantar? 🌶"
+  },
+  "descripcion_visual": "Fondo blanco limpio, estilo iMessage o WhatsApp. Dos burbujas de chat: la primera gris (izquierda) dice '¿Cuántos chiles tatemamos hoy?' — la segunda azul o verde (derecha) dice 'Los suficientes para que nadie tenga una comida aburrida esta semana.' Tipografía sistema, nada diseñado de más. Esquina inferior: logo Bestial pequeño, sin alteraciones. Luz natural de fondo difuminada, como si fuera una captura de pantalla real desde la cocina.",
+  "hashtags_ocultos": [
+    "#SalsasBestial"
+  ]
+}

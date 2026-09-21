@@ -1,0 +1,53 @@
+{
+  "caption_principal": "Tatemar no es quemar. Es transformar. Hay una diferencia enorme — y tu paladar la nota. Desliza → que esto cambia cómo vas a ver cualquier salsa de ahora en adelante.",
+  "cta_caption": "Nuestra Tatemada Ahumada existe exactamente por esto. Link en bio para pedirla. ¿Ya sabías qué era tatemar o creías que era lo mismo que asar?",
+  "hashtags": [
+    "#SalsasBestial",
+    "#TatemadaAhumada",
+    "#SalsaArtesanal",
+    "#ChileTatemado",
+    "#CocinaMexicana",
+    "#SalsaPicante",
+    "#AhumadoNatural",
+    "#FoodLovers",
+    "#RecetasConSalsa",
+    "#SaborReal"
+  ],
+  "slides": [
+    {
+      "numero": 1,
+      "titulo": "¿Por qué una salsa tatemada sabe diferente a todo lo demás?",
+      "subtitulo": "No es magia. Es fuego directo — y tiene nombre.",
+      "descripcion_visual": "Fondo oscuro casi negro, textura rugosa como comal de barro. El título en tipografía bold blanca, grande, ocupa casi todo el slide. El subtítulo en naranja quemado, más pequeño, en la parte inferior. Sin fotos del producto en esta slide — solo tipografía y textura. Sensación de calor y misterio.",
+      "tipo": "portada"
+    },
+    {
+      "numero": 2,
+      "titulo": "Tatemar = poner el chile directo al fuego. Sin aceite. Sin agua. Sin rodeos.",
+      "subtitulo": "La piel se quema. El interior se concentra. Ahí empieza todo.",
+      "descripcion_visual": "Ícono simple de una llama con un chile encima, estilo línea gruesa, color naranja sobre fondo oscuro. Debajo, el texto del título en blanco bold. El subtítulo en gris claro, tipografía más delgada. Composición centrada, mucho espacio en blanco para que el ojo descanse. Sin fotografías.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 3,
+      "titulo": "Ese quemado controlado activa azúcares naturales del chile. Lo amargo se vuelve profundo. Lo picante se vuelve complejo.",
+      "subtitulo": "No es el mismo picante de una salsa cruda. Para nada.",
+      "descripcion_visual": "Dos íconos lado a lado: a la izquierda un chile crudo con etiqueta 'picante simple', a la derecha un chile tatemado con etiqueta 'picante con historia'. Fondo oscuro, íconos en línea blanca y naranja. Tipografía bold para el título, centrada bajo los íconos. El contraste visual hace el punto sin necesitar mucho texto.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 4,
+      "titulo": "Y el ahumado no es un extra. Es otra capa de sabor que se mete en el chile mientras se tatema.",
+      "subtitulo": "Humo + chile + fuego = ese sabor que no puedes explicar pero no puedes parar.",
+      "descripcion_visual": "Ícono de espiral de humo que rodea un chile, estilo ilustración minimalista. Fondo oscuro con un tono ligeramente azulado para evocar el humo frío. Título en blanco, bold. Subtítulo en naranja. La composición es vertical, el ícono arriba, el texto abajo. Sensación de profundidad y capas.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 5,
+      "titulo": "...y eso es exactamente lo que tiene nuestra Tatemada Ahumada.",
+      "subtitulo": "Probala. Link en bio.",
+      "descripcion_visual": "Fondo oscuro con textura de comal, igual que la portada para cerrar el círculo visual. El título en blanco bold, grande. 'Probala' en naranja quemado, tipografía más grande que el resto, como si fuera una orden directa. Logo de Salsas Bestial en la esquina inferior derecha, sin modificaciones. Flecha o ícono sutil apuntando hacia abajo sugiriendo 'link en bio'.",
+      "tipo": "cta"
+    }
+  ]
+}
