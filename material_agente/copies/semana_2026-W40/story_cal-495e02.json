@@ -1,0 +1,17 @@
+{
+  "texto_principal": "Mañana es lunes. Pero hoy hay salsa.",
+  "texto_secundario": "El domingo todavía es nuestro 🔥",
+  "cta": "Desliza y dinos cómo estás llegando al domingo",
+  "elemento_interactivo": {
+    "tipo": "slider",
+    "contenido": "¿Cuánto picante necesitas para sobrevivir el lunes? 🌶"
+  },
+  "descripcion_visual": "Fondo negro mate, tipografía blanca grande y bold centrada en pantalla — sin adornos, sin producto. La frase principal ocupa el 70% del espacio visual. El texto secundario aparece debajo en tamaño pequeño, casi como un susurro. El slider del chile queda anclado en la parte inferior. Estética minimalista tipo nota de voz visual — se siente íntimo, no producido.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaPicante",
+    "#DomingoPicante",
+    "#LunesNoGracias",
+    "#ComidaLatina"
+  ]
+}

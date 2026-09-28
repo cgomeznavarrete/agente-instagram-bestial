@@ -1,0 +1,13 @@
+{
+  "texto_principal": "¿Lunes sin salsa? Eso no existe aquí.",
+  "texto_secundario": null,
+  "cta": "Responde la encuesta — no te hagas",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "¿Ya echaste salsa hoy? | SÍ, claro 🔥 / Estoy fallando"
+  },
+  "descripcion_visual": "Fondo negro sólido. Texto blanco en tipografía bold tipo sans-serif, centrado en pantalla, tamaño grande que ocupe el 60% del espacio. Sin producto visible. Sin filtros ni elementos decorativos adicionales. La encuesta va pegada en la parte inferior, con bordes blancos sobre negro para mantener la coherencia visual. Nada más — la actitud es el diseño.",
+  "hashtags_ocultos": [
+    "#SalsasBestial"
+  ]
+}

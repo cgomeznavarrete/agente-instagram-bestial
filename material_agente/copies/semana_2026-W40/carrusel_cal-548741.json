@@ -1,0 +1,53 @@
+{
+  "caption_principal": "El kétchup tuvo su momento. Ya pasó. Desliza → y te cuento por qué la Tatemada Ahumada juega en otra liga.",
+  "cta_caption": "¿Con qué la combinas tú? Cuéntanos abajo 👇 — o escríbenos por WhatsApp y te mandamos la tuya: https://wa.me/573005864523",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteColombia",
+    "#RecetasColombianas",
+    "#SalsaArtesanal",
+    "#ComidaPicante",
+    "#BandejaPaisa",
+    "#FoodiesCol",
+    "#SaborBestial",
+    "#HechoColombia"
+  ],
+  "slides": [
+    {
+      "numero": 1,
+      "titulo": "5 cosas que la Salsa Tatemada Ahumada hace mejor que el kétchup",
+      "subtitulo": "Spoiler: no es competencia cercana.",
+      "descripcion_visual": "Fondo negro profundo con tipografía bold blanca y roja, estilo editorial. El número '5' ocupa casi todo el slide en segundo plano como elemento gráfico gigante, semitransparente. El título en primer plano, centrado. Sin fotos de producto. Textura sutil de humo o llama en esquinas para reforzar el concepto ahumado. Paleta: negro, rojo bestial, blanco roto.",
+      "tipo": "portada"
+    },
+    {
+      "numero": 2,
+      "titulo": "Le da profundidad a los huevos pericos del domingo",
+      "subtitulo": "El kétchup los moja. Nosotros los transformamos.",
+      "descripcion_visual": "Ilustración minimalista lineal de un sartén con huevos revueltos, trazos blancos sobre fondo oscuro carbón. Una línea de salsa roja cayendo desde arriba, estilizada. Composición centrada, mucho espacio negativo. Tipografía sans-serif bold para el título, tipografía ligera para el subtítulo. Sin realismo, sin fotografía.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 3,
+      "titulo": "Transforma cualquier bandeja paisa en experiencia",
+      "subtitulo": "Chicharrón, frijoles, arroz, aguacate... y encima, esto. Ya saben.",
+      "descripcion_visual": "Ilustración minimalista de los elementos icónicos de una bandeja paisa dibujados con líneas simples y limpias sobre fondo oscuro. Estilo gráfico, no fotorrealista. El color rojo de la salsa como único acento de color en la composición — todo lo demás en blanco y gris. Referencia visual inmediata a la cultura colombiana sin caer en cliché.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 4,
+      "titulo": "En la pizza. En el arroz. En lo que se te ocurra.",
+      "subtitulo": "No tiene reglas — y eso es lo mejor.",
+      "descripcion_visual": "Tres íconos minimalistas en fila: pizza, bowl de arroz, y un signo de interrogación estilizado que invita a imaginar. Fondo oscuro, íconos en blanco con detalles en rojo. Composición horizontal equilibrada. Tipografía bold para el título, ocupando la parte inferior del slide. Sensación de libertad y versatilidad en el diseño.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 5,
+      "titulo": "El kétchup no te va a dar esto. Bestial sí.",
+      "subtitulo": "Escríbenos por WhatsApp y la pedimos ya 🔥",
+      "descripcion_visual": "Slide de cierre con máximo contraste: fondo rojo Bestial intenso, tipografía blanca bold que ocupa casi todo el espacio. El nombre 'Bestial' destacado en negro sobre rojo como bloque de color. En la parte inferior, texto pequeño con el link de WhatsApp y el logo de la marca en blanco. Composición poderosa, directa, sin elementos decorativos — solo mensaje y marca.",
+      "tipo": "cta"
+    }
+  ]
+}

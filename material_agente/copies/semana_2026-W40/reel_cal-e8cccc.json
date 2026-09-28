@@ -1,0 +1,41 @@
+{
+  "hook": "¿Cuántas gotas aguantas?",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Fondo negro. Texto grande, blanco, centrado, con vibración rápida tipo glitch. El número aparece como si cayera desde arriba.",
+      "texto_pantalla": "¿Cuántas gotas aguantas? 🌶"
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Animación de barra de niveles del 1 al 10, estilo videojuego retro. Cada nivel aparece con un golpe de percusión. Del 1 al 6 pasan rápido con colores que van del amarillo al naranja.",
+      "texto_pantalla": "NIVEL 1... 2... 3... 4... 5... 6..."
+    },
+    {
+      "segundo": "8-20",
+      "visual": "El contador se frena en 7. Efecto de llama y humo animado alrededor del número. Aparece el frasco de Salsa Tatemada Ahumada con animación de entrada rápida desde abajo. Texto descriptivo aparece línea por línea, sincronizado con el beat.",
+      "texto_pantalla": "NIVEL 7 — Salsa Tatemada Ahumada. Ahumado profundo. Picante que avisa... pero no mata."
+    },
+    {
+      "segundo": "20-25",
+      "visual": "Frasco centrado, fondo con brasa animada detrás. Texto del CTA aparece en dos líneas, limpio y directo. Logo de Salsas Bestial en esquina inferior.",
+      "texto_pantalla": "¿Llegas al 7? Pídela aquí → wa.me/573005864523 | Cuéntanos en comentarios tu nivel real"
+    }
+  ],
+  "caption": "El nivel 7 tiene nombre. Y huele a brasa. ¿Llegas o te rajás? — Pídela aquí → https://wa.me/573005864523",
+  "cta": "Pídela aquí → https://wa.me/573005864523 | ¿Tú en qué nivel te quedas? Cuéntanos abajo — sin mentiras.",
+  "hashtags": [
+    "#SalsasBestial",
+    "#RetoDePicante",
+    "#SalsaAhumada",
+    "#PicanteLatino",
+    "#SalsaArtesanal",
+    "#FoodiesLatam",
+    "#NivelSiete",
+    "#TatemadaAhumada",
+    "#ComidaPicante",
+    "#SalsasColombia"
+  ],
+  "mood_musica": "energetico",
+  "hook_audio": "¿Cuántas gotas aguantas?"
+}

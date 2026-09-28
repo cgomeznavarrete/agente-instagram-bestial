@@ -1,0 +1,16 @@
+{
+  "texto_principal": "El secreto está en el fuego.",
+  "texto_secundario": "Ni un minuto menos. — El equipo Bestial 🔥",
+  "cta": "Responde con 🎤 si quieres saber más",
+  "elemento_interactivo": {
+    "tipo": "pregunta",
+    "contenido": "¿Qué más quieres saber de cómo hacemos la salsa?"
+  },
+  "descripcion_visual": "Fondo negro profundo con textura sutil de humo difuminado. En el centro, una onda de audio animada en color rojo oscuro que pulsa suavemente como si se estuviera reproduciendo un mensaje de voz. Debajo de la onda, el texto aparece como transcripción de WhatsApp: fuente sans-serif blanca, peso regular, alineada a la izquierda con sangría pequeña para simular burbuja de mensaje. El nombre 'El equipo Bestial' aparece al final como firma manuscrita digital en gris claro. Sin filtros sobre logo ni etiqueta del producto. Estética cruda, íntima, sin sobreproducción.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#BehindTheScenes",
+    "#SalsaTatemada",
+    "#PicanteReal"
+  ]
+}

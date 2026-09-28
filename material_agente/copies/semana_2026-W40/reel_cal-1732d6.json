@@ -1,0 +1,41 @@
+{
+  "hook": "Hay gente que cocina bien. Y hay gente que tiene Bestial.",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Texto animado en tipografía bold, entrada rápida con efecto de impacto sobre fondo negro. Sin producto aún — solo la frase.",
+      "texto_pantalla": "Hay gente que cocina bien. Y hay gente que tiene Bestial."
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Corte rápido a motion graphic estilo ilustración flat: asado del fin de semana, humo, carne a la parrilla, alguien destapa un frasco. El nombre 'Salsa Tatemada Ahumada' aparece integrado como etiqueta flotante junto a la mano.",
+      "texto_pantalla": "Salsa Tatemada Ahumada"
+    },
+    {
+      "segundo": "8-20",
+      "visual": "Secuencia de 3 escenas animadas en corte ágil: (1) Almuerzo familiar — mesa llena, abuela sirviendo, el frasco en el centro. (2) Picada de amigos — tabla de embutidos, cervezas, el frasco pasando de mano en mano. (3) Pizza a la medianoche — pieza de pizza cayendo en slow-mo, un chorro de salsa encima. En cada escena el nombre aparece como texto integrado al ambiente.",
+      "texto_pantalla": "En el asado. En el almuerzo. A la medianoche. — Salsa Tatemada Ahumada"
+    },
+    {
+      "segundo": "20-25",
+      "visual": "Fade a negro. Logo de Salsas Bestial aparece centrado con animación de entrada limpia. Debajo, texto simple y directo.",
+      "texto_pantalla": "Salsas Bestial — Enlace en bio"
+    }
+  ],
+  "caption": "No importa qué estés cocinando. Importa con qué lo terminas 🔥 Pídela aquí → https://wa.me/573005864523 ¿En cuál de esas escenas te viste?",
+  "cta": "Pídela aquí → https://wa.me/573005864523 | ¿En cuál de esas escenas te viste?",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteLatino",
+    "#CocinaLatina",
+    "#SalsaArtesanal",
+    "#AsadoFamiliar",
+    "#FoodLovers",
+    "#PicanteSí",
+    "#ComidaReal",
+    "#TatemadaAhumada"
+  ],
+  "mood_musica": "upbeat_latino",
+  "hook_audio": null
+}

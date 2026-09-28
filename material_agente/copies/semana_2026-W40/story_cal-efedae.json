@@ -1,0 +1,16 @@
+{
+  "texto_principal": "Un mensaje. Tu salsa en la puerta.",
+  "texto_secundario": "Sin vueltas. Sin excusas. 🌶️",
+  "cta": "Escríbenos directo por WhatsApp — enlace aquí",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "¿Ya tienes tu Bestial en casa? | Sí, claro | Aún no... 👀"
+  },
+  "descripcion_visual": "Fondo con gradiente oscuro en tonos de la marca — sin filtros sobre el logo ni el frasco. Logo de Salsas Bestial visible en esquina superior, sin modificar. Texto centrado en tipografía bold, limpia, con alto contraste. Botón de WhatsApp destacado en la parte inferior con el link directo. Si hay oferta activa, sticker de cuenta regresiva justo encima del botón. Diseño minimalista — que el mensaje respire.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteReal",
+    "#HechoConActitud"
+  ]
+}
