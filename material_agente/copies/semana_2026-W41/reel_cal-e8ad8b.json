@@ -1,0 +1,41 @@
+{
+  "hook": "Esto no lo hace una fábrica.",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Pantalla completamente negra. Silencio total por 1 segundo. Luego el texto aparece letra por letra, lento.",
+      "texto_pantalla": "Esto no lo hace una fábrica."
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Corte brusco a primerísimo plano de manos —sin anillos, sin guantes— picando chiles tatemados sobre tabla de madera oscura. El fuego del comal se ve al fondo, desenfocado. Vapor real. Movimiento real.",
+      "texto_pantalla": null
+    },
+    {
+      "segundo": "8-20",
+      "visual": "Secuencia de cortes rítmicos al compás de la guitarra: chiles sobre el comal con marcas de fuego, mano removiendo en molcajete, ingredientes enteros antes del proceso —ajo, jitomate, chile—, olla hirviendo a fuego lento, mano sosteniendo cuchara y probando. Ningún corte dura más de 2 segundos. Todo en luz natural cálida, sin filtros.",
+      "texto_pantalla": "Cada frasco tiene el mismo tiempo de siempre. El que se necesita."
+    },
+    {
+      "segundo": "20-28",
+      "visual": "Plano final: manos colocan con calma la etiqueta sobre el frasco terminado. El frasco queda centrado en cámara, etiqueta mirando directo al lente. Fade suave a negro. Texto aparece.",
+      "texto_pantalla": "Salsas Bestial. Hecha con las manos."
+    }
+  ],
+  "caption": "No hay atajo para esto — y tampoco lo queremos. 🔥 Pídela aquí → https://wa.me/573005864523 ¿A quién le mandarías un frasco sin avisarle qué tan picante es?",
+  "cta": "Pídela aquí → https://wa.me/573005864523",
+  "hashtags": [
+    "#SalsasBestial",
+    "#HechaConLasManos",
+    "#SalsaArtesanal",
+    "#BehindTheScenes",
+    "#PicanteDeVerdad",
+    "#SalsaTatemada",
+    "#ComidaMexicana",
+    "#Foodie",
+    "#SalsasCaseras",
+    "#ArtesanalNoEsMarketing"
+  ],
+  "mood_musica": "chill_food",
+  "hook_audio": "Esto no lo hace una fábrica."
+}

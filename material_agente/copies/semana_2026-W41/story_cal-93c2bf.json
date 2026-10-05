@@ -1,0 +1,16 @@
+{
+  "texto_principal": "Viernes sin salsa. Eso no puede ser.",
+  "texto_secundario": "Soluciona esto antes de que lleguen.",
+  "cta": "Enlace directo → https://wa.me/573005864523",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "¿Tienes salsa en la nevera? 🔥 Sí, listo | No, auxilio"
+  },
+  "descripcion_visual": "Fondo negro sólido. Texto principal en tipografía bold blanca, tamaño dominante, centrado verticalmente. La palabra 'Viernes' resaltada en naranja intenso (#FF5C00). Línea divisoria naranja delgada entre texto principal y secundario. Texto secundario en gris claro, tamaño notablemente menor. Botón de enlace con fondo naranja, texto negro bold: 'Solucionar esto.' Posicionado en la zona inferior a un tercio de la pantalla. Sin imágenes del frasco en esta story — todo es tipografía y color. Sin elementos decorativos extra. Composición limpia, directa, legible en 6 segundos.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#Picante",
+    "#ViernesdeSalsa"
+  ]
+}

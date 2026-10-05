@@ -1,0 +1,55 @@
+{
+  "caption_principal": "El ahumado no apareció en TikTok. Lleva siglos en la cocina de tu abuela — desliza → y te cuento por qué nuestra salsa sabe diferente a todo lo que has probado.",
+  "cta_caption": "Link en bio para llevarte un frasco. ¿Tú ya habías probado una salsa tatemada de verdad o solo las industriales de siempre?",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#AhumadoArtesanal",
+    "#SalsaPicante",
+    "#CocinaLatina",
+    "#TatemadoMexicano",
+    "#SalsaArtesanal",
+    "#PicanteDeVerdad",
+    "#FoodLovers",
+    "#SaborAutentico",
+    "#CocinaConAlma",
+    "#SalsasQueEnamoran"
+  ],
+  "slides": [
+    {
+      "numero": 1,
+      "titulo": "¿Por qué ahumado? No es tendencia. Es tradición.",
+      "subtitulo": "Lo que tu abuela ya sabía y la industria nunca entendió.",
+      "descripcion_visual": "Fondo negro profundo con textura de carbón sutil. El título en tipografía bold blanca, grande, ocupando el 70% del slide. El subtítulo en naranja cálido, fuente más delgada, en la parte inferior. Logo de Salsas Bestial en esquina superior derecha, sin filtros ni alteraciones. Atmósfera oscura, densa, casi cinematográfica. Sin fotografía del frasco en este slide — puro texto e impacto visual.",
+      "tipo": "portada"
+    },
+    {
+      "numero": 2,
+      "titulo": "Tatemarr un chile no es quemarlo. Es despertarlo.",
+      "subtitulo": "Comal. Fuego directo. Paciencia. Así lo hacían en México desde antes de que existieran las licuadoras.",
+      "descripcion_visual": "Fondo tono café oscuro con degradado sutil hacia naranja quemado en la parte inferior. Ilustración minimalista de un comal sobre flama o textura de brasas en el fondo, semitransparente. Texto principal en blanco bold centrado. Subtítulo en naranja claro, fuente más pequeña. Un detalle decorativo: línea fina naranja separando título y subtítulo. Ambiente cálido, como luz de fogón. Sin filtros sobre el logo si aparece.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 3,
+      "titulo": "Industrial: humo artificial. Artesanal: fuego real.",
+      "subtitulo": "Una usa 'sabor a humo' de laboratorio. La otra pasó por el comal. La diferencia la sientes en el primer mordisco — no en la etiqueta.",
+      "descripcion_visual": "Slide dividido en dos mitades verticales. Izquierda: fondo gris frío, tipografía opaca, palabra 'Industrial' en letra delgada casi apagada. Derecha: fondo negro cálido con destellos naranja, tipografía bold brillante, palabra 'Artesanal' con energía visual. En el centro: una línea divisoria naranja quemado. El subtítulo aparece debajo del diseño dividido, en texto pequeño blanco sobre fondo negro. Sin fotografía del producto en este slide.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 4,
+      "titulo": "El ahumado no mata el picante. Lo hace más profundo.",
+      "subtitulo": "El chile tatemado desarrolla capas de sabor — primero el humo, luego el calor, después el golpe. Así debe ser.",
+      "descripcion_visual": "Fondo negro con textura de humo fotográfico real (no ilustración artificial). Tipografía bold blanca para el título, tamaño grande. Subtítulo en naranja cálido, centrado, fuente mediana. Elemento visual: tres círculos concéntricos o capas superpuestas en naranja-café que simbolizan las 'capas de sabor' mencionadas en el texto. Diseño limpio, sin saturar. Logo Salsas Bestial visible en esquina, sin modificaciones.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 5,
+      "titulo": "Ahora que sabes... pruébala.",
+      "subtitulo": "Salsa Tatemada Ahumada — link en bio 🔥",
+      "descripcion_visual": "Slide de cierre con el mayor peso visual. Fondo negro profundo. Fotografía real del frasco de Salsa Tatemada Ahumada de Salsas Bestial centrada, sin filtros de color sobre la etiqueta ni el logo. Iluminación lateral cálida naranja que resalta el frasco sin alterar los colores originales. Título 'Ahora que sabes... pruébala.' en tipografía bold blanca, sobre el frasco o en la parte superior. Subtítulo con flecha → apuntando hacia abajo o hacia el bio. Logo de la marca visible, íntegro, sin recortes. CTA visual: ícono de flecha o dedo señalando hacia abajo en naranja. Ambiente premium pero accesible.",
+      "tipo": "cta"
+    }
+  ]
+}

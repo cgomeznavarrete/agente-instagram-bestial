@@ -1,0 +1,16 @@
+{
+  "texto_principal": "Tú decides.",
+  "texto_secundario": "El domingo te está esperando.",
+  "cta": "Responde cuál eres tú este domingo 👇",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "¿Cómo está tu domingo? | 😐 Sin salsa | 😎 Con Bestial"
+  },
+  "descripcion_visual": "Story vertical en dos paneles de igual tamaño, estilo flat design moderno. Panel izquierdo: fondo gris apagado (#C4C4C4), plato ilustrado con comida sin color, rostro triste debajo del plato, tipografía negra que dice 'Sin salsa'. Panel derecho: fondo rojo vibrante de marca (#D72B2B), mismo plato pero con colores cálidos y saturados, rostro con lentes de sol, tipografía blanca bold que dice 'Con Bestial'. Línea divisoria central sutil en blanco. En la parte inferior centrado: 'Tú decides.' en tipografía bold blanca sobre franja oscura semitransparente. Logo de Salsas Bestial pequeño en esquina superior derecha. Sin filtros sobre ningún elemento de marca. Estilo limpio, geométrico, sin sombras artificiales.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteReal",
+    "#DomingueroConActitud"
+  ]
+}

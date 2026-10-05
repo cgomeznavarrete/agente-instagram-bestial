@@ -1,0 +1,17 @@
+{
+  "texto_principal": "¿Cuántas gotas en el primer intento?",
+  "texto_secundario": "Sé honesto. Aquí no te juzgamos... mucho.",
+  "cta": "Vota y veamos quién tiene el estómago más bestial",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "Opción A: 3 gotitas (con miedo) 😅 | Opción B: Todo el frasco (con fe) 🔥"
+  },
+  "descripcion_visual": "Fondo rojo quemado tipo brasa, casi café oscuro en los bordes — efecto vignette intenso. Tipografía gruesa, blanca, sin sombra suave sino con trazo negro para que corte duro. El frasco de Salsa Tatemada Ahumada centrado, inclinado 15° como si alguien lo estuviera a punto de voltear. La encuesta pegada debajo del frasco, con los colores de marca. Sin filtros sobre el producto. Estética cruda, casi de cartel de lucha libre — atrevida pero legible en 2 segundos.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteMexicano",
+    "#RetoPicante",
+    "#SalsaArtesanal"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "texto_principal": "¿Ya tienes la tuya?",
+  "texto_secundario": "Un mensaje y te la llevamos.",
+  "cta": "Pedir ahora 🔥 — enlace directo a WhatsApp: https://wa.me/573005864523",
+  "elemento_interactivo": {
+    "tipo": "ninguno",
+    "contenido": null
+  },
+  "descripcion_visual": "Fondo negro profundo con llamas animadas sutiles en la parte inferior, color naranja-rojo con baja opacidad para no saturar. Texto principal centrado en tipografía bold blanca, tamaño grande, con leve animación de entrada (fade + slide up en los primeros 2 segundos). Texto secundario debajo, tipografía regular blanca, tamaño medio. Sticker de enlace a WhatsApp ubicado en la zona inferior central con texto del botón 'Pedir ahora 🔥', fondo negro con borde rojo-naranja para mantener coherencia visual. Sin logos adicionales ni elementos decorativos. Duración recomendada: 7 segundos con animación de entrada del texto.",
+  "hashtags_ocultos": [
+    "#SalsasBestial"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "texto_principal": "¿Pasó de verdad si no subiste foto?",
+  "texto_secundario": "Etiquétanos y te reposteamos 📸",
+  "cta": "Responde con tu foto o etiquétanos en tu próxima historia",
+  "elemento_interactivo": {
+    "tipo": "pregunta",
+    "contenido": "¿Ya la probaste? Mándanos tu foto aquí 👇"
+  },
+  "descripcion_visual": "Fondo con textura de madera rústica oscura, desgastada y cálida — sin filtros sobre el producto. Texto principal centrado en tipografía bold blanca con sombra sutil para legibilidad. Ícono de cámara animado (efecto pulso o parpadeo suave) posicionado arriba del texto secundario. Paleta: café oscuro, blanco y un toque del rojo característico de la marca en el ícono. Sin sobrecargar la pantalla — mucho espacio en negativo. Sensación de cartel pegado en una cocina de barrio.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteReal",
+    "#UGCBestial",
+    "#SalsaArtesanal"
+  ]
+}

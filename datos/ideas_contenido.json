@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "ultima_actualizacion": "2026-09-28T20:24:10.912810",
+  "ultima_actualizacion": "2026-10-05T21:28:28.749254",
   "banco_ideas": [
     {
       "id": "idea-4428a483",
@@ -1919,6 +1919,126 @@
       "concepto": "Carrusel de 4 slides titulado 'Por qué el ahumado cambia todo' — comparando visualmente cómo queda el mismo tacos o plato con salsa regular versus con el ahumado de la Tatemada. Sin texto denso. Solo imágenes del plato y frases cortas contundentes.",
       "notas": "La comparación visual vende sin que parezca un argumento de venta. El formato antes/después es uno de los más guardados en Instagram.",
       "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-71d1a87a",
+      "fecha_generacion": "2026-10-05",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "retos_y_pruebas_de_picante",
+      "concepto": "Alguien prueba la Salsa Tatemada Ahumada por primera vez sin saber qué esperar. La cámara enfoca su cara antes, durante y después. Sin actuación, sin cortes. Solo la reacción real.",
+      "notas": "Los videos de reacciones auténticas generan alto engagement y compartidos orgánicos. Fácil de producir, no requiere producción elaborada y puede convertirse en formato recurrente con distintas personas.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-726b6d34",
+      "fecha_generacion": "2026-10-05",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "recetas_y_maridajes",
+      "concepto": "Foto cenital de unos tacos de canasta bañados con la Tatemada Ahumada, sobre papel de estraza. Copy que hable de ese momento del mediodía cuando no hay tiempo pero sí hay hambre.",
+      "notas": "Los tacos de canasta son un ícono latinoamericano. La imagen es simple de producir y conecta directamente con el consumo real del producto en contextos cotidianos.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-5b7405f3",
+      "fecha_generacion": "2026-10-05",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "behind_the_scenes",
+      "concepto": "Mostrar el proceso de elaboración de la Salsa Tatemada Ahumada desde los chiles en el comal hasta el frasco sellado. Sin texto excesivo, solo imágenes con pies de foto cortos y directos.",
+      "notas": "El contenido artesanal genera confianza y diferenciación frente a marcas industriales. Apela directamente al valor de autenticidad que busca la audiencia objetivo.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-3938d1a2",
+      "fecha_generacion": "2026-10-05",
+      "origen": "claude",
+      "tipo_sugerido": "story",
+      "pilar": "como_comprar",
+      "concepto": "Story de 3 pantallas simulando una conversación de WhatsApp real donde alguien pide su salsa y la recibe. Última pantalla con el link directo a wa.me/573005864523 y el texto: 'Así de fácil.'",
+      "notas": "Reduce la fricción de compra mostrando el proceso de forma visual y familiar. El formato de chat es nativo al comportamiento latinoamericano y genera confianza inmediata.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-282a8cd0",
+      "fecha_generacion": "2026-10-05",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "humor_picante",
+      "concepto": "Reel de 20 segundos mostrando el contraste entre 'lo que pide la gente que no conoce Bestial' versus 'lo que pide después de probarla'. Formato antes/después con música que pegue.",
+      "notas": "El humor de reconocimiento —cuando alguien se ve reflejado— tiene altísima tasa de compartidos. Simple de grabar y editar sin producción costosa.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-7b6431ae",
+      "fecha_generacion": "2026-10-05",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "testimonios_y_ugc",
+      "concepto": "Repost de una foto enviada por un cliente mostrando cómo usó la salsa. Fondo simple, el foco en la foto del cliente. Copy breve citando sus palabras exactas, sin editar demasiado.",
+      "notas": "El UGC construye prueba social sin costo de producción. Además incentiva a otros seguidores a compartir sus propias fotos para ser destacados.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-fc8b5ad7",
+      "fecha_generacion": "2026-10-05",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "educacion_sobre_salsas",
+      "concepto": "Carrusel de 5 slides explicando la diferencia entre una salsa tatemada, una salsa cruda y una salsa cocida. Tono didáctico pero irreverente, como si te lo explicara un taquero de confianza.",
+      "notas": "El contenido educativo posiciona a la marca como referente. Este tema específico tiene potencial de guardados, que es la métrica más valiosa para el algoritmo de Instagram.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-72c1467a",
+      "fecha_generacion": "2026-10-05",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "lifestyle_y_comunidad",
+      "concepto": "Reel mostrando una tarde de fútbol o partido de la selección donde la salsa Tatemada Ahumada aparece junto al botín de botanas. Sin mencionar marcas externas, solo el ambiente.",
+      "notas": "Anclar el producto a momentos culturales compartidos —como ver el partido— crea asociación emocional. No requiere locación especial ni producción elaborada.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-4efb9e69",
+      "fecha_generacion": "2026-10-05",
+      "origen": "claude",
+      "tipo_sugerido": "story",
+      "pilar": "promociones_y_lanzamientos",
+      "concepto": "Story de cuenta regresiva para una preventa o edición limitada, con el frasco como protagonista y un solo texto: '¿Cuántos aguantan sin pedirla?' Botón de respuesta directo a WhatsApp.",
+      "notas": "Genera urgencia y anticipación. Puede activarse cuando haya una promoción real. El CTA conversacional encaja con el canal principal de venta y mantiene el tono de marca.",
+      "prioridad": "baja",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-4143b98a",
+      "fecha_generacion": "2026-10-05",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "beneficios_del_producto",
+      "concepto": "Carrusel de 4 slides mostrando los ingredientes reales de la Tatemada Ahumada uno por uno, con una foto de cada ingrediente en contexto natural. Sin claims de salud, solo honestidad sobre lo que lleva.",
+      "notas": "La transparencia de ingredientes es un argumento de venta poderoso frente a salsas industriales. Refuerza el posicionamiento artesanal sin necesidad de hacer promesas que no se pueden sostener.",
+      "prioridad": "baja",
       "usado": false,
       "fecha_uso": null
     }
