@@ -1,0 +1,16 @@
+{
+  "texto_principal": "Domingo de sancocho... ¿qué hay en tu olla?",
+  "texto_secundario": "Cuéntanos — te decimos cómo la Tatemada lo eleva 🔥",
+  "cta": "Responde aquí abajo",
+  "elemento_interactivo": {
+    "tipo": "pregunta",
+    "contenido": "¿Qué estás comiendo hoy?"
+  },
+  "descripcion_visual": "Ilustración minimalista de línea negra sobre fondo crema cálido: mesa vista desde arriba con una olla humeante, un plato hondo, cuchara y servilleta de tela. Sin fotografías reales. Tipografía manuscrita irregular para el texto principal, como escrita a mano. El sticker de pregunta de Instagram centrado en la parte inferior. Paleta: crema, terracota suave y negro. Sensación de domingo en casa, íntimo y familiar.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#ComidaLatina",
+    "#DomingoDeSancocho"
+  ]
+}

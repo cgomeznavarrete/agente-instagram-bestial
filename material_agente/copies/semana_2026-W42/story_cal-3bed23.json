@@ -1,0 +1,17 @@
+{
+  "texto_principal": "Así empieza todo. Sin secretos.",
+  "texto_secundario": "Salsa Tatemada Ahumada — desde cero.",
+  "cta": "Responde: ¿ya la probaste?",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "¿Sabías cómo la hacemos? | Sí, obvio 🔥 / Acabo de enterarme"
+  },
+  "descripcion_visual": "Video vertical 15 seg, cámara en mano sin estabilizador — se nota que es celular. Escena 1 (0-4 seg): plano cenital de chiles, ajo y jitomates crudos sobre tabla de madera, mano entra al cuadro y mueve los ingredientes sin arreglarlos. Escena 2 (5-9 seg): close-up del tatemado en comal o sartén, humo visible, sonido chisporroteo real. Escena 3 (10-13 seg): frasco de Salsa Tatemada Ahumada aparece en cuadro desde abajo, sin centrar, sin pose. Escena 4 (14-15 seg): fade a negro con texto principal. Sin filtros sobre el producto. Luz natural o de cocina, imperfecta. Fondo auténtico de cocina real.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#HechoEnCocina",
+    "#Artesanal",
+    "#SalsaPicante"
+  ]
+}

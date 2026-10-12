@@ -1,0 +1,41 @@
+{
+  "hook": "Hay dos tipos de personas en un asado.",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Texto en pantalla sobre fondo negro o corte directo al asado. Letra grande, centrada, tipografía bold.",
+      "texto_pantalla": "Hay dos tipos de personas en un asado."
+    },
+    {
+      "segundo": "3-10",
+      "visual": "Persona 1: plato con carne, sin salsa. Come. Cara plana, sin emoción. Mastica mirando al vacío. Corte seco.",
+      "texto_pantalla": "El que come así nomás."
+    },
+    {
+      "segundo": "10-20",
+      "visual": "Persona 2: misma carne, mismo plato. Mano entra al cuadro con el frasco de Salsa Tatemada Ahumada. Echa la salsa. Primer mordisco. Reacción real — ojos que se abren, gesto de aprobación genuino. Sin exagerar.",
+      "texto_pantalla": "Y el que sabe lo que hace."
+    },
+    {
+      "segundo": "20-27",
+      "visual": "Frasco de Salsa Tatemada Ahumada en primer plano, sobre la mesa del asado. Fondo natural, sin filtros. Texto aparece limpio sobre la imagen.",
+      "texto_pantalla": "Sé el segundo. — Link en bio 🔥"
+    }
+  ],
+  "caption": "En todo asado hay uno que llega con la salsa y uno que le pide. No seas el que pide. Pídela aquí → https://wa.me/573005864523",
+  "cta": "Pídela aquí → https://wa.me/573005864523 — ¿A quién en tu grupo le mandas esto ahora mismo?",
+  "hashtags": [
+    "#SalsasBestial",
+    "#TatemadaAhumada",
+    "#AsadoColombiano",
+    "#SalsaPicante",
+    "#ComidaReal",
+    "#FoodiesCol",
+    "#PicanteConCarácter",
+    "#SalsaArtesanal",
+    "#BestialLovers",
+    "#AsadoFamiliero"
+  ],
+  "mood_musica": "upbeat_latino",
+  "hook_audio": null
+}

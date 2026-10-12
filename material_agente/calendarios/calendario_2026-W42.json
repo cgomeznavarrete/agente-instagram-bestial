@@ -1,0 +1,251 @@
+{
+  "semana": "2026-W42",
+  "fecha_inicio": "2026-10-12",
+  "fecha_fin": "2026-10-18",
+  "fecha_generacion": "2026-10-12T21:57:01.699681",
+  "estado": "borrador",
+  "campana_activa": null,
+  "entradas": [
+    {
+      "id": "cal-16c5de",
+      "dia": "lunes",
+      "fecha": "2026-10-12",
+      "hora_publicacion": "19:00",
+      "tipo_contenido": "reel",
+      "pilar": "retos_y_pruebas_de_picante",
+      "objetivo": "awareness",
+      "concepto": "Reel de 30-45 segundos grabado por el equipo Bestial. Hook visual: alguien abre el frasco de Salsa Tatemada Ahumada con una sola mano mientras sostiene un taco en la otra. Voz en off o texto en pantalla: 'La gente que dice que no le gusta el picante… nunca ha probado la salsa correcta.' Mostrar la reacción genuina al primer mordisco —sin exagerar, sin actuación forzada—. Cerrar con CTA: 'El frasco está en el link de la bio. O escríbenos al WhatsApp.' Música: cumbia o vallenato acelerado de fondo para anclar identidad latinoamericana. Edición rápida, cortes al ritmo de la música, sin efectos plásticos sobre el producto.",
+      "material_sugerido": [
+        "grabar/reel_reaccion_taco_salsa_tatemada.mp4"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-40d144",
+      "dia": "lunes",
+      "fecha": "2026-10-12",
+      "hora_publicacion": "20:30",
+      "tipo_contenido": "story",
+      "pilar": "como_comprar",
+      "objetivo": "ventas",
+      "concepto": "Story estática con diseño tipográfico limpio —fondo negro, texto blanco y rojo Bestial—. Mensaje: '¿Cómo conseguir tu Salsa Tatemada Ahumada? Fácil. Escríbenos por WhatsApp y te respondemos hoy.' Sticker de enlace directo a https://wa.me/573005864523. Sin foto de producto para no violar la regla de no alterar imagen sin material de calidad disponible. Copy del sticker: 'PEDIR AHORA 🔥' (único emoji de la pieza).",
+      "material_sugerido": [
+        "diseñar/story_como_comprar_fondo_negro.png"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-9ed2a7",
+      "dia": "martes",
+      "fecha": "2026-10-13",
+      "hora_publicacion": "12:00",
+      "tipo_contenido": "carrusel",
+      "pilar": "educacion_sobre_salsas",
+      "objetivo": "educacion",
+      "concepto": "Carrusel de 5 slides: 'Por qué una salsa ahumada y tatemada no es lo mismo que cualquier salsa de botella.' Slide 1 — Hook: '¿Sabes qué significa que una salsa esté tatemada? (La mayoría no sabe.)' Slide 2 — Explicación del proceso de tatemar: ingredientes asados directamente sobre fuego o comal hasta carbonizar ligeramente la piel. Slide 3 — Qué aporta el ahumado: profundidad de sabor, notas terrosas, diferencia con salsas industriales. Slide 4 — Cómo identificar una salsa tatemada de verdad vs. una con saborizante artificial. Slide 5 — Cierre: 'Nuestra Salsa Tatemada Ahumada. Sin atajos. Link en bio.' Diseño: paleta tierra —café, negro, naranja quemado—. Tipografía bold. Sin foto de producto en slides, solo ilustraciones vectoriales de chiles y fuego.",
+      "material_sugerido": [
+        "diseñar/carrusel_educacion_tatemada_5slides.png"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-7befdb",
+      "dia": "martes",
+      "fecha": "2026-10-13",
+      "hora_publicacion": "19:00",
+      "tipo_contenido": "story",
+      "pilar": "humor_picante",
+      "objetivo": "entretenimiento",
+      "concepto": "Story con sticker de encuesta. Fondo: color tierra con tipografía divertida. Texto: 'Honestidad brutal: ¿le echas salsa a TODO lo que comes?' Opción A: 'Sí, hasta a la sopa.' Opción B: 'No, soy una persona normal.' Responder en story siguiente con resultado y comentario sarcástico tipo: 'El X% eligió A. Familia. 🤝' Máximo 1 emoji adicional en la respuesta.",
+      "material_sugerido": [
+        "diseñar/story_encuesta_humor_salsa_todo.png"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-5978fa",
+      "dia": "miercoles",
+      "fecha": "2026-10-14",
+      "hora_publicacion": "19:00",
+      "tipo_contenido": "post",
+      "pilar": "recetas_y_maridajes",
+      "objetivo": "engagement",
+      "concepto": "Post de diseño tipográfico —sin foto de producto— con una receta express en formato texto visual. Título: 'Arroz con huevo del domingo. Pero con Bestial.' Cuerpo del copy en caption: receta de 4 pasos para hacer arroz frito con huevo estrellado y Salsa Tatemada Ahumada encima. Tono: como si te lo estuviera mandando un amigo por WhatsApp. Diseño del post: fondo crema, letra manuscrita simulada, ilustración minimalista de un plato. CTA en caption: '¿Tú qué le echas al arroz del domingo? Cuéntame abajo.' Para generar comentarios y subir engagement.",
+      "material_sugerido": [
+        "diseñar/post_receta_arroz_huevo_bestial_tipografico.png"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-3bed23",
+      "dia": "miercoles",
+      "fecha": "2026-10-14",
+      "hora_publicacion": "20:30",
+      "tipo_contenido": "story",
+      "pilar": "behind_the_scenes",
+      "objetivo": "comunidad",
+      "concepto": "Story en formato video corto (15 seg) grabado de forma casual —teléfono en mano, sin producción elaborada— mostrando el proceso de preparación o empaque de la Salsa Tatemada Ahumada. Si no hay producto listo para grabar, mostrar los ingredientes crudos: chiles, ajo, jitomate sobre una tabla de madera. Texto superpuesto: 'Así empieza todo. Sin secretos.' Sin música, solo sonido ambiente de cocina. Autenticidad sobre producción.",
+      "material_sugerido": [
+        "grabar/story_bts_ingredientes_cocina_15seg.mp4"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-d41bf6",
+      "dia": "jueves",
+      "fecha": "2026-10-15",
+      "hora_publicacion": "12:00",
+      "tipo_contenido": "story",
+      "pilar": "testimonios_y_ugc",
+      "objetivo": "comunidad",
+      "concepto": "Story de solicitud de UGC. Diseño simple: fondo rojo Bestial, texto blanco bold. Mensaje: '¿Ya probaste la Tatemada Ahumada? Mándanos tu video o foto. Los mejores los posteamos aquí. 👀' Sticker de respuesta directa habilitado. El objetivo es empezar a construir banco de UGC para semanas siguientes. Un solo emoji estratégico.",
+      "material_sugerido": [
+        "diseñar/story_solicitud_ugc_fondo_rojo.png"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-cb6a13",
+      "dia": "jueves",
+      "fecha": "2026-10-15",
+      "hora_publicacion": "19:00",
+      "tipo_contenido": "reel",
+      "pilar": "lifestyle_y_comunidad",
+      "objetivo": "awareness",
+      "concepto": "Reel de 20-30 segundos. Hook: texto en pantalla los primeros 2 segundos — 'Hay dos tipos de personas en un asado.' Corte 1: alguien comiendo sin salsa, cara aburrida. Corte 2: alguien echando Salsa Tatemada Ahumada, reacción de satisfacción real. Texto final: 'Sé el segundo.' Música: champeta o mapalé instrumental —referencia cultural colombiana directa—. Sin voz en off. Solo texto y música. Edición limpia, sin efectos artificiales sobre el frasco. CTA final en pantalla: 'Link en bio 🔥' (único emoji del reel).",
+      "material_sugerido": [
+        "grabar/reel_dos_tipos_personas_asado.mp4"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-caf718",
+      "dia": "viernes",
+      "fecha": "2026-10-16",
+      "hora_publicacion": "12:00",
+      "tipo_contenido": "post",
+      "pilar": "beneficios_del_producto",
+      "objetivo": "educacion",
+      "concepto": "Post de diseño tipográfico. Sin bullets. Sin lista. El copy va directo en el caption como párrafo fluido. Concepto visual del post: fondo negro con el nombre del producto en tipografía grande —Salsa Tatemada Ahumada— y una sola línea debajo: 'Hecha para quedarse.' Caption: hablar del proceso artesanal, de que no hay atajos en el sabor, de que la diferencia entre una salsa buena y una bestial está en cómo se tratan los ingredientes desde el principio. Tono: orgulloso, directo, sin sonar a publicidad. Cerrar con pregunta: '¿Cuándo fue la última vez que una salsa te sorprendió de verdad?'",
+      "material_sugerido": [
+        "diseñar/post_beneficios_tipografico_fondo_negro.png"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-5c5174",
+      "dia": "viernes",
+      "fecha": "2026-10-16",
+      "hora_publicacion": "19:00",
+      "tipo_contenido": "story",
+      "pilar": "promociones_y_lanzamientos",
+      "objetivo": "ventas",
+      "concepto": "Story de conversión directa. Diseño: fondo degradado rojo-negro, tipografía blanca impactante. Texto: 'Viernes de pedidos. Escríbenos hoy y te decimos cómo llega la Bestial a tu casa.' Sticker de enlace a https://wa.me/573005864523 con texto del botón: 'ESCRIBIR AHORA'. Sticker de cuenta regresiva opcional si hay alguna oferta de fin de semana. Copy breve, sin adornos, sin emojis decorativos. Directo al punto.",
+      "material_sugerido": [
+        "diseñar/story_conversion_viernes_pedidos.png"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-f9a0a7",
+      "dia": "sabado",
+      "fecha": "2026-10-17",
+      "hora_publicacion": "12:00",
+      "tipo_contenido": "post",
+      "pilar": "humor_picante",
+      "objetivo": "entretenimiento",
+      "concepto": "Post de meme tipográfico —sin imagen de producto—. Formato: texto blanco sobre fondo negro con acento rojo. Concepto: referencia al 'sazón latinoamericano' y cómo la gente de la región tiene una relación emocional con las salsas picantes desde la infancia. Copy del post y caption: 'Abuela echándole salsa a todo desde 1987. Nosotros aprendimos de los mejores.' Tono: nostalgia + humor + orgullo cultural. CTA suave: 'Cuéntame de quién aprendiste a amar el picante.' Para generar comentarios personales y subir engagement orgánico.",
+      "material_sugerido": [
+        "diseñar/post_meme_tipografico_abuela_salsa.png"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-c6bcbe",
+      "dia": "domingo",
+      "fecha": "2026-10-18",
+      "hora_publicacion": "19:00",
+      "tipo_contenido": "story",
+      "pilar": "recetas_y_maridajes",
+      "objetivo": "engagement",
+      "concepto": "Story interactiva con sticker de pregunta abierta. Fondo: ilustración minimalista de una mesa de almuerzo dominical —sin foto real—. Texto: 'Domingo de sancocho, bandeja, sudado… ¿qué estás comiendo hoy?' Sticker de respuesta abierta habilitado. El equipo responde a cada historia mencionando cómo la Salsa Tatemada Ahumada marida con lo que diga el usuario. Construcción de comunidad y conversación real sin vender directamente.",
+      "material_sugerido": [
+        "diseñar/story_pregunta_domingo_almuerzo_ilustracion.png"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    }
+  ],
+  "notas_estrategia": "Sin material visual disponible, toda la producción recae en contenido generado por el agente (texto, diseño, animación, grabación propia). Con engagement del 3.56% y cero seguidores nuevos la semana anterior, la estrategia prioriza: (1) Reels como formato de adquisición principal —algoritmo 2026 premia video corto—, (2) hooks provocadores que rompan el scroll sin depender de imagen de producto, (3) un carrusel educativo que genere guardados y extienda el alcance orgánico, (4) al menos una pieza de conversión directa a WhatsApp. Se alterna el ciclo venta/educación/entretenimiento/comunidad para no saturar con mensajes comerciales. Los pilares no se repiten en días consecutivos. Distribución: Lunes-Miércoles-Viernes para piezas de mayor producción; Stories diarias de bajo esfuerzo para mantener presencia constante en la barra superior."
+}

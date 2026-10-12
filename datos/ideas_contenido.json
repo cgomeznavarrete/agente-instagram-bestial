@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "ultima_actualizacion": "2026-10-05T21:28:28.749254",
+  "ultima_actualizacion": "2026-10-12T22:00:23.311653",
   "banco_ideas": [
     {
       "id": "idea-4428a483",
@@ -2039,6 +2039,126 @@
       "concepto": "Carrusel de 4 slides mostrando los ingredientes reales de la Tatemada Ahumada uno por uno, con una foto de cada ingrediente en contexto natural. Sin claims de salud, solo honestidad sobre lo que lleva.",
       "notas": "La transparencia de ingredientes es un argumento de venta poderoso frente a salsas industriales. Refuerza el posicionamiento artesanal sin necesidad de hacer promesas que no se pueden sostener.",
       "prioridad": "baja",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-4a9e78b4",
+      "fecha_generacion": "2026-10-12",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "humor_picante",
+      "concepto": "Reel de 20 segundos: comparación exagerada entre cómo queda una comida sin salsa vs con Salsa Tatemada Ahumada. Sin palabras, solo música dramática tipo telenovela latinoamericana y reacciones faciales auténticas. El frasco aparece como el héroe al final.",
+      "notas": "El formato de contraste antes/después es uno de los más replicados en Instagram. El guiño a la telenovela conecta culturalmente con el público latinoamericano y genera humor inmediato sin necesidad de texto.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-3d21d1cd",
+      "fecha_generacion": "2026-10-12",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "behind_the_scenes",
+      "concepto": "Foto cercana del proceso de tatemado de los ingredientes — la llama, los chiles chamuscados, el humo real. Copy que hable del origen del sabor sin romantizarlo demasiado. Imagen cruda, sin filtros.",
+      "notas": "La autenticidad del proceso artesanal es un diferenciador enorme. Una sola foto bien tomada del fuego real genera más confianza que cualquier anuncio producido. Alto potencial de guardados.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-37df53c8",
+      "fecha_generacion": "2026-10-12",
+      "origen": "claude",
+      "tipo_sugerido": "story",
+      "pilar": "retos_y_pruebas_de_picante",
+      "concepto": "Story interactiva con slider de reacción: '¿Cuánto aguantas? Desliza hasta donde crees que llegas con la Tatemada Ahumada.' Sin spoilers. Al día siguiente, story de respuesta con el nivel real de picante y la invitación a probarlo.",
+      "notas": "Los sliders de reacción tienen altísima tasa de interacción en stories. Genera conversación, datos de audiencia y un pretexto perfecto para volver al día siguiente con contenido de seguimiento.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-eb7b1eea",
+      "fecha_generacion": "2026-10-12",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "educacion_sobre_salsas",
+      "concepto": "Carrusel de 5 slides: 'Por qué la salsa tatemada sabe diferente a todo lo que has probado.' Cada slide explica un elemento del proceso — el ahumado, el tatemado, los chiles — con lenguaje coloquial, no técnico. Último slide: CTA para comprar.",
+      "notas": "El contenido educativo bien contado genera guardados masivos. Posiciona a Salsas Bestial como referente y no solo como vendedor. Ideal para el algoritmo de Instagram por tiempo de visualización.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-e4343933",
+      "fecha_generacion": "2026-10-12",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "recetas_y_maridajes",
+      "concepto": "Reel de 30 segundos mostrando cómo preparar unos huevos pericos o revueltos de madrugada con la Tatemada Ahumada encima. Estética de cocina real — nada de set de fotografía. Voz en off casual, como si le contara a un amigo.",
+      "notas": "Las recetas de madrugada o de resaca son un nicho con engagement brutal en Latinoamérica. La identificación cultural es inmediata y el nivel de producción puede ser mínimo, lo que lo hace replicable.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-e323e208",
+      "fecha_generacion": "2026-10-12",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "testimonios_y_ugc",
+      "concepto": "Foto del frasco junto a una captura de pantalla real de un mensaje de WhatsApp o DM donde un cliente habla de la salsa. Copy en primera persona de la marca respondiendo ese testimonio con actitud. Sin edición excesiva.",
+      "notas": "Las pruebas sociales en formato crudo — capturas reales — generan más credibilidad que cualquier reseña producida. Humaniza la marca y activa el boca a boca digital.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-5ea0f676",
+      "fecha_generacion": "2026-10-12",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "lifestyle_y_comunidad",
+      "concepto": "Reel corto de 15 segundos: frasco de Tatemada Ahumada en diferentes escenas del día — desayuno, almuerzo, cena, tarde de domingo viendo fútbol. Sin narración. Solo cortes rápidos con música urbana latina de fondo.",
+      "notas": "Muestra versatilidad del producto sin decirlo explícitamente. El formato de montaje rápido con buena música tiene alto potencial de reproducción repetida, lo que favorece el alcance orgánico.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-ca1cd914",
+      "fecha_generacion": "2026-10-12",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "como_comprar",
+      "concepto": "Carrusel de 4 slides estilo 'paso a paso sin complicaciones': cómo pedir la Tatemada Ahumada por WhatsApp en menos de 2 minutos. Tono directo, casi impaciente — como si fuera obvio que ya deberías tenerla. Último slide con el link directo.",
+      "notas": "Muchos potenciales compradores no convierten por no saber cómo comprar. Este carrusel elimina esa fricción. Es evergreen, se puede reutilizar y anclar en el perfil. ROI directo en ventas.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-e8a91469",
+      "fecha_generacion": "2026-10-12",
+      "origen": "claude",
+      "tipo_sugerido": "story",
+      "pilar": "promociones_y_lanzamientos",
+      "concepto": "Serie de 3 stories tipo cuenta regresiva para una promoción o disponibilidad limitada. Primera story: solo texto provocador sin revelar qué es. Segunda: pista visual del frasco. Tercera: el detalle completo con CTA a WhatsApp.",
+      "notas": "El suspenso en stories crea hábito de seguimiento. Usuarios que ven la primera story vuelven por las siguientes. Ideal para entrenar a la audiencia a prestar atención a las stories de la marca.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-a216311c",
+      "fecha_generacion": "2026-10-12",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "beneficios_del_producto",
+      "concepto": "Foto minimalista del frasco sobre una superficie rústica — madera, piedra o tela oscura. Copy que hable del ahumado como si fuera un recuerdo de infancia: la abuela asando en el patio, el olor del carbón. Sin mencionar beneficios directamente.",
+      "notas": "La nostalgia latinoamericana es uno de los activadores emocionales más poderosos en redes. Un copy que evoca memoria sensorial genera una conexión que ningún argumento de venta logra. Alto potencial de guardados y comentarios.",
+      "prioridad": "media",
       "usado": false,
       "fecha_uso": null
     }

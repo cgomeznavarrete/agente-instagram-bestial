@@ -1,0 +1,41 @@
+{
+  "hook": "La gente que dice que no le gusta el picante... nunca ha probado la salsa correcta.",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Plano cerrado: una mano abre el frasco de Salsa Tatemada Ahumada con un solo movimiento mientras la otra sostiene un taco armado. Sin cortes. Sin poses.",
+      "texto_pantalla": "La gente que dice que no le gusta el picante…"
+    },
+    {
+      "segundo": "3-8",
+      "visual": "La salsa cae sobre el taco en un chorro limpio. Plano detalle del frasco — etiqueta visible, sin filtros. Corte rápido al ritmo del vallenato.",
+      "texto_pantalla": "…nunca ha probado la salsa correcta."
+    },
+    {
+      "segundo": "8-20",
+      "visual": "El primer mordisco. Reacción real: ojos que se abren, pausa de dos segundos, sonrisa inevitable. Sin actuación. Corte al frasco sobre la mesa. Corte de vuelta a la cara. El ritmo de la cumbia marca cada corte.",
+      "texto_pantalla": "Tatemada. Ahumada. Sin dramas."
+    },
+    {
+      "segundo": "20-28",
+      "visual": "Plano final: el frasco centrado en mesa de madera rústica, luz natural. Mano entra al cuadro, lo toma. Fade con logo Bestial en esquina inferior.",
+      "texto_pantalla": "El frasco está en el link de la bio. O escríbenos al WhatsApp 🌶"
+    }
+  ],
+  "caption": "No es que no te guste el picante — es que no habías encontrado uno que valiera la pena. ¿A quién le mandarías un frasco de estos para convencerlo?",
+  "cta": "Pídela aquí → https://wa.me/573005864523",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteDeVerdad",
+    "#SalsaAhumada",
+    "#FoodLoversLatam",
+    "#TacoLovers",
+    "#ComidaPicante",
+    "#SalsaArtesanal",
+    "#RecetasColombia",
+    "#BestialEsActitud"
+  ],
+  "mood_musica": "upbeat_latino",
+  "hook_audio": "La gente que dice que no le gusta el picante... nunca ha probado la salsa correcta."
+}

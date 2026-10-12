@@ -1,0 +1,55 @@
+{
+  "caption_principal": "La mayoría cree que una salsa ahumada es solo agregarle humo. No. Hay todo un proceso detrás que la industria lleva años ignorando — desliza y entiende la diferencia 🔥",
+  "cta_caption": "¿Sabías que la mayoría de salsas 'ahumadas' del supermercado ni siquiera ven el fuego? Cuéntanos abajo si ya lo sospechabas.",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#SalsaAhumada",
+    "#CulturaPickante",
+    "#SalsaArtesanal",
+    "#FoodEducation",
+    "#ChilesMexicanos",
+    "#SalsasDeCocina",
+    "#PicanteDe verdad",
+    "#CocinaMexicana",
+    "#Tatemar",
+    "#SaborReal"
+  ],
+  "slides": [
+    {
+      "numero": 1,
+      "titulo": "¿Sabes qué significa que una salsa esté tatemada?",
+      "subtitulo": "La mayoría no sabe. Y eso lo cambia todo.",
+      "descripcion_visual": "Fondo negro intenso. Tipografía bold blanca para el título, naranja quemado para el subtítulo. Ilustración vectorial minimalista de un chile con llamas saliendo de su base, centrado debajo del texto. Sin fotografías. Paleta: negro, naranja quemado, café oscuro. Sensación de calor contenido.",
+      "tipo": "portada"
+    },
+    {
+      "numero": 2,
+      "titulo": "Tatemar es poner el ingrediente directo en el fuego. Sin miedo.",
+      "subtitulo": "Chile, jitomate, ajo — sobre comal o llama abierta hasta que la piel se carboniza. Eso no es quemarlo. Es transformarlo.",
+      "descripcion_visual": "Fondo café oscuro texturizado. Ilustración vectorial de un comal con chiles encima, líneas de calor ascendentes en naranja quemado. Tipografía bold en blanco para el título. El subtítulo en tipografía más ligera, color arena. Composición centrada con espacio respirado.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 3,
+      "titulo": "El ahumado no es un saborizante. Es una capa entera de sabor.",
+      "subtitulo": "Notas terrosas, profundidad, ese retrogusto que te hace volver al plato. Eso no viene de un frasco con etiqueta bonita — viene del proceso.",
+      "descripcion_visual": "Fondo negro. Ilustración vectorial de espirales de humo en tonos café y gris oscuro subiendo desde abajo. Tipografía bold naranja quemado para el título. Subtítulo en blanco, fuente más delgada. Contraste alto. Atmósfera densa y cálida.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 4,
+      "titulo": "¿Cómo distingues una salsa tatemada real de una con saborizante?",
+      "subtitulo": "Real: color irregular, textura rústica, sabor que evoluciona. Artificial: color uniforme, olor a 'humo líquido', sabor plano que no va a ningún lado.",
+      "descripcion_visual": "Fondo dividido en dos mitades verticales — izquierda café oscuro (lo real), derecha gris frío (lo artificial). Ilustraciones vectoriales contrastadas: a la izquierda un chile rústico con marcas de fuego, a la derecha un ícono genérico de botella industrial. Tipografía bold blanca. Palabras clave en naranja quemado.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 5,
+      "titulo": "Nuestra Salsa Tatemada Ahumada. Sin atajos.",
+      "subtitulo": "Link en bio.",
+      "descripcion_visual": "Fondo negro con textura sutil. Tipografía bold en naranja quemado para el título, grande y centrado. Subtítulo en blanco, tipografía más pequeña debajo. Ilustración vectorial de una llama sencilla encima del texto como elemento gráfico de marca. Logo de Salsas Bestial en la parte inferior. Sin saturación, todo el peso en las palabras.",
+      "tipo": "cta"
+    }
+  ]
+}

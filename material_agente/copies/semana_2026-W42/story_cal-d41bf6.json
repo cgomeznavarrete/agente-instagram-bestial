@@ -1,0 +1,17 @@
+{
+  "texto_principal": "¿Ya probaste la Tatemada Ahumada?",
+  "texto_secundario": "Mándanos tu video o foto. Los mejores los posteamos aquí. 👀",
+  "cta": "Responde esta story con tu foto o video",
+  "elemento_interactivo": {
+    "tipo": "pregunta",
+    "contenido": "Muéstranos cómo la usaste 🔥"
+  },
+  "descripcion_visual": "Fondo rojo Bestial sólido (#CC0000 o el rojo oficial de marca). Texto principal en blanco bold centrado, tipografía grande que ocupe 60% de la pantalla. Texto secundario debajo, mismo color blanco pero en peso regular o medium, tamaño menor. Sticker de respuesta directa de Instagram posicionado en la parte inferior central. Sin filtros sobre ningún elemento de marca. Sin imágenes del frasco en esta pieza — el diseño es tipográfico puro para que el protagonista sea el usuario que responde.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#TatemadaAhumada",
+    "#SalsaPicante",
+    "#UGC",
+    "#Foodie"
+  ]
+}

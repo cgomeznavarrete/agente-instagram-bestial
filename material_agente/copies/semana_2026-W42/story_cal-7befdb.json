@@ -1,0 +1,13 @@
+{
+  "texto_principal": "¿Le echas salsa a TODO lo que comes?",
+  "texto_secundario": "Honestidad brutal. No te juzgamos... mucho.",
+  "cta": "Vota y descubre cuántos son como tú",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "Opción A: 'Sí, hasta a la sopa.' | Opción B: 'No, soy una persona normal.'"
+  },
+  "descripcion_visual": "Fondo color tierra cálido (terracota oscuro). Tipografía divertida, irregular, en blanco roto y amarillo mostaza. El texto principal ocupa el centro de la pantalla en letras grandes y expresivas. El sticker de encuesta va justo debajo, bien visible. Sensación de cartel hecho a mano, sin efectos digitales sobre el frasco ni el logo. Story de respuesta (siguiente): fondo igual, texto tipo '¿Ves? El X% eligió A. Familia. 🤝 El resto... los queremos igual.' con máximo 1 emoji adicional al final.",
+  "hashtags_ocultos": [
+    "#SalsasBestial"
+  ]
+}
