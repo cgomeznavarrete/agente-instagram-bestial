@@ -1,0 +1,17 @@
+{
+  "texto_principal": "Tatemar no es ahumar. Es otra cosa.",
+  "texto_secundario": "Desliza y te explico por qué cambia todo 👇",
+  "cta": "Desliza para la explicación",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "¿Sabías la diferencia? | Sí, obvio / Acabo de aprender"
+  },
+  "descripcion_visual": "Fondo estilo cuaderno rayado con papel ligeramente envejecido, color crema cálido. Texto escrito a mano con tipografía tipo marcador negro grueso para el texto principal. El texto secundario en letra más pequeña, como una nota al margen. En la esquina inferior, un pequeño ícono de chile tatemado dibujado a mano — sin filtros, sin efectos plásticos. Iluminación cálida, sensación artesanal y honesta. La encuesta de Instagram aparece integrada naturalmente al centro-inferior de la pantalla.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#ChileTatemado",
+    "#SalsaArtesanal",
+    "#CulturaChilera"
+  ]
+}

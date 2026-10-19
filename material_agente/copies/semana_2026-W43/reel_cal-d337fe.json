@@ -1,0 +1,46 @@
+{
+  "hook": "El que dice que no le pica... miente.",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Pantalla completa en negro con tipografía bold que aparece letra por letra, efecto glitch al final. Sin música, solo silencio tenso de medio segundo y luego chisporroteo.",
+      "texto_pantalla": "El que dice que no le pica... miente."
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Ilustración animada #1: El tío en el asado familiar, pecho inflado, fanfarroneando. Muerde. Corte rápido: ojos llorosos, abanicándose con la servilleta, pidiendo agua con señas.",
+      "texto_pantalla": "El tío del asado 🫠"
+    },
+    {
+      "segundo": "8-14",
+      "visual": "Ilustración animada #2: La amiga en el restaurante, pide 'poquito picante' con cara de diva. Siguiente escena: devuelve el plato con cara de drama, jalando agua de todos los vasos de la mesa.",
+      "texto_pantalla": "'Poquito picante, please.'"
+    },
+    {
+      "segundo": "14-20",
+      "visual": "Ilustración animada #3: Tú. Calma total. Frasco de Salsa Tatemada Ahumada en mano, cara de poker, comiendo sin inmutarte mientras todo arde alrededor. Música sube.",
+      "texto_pantalla": "Tú. Sin inmutarte."
+    },
+    {
+      "segundo": "20-25",
+      "visual": "Frasco de Salsa Tatemada Ahumada en primer plano animado, zoom suave de entrada, brillo sutil sobre la etiqueta — sin filtros de color. Fondo oscuro limpio. Texto aparece línea por línea.",
+      "texto_pantalla": "Para los que sí son de verdad. Salsas Bestial."
+    }
+  ],
+  "caption": "Todos conocemos a uno. Algunos somos el otro. La Tatemada Ahumada no juzga — pero sí pone a prueba 🔥",
+  "cta": "Pídela aquí → https://wa.me/573005864523 ¿A quién le mandarías esta historia sin decir nada?",
+  "hashtags": [
+    "#SalsasBestial",
+    "#TatemadaAhumada",
+    "#SalsaPicante",
+    "#HumorLatino",
+    "#ComidasLatinas",
+    "#PicanteDeVerdad",
+    "#FoodiesLatam",
+    "#SalsaArtesanal",
+    "#AsadoFamiliar",
+    "#ElQueNoLePica"
+  ],
+  "mood_musica": "humor",
+  "hook_audio": "El que dice que no le pica... miente."
+}

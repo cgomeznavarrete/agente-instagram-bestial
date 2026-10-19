@@ -1,0 +1,13 @@
+{
+  "texto_principal": "¿Cuánto aguantas realmente?",
+  "texto_secundario": "Sé honesto.",
+  "cta": "Vota y descúbrete",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "Opción A: Soy de los duros 🌶 | Opción B: Le bajo el picante con agua"
+  },
+  "descripcion_visual": "Fondo negro sólido. Tipografía bold blanca centrada, tamaño grande para el texto principal. 'Sé honesto.' en tipografía más pequeña, tono gris claro, debajo del titular. Encuesta de Instagram posicionada en el tercio inferior de la pantalla. Sin imágenes del producto. Sin elementos decorativos extra. Animación de entrada: texto aparece letra por letra, efecto máquina de escribir. Minimalista total — el silencio visual hace el trabajo.",
+  "hashtags_ocultos": [
+    "#SalsasBestial"
+  ]
+}

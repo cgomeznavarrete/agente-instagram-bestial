@@ -1,0 +1,67 @@
+{
+  "caption_principal": "Un domingo sin planes, nevera a medias y un frasco de Salsa Tatemada Ahumada. Así fue como pasé de improvisar a repensar todo lo que creía saber sobre cocinar. No exagero. La usé en cinco cosas ese día — ninguna era la obvia — y desde entonces no la suelto. Desliza → que lo que viene te va a cambiar el juego en la cocina.",
+  "cta_caption": "¿Cuál de estas cinco no te esperabas? Cuéntanos abajo — y si ya probaste alguna, mejor.",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#RecetasConPicante",
+    "#CocinaLatina",
+    "#SalsaAhumada",
+    "#TrucosDeCocina",
+    "#FoodiesLatam",
+    "#CocinaEnCasa",
+    "#PicanteDeVerdad",
+    "#MaridajesPicantes"
+  ],
+  "slides": [
+    {
+      "numero": 1,
+      "titulo": "5 formas de usarla que nunca se te habían ocurrido",
+      "subtitulo": "Salsa Tatemada Ahumada — más allá del taco",
+      "descripcion_visual": "Fondo negro total. Título en tipografía bold, blanco roto, con la palabra 'nunca' en rojo intenso. Frasco de Salsa Bestial en esquina inferior derecha, sin filtro, fotografía real. Textura sutil de humo o brasa en el fondo, muy discreta. Paleta: negro, rojo y blanco. Sin elementos recargados.",
+      "tipo": "portada"
+    },
+    {
+      "numero": 2,
+      "titulo": "Marinada para pollo a la plancha",
+      "subtitulo": "Aceite de oliva + ajo + una cucharada generosa. Déjalo reposar 20 minutos. El humo hace el resto.",
+      "descripcion_visual": "Fondo oscuro carbón. Ilustración minimalista de una pechuga de pollo con líneas de plancha, trazos simples en blanco y rojo. Texto centrado, tipografía limpia. Número '01' en rojo grande en esquina superior izquierda como referencia de secuencia.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 3,
+      "titulo": "Base para vinagreta",
+      "subtitulo": "Vinagre de manzana + aceite + media cucharadita. La ensalada que nadie en tu familia va a olvidar.",
+      "descripcion_visual": "Fondo negro. Ilustración minimalista de un bowl de ensalada con líneas rojas cayendo — representando la vinagreta. Trazos limpios, estilo gráfico editorial. Número '02' en rojo. Composición centrada, mucho espacio en blanco para que el texto respire.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 4,
+      "titulo": "Toque en mayonesa casera",
+      "subtitulo": "Solo una cucharadita mientras bates. Transforma cualquier sándwich, arepas, lo que sea.",
+      "descripcion_visual": "Fondo carbón oscuro. Ilustración minimalista de un frasco de mayonesa con una espátula, líneas rojas integrándose. Número '03' en rojo. Tipografía bold para el título, regular para el subtítulo. Paleta consistente con slides anteriores.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 5,
+      "titulo": "Sobre aguacate con limón",
+      "subtitulo": "Aguacate partido, limón, sal gruesa y tres gotas. Simple. Brutal. No necesita nada más.",
+      "descripcion_visual": "Fondo negro. Ilustración minimalista de medio aguacate con gotas cayendo en rojo — representando la salsa. Líneas muy limpias, casi geométricas. Número '04' en rojo. El subtítulo usa guiones para crear ritmo visual — 'Simple. Brutal.' en negrita.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 6,
+      "titulo": "En la pasta de tomate para pizza",
+      "subtitulo": "Una cucharada en la base antes de armar todo. La pizza que hacías en casa nunca más va a ser la misma.",
+      "descripcion_visual": "Fondo oscuro. Ilustración minimalista de una pizza con slice separado, líneas rojas en la base representando la salsa integrada. Número '05' en rojo. Composición dinámica — el slice separado da movimiento al slide. Tipografía consistente con la serie.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 7,
+      "titulo": "La tuya está en el link de bio",
+      "subtitulo": "O escríbenos directo por WhatsApp — te respondemos rápido.",
+      "descripcion_visual": "Fondo negro. Logo de Salsas Bestial centrado, sin modificaciones ni filtros. Debajo, texto en blanco: 'La tuya está en el link de bio'. Pequeño ícono de WhatsApp en rojo con el número visible. Frase secundaria en gris claro: 'Salsa Tatemada Ahumada — disponible ahora'. Composición limpia, mucho aire, el logo es el protagonista absoluto.",
+      "tipo": "cta"
+    }
+  ]
+}

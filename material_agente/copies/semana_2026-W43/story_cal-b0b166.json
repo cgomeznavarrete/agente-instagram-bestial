@@ -1,0 +1,16 @@
+{
+  "texto_principal": "¿Cuánto picante aguantas de verdad?",
+  "texto_secundario": "Cuéntanos. Los mejores van al viernes 🔥",
+  "cta": "Responde la pregunta abajo",
+  "elemento_interactivo": {
+    "tipo": "pregunta",
+    "contenido": "¿Lo intentarías? Cuéntanos tu tolerancia al picante"
+  },
+  "descripcion_visual": "Fondo con degradado vertical de rojo intenso en la parte superior a negro profundo en la base. Texto principal centrado en tipografía bold blanca con ligera sombra para legibilidad. Texto secundario en tamaño pequeño debajo, en gris claro o blanco semitransparente. Caja de preguntas de Instagram posicionada en el tercio inferior de la pantalla. Sin filtros sobre el fondo — el degradado es el único elemento visual de color. Sensación oscura, intensa y directa, como la salsa misma.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#PicanteReal",
+    "#RetoBestial",
+    "#SalsaTatemada"
+  ]
+}

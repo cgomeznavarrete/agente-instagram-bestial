@@ -1,0 +1,17 @@
+{
+  "texto_principal": "Cada frasco tiene historia. Gracias.",
+  "texto_secundario": "Esta semana salieron varios. La próxima, más.",
+  "cta": "Responde con 🔥 si ya tienes el tuyo — o desliza para conseguirlo",
+  "elemento_interactivo": {
+    "tipo": "pregunta",
+    "contenido": "¿Ya probaste la Tatemada Ahumada esta semana?"
+  },
+  "descripcion_visual": "Fondo negro con textura de grano de película 35mm. Tipografía sans-serif blanca, peso ligero, centrada. Sin logos grandes — solo el nombre 'Salsas Bestial' en pequeño, esquina inferior. Segundo slide: mismo fondo oscuro, ícono de WhatsApp minimalista en blanco y el número visible. Sin florituras. Transición corta con fade.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaPicante",
+    "#HechoConGanas",
+    "#ArtesanalDe verdad",
+    "#PicanteColombiano"
+  ]
+}

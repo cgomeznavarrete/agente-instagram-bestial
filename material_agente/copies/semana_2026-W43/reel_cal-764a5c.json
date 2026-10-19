@@ -1,0 +1,41 @@
+{
+  "hook": "Nivel de picante: clasificado.",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Fondo oscuro estilo expediente clasificado. Texto aparece letra por letra con efecto de máquina de escribir y sonido de teclas + sello rojo 'CONFIDENCIAL' que cae encima.",
+      "texto_pantalla": "NIVEL DE PICANTE: CLASIFICADO."
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Corte a escala de calor animada — tipo termómetro horizontal con colores que van del amarillo al rojo intenso. Una flecha sube progresivamente con beat percusivo. Se detiene en un punto medio-alto donde aparece el ícono de la Salsa Tatemada Ahumada.",
+      "texto_pantalla": "No es la más picante del mundo."
+    },
+    {
+      "segundo": "8-20",
+      "visual": "La flecha pulsa en su posición. Aparece humo animado saliendo del ícono del frasco. Texto entra línea por línea con cortes al ritmo del beat. El ahumado se visualiza como ondas que envuelven la pantalla — efecto distorsión suave.",
+      "texto_pantalla": "Es la más inteligente. El ahumado te distrae... y cuando querés reaccionar — ya es tarde."
+    },
+    {
+      "segundo": "20-25",
+      "visual": "Frasco animado de Salsa Tatemada Ahumada entra al centro con rebote. Fondo negro limpio. Texto aparece debajo del frasco con tipografía bold. Cuenta regresiva sonora de 3 a 0 al final.",
+      "texto_pantalla": "El reto es terminar el frasco sin compartirla. ¿Cuánto duraste?"
+    }
+  ],
+  "caption": "Hay salsas que pican. Esta te convence de que no... hasta que convence. 🔥 ¿Cuánto tiempo duraste con el frasco antes de dárselo a alguien más?",
+  "cta": "Pídela aquí → https://wa.me/573005864523 | ¿El picante es de equipo o de valientes solitarios? Cuéntanos abajo.",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#RetoDePicante",
+    "#SalsaArtesanal",
+    "#PicanteInteligente",
+    "#FoodiesLatinos",
+    "#SalsaAhumada",
+    "#ComidaPicante",
+    "#RetoViral",
+    "#HechoConActitud"
+  ],
+  "mood_musica": "energetico",
+  "hook_audio": "Nivel de picante... clasificado."
+}

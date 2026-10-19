@@ -1,0 +1,17 @@
+{
+  "texto_principal": "¿Con qué la estrenás primero?",
+  "texto_secundario": "Sé honesto... no te juzgamos 👀",
+  "cta": "Toca la opción y cuéntanos",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "Opciones de sticker: 🌮 Tacos / 🍳 Huevos revueltos / 🍚 Arroz con pollo / 🥄 Directo a la cuchara"
+  },
+  "descripcion_visual": "Fondo cálido tipo cocina dominguera — madera rústica o mantel de cuadros rojos. El frasco de Salsa Tatemada Ahumada al centro, ligeramente inclinado como si alguien lo acabara de poner sobre la mesa. Luz natural lateral, sin filtros. Texto en tipografía bold y casual, blanco con sombra suave para legibilidad. Las cuatro opciones de sticker distribuidas alrededor del frasco, como si fueran post-its puestos a mano. Slider de emoji 🌶 visible en la parte inferior.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#RecetasConSalsa",
+    "#ComidaLatina",
+    "#PicanteLovers"
+  ]
+}
