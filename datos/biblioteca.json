@@ -1956,6 +1956,23 @@
       "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/video/upload/v1792405787/salsas_bestial/o5tymqzslefolrjoif1u.mp4",
       "tema": "",
       "descripcion": "Dos imágenes las salsa en primer plano después sale un corte de carne donde se pone salsa encima"
+    },
+    {
+      "id": "story_1792405968252",
+      "tipo": "story",
+      "nombre_archivo": "story_1792405968252.mp4",
+      "ruta_local": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/stories/story_1792405968252.mp4",
+      "fecha_agregado": 1792405970.1207957,
+      "estado": "pendiente",
+      "pilar": "lifestyle_y_comunidad",
+      "caption": "",
+      "media_id": "",
+      "fecha_publicado": 0.0,
+      "es_carrusel": false,
+      "archivos_carrusel": [],
+      "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/video/upload/v1792405968/salsas_bestial/gfymxzzf2eofv6or4bnk.mp4",
+      "tema": "",
+      "descripcion": ""
     }
   ]
 }
