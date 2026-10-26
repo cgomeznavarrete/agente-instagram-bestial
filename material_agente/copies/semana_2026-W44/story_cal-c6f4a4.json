@@ -1,0 +1,17 @@
+{
+  "texto_principal": "¿Modo avión o modo bestia?",
+  "texto_secundario": "La mesa sin salsa no cuenta.",
+  "cta": "Vota y cuéntanos cómo comes tú",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "Tú en la mesa: 🔥 Modo bestia activado | Comida triste"
+  },
+  "descripcion_visual": "Fondo rojo sólido, tipografía blanca bold en mayúsculas centrada en el tercio superior. El texto principal ocupa el 60% del ancho de pantalla. Debajo, el texto secundario en peso regular, más pequeño. El sticker de encuesta de Instagram posicionado en el tercio inferior, con las dos opciones en texto blanco sobre fondo oscuro semitransparente. Sin ilustraciones adicionales — el minimalismo es el protagonista. Sin filtros sobre ningún elemento de marca.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaPicante",
+    "#ModosBestia",
+    "#HumorPicante",
+    "#ComidaReal"
+  ]
+}

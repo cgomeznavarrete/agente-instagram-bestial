@@ -1,169 +1,53 @@
 {
-  "semana": "2026-W43",
-  "fecha_inicio": "2026-10-19",
-  "fecha_fin": "2026-10-25",
-  "fecha_generacion": "2026-10-19T19:35:25.639273",
+  "semana": "2026-W44",
+  "fecha_inicio": "2026-10-26",
+  "fecha_fin": "2026-11-01",
+  "fecha_generacion": "2026-10-26T19:41:04.593609",
   "estado": "borrador",
   "campana_activa": null,
   "entradas": [
     {
-      "id": "cal-d4c7ff",
+      "id": "cal-832bb5",
       "dia": "lunes",
-      "fecha": "2026-10-19",
+      "fecha": "2026-10-26",
       "hora_publicacion": "12:00",
-      "tipo_contenido": "story",
-      "pilar": "humor_picante",
-      "objetivo": "entretenimiento",
-      "concepto": "Story con fondo negro y texto animado: '¿Cuánto aguantas realmente? 🌶' seguido de una encuesta interactiva con dos opciones: 'Soy de los duros' vs 'Le bajo el picante con agua'. Diseño minimalista, tipografía bold blanca. El objetivo es generar interacción desde el primer toque del día y recopilar data de audiencia.",
-      "material_sugerido": [
-        "agente/stories/encuesta_aguantas_picante.mp4"
-      ],
-      "contenido_copy": {
-        "hook": "",
-        "cuerpo": "",
-        "cta": "Vota y descúbrete",
-        "hashtags": [],
-        "hashtags_cantidad": 0
-      },
-      "brief_capcut_path": null,
-      "video_generado_path": null,
-      "imagen_compuesta_path": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/referencia_producto/salsa_tatemada_completa.jpg",
-      "imagenes_carrusel_paths": [],
-      "estado": "generado",
-      "publicacion_id": null
-    },
-    {
-      "id": "cal-d337fe",
-      "dia": "lunes",
-      "fecha": "2026-10-19",
-      "hora_publicacion": "19:00",
-      "tipo_contenido": "reel",
-      "pilar": "humor_picante",
-      "objetivo": "awareness",
-      "concepto": "Reel de concepto animado (motion graphics). Hook de apertura en pantalla completa: 'El que dice que no le pica... miente.' Corte rápido a una secuencia de 3 situaciones cotidianas latinoamericanas ilustradas: 1) el tío que presumía en el asado y terminó llorando, 2) la amiga que pidió 'poquito picante' y devolvió el plato, 3) tú, con Salsa Tatemada Ahumada, sin inmutarte. Cierre con el frasco en primer plano animado y texto: 'Para los que sí son de verdad. Salsas Bestial.' Audio: sonido de chisporroteo + música urbana latina de fondo. Duración: 18-22 segundos.",
-      "material_sugerido": [
-        "agente/reels/humor_quien_aguanta_motion.mp4"
-      ],
-      "contenido_copy": {
-        "hook": "El que dice que no le pica... miente.",
-        "cuerpo": "Todos conocemos a uno. Algunos somos el otro. La Tatemada Ahumada no juzga — pero sí pone a prueba 🔥",
-        "cta": "Pídela aquí → https://wa.me/573005864523 ¿A quién le mandarías esta historia sin decir nada?",
-        "hashtags": [
-          "#SalsasBestial",
-          "#TatemadaAhumada",
-          "#SalsaPicante",
-          "#HumorLatino",
-          "#ComidasLatinas",
-          "#PicanteDeVerdad",
-          "#FoodiesLatam",
-          "#SalsaArtesanal",
-          "#AsadoFamiliar",
-          "#ElQueNoLePica"
-        ],
-        "hashtags_cantidad": 10
-      },
-      "brief_capcut_path": null,
-      "video_generado_path": null,
-      "imagen_compuesta_path": null,
-      "imagenes_carrusel_paths": [],
-      "estado": "generado",
-      "publicacion_id": null
-    },
-    {
-      "id": "cal-9c6ffb",
-      "dia": "lunes",
-      "fecha": "2026-10-19",
-      "hora_publicacion": "20:30",
-      "tipo_contenido": "story",
-      "pilar": "como_comprar",
-      "objetivo": "ventas",
-      "concepto": "Story de cierre del día con llamado a acción directo. Fondo rojo oscuro, texto grande: 'La consigues por WhatsApp. Sin vueltas.' Botón con enlace directo a wa.me/573005864523. Diseño urgente pero no desesperado — como cuando un amigo te dice 'te la mando hoy si pedís antes de las 9'.",
-      "material_sugerido": [
-        "agente/stories/cta_whatsapp_lunes.png"
-      ],
-      "contenido_copy": {
-        "hook": "",
-        "cuerpo": "",
-        "cta": "Toca el enlace y escribinos ahora — wa.me/573005864523",
-        "hashtags": [],
-        "hashtags_cantidad": 0
-      },
-      "brief_capcut_path": null,
-      "video_generado_path": null,
-      "imagen_compuesta_path": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/referencia_producto/salsa_tatemada_completa.jpg",
-      "imagenes_carrusel_paths": [],
-      "estado": "generado",
-      "publicacion_id": null
-    },
-    {
-      "id": "cal-a5dead",
-      "dia": "martes",
-      "fecha": "2026-10-20",
-      "hora_publicacion": "12:00",
-      "tipo_contenido": "story",
-      "pilar": "educacion_sobre_salsas",
-      "objetivo": "educacion",
-      "concepto": "Story tipo 'dato del día' con diseño de pizarra o cuaderno rayado. Texto: '¿Sabías que el proceso de tatemar el chile cambia completamente su sabor? No es solo ahumar — es transformar.' Desliza para ver la explicación breve en la siguiente story (2 slides). Genera curiosidad sobre el proceso artesanal detrás de la Salsa Tatemada Ahumada.",
-      "material_sugerido": [
-        "agente/stories/dato_tatemar_slide1.png",
-        "agente/stories/dato_tatemar_slide2.png"
-      ],
-      "contenido_copy": {
-        "hook": "",
-        "cuerpo": "",
-        "cta": "Desliza para la explicación",
-        "hashtags": [],
-        "hashtags_cantidad": 0
-      },
-      "brief_capcut_path": null,
-      "video_generado_path": null,
-      "imagen_compuesta_path": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/referencia_producto/salsa_tatemada_completa.jpg",
-      "imagenes_carrusel_paths": [],
-      "estado": "generado",
-      "publicacion_id": null
-    },
-    {
-      "id": "cal-b48763",
-      "dia": "martes",
-      "fecha": "2026-10-20",
-      "hora_publicacion": "19:00",
       "tipo_contenido": "post",
       "pilar": "educacion_sobre_salsas",
       "objetivo": "educacion",
-      "concepto": "Post de diseño tipográfico con fondo oscuro texturizado (efecto carbón/madera quemada). Título: 'Tatemar no es quemar. Es una diferencia que se siente en la boca.' Subtexto breve explicando en 2 líneas qué es el proceso de tatemado y por qué hace única a esta salsa. Logo de Salsas Bestial en esquina inferior. Copy del caption escrito como si fuera un mensaje de voz transcrito — directo, apasionado, sin bullets. CTA: 'Pruébala y entendés de qué hablo.'",
+      "concepto": "Post de texto sobre fondo oscuro con tipografía bold. Tema: qué significa 'tatemar' y por qué cambia todo el sabor de una salsa. Explicación breve y directa, sin tecnicismos, como si se lo estuvieras contando a alguien en la cocina. Copy hook: '¿Sabes por qué una salsa tatemada sabe diferente a todo lo demás?' Diseño: fondo negro, texto blanco y rojo, logo en esquina inferior. Sin imágenes del producto, puro concepto educativo que genera curiosidad.",
       "material_sugerido": [
-        "agente/feed/educacion_tatemar_tipografico.jpg"
+        "agente/diseno/post_educacion_tatemar_lunes.png"
       ],
       "contenido_copy": {
-        "hook": "Tatemar no es quemar. Eso lo sabe cualquiera que alguna vez haya comido bien.",
-        "cuerpo": "El tatemado es exponerle el fuego directo a los ingredientes hasta que la piel se carboniza por fuera... pero por dentro todo se concentra, se vuelve dulce, profundo, ahumado. Es una técnica que las abuelas mexicanas conocían mejor que cualquier chef con estrella Michelin. Nuestra Salsa Tatemada Ahumada nace exactamente de ahí — del fuego controlado, del tiempo, del respeto al proceso.",
-        "cta": "Pruébala y entendés de qué hablo. Pídela aquí → https://wa.me/573005864523\n\n¿Con qué plato la probarías primero?",
+        "hook": "¿Sabes por qué una salsa tatemada sabe diferente a todo lo demás?",
+        "cuerpo": "Tatemar es quemar a propósito. Pones el chile directo sobre el fuego — sin aceite, sin agua, sin nada — hasta que la piel se ennegrece y el interior se transforma. Ese humo, ese amargor controlado, esa caramelización... no se consigue de otra forma. Es la diferencia entre una salsa que acompaña y una que te queda grabada.",
+        "cta": "Pídela aquí → https://wa.me/573005864523\n\n¿Cuándo fue la última vez que una salsa te dejó pensando en ella al día siguiente?",
         "hashtags": [
           "#SalsasBestial",
-          "#BestialHot",
-          "#SalsaTatemada",
+          "#BestialTatemada",
+          "#SalsaArtesanal",
           "#PicanteBestial",
           "#HechoConFuego",
-          "#SalsaArtesanal",
-          "#SalsaPicante",
+          "#SalsasMexicanas",
+          "#ChilesTatemados",
+          "#SalsaAhumada",
           "#CocinaLatina",
-          "#FoodiesLatam",
-          "#AhumadoNatural",
-          "#SalsasHotSauce",
-          "#CulturaFoodie",
           "#PicanteDeVerdad",
-          "#SaborProfundo",
-          "#TatemadoMexicano",
+          "#SalsasCaseras",
+          "#CulturaDelPicante",
+          "#FoodLovers",
+          "#Foodie",
           "#RecetasConSalsa",
-          "#SalsaCasera",
-          "#FoodPhotography",
-          "#ComidaRica",
-          "#GastronomiaLatina",
-          "#SalsaLovers",
-          "#HotSauceAddict",
-          "#FoodiesDeInstagram",
           "#SaborAutentico",
-          "#PicantePero"
+          "#ArtesanosDelSabor",
+          "#CocinaReal",
+          "#ComidaLatina",
+          "#SalsaHot",
+          "#HotSauce",
+          "#PicanteSi",
+          "#FoodEducation",
+          "#SaborMexicano",
+          "#AmantesDelPicante"
         ],
         "hashtags_cantidad": 25
       },
@@ -175,21 +59,21 @@
       "publicacion_id": null
     },
     {
-      "id": "cal-303854",
-      "dia": "miercoles",
-      "fecha": "2026-10-21",
-      "hora_publicacion": "12:00",
+      "id": "cal-c6f4a4",
+      "dia": "lunes",
+      "fecha": "2026-10-26",
+      "hora_publicacion": "19:00",
       "tipo_contenido": "story",
-      "pilar": "recetas_y_maridajes",
-      "objetivo": "engagement",
-      "concepto": "Story pregunta: '¿Con qué la combinarías primero?' con slider de emoji 🌶 y cuatro opciones de sticker: Tacos / Huevos revueltos / Arroz con pollo / Directamente con la cuchara. Tono divertido, como conversación entre amigos cocinando un domingo.",
+      "pilar": "humor_picante",
+      "objetivo": "entretenimiento",
+      "concepto": "Story con encuesta interactiva. Diseño minimalista con fondo rojo y texto blanco. Pregunta: 'Tú con la salsa picante en la mesa vs. tú sin ella' con dos opciones de respuesta: 'Modo bestia activado' vs. 'Comida triste'. Referencia cultural: usar el meme del 'modo avión' pero adaptado al picante. Sticker de encuesta de Instagram integrado en el diseño. Objetivo: activar participación desde el primer día de la semana.",
       "material_sugerido": [
-        "agente/stories/pregunta_maridaje_miercoles.png"
+        "agente/diseno/story_encuesta_lunes.png"
       ],
       "contenido_copy": {
         "hook": "",
         "cuerpo": "",
-        "cta": "Toca la opción y cuéntanos",
+        "cta": "Vota y cuéntanos cómo comes tú",
         "hashtags": [],
         "hashtags_cantidad": 0
       },
@@ -201,21 +85,79 @@
       "publicacion_id": null
     },
     {
-      "id": "cal-14c802",
-      "dia": "miercoles",
-      "fecha": "2026-10-21",
+      "id": "cal-aeb99c",
+      "dia": "martes",
+      "fecha": "2026-10-27",
       "hora_publicacion": "19:00",
-      "tipo_contenido": "carrusel",
+      "tipo_contenido": "reel",
       "pilar": "recetas_y_maridajes",
-      "objetivo": "educacion",
-      "concepto": "Carrusel de 6 slides: '5 formas de usar la Salsa Tatemada Ahumada que no se te habían ocurrido'. Slide 1 (portada): Hook visual bold con fondo negro y título en rojo. Slides 2-6: cada uno con una propuesta de uso inesperado — marinada para pollo a la plancha, base para vinagreta, toque en mayonesa casera, sobre aguacate con limón, en pasta de tomate para pizza. Cada slide con ilustración minimalista y texto conciso. Slide final: logo + CTA 'La tuya está en el link de bio'. Diseño consistente, paleta oscura con acentos rojos. Copy del caption: narrativo, sin bullets, como si contaras lo que descubriste un domingo cocinando.",
+      "objetivo": "engagement",
+      "concepto": "Reel de 30-45 segundos. Hook visual: texto en pantalla que dice 'Esto no es una receta. Es un antes y un después.' Concepto: mostrar el contraste entre un huevo frito normal y ese mismo huevo con la Salsa Tatemada Ahumada encima. Todo filmado con teléfono, estilo crudo y real, nada de producción artificial. Narración en off o texto en pantalla con ritmo rápido. Cierre: 'La diferencia la hace la salsa. Siempre.' Audio: trending latino instrumental. Dirección creativa para que el equipo lo filme o se genere con motion graphics si no hay cámara disponible.",
       "material_sugerido": [
-        "agente/carrusel/5_usos_tatemada_slide1.jpg",
-        "agente/carrusel/5_usos_tatemada_slide2.jpg",
-        "agente/carrusel/5_usos_tatemada_slide3.jpg",
-        "agente/carrusel/5_usos_tatemada_slide4.jpg",
-        "agente/carrusel/5_usos_tatemada_slide5.jpg",
-        "agente/carrusel/5_usos_tatemada_slide6.jpg"
+        "agente/direccion/reel_huevo_tatemado_martes_script.txt"
+      ],
+      "contenido_copy": {
+        "hook": "Esto no es una receta. Es un antes y un después.",
+        "cuerpo": "Un huevo frito no merece ese destino — y tú lo sabes. ¿Con qué le pondrías tú la Tatemada Ahumada?",
+        "cta": "Pídela aquí → https://wa.me/573005864523 | ¿Con qué le pondrías tú la Tatemada Ahumada?",
+        "hashtags": [
+          "#SalsasBestial",
+          "#SalsaTatemada",
+          "#RecetasPicantes",
+          "#ComidaReal",
+          "#HuevoFrito",
+          "#SalsaAhumada",
+          "#FoodiesLatinos",
+          "#PicanteAddictos",
+          "#CocinaEnCasa",
+          "#AntesYDespues"
+        ],
+        "hashtags_cantidad": 10
+      },
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "generado",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-e796f8",
+      "dia": "martes",
+      "fecha": "2026-10-27",
+      "hora_publicacion": "20:30",
+      "tipo_contenido": "story",
+      "pilar": "como_comprar",
+      "objetivo": "ventas",
+      "concepto": "Story de conversión suave. Fondo oscuro con texto claro. Mensaje directo: 'Si el reel te dio hambre, la salsa te la resuelve. Link en bio o escríbenos al WhatsApp.' Incluir sticker de enlace directo a https://wa.me/573005864523. Diseño limpio, sin saturar. Flecha animada apuntando al sticker del link. No es venta agresiva, es facilitar el camino al que ya está convencido.",
+      "material_sugerido": [
+        "agente/diseno/story_cta_whatsapp_martes.png"
+      ],
+      "contenido_copy": {
+        "hook": "",
+        "cuerpo": "",
+        "cta": "Toca el enlace y pide la tuya — sin vueltas.",
+        "hashtags": [],
+        "hashtags_cantidad": 0
+      },
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/referencia_producto/salsa_tatemada_completa.jpg",
+      "imagenes_carrusel_paths": [],
+      "estado": "generado",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-579ebf",
+      "dia": "miercoles",
+      "fecha": "2026-10-28",
+      "hora_publicacion": "12:00",
+      "tipo_contenido": "carrusel",
+      "pilar": "beneficios_del_producto",
+      "objetivo": "educacion",
+      "concepto": "Carrusel de 5 slides. Título: 'Lo que tiene la Salsa Tatemada Ahumada que otras no tienen.' Slide 1 (portada): hook fuerte con tipografía grande, fondo oscuro. Slide 2: el proceso de tatemado explicado en una línea + ilustración simple. Slide 3: el ahumado como técnica ancestral latinoamericana, referencia a la tradición de ahumar en México y Colombia. Slide 4: versatilidad de uso (tacos, arepas, carnes, huevos, lo que sea). Slide 5 (cierre): CTA directo con el link de WhatsApp y frase 'Una sola salsa. Mil usos.' Diseño: paleta oscura, tipografía bold, sin bullets en el copy de cada slide, todo narrativo.",
+      "material_sugerido": [
+        "agente/diseno/carrusel_beneficios_miercoles_5slides.pdf"
       ],
       "contenido_copy": {
         "hook": "",
@@ -224,16 +166,18 @@
         "hashtags": [
           "#SalsasBestial",
           "#SalsaTatemada",
-          "#RecetasConPicante",
-          "#CocinaLatina",
-          "#SalsaAhumada",
-          "#TrucosDeCocina",
-          "#FoodiesLatam",
-          "#CocinaEnCasa",
+          "#Ahumada",
+          "#SalsaArtesanal",
           "#PicanteDeVerdad",
-          "#MaridajesPicantes"
+          "#ComidaLatina",
+          "#Tatemado",
+          "#SalsasMexicanas",
+          "#CocinaColombiana",
+          "#FoodLovers",
+          "#SalsasPicantes",
+          "#HechoConPasion"
         ],
-        "hashtags_cantidad": 10
+        "hashtags_cantidad": 12
       },
       "brief_capcut_path": null,
       "video_generado_path": null,
@@ -243,32 +187,32 @@
       "publicacion_id": null
     },
     {
-      "id": "cal-764a5c",
+      "id": "cal-59c9d2",
       "dia": "jueves",
-      "fecha": "2026-10-22",
+      "fecha": "2026-10-29",
       "hora_publicacion": "19:00",
       "tipo_contenido": "reel",
       "pilar": "retos_y_pruebas_de_picante",
       "objetivo": "entretenimiento",
-      "concepto": "Reel de concepto animado / motion graphics con estética de 'expediente secreto'. Hook de apertura: texto que aparece letra por letra — 'Nivel de picante: clasificado.' Corte a una escala de calor visual animada que sube progresivamente con la Salsa Tatemada Ahumada marcada en un punto específico. Voz en off (texto en pantalla): 'No es la más picante del mundo. Es la más inteligente. Porque el ahumado te distrae... y cuando querés reaccionar, ya es tarde.' Cierre: frasco animado con el texto 'El reto es terminar el frasco sin compartirla.' CTA: 'Cuéntanos en comentarios cuánto duraste.' Duración: 20-25 segundos. Audio: efecto de cuenta regresiva + beat percusivo.",
+      "concepto": "Reel de 20-30 segundos. El hook más agresivo de la semana. Texto de apertura en pantalla: 'El 80% de la gente no aguanta el segundo cucharazo.' Formato: reto visual o dramatización del antes/después de probar la salsa por primera vez. Puede ser motion graphics con texto animado si no hay video disponible. Ritmo de edición rápido, cortes cada 2-3 segundos. Referencia cultural: mencionar el 'aguante' como concepto de identidad latinoamericana, el que aguanta el picante tiene un status. Cierre con CTA suave: '¿Tú aguantas? Link en bio.' Audio trending.",
       "material_sugerido": [
-        "agente/reels/reto_nivel_picante_motion.mp4"
+        "agente/direccion/reel_reto_picante_jueves_script.txt"
       ],
       "contenido_copy": {
-        "hook": "Nivel de picante: clasificado.",
-        "cuerpo": "Hay salsas que pican. Esta te convence de que no... hasta que convence. 🔥 ¿Cuánto tiempo duraste con el frasco antes de dárselo a alguien más?",
-        "cta": "Pídela aquí → https://wa.me/573005864523 | ¿El picante es de equipo o de valientes solitarios? Cuéntanos abajo.",
+        "hook": "El 80% de la gente no aguanta el segundo cucharazo.",
+        "cuerpo": "No es para todo el mundo — y eso está bien. ¿Tú eres del 20% que pide más?",
+        "cta": "Pídela aquí → https://wa.me/573005864523 | ¿A quién le mandarías una de estas para ponerlo a prueba?",
         "hashtags": [
           "#SalsasBestial",
-          "#SalsaTatemada",
           "#RetoDePicante",
+          "#SalsaTatemada",
+          "#PicanteLatino",
+          "#ElQueAguantaManda",
           "#SalsaArtesanal",
-          "#PicanteInteligente",
-          "#FoodiesLatinos",
-          "#SalsaAhumada",
+          "#FoodReel",
           "#ComidaPicante",
-          "#RetoViral",
-          "#HechoConActitud"
+          "#SalsaLovers",
+          "#RetoViral"
         ],
         "hashtags_cantidad": 10
       },
@@ -280,21 +224,73 @@
       "publicacion_id": null
     },
     {
-      "id": "cal-b0b166",
-      "dia": "jueves",
-      "fecha": "2026-10-22",
-      "hora_publicacion": "20:30",
-      "tipo_contenido": "story",
-      "pilar": "retos_y_pruebas_de_picante",
-      "objetivo": "comunidad",
-      "concepto": "Story de continuación al Reel: caja de preguntas abierta con texto '¿Lo intentarías? Cuéntanos tu tolerancia al picante.' Fondo con degradado rojo-negro. Respuestas seleccionadas serán reposteadas el viernes como contenido de comunidad. Genera loop de contenido UGC sin necesitar material externo.",
+      "id": "cal-89f9be",
+      "dia": "viernes",
+      "fecha": "2026-10-30",
+      "hora_publicacion": "12:00",
+      "tipo_contenido": "post",
+      "pilar": "behind_the_scenes",
+      "objetivo": "awareness",
+      "concepto": "Post de texto sobre fondo con textura artesanal. Tema: el origen de la Salsa Tatemada Ahumada, por qué se llama así, de dónde viene la idea. Copy en primera persona, como si fuera el fundador hablando directo. Tono íntimo, sin sonar corporativo. Hook: 'Esto empezó porque me harté de que ninguna salsa supiera a algo real.' Diseño: tipografía manuscrita combinada con sans-serif. Sin imágenes del producto, pura historia.",
       "material_sugerido": [
-        "agente/stories/caja_preguntas_reto_jueves.png"
+        "agente/diseno/post_bts_origen_viernes.png"
+      ],
+      "contenido_copy": {
+        "hook": "Esto empezó porque me harté de que ninguna salsa supiera a algo real.",
+        "cuerpo": "Tatemada no es un nombre bonito para vender más — es lo que le pasa al chile cuando lo pones directo en el fuego. Esa quema, ese humo, ese momento donde algo se transforma... eso es lo que quería capturar. Me pasé semanas probando hasta que olí algo y dije: esto es. No fue una receta heredada ni un laboratorio. Fue terquedad.",
+        "cta": "Pídela aquí → https://wa.me/573005864523\n\n¿Cuál es ese sabor que sientes que ninguna salsa te ha dado todavía?",
+        "hashtags": [
+          "#SalsasBestial",
+          "#TatemadaAhumada",
+          "#BestialDePicante",
+          "#HechoConFuego",
+          "#SalsaBestial",
+          "#SalsaArtesanal",
+          "#SalsaPicante",
+          "#ChileAhumado",
+          "#CocinaLatina",
+          "#SaborReal",
+          "#PicanteDeVerdad",
+          "#FoodiesColombia",
+          "#SalsasHotSauce",
+          "#ArtesanalColombia",
+          "#MadeInColombia",
+          "#Foodlover",
+          "#CocinaEnCasa",
+          "#SaborArtesanal",
+          "#PicanteLovers",
+          "#RecetasCaseras",
+          "#GastronomiaLatina",
+          "#SalsasCaseras",
+          "#HotSauceAddict",
+          "#FoodieColombia",
+          "#ComidasRicas"
+        ],
+        "hashtags_cantidad": 25
+      },
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/referencia_producto/salsa_tatemada_completa.jpg",
+      "imagenes_carrusel_paths": [],
+      "estado": "generado",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-46b815",
+      "dia": "viernes",
+      "fecha": "2026-10-30",
+      "hora_publicacion": "20:00",
+      "tipo_contenido": "story",
+      "pilar": "promociones_y_lanzamientos",
+      "objetivo": "ventas",
+      "concepto": "Story de conversión directa. El único contenido de venta explícita de la semana, en el mejor horario de intención de compra. Diseño: fondo negro, texto en rojo y blanco, muy limpio. Mensaje: 'Si llevas leyéndonos toda la semana y todavía no la has pedido, ¿qué estás esperando?' CTA: sticker de enlace a WhatsApp https://wa.me/573005864523 y texto 'Escríbenos ahora, respondemos rápido.' Sin descuentos inventados, sin promesas vacías. Solo urgencia real y acceso directo.",
+      "material_sugerido": [
+        "agente/diseno/story_venta_directa_viernes.png"
       ],
       "contenido_copy": {
         "hook": "",
         "cuerpo": "",
-        "cta": "Responde la pregunta abajo",
+        "cta": "Sticker de enlace directo a WhatsApp: https://wa.me/573005864523 — colocado en la parte inferior central, texto del sticker: 'Pedir ahora'",
         "hashtags": [],
         "hashtags_cantidad": 0
       },
@@ -306,47 +302,47 @@
       "publicacion_id": null
     },
     {
-      "id": "cal-1b03a4",
-      "dia": "viernes",
-      "fecha": "2026-10-23",
+      "id": "cal-a89583",
+      "dia": "sabado",
+      "fecha": "2026-10-31",
       "hora_publicacion": "12:00",
       "tipo_contenido": "post",
       "pilar": "testimonios_y_ugc",
       "objetivo": "comunidad",
-      "concepto": "Post de diseño con respuestas seleccionadas de la caja de preguntas del jueves (o testimonios escritos recopilados previamente). Formato: fondo oscuro con citas en tipografía grande, estilo 'pantalla de cine'. Cada cita de un cliente real con su @ (con permiso). Si no hay respuestas aún, usar testimonios internos escritos con el mismo formato visual. Copy del caption: 'Esto nos mandaron. No editamos nada.' Tono de orgullo genuino, no corporativo.",
+      "concepto": "Post basado en las respuestas recopiladas en la Story del miércoles. Formato: cita textual de una respuesta de la comunidad sobre cómo usarían la salsa, diseñada como si fuera una tarjeta de cita. Fondo oscuro, texto grande, nombre de usuario de quien respondió (con permiso implícito al responder públicamente). Si no hay respuestas aún, usar un testimonio ficticio con nombre genérico como placeholder. Copy de acompañamiento: 'La comunidad habló. Y tenían razón.' Cierre con CTA a comentarios: '¿Tú cómo la usarías?'",
       "material_sugerido": [
-        "agente/feed/testimonios_viernes_diseno.jpg"
+        "agente/diseno/post_ugc_respuestas_sabado.png"
       ],
       "contenido_copy": {
-        "hook": "Esto nos mandaron. No editamos nada.",
-        "cuerpo": "La gente habla sola cuando la salsa es buena. Sin que les pidamos, sin que los paguemos, sin guión. Eso es lo que más nos enorgullece — no nosotros, sino lo que sienten ellos después del primer toque de Tatemada Ahumada.",
-        "cta": "Pídela aquí → https://wa.me/573005864523\n\n¿Tú ya la probaste y no nos has contado? ¿Qué estás esperando?",
+        "hook": "Alguien de la comunidad lo dijo mejor que nosotros.",
+        "cuerpo": "El miércoles preguntamos. Y @laura.cocinando respondió algo que no pudimos ignorar: 'La pondría en todo... pero empezaría por los huevos del desayuno porque así sé si aguanto el día.' No hay más que agregar. Eso es exactamente para lo que existe la Tatemada Ahumada.",
+        "cta": "Pídela aquí → https://wa.me/573005864523\n¿Tú cómo la usarías?",
         "hashtags": [
           "#SalsasBestial",
           "#TatemadaAhumada",
-          "#BestialDeVerdad",
-          "#SaborBestial",
+          "#BestialLovers",
+          "#SalsaBestial",
           "#ComunidadBestial",
-          "#SalsaArtesanal",
+          "#SalsaPicante",
+          "#ComidaPicante",
+          "#FoodiesColombia",
+          "#RecetasCaseras",
           "#PicanteLovers",
-          "#SalsasMexicanas",
-          "#FoodiesLatinos",
-          "#AhumadoNatural",
-          "#SalsaCasera",
-          "#ComidasLatinas",
-          "#SalsaHot",
+          "#SalsaArtesanal",
+          "#FoodLovers",
+          "#CocinaLatina",
+          "#SaborReal",
+          "#PicanteDeVerdad",
+          "#ComidaLatina",
           "#FoodPhotography",
-          "#Foodstagram",
-          "#RecetasConSalsa",
-          "#AntojoReal",
-          "#ComidaReal",
-          "#SaborAutentico",
-          "#ChileLovers",
-          "#PicanteAddict",
+          "#AntojosColombiano",
+          "#SalsaHot",
           "#HechoConPasion",
-          "#SalsaQueEnamora",
-          "#TestimonioReal",
-          "#LaGenteHabla"
+          "#ComidaRica",
+          "#GastronomiaLatina",
+          "#FoodCommunity",
+          "#SaborAhumado",
+          "#CulturaPicante"
         ],
         "hashtags_cantidad": 25
       },
@@ -358,150 +354,21 @@
       "publicacion_id": null
     },
     {
-      "id": "cal-bf71ef",
-      "dia": "viernes",
-      "fecha": "2026-10-23",
+      "id": "cal-eb2afb",
+      "dia": "domingo",
+      "fecha": "2026-11-01",
       "hora_publicacion": "19:00",
-      "tipo_contenido": "post",
-      "pilar": "promociones_y_lanzamientos",
-      "objetivo": "ventas",
-      "concepto": "Post de conversión directa. Diseño limpio con el nombre del producto en grande: 'Salsa Tatemada Ahumada. La única.' Precio visible si aplica, o CTA claro hacia WhatsApp y link en bio. Fondo negro, tipografía blanca y roja. Sin adornos innecesarios. Copy del caption escrito como si fuera el último mensaje antes de que se acabe el stock — urgencia real, no falsa. CTA final: 'Pedila por WhatsApp antes de que se acabe. El link está en bio.' Incluir número directo en caption.",
-      "material_sugerido": [
-        "agente/feed/conversion_salsa_tatemada_viernes.jpg"
-      ],
-      "contenido_copy": {
-        "hook": "Se acaba. Y no es cuento.",
-        "cuerpo": "La Tatemada Ahumada no es una salsa que pides cuando quieras — es una que lamentás no haber pedido a tiempo. Stock limitado, proceso artesanal, sin atajos. La hicimos para los que saben lo que comen... y ya casi no queda.",
-        "cta": "Pedila por WhatsApp antes de que se acabe 👉 https://wa.me/573005864523\nEl link también está en bio.\n\n¿Con qué plato la estrenarías si te llega mañana?",
-        "hashtags": [
-          "#SalsasBestial",
-          "#TatemadaAhumada",
-          "#BestialLovers",
-          "#SaborBestial",
-          "#LaÚnica",
-          "#SalsaPicante",
-          "#SalsaArtesanal",
-          "#ComidaPicante",
-          "#PicanteAddict",
-          "#SalsasHoteras",
-          "#AhumadoNatural",
-          "#FoodieColombia",
-          "#RecetasPicantes",
-          "#ChileLovers",
-          "#SalsasCaseras",
-          "#FoodLoversCol",
-          "#MercadoArtesanal",
-          "#GastronomíaLatina",
-          "#ComidaReal",
-          "#StockLimitado",
-          "#ProductoArtesanal",
-          "#SaborAuténtico",
-          "#PicanteReal",
-          "#CocinaConActitud"
-        ],
-        "hashtags_cantidad": 24
-      },
-      "brief_capcut_path": null,
-      "video_generado_path": null,
-      "imagen_compuesta_path": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/referencia_producto/salsa_tatemada_completa.jpg",
-      "imagenes_carrusel_paths": [],
-      "estado": "generado",
-      "publicacion_id": null
-    },
-    {
-      "id": "cal-93c43d",
-      "dia": "sabado",
-      "fecha": "2026-10-24",
-      "hora_publicacion": "12:00",
       "tipo_contenido": "story",
       "pilar": "lifestyle_y_comunidad",
       "objetivo": "comunidad",
-      "concepto": "Story tipo 'sábado en la cocina': diseño con textura de madera y texto manuscrito digital — 'Sábado sin salsa picante... ¿eso existe?' Sticker de cuenta regresiva hasta las 7pm (hora del post principal). Genera anticipación y mantiene la comunidad activa en fin de semana.",
+      "concepto": "Story de cierre de semana. Diseño cálido, menos agresivo que el resto de la semana. Fondo con degradado oscuro a rojo. Texto: 'Semana cerrada. ¿Con o sin salsa la viviste?' Sticker de encuesta: 'Con Bestial' vs. 'Aún no la pruebo'. Objetivo: terminar la semana con un toque humano, recordar que hay una comunidad construyéndose, y dejar la puerta abierta para la semana siguiente. No hay CTA de venta, solo pertenencia.",
       "material_sugerido": [
-        "agente/stories/lifestyle_sabado_cocina.png"
+        "agente/diseno/story_cierre_semana_domingo.png"
       ],
       "contenido_copy": {
         "hook": "",
         "cuerpo": "",
-        "cta": "Responde con tu nivel de picante favorito",
-        "hashtags": [],
-        "hashtags_cantidad": 0
-      },
-      "brief_capcut_path": null,
-      "video_generado_path": null,
-      "imagen_compuesta_path": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/referencia_producto/salsa_tatemada_completa.jpg",
-      "imagenes_carrusel_paths": [],
-      "estado": "generado",
-      "publicacion_id": null
-    },
-    {
-      "id": "cal-99f743",
-      "dia": "sabado",
-      "fecha": "2026-10-24",
-      "hora_publicacion": "19:00",
-      "tipo_contenido": "post",
-      "pilar": "lifestyle_y_comunidad",
-      "objetivo": "engagement",
-      "concepto": "Post de lifestyle con diseño editorial: ilustración o fotografía de concepto de una mesa de sábado latinoamericana — arepas, tacos o bandeja paisa con un frasco de Salsa Bestial en el centro. Si no hay foto real, usar ilustración plana estilo risograph con paleta cálida. Caption: escrito como si fuera un mensaje de grupo familiar un sábado al mediodía. Pregunta al final para activar comentarios: '¿Qué estás cocinando hoy?' Sin mencionar venta directamente — este post construye comunidad y contexto cultural.",
-      "material_sugerido": [
-        "agente/feed/lifestyle_mesa_sabado_ilustracion.jpg"
-      ],
-      "contenido_copy": {
-        "hook": "El sábado sin salsa es solo... un sábado.",
-        "cuerpo": "La mesa ya está puesta. Hay arepas, hay ruido de familia, hay alguien discutiendo el partido de anoche — y en el centro, quieto y listo, el frasco. Así es como empieza un buen mediodía. Sin apuro, con sabor.",
-        "cta": "Pídela aquí → https://wa.me/573005864523\n\n¿Qué estás cocinando hoy?",
-        "hashtags": [
-          "#SalsasBestial",
-          "#BestialLovers",
-          "#SalsaTatemada",
-          "#SaborBestial",
-          "#PickyBestial",
-          "#SábadoLatino",
-          "#MesaFamiliar",
-          "#CocinaLatina",
-          "#ArepasLife",
-          "#ComidaCasera",
-          "#SalsaPicante",
-          "#FoodLoversLatam",
-          "#BandejaPaisa",
-          "#TacosDeCasa",
-          "#SaboresAutenticos",
-          "#CocinaArtesanal",
-          "#PicanteAddict",
-          "#FinDeSemana",
-          "#ComidaRica",
-          "#RecetasCaseras",
-          "#SalsaArtesanal",
-          "#CulturaFoodie",
-          "#MesaDeSabado",
-          "#SaborReal",
-          "#PicanteConCarácter"
-        ],
-        "hashtags_cantidad": 25
-      },
-      "brief_capcut_path": null,
-      "video_generado_path": null,
-      "imagen_compuesta_path": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/referencia_producto/salsa_tatemada_completa.jpg",
-      "imagenes_carrusel_paths": [],
-      "estado": "generado",
-      "publicacion_id": null
-    },
-    {
-      "id": "cal-9c0e63",
-      "dia": "domingo",
-      "fecha": "2026-10-25",
-      "hora_publicacion": "20:00",
-      "tipo_contenido": "story",
-      "pilar": "behind_the_scenes",
-      "objetivo": "awareness",
-      "concepto": "Story de cierre de semana con tono reflexivo y humano. Texto sobre fondo oscuro con grano de película: 'Cada frasco que sale tiene historia. Esta semana salieron varios. Gracias.' Siguiente slide: recordatorio de cómo comprar — WhatsApp directo con enlace. Humaniza la marca sin ser melodramático. Cierra la semana con calidez y deja la puerta abierta para la siguiente.",
-      "material_sugerido": [
-        "agente/stories/cierre_semana_bts_domingo.png"
-      ],
-      "contenido_copy": {
-        "hook": "",
-        "cuerpo": "",
-        "cta": "Responde con 🔥 si ya tienes el tuyo — o desliza para conseguirlo",
+        "cta": "Responde la encuesta",
         "hashtags": [],
         "hashtags_cantidad": 0
       },
@@ -513,5 +380,5 @@
       "publicacion_id": null
     }
   ],
-  "notas_estrategia": "Sin material visual disponible, toda la semana se construye con contenido generado por el agente: diseños tipográficos, motion graphics, ilustraciones y videos de concepto. Con engagement del 3.8% y cero seguidores nuevos la semana anterior, la prioridad es activar descubrimiento: los dos Reels van el lunes y el jueves con hooks agresivos para captar alcance orgánico. Se alterna venta/educación/entretenimiento/comunidad cada día. El carrusel va el miércoles (día de mayor consumo de contenido educativo mid-week). Las Stories funcionan como hilo narrativo diario que complementa el post principal. Se respeta el límite de 4 piezas por día y 90 minutos de intervalo mínimo. Pilares: Lunes=Humor Picante, Martes=Educación, Miércoles=Recetas y Maridajes, Jueves=Retos y Pruebas, Viernes=Testimonios, Sábado=Lifestyle, Domingo=Promociones."
+  "notas_estrategia": "Semana de construcción de base con cero material disponible: todo el contenido será generado por el agente (diseño, copy, dirección creativa). Sin datos de formato ganador previo, apostamos por la jerarquía de prioridad: Reels primero, luego Carrusel, luego Posts. El engagement del 3.48% es sólido para una cuenta sin historial de optimización, así que el objetivo es mantenerlo y empujar conversiones al menos una vez. Distribuimos los 11 contenidos en 7 días respetando el límite de 4 piezas/día y el intervalo mínimo de 90 minutos. Alternamos pilares estrictamente: nunca el mismo dos días seguidos. Los dos Reels van en martes y jueves con los hooks más agresivos de la semana. El único contenido de venta directa va el viernes en horario nocturno (20:00), cuando la intención de compra es más alta. Las Stories funcionan como hilo conector diario para mantener presencia sin saturar el feed. Todo el material es de creación propia (ilustraciones, texto sobre fondo, motion simple) dado que no hay archivos disponibles."
 }

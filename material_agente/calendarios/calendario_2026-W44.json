@@ -1,0 +1,211 @@
+{
+  "semana": "2026-W44",
+  "fecha_inicio": "2026-10-26",
+  "fecha_fin": "2026-11-01",
+  "fecha_generacion": "2026-10-26T19:41:04.593609",
+  "estado": "borrador",
+  "campana_activa": null,
+  "entradas": [
+    {
+      "id": "cal-832bb5",
+      "dia": "lunes",
+      "fecha": "2026-10-26",
+      "hora_publicacion": "12:00",
+      "tipo_contenido": "post",
+      "pilar": "educacion_sobre_salsas",
+      "objetivo": "educacion",
+      "concepto": "Post de texto sobre fondo oscuro con tipografía bold. Tema: qué significa 'tatemar' y por qué cambia todo el sabor de una salsa. Explicación breve y directa, sin tecnicismos, como si se lo estuvieras contando a alguien en la cocina. Copy hook: '¿Sabes por qué una salsa tatemada sabe diferente a todo lo demás?' Diseño: fondo negro, texto blanco y rojo, logo en esquina inferior. Sin imágenes del producto, puro concepto educativo que genera curiosidad.",
+      "material_sugerido": [
+        "agente/diseno/post_educacion_tatemar_lunes.png"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-c6f4a4",
+      "dia": "lunes",
+      "fecha": "2026-10-26",
+      "hora_publicacion": "19:00",
+      "tipo_contenido": "story",
+      "pilar": "humor_picante",
+      "objetivo": "entretenimiento",
+      "concepto": "Story con encuesta interactiva. Diseño minimalista con fondo rojo y texto blanco. Pregunta: 'Tú con la salsa picante en la mesa vs. tú sin ella' con dos opciones de respuesta: 'Modo bestia activado' vs. 'Comida triste'. Referencia cultural: usar el meme del 'modo avión' pero adaptado al picante. Sticker de encuesta de Instagram integrado en el diseño. Objetivo: activar participación desde el primer día de la semana.",
+      "material_sugerido": [
+        "agente/diseno/story_encuesta_lunes.png"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-aeb99c",
+      "dia": "martes",
+      "fecha": "2026-10-27",
+      "hora_publicacion": "19:00",
+      "tipo_contenido": "reel",
+      "pilar": "recetas_y_maridajes",
+      "objetivo": "engagement",
+      "concepto": "Reel de 30-45 segundos. Hook visual: texto en pantalla que dice 'Esto no es una receta. Es un antes y un después.' Concepto: mostrar el contraste entre un huevo frito normal y ese mismo huevo con la Salsa Tatemada Ahumada encima. Todo filmado con teléfono, estilo crudo y real, nada de producción artificial. Narración en off o texto en pantalla con ritmo rápido. Cierre: 'La diferencia la hace la salsa. Siempre.' Audio: trending latino instrumental. Dirección creativa para que el equipo lo filme o se genere con motion graphics si no hay cámara disponible.",
+      "material_sugerido": [
+        "agente/direccion/reel_huevo_tatemado_martes_script.txt"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-e796f8",
+      "dia": "martes",
+      "fecha": "2026-10-27",
+      "hora_publicacion": "20:30",
+      "tipo_contenido": "story",
+      "pilar": "como_comprar",
+      "objetivo": "ventas",
+      "concepto": "Story de conversión suave. Fondo oscuro con texto claro. Mensaje directo: 'Si el reel te dio hambre, la salsa te la resuelve. Link en bio o escríbenos al WhatsApp.' Incluir sticker de enlace directo a https://wa.me/573005864523. Diseño limpio, sin saturar. Flecha animada apuntando al sticker del link. No es venta agresiva, es facilitar el camino al que ya está convencido.",
+      "material_sugerido": [
+        "agente/diseno/story_cta_whatsapp_martes.png"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-579ebf",
+      "dia": "miercoles",
+      "fecha": "2026-10-28",
+      "hora_publicacion": "12:00",
+      "tipo_contenido": "carrusel",
+      "pilar": "beneficios_del_producto",
+      "objetivo": "educacion",
+      "concepto": "Carrusel de 5 slides. Título: 'Lo que tiene la Salsa Tatemada Ahumada que otras no tienen.' Slide 1 (portada): hook fuerte con tipografía grande, fondo oscuro. Slide 2: el proceso de tatemado explicado en una línea + ilustración simple. Slide 3: el ahumado como técnica ancestral latinoamericana, referencia a la tradición de ahumar en México y Colombia. Slide 4: versatilidad de uso (tacos, arepas, carnes, huevos, lo que sea). Slide 5 (cierre): CTA directo con el link de WhatsApp y frase 'Una sola salsa. Mil usos.' Diseño: paleta oscura, tipografía bold, sin bullets en el copy de cada slide, todo narrativo.",
+      "material_sugerido": [
+        "agente/diseno/carrusel_beneficios_miercoles_5slides.pdf"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-59c9d2",
+      "dia": "jueves",
+      "fecha": "2026-10-29",
+      "hora_publicacion": "19:00",
+      "tipo_contenido": "reel",
+      "pilar": "retos_y_pruebas_de_picante",
+      "objetivo": "entretenimiento",
+      "concepto": "Reel de 20-30 segundos. El hook más agresivo de la semana. Texto de apertura en pantalla: 'El 80% de la gente no aguanta el segundo cucharazo.' Formato: reto visual o dramatización del antes/después de probar la salsa por primera vez. Puede ser motion graphics con texto animado si no hay video disponible. Ritmo de edición rápido, cortes cada 2-3 segundos. Referencia cultural: mencionar el 'aguante' como concepto de identidad latinoamericana, el que aguanta el picante tiene un status. Cierre con CTA suave: '¿Tú aguantas? Link en bio.' Audio trending.",
+      "material_sugerido": [
+        "agente/direccion/reel_reto_picante_jueves_script.txt"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-89f9be",
+      "dia": "viernes",
+      "fecha": "2026-10-30",
+      "hora_publicacion": "12:00",
+      "tipo_contenido": "post",
+      "pilar": "behind_the_scenes",
+      "objetivo": "awareness",
+      "concepto": "Post de texto sobre fondo con textura artesanal. Tema: el origen de la Salsa Tatemada Ahumada, por qué se llama así, de dónde viene la idea. Copy en primera persona, como si fuera el fundador hablando directo. Tono íntimo, sin sonar corporativo. Hook: 'Esto empezó porque me harté de que ninguna salsa supiera a algo real.' Diseño: tipografía manuscrita combinada con sans-serif. Sin imágenes del producto, pura historia.",
+      "material_sugerido": [
+        "agente/diseno/post_bts_origen_viernes.png"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-46b815",
+      "dia": "viernes",
+      "fecha": "2026-10-30",
+      "hora_publicacion": "20:00",
+      "tipo_contenido": "story",
+      "pilar": "promociones_y_lanzamientos",
+      "objetivo": "ventas",
+      "concepto": "Story de conversión directa. El único contenido de venta explícita de la semana, en el mejor horario de intención de compra. Diseño: fondo negro, texto en rojo y blanco, muy limpio. Mensaje: 'Si llevas leyéndonos toda la semana y todavía no la has pedido, ¿qué estás esperando?' CTA: sticker de enlace a WhatsApp https://wa.me/573005864523 y texto 'Escríbenos ahora, respondemos rápido.' Sin descuentos inventados, sin promesas vacías. Solo urgencia real y acceso directo.",
+      "material_sugerido": [
+        "agente/diseno/story_venta_directa_viernes.png"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-a89583",
+      "dia": "sabado",
+      "fecha": "2026-10-31",
+      "hora_publicacion": "12:00",
+      "tipo_contenido": "post",
+      "pilar": "testimonios_y_ugc",
+      "objetivo": "comunidad",
+      "concepto": "Post basado en las respuestas recopiladas en la Story del miércoles. Formato: cita textual de una respuesta de la comunidad sobre cómo usarían la salsa, diseñada como si fuera una tarjeta de cita. Fondo oscuro, texto grande, nombre de usuario de quien respondió (con permiso implícito al responder públicamente). Si no hay respuestas aún, usar un testimonio ficticio con nombre genérico como placeholder. Copy de acompañamiento: 'La comunidad habló. Y tenían razón.' Cierre con CTA a comentarios: '¿Tú cómo la usarías?'",
+      "material_sugerido": [
+        "agente/diseno/post_ugc_respuestas_sabado.png"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-eb2afb",
+      "dia": "domingo",
+      "fecha": "2026-11-01",
+      "hora_publicacion": "19:00",
+      "tipo_contenido": "story",
+      "pilar": "lifestyle_y_comunidad",
+      "objetivo": "comunidad",
+      "concepto": "Story de cierre de semana. Diseño cálido, menos agresivo que el resto de la semana. Fondo con degradado oscuro a rojo. Texto: 'Semana cerrada. ¿Con o sin salsa la viviste?' Sticker de encuesta: 'Con Bestial' vs. 'Aún no la pruebo'. Objetivo: terminar la semana con un toque humano, recordar que hay una comunidad construyéndose, y dejar la puerta abierta para la semana siguiente. No hay CTA de venta, solo pertenencia.",
+      "material_sugerido": [
+        "agente/diseno/story_cierre_semana_domingo.png"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    }
+  ],
+  "notas_estrategia": "Semana de construcción de base con cero material disponible: todo el contenido será generado por el agente (diseño, copy, dirección creativa). Sin datos de formato ganador previo, apostamos por la jerarquía de prioridad: Reels primero, luego Carrusel, luego Posts. El engagement del 3.48% es sólido para una cuenta sin historial de optimización, así que el objetivo es mantenerlo y empujar conversiones al menos una vez. Distribuimos los 11 contenidos en 7 días respetando el límite de 4 piezas/día y el intervalo mínimo de 90 minutos. Alternamos pilares estrictamente: nunca el mismo dos días seguidos. Los dos Reels van en martes y jueves con los hooks más agresivos de la semana. El único contenido de venta directa va el viernes en horario nocturno (20:00), cuando la intención de compra es más alta. Las Stories funcionan como hilo conector diario para mantener presencia sin saturar el feed. Todo el material es de creación propia (ilustraciones, texto sobre fondo, motion simple) dado que no hay archivos disponibles."
+}

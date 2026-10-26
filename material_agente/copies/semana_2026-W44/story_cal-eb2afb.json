@@ -1,0 +1,17 @@
+{
+  "texto_principal": "Semana cerrada. ¿Cómo la viviste?",
+  "texto_secundario": "Hay semanas que piden salsa. Y hay semanas que la necesitan.",
+  "cta": "Responde la encuesta",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "¿Con o sin Bestial la viviste? | Con Bestial 🔥 / Aún no la pruebo"
+  },
+  "descripcion_visual": "Fondo con degradado oscuro en la parte superior que transita suavemente a rojo profundo hacia abajo. Tipografía blanca, gruesa y centrada para el texto principal. El texto secundario en una fuente más delgada, tono gris claro, debajo del principal. La encuesta se ubica en el tercio inferior de la pantalla, con bordes redondeados en tono rojo oscuro. Sin elementos agresivos ni efectos de fuego — la paleta cálida hace el trabajo. Sensación: fin de semana, intimidad, comunidad. No es un anuncio, es un mensaje.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaArtesanal",
+    "#PicanteReal",
+    "#ComunidadBestial",
+    "#LifestylePicante"
+  ]
+}

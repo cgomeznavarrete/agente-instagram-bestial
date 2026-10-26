@@ -1,0 +1,41 @@
+{
+  "hook": "Esto no es una receta. Es un antes y un después.",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Texto grande en pantalla negra, tipografía bold, corte seco. Sin producto visible aún.",
+      "texto_pantalla": "Esto no es una receta. Es un antes y un después."
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Plano cenital de un huevo frito recién hecho en sartén. Luz natural, sin filtros. Se ve solo. Silencioso. Aburrido.",
+      "texto_pantalla": "El huevo de siempre."
+    },
+    {
+      "segundo": "8-20",
+      "visual": "Mano entra al cuadro con el frasco de Salsa Tatemada Ahumada. Se destapa. Caída lenta de la salsa sobre el huevo — plano cerrado, real, sin edición artificial. Chisporroteo suave de fondo. Corte rápido al plato terminado visto desde arriba. Humo visible si es posible.",
+      "texto_pantalla": "Y después... la Tatemada Ahumada. 🔥"
+    },
+    {
+      "segundo": "20-25",
+      "visual": "Frasco de Salsas Bestial en primer plano sobre la mesa, fondo desenfocado. Tenedor entra al cuadro y toma un pedazo del huevo. Corte a negro con texto final.",
+      "texto_pantalla": "La diferencia la hace la salsa. Siempre. → Link en bio"
+    }
+  ],
+  "caption": "Un huevo frito no merece ese destino — y tú lo sabes. ¿Con qué le pondrías tú la Tatemada Ahumada?",
+  "cta": "Pídela aquí → https://wa.me/573005864523 | ¿Con qué le pondrías tú la Tatemada Ahumada?",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#RecetasPicantes",
+    "#ComidaReal",
+    "#HuevoFrito",
+    "#SalsaAhumada",
+    "#FoodiesLatinos",
+    "#PicanteAddictos",
+    "#CocinaEnCasa",
+    "#AntesYDespues"
+  ],
+  "mood_musica": "upbeat_latino",
+  "hook_audio": null
+}

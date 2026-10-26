@@ -1,0 +1,55 @@
+{
+  "caption_principal": "Hay salsas que condimentan. Y hay salsas que tienen historia detrás. Desliza → y te cuento qué hace diferente a la Tatemada Ahumada.",
+  "cta_caption": "Pídela directo por WhatsApp: https://wa.me/573005864523 — ¿Tú con qué plato la estrenarías?",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#Ahumada",
+    "#SalsaArtesanal",
+    "#PicanteDeVerdad",
+    "#ComidaLatina",
+    "#Tatemado",
+    "#SalsasMexicanas",
+    "#CocinaColombiana",
+    "#FoodLovers",
+    "#SalsasPicantes",
+    "#HechoConPasion"
+  ],
+  "slides": [
+    {
+      "numero": 1,
+      "titulo": "No es salsa. Es técnica.",
+      "subtitulo": "Lo que tiene la Tatemada Ahumada que otras no tienen.",
+      "descripcion_visual": "Fondo negro casi total con textura rugosa sutil. El título en tipografía bold blanca, grande, ocupando el 60% del slide. El subtítulo en rojo oscuro o naranja quemado, tamaño mediano, debajo del título. En la esquina inferior derecha, el logo de Salsas Bestial en blanco, sin modificaciones. Ambiente: cinematográfico, pesado, intenso. Sin imágenes del producto en este slide.",
+      "tipo": "portada"
+    },
+    {
+      "numero": 2,
+      "titulo": "Tatematamos el chile hasta que habla.",
+      "subtitulo": "El tatemado es exponerlo directo al fuego hasta que la piel se quema. Eso que parece descuido — es sabor concentrado.",
+      "descripcion_visual": "Fondo oscuro con una ilustración minimalista de un chile sobre llama directa, líneas simples en color naranja y blanco. El texto en tipografía bold blanca a la izquierda del slide. El subtítulo en gris claro, cuerpo de texto más pequeño. La ilustración ocupa la mitad derecha. Sensación artesanal, no corporativa.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 3,
+      "titulo": "Ahumar no es moda. Es memoria.",
+      "subtitulo": "En México lo hacían sobre leña para conservar. En Colombia, sobre fogón de campo para darle alma. Nosotros lo rescatamos y lo metimos en un frasco.",
+      "descripcion_visual": "Fondo carbón oscuro con una textura que evoca madera quemada o comal rayado. Una línea fina de humo ilustrada en blanco sube desde la parte inferior. Texto en blanco bold arriba, subtítulo en tono crema o marfil debajo. Paleta: negros, grises, con un toque de ámbar en los detalles. Sin fotografías, solo ilustración y tipografía.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 4,
+      "titulo": "Tacos. Arepas. Huevos. Carnes. Lo que tengas.",
+      "subtitulo": "No hay protocolo. Si tiene sabor y quiere más — la Tatemada Ahumada va ahí.",
+      "descripcion_visual": "Fondo oscuro con cuatro íconos simples distribuidos en cuadrícula: un taco, una arepa, un huevo frito y una punta de carne. Cada ícono en color naranja quemado sobre fondo negro. El título en tipografía bold blanca en la parte superior, el subtítulo en gris claro en la parte inferior. Sensación de menú visual sin ser literal. Dinámico pero limpio.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 5,
+      "titulo": "Una sola salsa. Mil usos.",
+      "subtitulo": "Pídela ahora por WhatsApp y llega a tu puerta. 🔥",
+      "descripcion_visual": "Fondo negro con el frasco de la Salsa Tatemada Ahumada centrado, fotografía real sin filtros de color, bien iluminado con luz lateral que resalte la etiqueta sin alterarla. Debajo del frasco, el número de WhatsApp visible: wa.me/573005864523. El título en tipografía bold blanca grande arriba del frasco. El subtítulo debajo del frasco en naranja o rojo. Logo de Salsas Bestial en esquina inferior derecha. Slide más luminoso del carrusel — contraste respecto a los anteriores.",
+      "tipo": "cta"
+    }
+  ]
+}

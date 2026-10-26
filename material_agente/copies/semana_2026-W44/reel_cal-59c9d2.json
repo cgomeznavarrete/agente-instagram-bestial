@@ -1,0 +1,41 @@
+{
+  "hook": "El 80% de la gente no aguanta el segundo cucharazo.",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Texto animado en pantalla, fondo negro, letras blancas que aparecen de golpe con vibración. Sin producto todavía.",
+      "texto_pantalla": "El 80% de la gente no aguanta el segundo cucharazo."
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Corte rápido a mano tomando el frasco de Salsa Tatemada Ahumada. Primer cucharazo en cámara lenta. Expresión de 'esto está rico'. Corte a texto animado que entra desde la derecha.",
+      "texto_pantalla": "El primero te enamora..."
+    },
+    {
+      "segundo": "8-20",
+      "visual": "Corte inmediato. Segundo cucharazo. Reacción exagerada: ojos abiertos, abanicarse la boca, buscar agua. Cortes cada 2 segundos. Texto aparece y desaparece en sync con el beat. Plano del frasco solo, quieto, casi retador.",
+      "texto_pantalla": "El segundo... te define. 🔥 En Latinoamérica el que aguanta, manda."
+    },
+    {
+      "segundo": "20-25",
+      "visual": "Frasco de Salsa Tatemada Ahumada en primer plano sobre superficie oscura. Logo visible. Fade a negro con texto blanco centrado.",
+      "texto_pantalla": "¿Tú aguantas? Link en bio."
+    }
+  ],
+  "caption": "No es para todo el mundo — y eso está bien. ¿Tú eres del 20% que pide más?",
+  "cta": "Pídela aquí → https://wa.me/573005864523 | ¿A quién le mandarías una de estas para ponerlo a prueba?",
+  "hashtags": [
+    "#SalsasBestial",
+    "#RetoDePicante",
+    "#SalsaTatemada",
+    "#PicanteLatino",
+    "#ElQueAguantaManda",
+    "#SalsaArtesanal",
+    "#FoodReel",
+    "#ComidaPicante",
+    "#SalsaLovers",
+    "#RetoViral"
+  ],
+  "mood_musica": "energetico",
+  "hook_audio": "El ochenta por ciento de la gente no aguanta el segundo cucharazo. ¿Tú de qué lado estás?"
+}
