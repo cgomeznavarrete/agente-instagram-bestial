@@ -2024,6 +2024,23 @@
       "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/image/upload/v1792179459/salsas_bestial/o7n6strbhxioxq4gdfwx.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1792179460/salsas_bestial/uj3hyhuq8x6l88u3s9ak.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1792179460/salsas_bestial/j71baovpr2c5kdb56ezb.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1792179461/salsas_bestial/bmefgxzu3gkyix4bgram.jpg,https://res.cloudinary.com/dngju3m5f/image/upload/v1792179461/salsas_bestial/frxv8eyc3nwgipu6rg8b.jpg",
       "tema": "",
       "descripcion": ""
+    },
+    {
+      "id": "reel_1793095922329",
+      "tipo": "reel",
+      "nombre_archivo": "reel_1793095922329.mp4",
+      "ruta_local": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/reels/reel_1793095922329.mp4",
+      "fecha_agregado": 1793095923.7065635,
+      "estado": "pendiente",
+      "pilar": "recetas_y_maridajes",
+      "caption": "",
+      "media_id": "",
+      "fecha_publicado": 0.0,
+      "es_carrusel": false,
+      "archivos_carrusel": [],
+      "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/video/upload/v1793095922/salsas_bestial/nrkbqxfbiu7towvf3iti.mp4",
+      "tema": "",
+      "descripcion": "Mayonesa con bestial, muestra la mezcla de mayonesa con salsa bestial para crear una mayonesa picante"
     }
   ]
 }
