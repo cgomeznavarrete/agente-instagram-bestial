@@ -1,0 +1,217 @@
+{
+  "semana": "2026-W45",
+  "fecha_inicio": "2026-11-02",
+  "fecha_fin": "2026-11-08",
+  "fecha_generacion": "2026-11-02T22:32:37.804909",
+  "estado": "borrador",
+  "campana_activa": null,
+  "entradas": [
+    {
+      "id": "cal-05e249",
+      "dia": "lunes",
+      "fecha": "2026-11-02",
+      "hora_publicacion": "12:00",
+      "tipo_contenido": "reel",
+      "pilar": "humor_picante",
+      "objetivo": "entretenimiento",
+      "concepto": "Reel animado/motion graphics con texto en pantalla. Hook visual: texto grande que dice 'El que dice que no le gusta el picante... miente.' Corte rápido a una secuencia de 3 situaciones cotidianas donde alguien dice que no come picante pero termina echándose salsa a todo. Cierra con el frasco de Salsa Tatemada Ahumada en primer plano y el texto: 'Para los que ya dejaron de mentirse.' Audio: sonido trending de sorpresa o reacción exagerada. Duración: 15-20 segundos. Estética: colores de marca, tipografía bold, sin filtros sobre el producto.",
+      "material_sugerido": [
+        "agente/generar/reel_humor_lunes_001.mp4"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-1e2c18",
+      "dia": "martes",
+      "fecha": "2026-11-03",
+      "hora_publicacion": "12:00",
+      "tipo_contenido": "carrusel",
+      "pilar": "educacion_sobre_salsas",
+      "objetivo": "educacion",
+      "concepto": "Carrusel de 5 slides diseñados por el agente. Tema: 'Por qué una salsa tatemada sabe diferente a todo lo demás.' Slide 1 (portada): Texto provocador — 'No es magia. Es el fuego.' Slide 2: Qué significa tatemar y por qué cambia el sabor (explicación corta, lenguaje coloquial, sin bullets). Slide 3: El proceso del ahumado y cómo afecta el aroma. Slide 4: Por qué la Salsa Tatemada Ahumada de Bestial usa ese método. Slide 5 (CTA): 'Ya sabes la diferencia. Ahora pruébala — link en bio.' Estética: diseño editorial oscuro con tipografía bold, paleta de rojos y negros, ilustraciones minimalistas de chiles al fuego. Sin imágenes de producto con filtros.",
+      "material_sugerido": [
+        "agente/generar/carrusel_educacion_martes_003_slide1.png",
+        "agente/generar/carrusel_educacion_martes_003_slide2.png",
+        "agente/generar/carrusel_educacion_martes_003_slide3.png",
+        "agente/generar/carrusel_educacion_martes_003_slide4.png",
+        "agente/generar/carrusel_educacion_martes_003_slide5.png"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-c35205",
+      "dia": "martes",
+      "fecha": "2026-11-03",
+      "hora_publicacion": "19:00",
+      "tipo_contenido": "story",
+      "pilar": "educacion_sobre_salsas",
+      "objetivo": "educacion",
+      "concepto": "Story de soporte al carrusel del día. Diseño simple con fondo negro y texto blanco. Dato rápido: 'El tatemado puede aumentar hasta un 40% la percepción de profundidad en el sabor. No lo decimos nosotros — lo dice el fuego.' Sticker de link directo al carrusel del feed. Duración visual: diseño estático con animación de texto entrada.",
+      "material_sugerido": [
+        "agente/generar/story_dato_martes_004.png"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-cfefa6",
+      "dia": "miercoles",
+      "fecha": "2026-11-04",
+      "hora_publicacion": "19:00",
+      "tipo_contenido": "reel",
+      "pilar": "recetas_y_maridajes",
+      "objetivo": "engagement",
+      "concepto": "Reel de receta rápida generado con motion graphics y texto animado. Hook en pantalla: 'Huevos estrellados con Bestial. Eso es todo. Eso es el post.' Secuencia de texto animado que describe el proceso en 4 pasos ultrabreves: aceite caliente, huevo, sal, chorro generoso de Salsa Tatemada Ahumada. Cierre con el texto: 'El desayuno que te hace llegar tarde porque repites.' CTA en caption. Audio: sonido de sartén chisporroteando o trending latinoamericano de cocina. Duración: 20-25 segundos. El frasco aparece en el paso 4 como elemento gráfico limpio, sin filtros.",
+      "material_sugerido": [
+        "agente/generar/reel_receta_miercoles_005.mp4"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-7e66bd",
+      "dia": "miercoles",
+      "fecha": "2026-11-04",
+      "hora_publicacion": "20:30",
+      "tipo_contenido": "story",
+      "pilar": "recetas_y_maridajes",
+      "objetivo": "comunidad",
+      "concepto": "Story con caja de preguntas. Fondo con degradado cálido y tipografía de marca. Texto: '¿Con qué otra cosa le meterías la Bestial? Cuéntanos — las mejores ideas las publicamos.' Sticker de pregunta abierta activado. Objetivo: generar UGC y conversación. Las respuestas se usan como insumo para contenido de la semana siguiente.",
+      "material_sugerido": [
+        "agente/generar/story_pregunta_miercoles_006.png"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-046d17",
+      "dia": "jueves",
+      "fecha": "2026-11-05",
+      "hora_publicacion": "12:00",
+      "tipo_contenido": "post",
+      "pilar": "promociones_y_lanzamientos",
+      "objetivo": "ventas",
+      "concepto": "Post de conversión directa. Diseño limpio con el frasco de Salsa Tatemada Ahumada como elemento central — fotografía de producto o render limpio sin filtros de color sobre la etiqueta. Copy en la imagen: 'Una salsa. Cero excusas.' Descripción del canal de compra integrada visualmente: ícono de WhatsApp con el número y texto 'Pide directo, sin vueltas.' Estética: fondo blanco roto o madera clara para contraste con el frasco. Sin modificar logo ni etiqueta.",
+      "material_sugerido": [
+        "agente/generar/post_venta_jueves_007.png"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-7dc421",
+      "dia": "jueves",
+      "fecha": "2026-11-05",
+      "hora_publicacion": "19:00",
+      "tipo_contenido": "story",
+      "pilar": "como_comprar",
+      "objetivo": "ventas",
+      "concepto": "Story de conversión con instrucciones visuales de compra. Formato paso a paso en 3 pantallas (story secuencial). Pantalla 1: '¿Ya quieres la tuya?' Pantalla 2: 'Escríbenos por WhatsApp — respuesta en menos de 1 hora' con botón de link directo a wa.me/573005864523. Pantalla 3: 'O encuéntrala en el link de bio.' Diseño: tipografía bold, colores de marca, sin saturar con texto. Tono directo y sin rodeos.",
+      "material_sugerido": [
+        "agente/generar/story_compra_jueves_008a.png",
+        "agente/generar/story_compra_jueves_008b.png",
+        "agente/generar/story_compra_jueves_008c.png"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-606b43",
+      "dia": "viernes",
+      "fecha": "2026-11-06",
+      "hora_publicacion": "12:00",
+      "tipo_contenido": "post",
+      "pilar": "testimonios_y_ugc",
+      "objetivo": "comunidad",
+      "concepto": "Post de comunidad basado en respuestas recopiladas de la story del miércoles (caja de preguntas). Si hay respuestas reales, se diseña una pieza tipo 'lo que dijeron ustedes' con las combinaciones más creativas. Si no hay respuestas aún, se diseña con combinaciones ficticias pero verosímiles: 'Alguien de Medellín la echó en arroz con leche. No lo juzgamos.' Estética: diseño tipo collage de texto, fondo oscuro, tipografía variada. Genera conversación y sentido de comunidad sin prometer nada médico ni nutricional.",
+      "material_sugerido": [
+        "agente/generar/post_ugc_viernes_009.png"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-a6152b",
+      "dia": "sabado",
+      "fecha": "2026-11-07",
+      "hora_publicacion": "12:00",
+      "tipo_contenido": "post",
+      "pilar": "retos_y_pruebas_de_picante",
+      "objetivo": "entretenimiento",
+      "concepto": "Post diseñado tipo 'escala de intensidad'. Ilustración gráfica de una escala de 1 a 5 con emojis de cara (de tranquilo a en llamas). La Salsa Tatemada Ahumada aparece marcada en un nivel específico con el texto: 'Aquí vive la Bestial. No es el nivel más alto — es el nivel que te hace repetir.' Copy que invita a comentar en qué nivel se ubica cada quien. Sin prometer efectos físicos ni exagerar propiedades. Estética: ilustración bold, colores de marca, humor presente.",
+      "material_sugerido": [
+        "agente/generar/post_escala_sabado_010.png"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-27246e",
+      "dia": "domingo",
+      "fecha": "2026-11-08",
+      "hora_publicacion": "19:00",
+      "tipo_contenido": "story",
+      "pilar": "lifestyle_y_comunidad",
+      "objetivo": "comunidad",
+      "concepto": "Story de cierre de semana. Diseño cálido, tipografía manuscrita sobre fondo texturizado. Texto: 'Domingo sin salsa es domingo desperdiciado. Nos vemos la próxima semana con más.' Sticker de cuenta regresiva al lunes. Tono relajado, cercano, como el cierre de una conversación entre amigos. Sin CTA de venta. Objetivo: fidelización y calidez de marca.",
+      "material_sugerido": [
+        "agente/generar/story_cierre_domingo_011.png"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    }
+  ],
+  "notas_estrategia": "Semana sin material visual disponible: todo el contenido se basa en material generado por el agente (diseño, texto, animación, ilustración). Sin datos de semana anterior que orienten formato ganador, se prioriza Reels por ventaja algorítmica en 2026 y se distribuyen los 11 formatos entre lunes y domingo respetando el límite de 4 piezas diarias y 90 minutos mínimos entre publicaciones. La secuencia alterna venta-educación-entretenimiento-comunidad para no saturar con conversión. El único contenido de venta directa se ubica el jueves, día de mayor intención de compra mid-week. Los hooks de los Reels son los más agresivos de la semana. Se evita repetir pilar dos días consecutivos. Al no haber seguidores nuevos la semana anterior, se refuerza comunidad y entretenimiento para activar el algoritmo y atraer tráfico orgánico."
+}

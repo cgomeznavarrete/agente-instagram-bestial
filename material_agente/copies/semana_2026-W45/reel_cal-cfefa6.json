@@ -1,0 +1,46 @@
+{
+  "hook": "Huevos estrellados con Bestial. Eso es todo. Eso es el post.",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Texto animado aparece en pantalla negra o fondo neutro, letra bold, sin adornos. Entrada rápida tipo typewriter o pop.",
+      "texto_pantalla": "Huevos estrellados con Bestial. Eso es todo. Eso es el post."
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Motion graphic de sartén con aceite caliente — se ve el aceite moviéndose, efecto de calor. Animación limpia, estilo minimalista.",
+      "texto_pantalla": "Aceite. Bien caliente."
+    },
+    {
+      "segundo": "8-15",
+      "visual": "Secuencia rápida de 3 pasos animados: huevo cayendo a la sartén (chisporroteo visual), grano de sal cayendo, y luego pausa dramática de medio segundo antes del paso 4.",
+      "texto_pantalla": "Huevo. Sal. Y entonces..."
+    },
+    {
+      "segundo": "15-20",
+      "visual": "Aparece el frasco de Salsa Tatemada Ahumada — elemento gráfico limpio, sin filtros, centrado en pantalla. Un chorro animado sale del frasco hacia los huevos. Cámara lenta visual.",
+      "texto_pantalla": "Un chorro generoso de Tatemada Ahumada."
+    },
+    {
+      "segundo": "20-25",
+      "visual": "Pantalla final con fondo oscuro, texto centrado en dos líneas. Logo de Salsas Bestial aparece limpio en esquina inferior. Sin filtros, sin efectos sobre el logo.",
+      "texto_pantalla": "El desayuno que te hace llegar tarde porque repites. 🍳"
+    }
+  ],
+  "caption": "No es receta — es una advertencia. El que prueba los huevos con Bestial no vuelve a hacerlos igual.",
+  "cta": "Pídela aquí → https://wa.me/573005864523 — ¿Tú con qué más la combinarías?",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#HuevosEstrellados",
+    "#RecetasFáciles",
+    "#PicanteLovers",
+    "#DesayunoLatino",
+    "#SalsaArtesanal",
+    "#CocinaConActitud",
+    "#FoodiesLatam",
+    "#TatemadaAhumada"
+  ],
+  "mood_musica": "energetico",
+  "hook_audio": null
+}

@@ -1,0 +1,46 @@
+{
+  "hook": "El que dice que no le gusta el picante... miente.",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Texto bold enorme sobre fondo negro de marca, tipografía que vibra levemente con efecto de impacto",
+      "texto_pantalla": "El que dice que no le gusta el picante... miente."
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Situación 1 — animación rápida: personaje en reunión dice 'yo no como picante' y dos segundos después le está echando salsa a la pizza. Corte seco.",
+      "texto_pantalla": "'Yo no como picante' — *le echa salsa a todo*"
+    },
+    {
+      "segundo": "8-14",
+      "visual": "Situación 2 — personaje en restaurante pide 'sin picante por favor', pero cuando llega el taco le hace señas al mesero para que le traiga la salsa. Corte seco. Situación 3 — personaje en casa mirando el frasco con cara de 'solo una gotita' y termina bañando el arroz.",
+      "texto_pantalla": "Situación 2: 'Sin picante, gracias.' *señas al mesero* | Situación 3: 'Solo una gotita.' *baña el arroz*"
+    },
+    {
+      "segundo": "14-20",
+      "visual": "Frasco de Salsa Tatemada Ahumada en primer plano, enfoque nítido, sin filtros, iluminación limpia sobre superficie de madera o mármol oscuro. Zoom suave de entrada.",
+      "texto_pantalla": "Para los que ya dejaron de mentirse."
+    },
+    {
+      "segundo": "20-25",
+      "visual": "Frasco en pantalla completa con logo visible, fade rápido a fondo de color de marca con texto de CTA centrado",
+      "texto_pantalla": "Pídela aquí → wa.me/573005864523"
+    }
+  ],
+  "caption": "Todos tenemos ese familiar que 'no come picante'... y se acaba la salsa primero que nadie. ¿A quién de tu familia le mandamos un frasco sin decirle qué es?",
+  "cta": "Pídela aquí → https://wa.me/573005864523",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteParaTodos",
+    "#HumorLatino",
+    "#SalsaArtesanal",
+    "#ComidaLatina",
+    "#PicanteLovers",
+    "#ReelsDeCocina",
+    "#SalsasMexicanas",
+    "#FoodiesDeLatam"
+  ],
+  "mood_musica": "humor",
+  "hook_audio": null
+}

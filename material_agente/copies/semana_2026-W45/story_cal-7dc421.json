@@ -1,0 +1,13 @@
+{
+  "texto_principal": "¿Ya quieres la tuya?",
+  "texto_secundario": "La Tatemada Ahumada no se consigue en cualquier parte.",
+  "cta": "Desliza arriba o responde esta story",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "¿Cómo prefieres pedirla? 🔥 WhatsApp | Link en bio"
+  },
+  "descripcion_visual": "Story 1 de 3 — Fondo en color de marca, tipografía bold centrada, texto blanco con sombra sutil. Sin imágenes recargadas. Solo el texto y la encuesta interactiva. Story 2 — Ícono de WhatsApp visible + texto: 'Escríbenos — respondemos en menos de 1 hora'. Botón de enlace directo a wa.me/573005864523 en la parte inferior. Story 3 — Fondo limpio, texto: 'O búscala en el link de bio.' Flecha animada apuntando hacia arriba. Todas las pantallas con identidad visual consistente: colores de marca, sin filtros sobre logo ni etiqueta, tipografía pesada y legible.",
+  "hashtags_ocultos": [
+    "#SalsasBestial"
+  ]
+}

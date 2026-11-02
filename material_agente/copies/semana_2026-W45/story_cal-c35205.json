@@ -1,0 +1,16 @@
+{
+  "texto_principal": "El fuego no miente. El tatemado sí cambia todo.",
+  "texto_secundario": "Hasta 40% más profundidad en el sabor — comprobado por las llamas.",
+  "cta": "Enlace al carrusel 👆",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "¿Sabías esto del tatemado? / Ahora sí lo sé"
+  },
+  "descripcion_visual": "Fondo negro puro. Texto principal en blanco, tipografía bold centrada, animación de entrada letra por letra. Texto secundario aparece debajo con un leve delay, tamaño reducido, tono gris claro para jerarquía visual. Sticker de enlace al carrusel posicionado en la parte inferior, discreto pero visible. Sin filtros ni elementos gráficos adicionales — el minimalismo es el mensaje.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteReal",
+    "#CulturaDelSabor"
+  ]
+}

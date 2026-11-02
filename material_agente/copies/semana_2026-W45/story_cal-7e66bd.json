@@ -1,0 +1,17 @@
+{
+  "texto_principal": "¿Con qué otra cosa le metes la Bestial?",
+  "texto_secundario": "Las mejores ideas las publicamos esta semana 🔥",
+  "cta": "Responde aquí abajo — en serio, cuéntanos",
+  "elemento_interactivo": {
+    "tipo": "pregunta",
+    "contenido": "Yo le metería la Bestial a..."
+  },
+  "descripcion_visual": "Fondo con degradado cálido de naranja quemado a rojo oscuro. Tipografía de marca en blanco, bold, centrada. El sticker de pregunta abierta de Instagram va en la mitad inferior de la pantalla, con borde blanco para que resalte. Sin frasco visible — que el protagonismo lo tenga la pregunta. Sensación de mensaje directo, casi como una nota de voz en texto.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#RecetasPicantes",
+    "#ComidasLatinas",
+    "#SalsaArtesanal"
+  ]
+}

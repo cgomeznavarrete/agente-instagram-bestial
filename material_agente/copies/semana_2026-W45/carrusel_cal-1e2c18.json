@@ -1,0 +1,58 @@
+{
+  "caption_principal": "Hay salsas que saben a salsa. Y hay salsas que saben a algo que no puedes explicar fácil... ese sabor que te hace cerrar los ojos un segundo. Eso no pasa por accidente — pasa por el fuego. Desliza y te cuento por qué →",
+  "cta_caption": "¿Ya sabías que el tatemado cambia completamente el perfil de sabor de un chile? Cuéntanos abajo con qué comida la probarías primero.",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#Tatemado",
+    "#SalsaAhumada",
+    "#CocinaLatina",
+    "#PicanteMexicano",
+    "#SalsaArtesanal",
+    "#FoodLovers",
+    "#Ahumado",
+    "#CulturaDelPicante",
+    "#Bestial",
+    "#SalsasMexicanas",
+    "#ChileAhumado",
+    "#RecetasConSalsa",
+    "#ComidaLatina"
+  ],
+  "slides": [
+    {
+      "numero": 1,
+      "titulo": "No es magia. Es el fuego.",
+      "subtitulo": "Por qué una salsa tatemada sabe diferente a todo lo demás.",
+      "descripcion_visual": "Fondo negro profundo con textura de carbón sutil. Tipografía bold blanca para el título principal, ocupando casi todo el espacio. La palabra 'fuego' resaltada en rojo intenso (#C0392B). En la esquina inferior, ilustración minimalista de un chile pasilla sobre llamas — trazo fino, monocromático en rojo. Logo de Salsas Bestial pequeño en esquina superior izquierda. Sin imágenes de producto. Atmósfera densa, editorial, casi como portada de revista de gastronomía underground.",
+      "tipo": "portada"
+    },
+    {
+      "numero": 2,
+      "titulo": "Tatemar no es cocinar. Es transformar.",
+      "subtitulo": "El chile que entra al fuego no es el mismo que sale.",
+      "descripcion_visual": "Fondo negro con degradado sutil hacia gris carbón en los bordes. Tipografía bold roja para el título. Párrafo de cuerpo en blanco, fuente sans-serif ligera, máximo 4 líneas. Texto del párrafo: 'Cuando pones un chile directo al fuego — sin aceite, sin agua, sin nada — la piel se quema, los azúcares se caramelizan y todo lo que estaba adentro se concentra. El sabor ya no es fresco. Es profundo. Es otra cosa.' Ilustración lateral de un chile sobre brasa directa, líneas minimalistas en rojo sobre fondo oscuro. Sin bullets. Sin listas. Solo texto corrido como si te lo estuviera contando alguien en la cocina.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 3,
+      "titulo": "El ahumado le habla directo a tu memoria.",
+      "subtitulo": "No es solo olor. Es una experiencia que el cerebro no olvida.",
+      "descripcion_visual": "Fondo negro con volutas de humo ilustradas en gris muy sutil, casi imperceptibles, como textura de fondo. Título en blanco bold, grande. Texto de cuerpo en gris claro: 'El humo no es decorativo. Cuando el chile se ahúma, los compuestos del leño — guayacol, siringol, fenoles — se adhieren a la piel y a la pulpa. Eso es lo que hueles antes de saborear. El ahumado avisa. Prepara. Y cuando finalmente llega el picante, ya estás listo — o creías estarlo.' Ilustración de espirales de humo saliendo de chiles tatemados, trazo fino rojo sobre negro. Composición asimétrica, más texto a la izquierda, ilustración a la derecha.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 4,
+      "titulo": "Por eso Bestial no toma atajos.",
+      "subtitulo": "El método importa. El resultado lo demuestra.",
+      "descripcion_visual": "Fondo negro sólido. Título en rojo bold, grande, con peso visual dominante. Texto de cuerpo en blanco: 'La Salsa Tatemada Ahumada de Bestial se hace con chiles que pasan por el fuego — no por un saborizante artificial de humo, no por un extracto. El proceso real. Ese que tarda más, que mancha, que huele a cocina de verdad. Porque una salsa que se llama tatemada tiene que merecer ese nombre.' Pequeña ilustración de una llama estilizada debajo del texto, en rojo. Logo de Salsas Bestial centrado en la parte inferior, discreto pero presente.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 5,
+      "titulo": "Ya sabes la diferencia. Ahora pruébala.",
+      "subtitulo": "Link en bio — o escríbenos directo por WhatsApp.",
+      "descripcion_visual": "Fondo rojo intenso (#C0392B) — único slide con fondo de color para romper el patrón visual y generar impacto en el CTA. Tipografía blanca bold, título grande y centrado. Subtitulo en blanco con peso menor. En la parte inferior, texto pequeño: 'Salsas Bestial — Tatemada Ahumada' con el logo en blanco. Ilustración minimalista de un chile con llama, ahora en negro sobre el fondo rojo, como sello o ícono de marca. Composición limpia, mucho espacio en blanco alrededor del texto para que respire. Sin ruido visual — solo el llamado a la acción.",
+      "tipo": "cta"
+    }
+  ]
+}
