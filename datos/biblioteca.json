@@ -1974,11 +1974,11 @@
       "nombre_archivo": "story_1792408558976.mp4",
       "ruta_local": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/stories/story_1792408558976.mp4",
       "fecha_agregado": 1792408560.1572719,
-      "estado": "pendiente",
+      "estado": "publicado",
       "pilar": "lifestyle_y_comunidad",
       "caption": "Tu mesa sin salsa bestial es solo... una mesa.\nPídela 👇",
-      "media_id": "",
-      "fecha_publicado": 0.0,
+      "media_id": "17973969966172727",
+      "fecha_publicado": 1794087613.7601178,
       "es_carrusel": false,
       "archivos_carrusel": [],
       "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/video/upload/v1792408559/salsas_bestial/nah4rfhv17oodclk0uxn.mp4",
@@ -2041,6 +2041,23 @@
       "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/video/upload/v1793095922/salsas_bestial/nrkbqxfbiu7towvf3iti.mp4",
       "tema": "",
       "descripcion": "Mayonesa con bestial, muestra la mezcla de mayonesa con salsa bestial para crear una mayonesa picante"
+    },
+    {
+      "id": "story_1794088869708",
+      "tipo": "story",
+      "nombre_archivo": "story_1794088869708.mp4",
+      "ruta_local": "/home/runner/work/agente-instagram-bestial/agente-instagram-bestial/material_agente/biblioteca/stories/story_1794088869708.mp4",
+      "fecha_agregado": 1794088871.1141615,
+      "estado": "pendiente",
+      "pilar": "lifestyle_y_comunidad",
+      "caption": "",
+      "media_id": "",
+      "fecha_publicado": 0.0,
+      "es_carrusel": false,
+      "archivos_carrusel": [],
+      "cloudinary_url": "https://res.cloudinary.com/dngju3m5f/video/upload/v1794088870/salsas_bestial/all0qyfgp1o34el3gpbp.mp4",
+      "tema": "",
+      "descripcion": ""
     }
   ]
 }
