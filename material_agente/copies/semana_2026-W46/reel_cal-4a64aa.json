@@ -1,0 +1,41 @@
+{
+  "hook": "Hay tres tipos de personas en este mundo...",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Texto animado aparece letra por letra sobre fondo negro. Tipografía bold naranja quemado. Cut rápido al rostro de alguien sudando exageradamente con servilleta en mano.",
+      "texto_pantalla": "Hay 3 tipos de personas en este mundo..."
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Escena 1: Persona con cara de negación total, agitando la mano como diciendo 'no, no, no'... pero con la frente empapada en sudor y el frasco escondido detrás de la espalda. Corte seco.",
+      "texto_pantalla": "El que dice que no le gusta el picante 🥲"
+    },
+    {
+      "segundo": "8-14",
+      "visual": "Escena 2: Persona con ojos cerrados, cabeza echada hacia atrás, cara de éxtasis absoluto — como si estuviera en otro plano de existencia. Cuchara en mano, frasco de Salsa Tatemada Ahumada al lado. Escena 3 inmediata: shot cenital de huevos revueltos con el frasco de Salsas Bestial inclinado encima, cayendo salsa. La persona al fondo echa salsa con total normalidad, como si fuera leche.",
+      "texto_pantalla": "El que pide más / El que la echa en TODO. Incluso en el desayuno."
+    },
+    {
+      "segundo": "14-25",
+      "visual": "Primer plano lento del frasco de Salsa Tatemada Ahumada sobre fondo negro. La etiqueta se ve completa, sin filtros. Texto entra con animación de rebote. Pausa de un segundo. Aparece el CTA final.",
+      "texto_pantalla": "¿Cuál eres tú? Comenta abajo 🌶"
+    }
+  ],
+  "caption": "Tres tipos de personas en este mundo... y todas terminan pidiendo más. ¿En cuál te ves?",
+  "cta": "Pídela aquí → https://wa.me/573005864523 ¿A quién de tus contactos le mandarías una de estas ahora mismo?",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteLovers",
+    "#SalsaAhumada",
+    "#ComidaLatina",
+    "#Foodie",
+    "#HumorFoodie",
+    "#SalsaArtesanal",
+    "#PicanteAddict",
+    "#RecetasConSalsa"
+  ],
+  "mood_musica": "humor",
+  "hook_audio": "Hay tres tipos de personas en este mundo..."
+}

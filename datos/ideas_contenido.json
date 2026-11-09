@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "ultima_actualizacion": "2026-11-02T22:35:46.839590",
+  "ultima_actualizacion": "2026-11-09T23:18:36.222322",
   "banco_ideas": [
     {
       "id": "idea-4428a483",
@@ -2519,6 +2519,126 @@
       "concepto": "Carrusel de 4 slides con el título 'Por qué la Tatemada Ahumada no sabe igual que las otras'. Cada slide compara de forma honesta — sin atacar marcas — qué hace diferente al proceso artesanal. El último slide muestra el frasco y el enlace de compra.",
       "notas": "Posiciona la marca frente a salsas industriales sin imitar ni atacar competidores. El tono honesto y directo genera confianza. Los carruseles comparativos tienen alto índice de guardados.",
       "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-335717cc",
+      "fecha_generacion": "2026-11-09",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "retos_y_pruebas_de_picante",
+      "concepto": "Reel de 30 segundos donde alguien prueba la Salsa Tatemada Ahumada por primera vez sin saber qué esperar. La cámara captura el momento exacto del golpe de sabor: la pausa, los ojos, la sonrisa. Sin edición exagerada. Real.",
+      "notas": "Las reacciones auténticas generan comentarios y compartidos masivos. El formato 'primera vez' es uno de los más replicados en Instagram Reels. Fácil de producir con un celular y buena luz natural.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-732d8672",
+      "fecha_generacion": "2026-11-09",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "educacion_sobre_salsas",
+      "concepto": "Carrusel de 5 slides titulado 'No todas las salsas pican igual' explicando la diferencia entre picante de frente, picante ahumado y picante que llega después. Cada slide con una sola frase contundente y el frasco de fondo desenfocado.",
+      "notas": "Educa sin aburrir. Genera guardados porque la gente quiere tener esa info a mano. Posiciona a Bestial como referente de conocimiento, no solo de venta.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-96d6da87",
+      "fecha_generacion": "2026-11-09",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "recetas_y_maridajes",
+      "concepto": "Foto cenital de unos huevos revueltos con la Salsa Tatemada Ahumada encima, chorrito generoso. Copy que hable del desayuno como acto de rebeldía. El frasco visible pero no protagonista.",
+      "notas": "El contenido de desayunos tiene altísimo engagement matutino. Es aspiracional y fácil de replicar por la audiencia, lo que impulsa UGC orgánico.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-26f1ee49",
+      "fecha_generacion": "2026-11-09",
+      "origen": "claude",
+      "tipo_sugerido": "story",
+      "pilar": "como_comprar",
+      "concepto": "Story de 3 slides estilo 'así de rápido consigues tu salsa': slide 1 antojo, slide 2 abres WhatsApp, slide 3 ya llegó. Texto minimalista, sin saturar. Link directo a WhatsApp en el tercer slide.",
+      "notas": "Reduce la fricción de compra mostrando que el proceso es tan simple como mandar un mensaje. Funciona como embudo directo de conversión.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-097d9162",
+      "fecha_generacion": "2026-11-09",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "behind_the_scenes",
+      "concepto": "Reel de 20 segundos mostrando el proceso de tatemado: el fuego, el humo, los chiles sobre la llama. Sin voz en off. Solo el sonido ambiente y una canción de fondo que pegue. Termina con el frasco listo.",
+      "notas": "El proceso artesanal genera confianza y diferenciación. El fuego y el humo son visualmente magnéticos. Altísimo potencial de shares entre foodies.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-d63ee1df",
+      "fecha_generacion": "2026-11-09",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "testimonios_y_ugc",
+      "concepto": "Carrusel de 4 slides con frases reales de clientes convertidas en citas tipográficas. Fondo oscuro, letra grande, tono de la marca. El último slide es el frasco con la pregunta '¿Cuál es la tuya?'",
+      "notas": "La prueba social en formato visual genera confianza inmediata. Invita a la audiencia a comentar su propia experiencia, disparando el engagement orgánico.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-bac12519",
+      "fecha_generacion": "2026-11-09",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "humor_picante",
+      "concepto": "Foto del frasco de Bestial al lado de una salsa comercial genérica de supermercado, pero la salsa genérica está pixelada o con un sticker de censura. Copy seco y directo sin explicar demasiado.",
+      "notas": "El humor comparativo sin nombrar competidores genera comentarios, debates y compartidos. Es el tipo de contenido que la gente etiqueta a amigos sin pensarlo.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-b7440ab2",
+      "fecha_generacion": "2026-11-09",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "lifestyle_y_comunidad",
+      "concepto": "Reel estilo 'día de asado en familia' donde la Salsa Tatemada Ahumada aparece en la mesa como parte natural de la escena. Nada forzado. La salsa está ahí como siempre ha estado, como debe estar.",
+      "notas": "Conecta con la cultura latinoamericana del asado y la reunión familiar. El producto se integra al lifestyle sin parecer publicidad, lo que aumenta la credibilidad.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-2853cd72",
+      "fecha_generacion": "2026-11-09",
+      "origen": "claude",
+      "tipo_sugerido": "story",
+      "pilar": "promociones_y_lanzamientos",
+      "concepto": "Story con encuesta: '¿Con qué lo combinarías primero: con carne, con huevos o con todo lo que encuentres en la nevera?' Tres opciones. Al día siguiente, story con los resultados y una receta basada en el ganador.",
+      "notas": "Las encuestas en Stories tienen la tasa de participación más alta del formato. Crea conversación en dos tiempos y da pie a contenido de receta orgánico y justificado.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-1d9186be",
+      "fecha_generacion": "2026-11-09",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "beneficios_del_producto",
+      "concepto": "Carrusel de 4 slides titulado 'Por qué el ahumado cambia todo' explicando sensorialmente, no técnicamente, qué hace el proceso de tatemado al sabor. Cada slide describe una sensación: el olor, el primer golpe, el retrogusto, la adicción.",
+      "notas": "Genera guardados porque educa desde la experiencia. Diferencia a Bestial desde el sabor y el proceso, no desde los ingredientes. Refuerza la percepción de producto premium y artesanal.",
+      "prioridad": "baja",
       "usado": false,
       "fecha_uso": null
     }

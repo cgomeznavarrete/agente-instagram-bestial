@@ -1,0 +1,19 @@
+{
+  "texto_principal": "¿Le entras o te rajas?",
+  "texto_secundario": "Tu comida favorita + Salsa Tatemada. Hay que decidir.",
+  "cta": "Vota ahora — sin mentiras",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "¿Le meterías Salsa Tatemada a tu comida favorita? | Sin duda 🔥 vs Soy cobarde"
+  },
+  "descripcion_visual": "Fondo rojo oscuro texturizado, casi quemado. Tipografía expresiva bold en blanco roto — letras grandes, sin miedo. Sticker de encuesta nativa de Instagram centrado en la parte inferior. Sin filtros sobre el producto. Si aparece el frasco, debe ser fotografía real, iluminación natural lateral, sin efectos. Energía de cartel callejero, no de ad corporativo.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#RetoPicante",
+    "#ComidaPicante",
+    "#SalsaArtesanal",
+    "#PicanteLovers",
+    "#FoodReto"
+  ]
+}

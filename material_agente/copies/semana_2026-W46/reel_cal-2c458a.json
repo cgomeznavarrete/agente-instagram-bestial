@@ -1,0 +1,41 @@
+{
+  "hook": "El taco que te hace extrañar casa... sin haber ido",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Plano cenital: manos untando frijoles refritos calientes sobre tortilla de maíz. El vapor sube. Movimiento lento por 1 segundo, luego corte seco.",
+      "texto_pantalla": "El taco que te hace extrañar casa... sin haber ido"
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Cortes rápidos al ritmo del audio: frijoles chisporroteando en sartén — queso fresco desmoronándose sobre la tortilla — manos doblando el taco con decisión.",
+      "texto_pantalla": "Frijoles. Queso fresco. Tortilla."
+    },
+    {
+      "segundo": "8-20",
+      "visual": "El momento clave: chorro de Salsa Tatemada Ahumada cayendo en hilo sobre el taco abierto. Primer plano del líquido oscuro y ahumado tocando el queso. Corte al mordisco — sin cara, solo manos sosteniendo el taco y la mordida limpia que lo parte. El relleno cae un poco. Perfecto.",
+      "texto_pantalla": "Y esto. 🔥 Salsa Tatemada Ahumada — el ingrediente que faltaba"
+    },
+    {
+      "segundo": "20-25",
+      "visual": "Frasco de Salsa Tatemada Ahumada en foco nítido. Fondo con los restos del taco ligeramente desenfocados. Luz cálida. Sin filtros sobre el frasco.",
+      "texto_pantalla": "¿Quieres el paso a paso? Comenta RECETA — Pídela: wa.me/573005864523"
+    }
+  ],
+  "caption": "Frijoles + queso fresco + Salsa Tatemada. Eso es todo. No necesitas más... pero si quieres el paso a paso completo, comenta RECETA 🔥 ¿Tú con qué más la combinarías?",
+  "cta": "Pídela aquí → https://wa.me/573005864523",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#TacosDeFrijoles",
+    "#RecetasFáciles",
+    "#ComidaMexicana",
+    "#SalsaArtesanal",
+    "#PicanteDeVerdad",
+    "#FoodiesLatinos",
+    "#TacoLovers",
+    "#CocinaEnCasa"
+  ],
+  "mood_musica": "upbeat_latino",
+  "hook_audio": null
+}

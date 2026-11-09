@@ -1,0 +1,17 @@
+{
+  "texto_principal": "Esto nos escriben. Y nos encanta.",
+  "texto_secundario": "¿Ya nos contaste el tuyo?",
+  "cta": "Respóndenos aquí — queremos leer el tuyo",
+  "elemento_interactivo": {
+    "tipo": "pregunta",
+    "contenido": "¿En qué le echaste la Bestial? 👇"
+  },
+  "descripcion_visual": "Fondo oscuro casi negro con textura sutil. En el centro, un screenshot simulado de conversación de WhatsApp (burbujas verdes, fuente real de WhatsApp, sin nombre ni foto de perfil visible) con el mensaje: 'Hermano esta salsa es otra cosa, le eché a la sopa y mi mamá me preguntó qué le había puesto.' El texto principal aparece encima del screenshot en tipografía blanca bold. Abajo, el texto secundario en color rojo Bestial. Sticker de pregunta de Instagram justo debajo, integrado naturalmente al diseño. Sin filtros sobre el frasco — si aparece el producto, debe ser foto limpia y real al costado.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaArtesanal",
+    "#PicanteColombiano",
+    "#SalsaTatemada",
+    "#ComidaPicante"
+  ]
+}

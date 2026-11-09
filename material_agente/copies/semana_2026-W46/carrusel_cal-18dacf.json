@@ -1,0 +1,65 @@
+{
+  "caption_principal": "El ahumado no es un sabor — es una técnica. Y hay una diferencia enorme entre hacerlo y simularlo. Esto lo aprendimos a las malas. Desliza → porque lo que viene te va a cambiar cómo lees una etiqueta para siempre.",
+  "cta_caption": "¿Alguna vez compraste una salsa 'ahumada' y algo no cuadraba? Cuéntanos abajo. 🔥",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#AhumadoReal",
+    "#CulturaPickante",
+    "#SalsasArtesanales",
+    "#Tatemado",
+    "#FoodEducation",
+    "#PicanteMexicano",
+    "#SalsaLovers",
+    "#CocinaCasera",
+    "#FoodieLatino",
+    "#SaborProfundo",
+    "#ChileAhumado",
+    "#ReaccionDeMaillard",
+    "#SalsaQueEnsena"
+  ],
+  "slides": [
+    {
+      "numero": 1,
+      "titulo": "La mayoría de salsas ahumadas te está mintiendo.",
+      "subtitulo": "Y tu lengua ya lo sabe — solo nadie te lo había dicho.",
+      "descripcion_visual": "Fondo muy oscuro, casi negro con textura de carbón sutil. Llama ilustrada en trazo minimalista color ámbar/naranja quemado centrada debajo del título. Tipografía sans-serif bold en blanco roto. El subtítulo en gris claro, peso regular, tamaño notablemente menor. Sensación de calor contenido, no agresiva. Sin fotografías del producto en este slide.",
+      "tipo": "portada"
+    },
+    {
+      "numero": 2,
+      "titulo": "Ahumado real: días de proceso, humo de leña, transformación del chile desde adentro.",
+      "subtitulo": "Ahumado artificial: extracto de humo líquido. Una gota. Listo. Embotellado.",
+      "descripcion_visual": "Slide dividido verticalmente en dos zonas. Lado izquierdo: fondo tierra oscuro, icono minimalista de comal con brasa. Lado derecho: fondo gris frío, icono de gotero/pipeta. Tipografía contrastante — izquierda en tono cálido ámbar, derecha en tono frío gris azulado. Sin colores estridentes. La división visual hace el trabajo narrativo.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 3,
+      "titulo": "El tatemado: así empieza todo.",
+      "subtitulo": "Chile directo al comal. Sin aceite. Sin agua. Solo calor seco y tiempo — hasta que la piel se quema y el interior se rinde.",
+      "descripcion_visual": "Ilustración lineal minimalista de un comal visto desde arriba con dos o tres chiles encima mostrando marcas de quemado. Trazo simple en color terracota sobre fondo crema/arena. Debajo de la ilustración, el subtítulo en tipografía regular oscura. El estilo recuerda a los cuadernos de recetas de abuela — intencional, no retro kitsch.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 4,
+      "titulo": "Lo que pasa adentro del chile no es magia — es química.",
+      "subtitulo": "Las reacciones de Maillard rompen azúcares y proteínas. Los compuestos volátiles — guaiacol, siringol — son literalmente las moléculas del humo que percibes. No hay shortcut para eso.",
+      "descripcion_visual": "Fondo oscuro tierra. Diagrama ultra simplificado: una flecha que va de 'Calor + Chile' hacia 'Maillard' hacia 'Profundidad de sabor'. Iconografía de moléculas muy básica, casi didáctica. Tipografía blanca para el título, subtítulo en gris claro tamaño pequeño pero legible. Sensación de clase magistral, no de laboratorio farmacéutico.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 5,
+      "titulo": "Por eso la Salsa Tatemada Ahumada sabe diferente caliente que fría.",
+      "subtitulo": "Los compuestos volátiles se activan con el calor. Es una salsa viva — responde a la temperatura de tu comida. Eso no se fabrica con extracto.",
+      "descripcion_visual": "Dos iconos simples lado a lado: a la izquierda un bowl con vapor (caliente), a la derecha el mismo bowl sin vapor (frío). Debajo de cada uno una palabra: 'Intensa' y 'Redonda'. Fondo tierra medio. El nombre 'Salsa Tatemada Ahumada' aparece por primera vez en este slide, en tipografía destacada pero sin mostrar el frasco ni la etiqueta — solo el nombre en texto.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 6,
+      "titulo": "Si esto te voló la cabeza — imagina probarla.",
+      "subtitulo": "Salsas Bestial. Link en bio. También por WhatsApp si prefieres hablar con alguien que realmente sabe de lo que habla.",
+      "descripcion_visual": "Fondo negro profundo. El título en tipografía bold blanca, tamaño grande, ocupando el tercio superior. El subtítulo en gris claro debajo. En la parte inferior, el logo de Salsas Bestial sin modificaciones, centrado. Pequeño ícono de flecha hacia arriba junto al texto 'Link en bio'. Sin filtros, sin efectos sobre el logo. La llama del slide 1 reaparece pequeña como firma visual de cierre.",
+      "tipo": "cta"
+    }
+  ]
+}
