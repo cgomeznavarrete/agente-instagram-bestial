@@ -1,0 +1,60 @@
+{
+  "caption_principal": "Llevamos tiempo diciéndolo — esto no es solo salsa picante. Es el ingrediente que le faltaba a todo lo que ya sabes cocinar. Desliza → y después no digas que no te avisamos.",
+  "cta_caption": "¿Tú con cuál de estas la probarías primero? Cuéntanos abajo. 🔥",
+  "hashtags": [
+    "#SalsasBestial",
+    "#TatemadaAhumada",
+    "#SalsaPicante",
+    "#RecetasFáciles",
+    "#CocinaLatina",
+    "#PicanteLovers",
+    "#ComidaCasera",
+    "#SalsaArtesanal",
+    "#FoodLovers",
+    "#SecretosDeCocina"
+  ],
+  "slides": [
+    {
+      "numero": 1,
+      "titulo": "5 cosas que mejoran brutalmente con la Tatemada Ahumada.",
+      "subtitulo": "Spoiler: ya las tienes en tu cocina.",
+      "descripcion_visual": "Fondo oscuro casi negro con textura rústica sutil. Tipografía grande, bold, en rojo intenso para el número '5' y el título principal. El subtítulo en blanco, tipografía más delgada. Sin fotografías del producto. Composición centrada, mucho espacio negativo para que el texto respire. Sensación de cartel urbano, no de anuncio corporativo.",
+      "tipo": "portada"
+    },
+    {
+      "numero": 2,
+      "titulo": "El desayuno que te cambia la mañana.",
+      "subtitulo": "Huevos revueltos + Tatemada Ahumada. Así de simple. Así de diferente.",
+      "descripcion_visual": "Fondo en tono terracota cálido. Ícono o ilustración minimalista de un plato con huevos revueltos — trazo grueso, estilo gráfico, sin fotografía. Número '01' en esquina superior izquierda en rojo. Título en blanco, grande. Subtítulo en gris claro debajo. Línea decorativa fina en rojo separando título y subtítulo.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 3,
+      "titulo": "Lo de siempre, pero bestial.",
+      "subtitulo": "Tacos, arepas, lo que sea — la Tatemada los eleva sin pedirles permiso.",
+      "descripcion_visual": "Fondo oscuro con textura de madera o pizarra. Ilustración minimalista de una arepa o taco en trazo blanco grueso. Número '02' en esquina superior izquierda en rojo. Título en rojo, tipografía bold. Subtítulo en blanco. Estilo visual consistente con el slide anterior — misma familia tipográfica, mismo sistema de numeración.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 4,
+      "titulo": "Sí, en serio. Pruébalo y después hablas.",
+      "subtitulo": "Pizza casera con Tatemada Ahumada. No lo cuestionamos — solo lo disfrutamos.",
+      "descripcion_visual": "Fondo negro con destellos de rojo muy sutil en los bordes, como brasa. Ilustración minimalista de una porción de pizza en trazo blanco. Número '03' en rojo. El título debe ocupar dos líneas — tipografía grande, casi irreverente. Subtítulo en gris claro. El tono visual de este slide debe sentirse ligeramente más atrevido que los anteriores.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 5,
+      "titulo": "El secreto que tu abuela no sabía que necesitaba.",
+      "subtitulo": "Sopas, caldos, sancochos — una cucharada y ya no hay vuelta atrás.",
+      "descripcion_visual": "Fondo en tono café oscuro cálido, evocando vapor y cocina de casa. Ilustración minimalista de un tazón de sopa o caldo en trazo blanco. Número '04' en rojo. Título en blanco con la palabra 'abuela' en rojo para dar énfasis cultural. Subtítulo en gris claro. Sensación acogedora pero con carácter — como la cocina de la familia, pero con actitud.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 6,
+      "titulo": "La tuya te está esperando.",
+      "subtitulo": "Pídela por WhatsApp o encuéntrala en el link de la bio. 🌶",
+      "descripcion_visual": "Fondo negro sólido. Logo de Salsas Bestial centrado en la parte superior, sin modificaciones de color ni filtros. Debajo, el título en rojo bold. Subtítulo en blanco. Iconos minimalistas de WhatsApp e Instagram en blanco, pequeños, debajo del subtítulo. Línea roja horizontal decorativa entre el logo y el texto. El slide debe sentirse como un cierre contundente — limpio, directo, sin ruido visual.",
+      "tipo": "cta"
+    }
+  ]
+}

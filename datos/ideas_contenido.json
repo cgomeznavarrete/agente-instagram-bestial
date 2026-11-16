@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "ultima_actualizacion": "2026-11-09T23:18:36.222322",
+  "ultima_actualizacion": "2026-11-16T23:12:03.519744",
   "banco_ideas": [
     {
       "id": "idea-4428a483",
@@ -2639,6 +2639,126 @@
       "concepto": "Carrusel de 4 slides titulado 'Por qué el ahumado cambia todo' explicando sensorialmente, no técnicamente, qué hace el proceso de tatemado al sabor. Cada slide describe una sensación: el olor, el primer golpe, el retrogusto, la adicción.",
       "notas": "Genera guardados porque educa desde la experiencia. Diferencia a Bestial desde el sabor y el proceso, no desde los ingredientes. Refuerza la percepción de producto premium y artesanal.",
       "prioridad": "baja",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-c420f035",
+      "fecha_generacion": "2026-11-16",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "humor_picante",
+      "concepto": "Reel de 15 segundos con el formato 'expectativa vs realidad': alguien prepara un plato 'normal' de arroz con huevo, lo prueba con cara de decepción, luego le agrega la Salsa Tatemada Ahumada y la reacción cambia completamente. Sin texto en pantalla, solo música y expresiones. Cierra con el frasco en primer plano.",
+      "notas": "El formato expectativa vs realidad tiene altísimo engagement orgánico. Es reproducible, no requiere producción compleja y la expresión facial hace todo el trabajo viral.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-677f6dd5",
+      "fecha_generacion": "2026-11-16",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "educacion_sobre_salsas",
+      "concepto": "Carrusel de 5 slides explicando qué significa 'tatemado' de verdad: slide 1 hook provocador, slides 2-4 explican el proceso del chile tatemado en México/Colombia con fotos reales de cocina, slide 5 conecta ese proceso con la Salsa Tatemada Ahumada. Texto en cada slide como si fuera una conversación de WhatsApp.",
+      "notas": "Educa sin aburrir. La gente comparte contenido que la hace ver interesante con sus amigos. Posiciona a Salsas Bestial como marca con conocimiento real, no solo como producto.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-89761c24",
+      "fecha_generacion": "2026-11-16",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "testimonios_y_ugc",
+      "concepto": "Foto en primer plano de un frasco casi vacío, raspado por dentro, con el copy construido como si fuera el mensaje de un cliente real. El gancho visual es el frasco vacío: prueba irrefutable de que alguien la terminó rápido. Se invita a los seguidores a etiquetar a quien les robaría la salsa.",
+      "notas": "El frasco vacío es el mejor testimonio sin necesitar palabras. Genera identificación inmediata y activa el mecanismo de etiquetado que amplifica alcance orgánico.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-e4d88fa7",
+      "fecha_generacion": "2026-11-16",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "recetas_y_maridajes",
+      "concepto": "Reel de 30 segundos mostrando 3 usos inesperados de la Salsa Tatemada Ahumada: sobre aguacate con limón, mezclada en una mayonesa casera y encima de unos huevos pericos. Formato rápido tipo 'hack de cocina', con manos en acción y sin hablar a cámara. Texto minimalista superpuesto.",
+      "notas": "Los 'hacks de cocina' son el formato más guardado en Instagram. Tres usos en un reel multiplica las ocasiones de consumo y educa sobre versatilidad del producto sin sonar a publicidad.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-a823b8a2",
+      "fecha_generacion": "2026-11-16",
+      "origen": "claude",
+      "tipo_sugerido": "story",
+      "pilar": "retos_y_pruebas_de_picante",
+      "concepto": "Story con sticker de pregunta abierta: '¿Cuántas gotas aguantaste?' acompañado de una foto del frasco. Se recopilan respuestas durante 24 horas y al día siguiente se republica la respuesta más exagerada o graciosa en otra story. Ciclo de dos días que mantiene engagement.",
+      "notas": "Las preguntas abiertas generan respuestas más ricas que las encuestas cerradas. Crear un ciclo de dos días duplica las impresiones y hace sentir a la comunidad parte de la marca.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-0adc0ff3",
+      "fecha_generacion": "2026-11-16",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "behind_the_scenes",
+      "concepto": "Carrusel de 6 fotos mostrando el proceso real de producción de la Salsa Tatemada Ahumada: desde los chiles crudos hasta el frasco sellado. Fotos crudas, sin sobreproducción. El copy de cada slide como anotaciones de receta escritas a mano. Último slide con llamado a comprar por WhatsApp.",
+      "notas": "El contenido artesanal auténtico genera confianza que ningún anuncio puede comprar. Mostrar el proceso humaniza la marca y justifica el precio frente a salsas industriales.",
+      "prioridad": "alta",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-68c430c0",
+      "fecha_generacion": "2026-11-16",
+      "origen": "claude",
+      "tipo_sugerido": "post",
+      "pilar": "lifestyle_y_comunidad",
+      "concepto": "Foto de una reunión familiar o de amigos con comida típica colombiana en la mesa —bandeja paisa, arepas, chorizos— y el frasco de Salsa Bestial en el centro de todo, como el invitado de honor. Copy que hable de esos momentos donde la salsa es el tema de conversación en la mesa.",
+      "notas": "La nostalgia de la mesa familiar latinoamericana es un detonador emocional potente. Posicionar el frasco como parte de ese ritual convierte el producto en símbolo cultural, no solo en condimento.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-92d569cb",
+      "fecha_generacion": "2026-11-16",
+      "origen": "claude",
+      "tipo_sugerido": "reel",
+      "pilar": "como_comprar",
+      "concepto": "Reel de 20 segundos formato 'así de fácil': alguien ve el perfil de Instagram, hace clic en el link de bio, escribe por WhatsApp y en el siguiente corte ya tiene el frasco en la mano. Sin voz en off, solo texto superpuesto con pasos numerados y música upbeat. Cierra con el frasco abierto y listo para usar.",
+      "notas": "Muchos seguidores no compran por no saber cómo. Este reel elimina esa fricción de forma entretenida. Publicarlo cada 3-4 semanas rota audiencia nueva sin cansar a los seguidores habituales.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-d151b28e",
+      "fecha_generacion": "2026-11-16",
+      "origen": "claude",
+      "tipo_sugerido": "carrusel",
+      "pilar": "beneficios_del_producto",
+      "concepto": "Carrusel de 4 slides con el concepto 'una salsa, cuatro cocinas': slide 1 con comida mexicana, slide 2 con comida colombiana, slide 3 con hamburguesa estilo americano, slide 4 con pasta italiana. En cada foto, el frasco Bestial aparece integrado naturalmente. El mensaje: esta salsa no tiene fronteras.",
+      "notas": "Mostrar versatilidad amplía el público objetivo y rompe la percepción de que una salsa picante es solo para ciertos platos. Cada slide es guardable por separado, lo que aumenta saves —métrica clave de Instagram.",
+      "prioridad": "media",
+      "usado": false,
+      "fecha_uso": null
+    },
+    {
+      "id": "idea-33742970",
+      "fecha_generacion": "2026-11-16",
+      "origen": "claude",
+      "tipo_sugerido": "story",
+      "pilar": "promociones_y_lanzamientos",
+      "concepto": "Serie de 3 stories tipo cuenta regresiva para una promoción o edición limitada: story 1 con solo una pregunta sin contexto que genere intriga, story 2 al día siguiente con una pista visual del frasco en penumbra, story 3 el día del lanzamiento con precio y enlace directo a WhatsApp. Sin revelar todo de golpe.",
+      "notas": "El suspenso en stories construye anticipación real. Tres días de intriga generan más conversaciones orgánicas que un único anuncio directo. El formato oscuro en story 2 es altamente compartible por su estética.",
+      "prioridad": "alta",
       "usado": false,
       "fecha_uso": null
     }

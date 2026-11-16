@@ -1,0 +1,17 @@
+{
+  "texto_principal": "8 a 15 minutos. Sin apuro. Sin atajos.",
+  "texto_secundario": "El chile tatemado no perdona la prisa — y nosotros lo sabemos.",
+  "cta": "Responde con 🔥 si ya la probaste",
+  "elemento_interactivo": {
+    "tipo": "pregunta",
+    "contenido": "¿Cuánto tiempo crees que tardamos en hacer cada batch de Tatemada Ahumada?"
+  },
+  "descripcion_visual": "Fondo oscuro casi negro con textura rugosa tipo carbón o concreto quemado. Slide 1: tipografía blanca rota, sans-serif bold, con la palabra 'apuro' tachada en rojo oscuro. Luz cálida y difusa desde abajo como brasa. Slide 2: misma paleta, pero el texto aparece como si se escribiera a mano en luz — efecto reveal lento. Sin logos grandes, solo firma pequeña 'Salsas Bestial' en esquina inferior. Atmósfera íntima, casi como ver algo que no debías ver.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#TatemadaAhumada",
+    "#SalsaArtesanal",
+    "#PicanteDeVerdad",
+    "#HechoConCalma"
+  ]
+}

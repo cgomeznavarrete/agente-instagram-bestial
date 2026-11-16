@@ -1,0 +1,15 @@
+{
+  "texto_principal": "¿Cuánto aguantas realmente?",
+  "texto_secundario": "Mañana mostramos resultados... puede que tengamos algo para los valientes.",
+  "cta": "Responde la encuesta — sé honesto/a",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "A: Soy de los que sudan 😅 / B: El picante no me hace nada"
+  },
+  "descripcion_visual": "Fondo negro mate, sin producto. Texto principal en tipografía bold blanca o rojo intenso, centrado en el tercio superior. La encuesta de Instagram posicionada al centro de la pantalla. Texto secundario en tipografía ligera, color gris claro o blanco tenue, en el tercio inferior. Estética minimalista — que el silencio visual hable. Sin stickers decorativos, sin efectos. Solo la pregunta y la tensión.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#PicanteReal",
+    "#RetoBestial"
+  ]
+}

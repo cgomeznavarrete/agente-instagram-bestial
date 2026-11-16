@@ -1,0 +1,17 @@
+{
+  "texto_principal": "¿Hay salsa? — Sí. Ya saben.",
+  "texto_secundario": "Ya saben cómo termina esto.",
+  "cta": "Responde con el emoji de fuego si eres tú en cada reunión familiar 🔥",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "¿Eres tú el que siempre lleva la salsa? | Siempre yo | Ojalá fuera yo"
+  },
+  "descripcion_visual": "Dos slides. Slide 1: fondo negro total, tipografía blanca bold centrada, estilo meme de texto. Línea 1 en tamaño normal: 'Domingo familiar. Alguien pregunta: ¿hay salsa?' — salto de línea — Línea 2 en tamaño mayor y peso más fuerte: 'Tú, sacando la Tatemada Ahumada:  —' La raya final queda suspendida, sin cerrar. Sin imágenes del frasco, sin decoración. Solo texto y silencio. Slide 2: fondo negro, una sola línea centrada en tipografía blanca, tamaño grande, punto final visible y contundente: 'Ya saben cómo termina esto.' La encuesta aparece debajo en el segundo slide, integrada de forma nativa.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#TatemadaAhumada",
+    "#SalsaPicante",
+    "#ComidaLatina",
+    "#DomingoFamiliar"
+  ]
+}

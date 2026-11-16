@@ -1,0 +1,41 @@
+{
+  "hook": "La gente que dice que no le gusta el picante... nunca ha probado la salsa correcta.",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Fondo negro puro. Texto blanco aparece letra por letra, como si lo estuvieran escribiendo en tiempo real. Tipografía bold, sin adornos.",
+      "texto_pantalla": "La gente que dice que no le gusta el picante..."
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Corte seco. El texto anterior desaparece y aparece la segunda parte de la frase con una animación de golpe — como si cayera desde arriba. El color del texto cambia a rojo intenso para 'correcta'.",
+      "texto_pantalla": "...nunca ha probado la salsa CORRECTA."
+    },
+    {
+      "segundo": "8-18",
+      "visual": "Transición rápida estilo glitch a primer plano del frasco Tatemada Ahumada — luz dramática lateral, fondo oscuro. Texto aparece en dos bloques con timing escalonado, como si alguien lo estuviera mandando por WhatsApp.",
+      "texto_pantalla": "Hay dos tipos de personas en Colombia. Las que ya conocen Salsas Bestial... y las que todavía comen sin sabor."
+    },
+    {
+      "segundo": "18-25",
+      "visual": "Logo de Salsas Bestial entra con un zoom suave al centro. Fondo negro. Texto del CTA aparece debajo del logo, limpio y directo. Música sube levemente de volumen en este tramo.",
+      "texto_pantalla": "El link está en la bio. Sin excusas."
+    }
+  ],
+  "caption": "Dos tipos de personas en Colombia — y tú ya sabes cuál eres. 🔥 ¿A quién le mandarías esto ahora mismo?",
+  "cta": "Pídela aquí → https://wa.me/573005864523",
+  "hashtags": [
+    "#SalsasBestial",
+    "#TatemadaAhumada",
+    "#SalsaPicante",
+    "#ComidaColombiana",
+    "#PicanteDeVerdad",
+    "#SalsaArtesanal",
+    "#FoodLovers",
+    "#RecetasColombia",
+    "#HumorPicante",
+    "#SaborSinExcusas"
+  ],
+  "mood_musica": "upbeat_latino",
+  "hook_audio": "La gente que dice que no le gusta el picante... nunca ha probado la salsa correcta."
+}

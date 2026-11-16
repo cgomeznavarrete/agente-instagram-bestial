@@ -1,0 +1,13 @@
+{
+  "texto_principal": "Pedir la salsa es más fácil que conseguir buena sazón.",
+  "texto_secundario": "Escríbenos por WhatsApp y listo.",
+  "cta": "Dale aquí y pedimos ya",
+  "elemento_interactivo": {
+    "tipo": "ninguno",
+    "contenido": null
+  },
+  "descripcion_visual": "Story de 3 slides secuenciales. Slide 1: fondo color tierra/naranja quemado, tipografía bold blanca centrada, sin imágenes — solo texto con mucho aire alrededor, sensación de cartel directo. Slide 2: fondo oscuro casi negro, ícono de WhatsApp verde a la izquierda + número 300 586 4523 en tipografía bold blanca grande, debajo texto secundario en tamaño menor, diseño limpio tipo instrucción de amigo. Slide 3: fondo naranja quemado nuevamente, texto 'Dale aquí y pedimos ya' en bold, sticker de enlace directo a wa.me/573005864523 centrado y visible, sin elementos decorativos extras. Todo el conjunto usa máximo dos colores por slide, tipografía sans-serif bold, sin saturar — el mensaje es el protagonista.",
+  "hashtags_ocultos": [
+    "#SalsasBestial"
+  ]
+}

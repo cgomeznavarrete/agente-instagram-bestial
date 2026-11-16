@@ -1,0 +1,46 @@
+{
+  "hook": "El viernes sin buena salsa es solo... jueves con ilusiones.",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Pantalla negra. Texto cinético entra letra por letra, como si alguien lo estuviera escribiendo en tiempo real. Tipografía bold, blanca sobre negro.",
+      "texto_pantalla": "El viernes sin buena salsa es solo... jueves con ilusiones."
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Motion graphic: mesa de almuerzo colombiana típica — arroz, bandeja, sopa humeante. Todo en ilustración o texto animado estilizado, no foto real. El nombre 'Tatemada Ahumada' aparece flotando sobre la mesa como si fuera el ingrediente que faltaba.",
+      "texto_pantalla": "12pm. El almuerzo en casa. — Tatemada Ahumada."
+    },
+    {
+      "segundo": "8-16",
+      "visual": "Transición rápida. Nueva escena animada: picada con amigos — chorizos, papas, cerveza fría. Texto cinético rebota en pantalla con energía. 'Tatemada Ahumada' aparece de nuevo, esta vez más grande, como protagonista.",
+      "texto_pantalla": "5pm. La picada con los del parche. — Tatemada Ahumada."
+    },
+    {
+      "segundo": "16-20",
+      "visual": "Tercera escena animada: nevera abierta de noche, manos sacando sobras, improvisando una cena. Humor visual — todo caótico pero sabroso. 'Tatemada Ahumada' entra en pantalla como la solución a todo.",
+      "texto_pantalla": "10pm. La cena improvisada. — Tatemada Ahumada, otra vez."
+    },
+    {
+      "segundo": "20-25",
+      "visual": "Pantalla limpia. Solo el nombre de la salsa en tipografía grande, centrada. Luego fade a fondo oscuro con el copy de cierre y CTA. Ritmo de texto que entra en dos tiempos.",
+      "texto_pantalla": "Este finde, que no falte. 🔥 Link en bio."
+    }
+  ],
+  "caption": "El viernes tiene su propio sabor — y la Tatemada Ahumada sabe exactamente cuál es. ¿Con quién compartirías este finde?",
+  "cta": "Pídela aquí → https://wa.me/573005864523 | ¿A quién le mandarías una de estas para el finde?",
+  "hashtags": [
+    "#SalsasBestial",
+    "#TatemadaAhumada",
+    "#ViernesPickante",
+    "#SalsaArtesanal",
+    "#ComidaColombiana",
+    "#PicanteLovers",
+    "#FinDeSemana",
+    "#SalsaCaliente",
+    "#FoodLovers",
+    "#HechoConActitud"
+  ],
+  "mood_musica": "energetico",
+  "hook_audio": null
+}
