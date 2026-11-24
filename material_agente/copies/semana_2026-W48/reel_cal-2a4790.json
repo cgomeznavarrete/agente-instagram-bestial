@@ -1,0 +1,46 @@
+{
+  "hook": "Tu familia tiene uno de cada tipo.",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Texto cinético animado que entra de golpe en pantalla negra, letras grandes y temblorosas como si tuvieran picante",
+      "texto_pantalla": "Tu familia tiene uno de cada tipo. 🌶️"
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Ilustración o texto animado del abuelo — icono de viejito con sombrero vueltiao o ruana, cara seria, cuchara en mano",
+      "texto_pantalla": "El abuelo: 'Esto no pica nada. Está soso. Tráigame más.'"
+    },
+    {
+      "segundo": "8-14",
+      "visual": "Transición rápida al personaje de la mamá — ilustración o texto cinético, cara estoica pero con una lágrima discreta cayendo",
+      "texto_pantalla": "La mamá: aguanta. Sonríe. Pero por dentro... ya fue."
+    },
+    {
+      "segundo": "14-20",
+      "visual": "Corte al primo — animación exagerada, cara roja, manos en la boca, corriendo hacia el refrigerador. Leche en mano.",
+      "texto_pantalla": "El primo que presumió: *no comments* 🥛"
+    },
+    {
+      "segundo": "20-28",
+      "visual": "Frasco de Salsa Tatemada Ahumada entra al centro de la pantalla con un golpe visual. Fondo oscuro, producto bien iluminado.",
+      "texto_pantalla": "Salsa Tatemada Ahumada — para los que sí saben. Pídela → wa.me/573005864523"
+    }
+  ],
+  "caption": "El que dice que no le pica... miente. Y en su casa lo saben. ¿Cuál eres tú en la reunión familiar — el abuelo, la mamá o el primo de la leche?",
+  "cta": "Pídela aquí → https://wa.me/573005864523",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteColombiano",
+    "#FamiliaColombiana",
+    "#HumorColombiano",
+    "#SalsaArtesanal",
+    "#ReunionFamiliar",
+    "#PicanteReal",
+    "#ComidaColombiana",
+    "#SalsasBestialCo"
+  ],
+  "mood_musica": "humor",
+  "hook_audio": null
+}

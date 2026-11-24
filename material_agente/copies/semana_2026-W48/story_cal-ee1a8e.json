@@ -1,0 +1,17 @@
+{
+  "texto_principal": "¿Sabes cómo nació esto?",
+  "texto_secundario": "Brasas, chiles y una pregunta: ¿y si le metemos más humo? Lo demás lo hizo el fuego.",
+  "cta": "Enlace en bio para llevarla a casa 🔥",
+  "elemento_interactivo": {
+    "tipo": "pregunta",
+    "contenido": "¿Con qué le meterías tú más humo?"
+  },
+  "descripcion_visual": "Fondo gris claro tipo #F2F2F2. Burbujas de chat simuladas: primera burbuja en gris oscuro (como mensaje recibido) con '¿Sabes cómo nació esto?', segunda burbuja más larga en verde oscuro o negro (como respuesta enviada) con el texto del origen. Tipografía sans-serif redondeada, estilo mensajería. Sin filtros sobre producto. Sticker de enlace a bio en esquina inferior centrado. Sin logo deformado. Sensación de captura de pantalla de conversación real, íntima y sin producción exagerada.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#TatemadaAhumada",
+    "#SalsaArtesanal",
+    "#PicanteReal",
+    "#HechoConFuego"
+  ]
+}

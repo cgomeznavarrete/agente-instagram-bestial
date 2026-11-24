@@ -1,0 +1,60 @@
+{
+  "caption_principal": "Hay salsas que se mezclan. Y hay salsas que se construyen — con fuego, con tiempo, con intención. Esta es de las segundas. Desliza → porque después de esto no vas a ver las salsas igual.",
+  "cta_caption": "¿Sabías que había tanta diferencia entre una salsa industrial y una tatemada? Cuéntanos abajo. 🔥",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#AhumadoArtesanal",
+    "#PicanteDeVerdad",
+    "#SalsaArtesanal",
+    "#TatemadaAhumada",
+    "#CocinaLatina",
+    "#SaborReal",
+    "#FoodiesColombiana",
+    "#PicanteCultural"
+  ],
+  "slides": [
+    {
+      "numero": 1,
+      "titulo": "No todas las salsas pasan por el fuego. La tuya sí.",
+      "subtitulo": "Aquí te explicamos por qué eso lo cambia todo.",
+      "descripcion_visual": "Fondo negro profundo, tipografía bold blanca en tamaño grande para el título. Subtítulo en gris claro, tipografía más delgada. Sin fotografía del producto en este slide. Una línea de fuego o brasa sutil como elemento gráfico decorativo en la parte inferior, sin tocar ni enmarcar ningún logo. El logo de Salsas Bestial en esquina inferior derecha, sin filtros ni modificaciones.",
+      "tipo": "portada"
+    },
+    {
+      "numero": 2,
+      "titulo": "Tatemar es quemar con intención.",
+      "subtitulo": "Cuando pasas un chile, un tomate o un ajo directo por la llama, algo cambia para siempre. El calor seco concentra el sabor, carameliza los azúcares naturales y mete un amargor suave que ninguna licuadora del mundo puede imitar. No es cocinar. Es transformar.",
+      "descripcion_visual": "Fondo oscuro texturizado tipo carbón o piedra volcánica. Tipografía blanca bold para el título. Subtítulo en gris claro con interlineado amplio para facilitar lectura. Icono minimalista de llama en un costado como elemento gráfico, sin fotografías del producto. Paleta: negros, grises y un toque de naranja quemado para el ícono.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 3,
+      "titulo": "Una técnica de miles de años. Llegó a Colombia con todo.",
+      "subtitulo": "El ahumado nació en cocinas indígenas de México — el comal, la leña, el humo como conservante natural. Esa tradición cruzó fronteras y se instaló en la cocina latinoamericana porque el sabor no miente. Lo que funciona, permanece.",
+      "descripcion_visual": "Fondo oscuro con textura sutil de madera o comal de barro. Tipografía blanca bold para el título, subtítulo en tono crema cálido. Puede incluir un mapa muy simplificado y estilizado de México-Colombia como elemento gráfico decorativo, en líneas finas. Sin fotografías del producto. Paleta oscura con toques tierra y ocre.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 4,
+      "titulo": "Salsa industrial vs. salsa tatemada. No es lo mismo — ni de cerca.",
+      "subtitulo": "La industrial: vinagre, espesantes, colorantes, saborizantes artificiales. Hecha para durar, no para sorprender. La tatemada artesanal: ingredientes reales pasados por fuego real, sin atajos. Una la produces en masa. La otra la construyes.",
+      "descripcion_visual": "Diseño dividido en dos columnas simétricas. Lado izquierdo: fondo gris frío con tipografía apagada — representa lo industrial. Lado derecho: fondo negro con tipografía blanca cálida y un toque de brasa — representa lo artesanal. Línea divisoria central en naranja quemado. Sin fotografías del producto. Tipografía bold en ambos lados para los encabezados de cada columna.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 5,
+      "titulo": "Así es como Bestial lo hace.",
+      "subtitulo": "La Salsa Tatemada Ahumada de Bestial no existe por accidente. Cada ingrediente pasa por el proceso. El ahumado no es un nombre bonito en la etiqueta — es lo que le da ese sabor que no termina de explicarse, solo se siente. Sin artificiales. Sin atajos. Con fuego.",
+      "descripcion_visual": "Fotografía real del frasco de Salsa Tatemada Ahumada Bestial sobre superficie oscura, sin ningún filtro de color sobre el frasco ni la etiqueta. Iluminación natural o con luz cálida lateral para resaltar la textura del frasco. Tipografía bold blanca superpuesta en la parte superior del slide. El logo visible en etiqueta tal como es, sin modificaciones. Fondo oscuro para mantener coherencia visual del carrusel.",
+      "tipo": "contenido"
+    },
+    {
+      "numero": 6,
+      "titulo": "Ahora que sabes lo que hay detrás... ¿la quieres probar?",
+      "subtitulo": "Link en bio. O escríbenos directo por WhatsApp — respondemos rápido.",
+      "descripcion_visual": "Fondo negro con tipografía blanca bold de gran tamaño para el título. Subtítulo en gris claro. Logo de Salsas Bestial centrado en la parte inferior, sin filtros ni modificaciones. Puede incluir un ícono minimalista de WhatsApp junto al subtítulo. Sin fotografía del producto en este slide para mantener el foco en el CTA. Un trazo de brasa o línea de fuego sutil como elemento decorativo superior.",
+      "tipo": "cta"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "texto_principal": "Le pongo hasta al arroz con leche.",
+  "texto_secundario": "Esta persona está bien. — @salsasbestial [ejemplo]",
+  "cta": "Responde con tu combo más inesperado 👇",
+  "elemento_interactivo": {
+    "tipo": "pregunta",
+    "contenido": "¿Con qué le pondrías Bestial que nadie creería?"
+  },
+  "descripcion_visual": "Fondo negro mate, sin texturas. La respuesta del usuario centrada en pantalla en tipografía sans-serif blanca, bold, tamaño grande — como si fuera una cita importante. El @ del usuario en gris claro, más pequeño, justo debajo. En la parte inferior, separado por una línea fina, la reacción de la marca en tipografía pequeña, color rojo Bestial: 'Esta persona está bien.' El logo de Salsas Bestial discreto en esquina superior derecha, sin filtros ni alteraciones. Sin elementos decorativos extra — el foco es la frase.",
+  "hashtags_ocultos": [
+    "#SalsasBestial"
+  ]
+}

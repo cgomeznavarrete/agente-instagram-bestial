@@ -1,0 +1,41 @@
+{
+  "hook": "Esto no es guacamole. Es otra cosa.",
+  "guion_video": [
+    {
+      "segundo": "0-3",
+      "visual": "Corte rápido a aguacate partiéndose a la mitad, fondo oscuro, luz cálida dramática",
+      "texto_pantalla": "Esto no es guacamole. Es otra cosa."
+    },
+    {
+      "segundo": "3-8",
+      "visual": "Mano espolvoreando sal de mar sobre el aguacate, luego exprimiendo limón — sonido ASMR del jugo cayendo",
+      "texto_pantalla": "Sal de mar. Limón. Sin drama."
+    },
+    {
+      "segundo": "8-20",
+      "visual": "Chorrito de Salsa Tatemada Ahumada Bestial cayendo directo del frasco sobre el aguacate — primer plano, movimiento lento. Corte a totopo hundiéndose en el aguacate ya preparado.",
+      "texto_pantalla": "Un chorrito de Bestial directo... y ya. 🔥 Opcional: totopos. No opcional: repetir."
+    },
+    {
+      "segundo": "20-25",
+      "visual": "Pantalla con fondo color de marca (negro/rojo Bestial), tipografía bold centrada, sin foto del producto",
+      "texto_pantalla": "Salsa Tatemada Ahumada Bestial — Pídela en WhatsApp → wa.me/573005864523"
+    }
+  ],
+  "caption": "Aguacate + Bestial. No hay más que explicar... o sí — ¿quieres la receta completa? 👇 Pídela aquí → https://wa.me/573005864523",
+  "cta": "Pídela aquí → https://wa.me/573005864523 ¿Tú con qué más la combinarías?",
+  "hashtags": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#RecetasFáciles",
+    "#AguacateLovers",
+    "#PicanteLatino",
+    "#ComidaReal",
+    "#FoodiesLatam",
+    "#SalsaArtesanal",
+    "#MaridajePerfecto",
+    "#CocinaEnCasa"
+  ],
+  "mood_musica": "chill_food",
+  "hook_audio": "Esto no es guacamole. Es otra cosa."
+}

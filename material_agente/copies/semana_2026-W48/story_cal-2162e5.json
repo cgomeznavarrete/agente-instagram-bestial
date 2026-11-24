@@ -1,0 +1,17 @@
+{
+  "texto_principal": "¿Cómo terminas tu domingo?",
+  "texto_secundario": "Spoiler: la respuesta correcta incluye Bestial.",
+  "cta": "Responde la encuesta",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "Con algo asado 🍖 vs Con algo picante 🌶️"
+  },
+  "descripcion_visual": "Fondo rojo Bestial sólido (#CC0000 o el rojo corporativo de marca). Texto principal centrado en blanco bold, tipografía grande que ocupe el tercio superior de la pantalla. Sticker de encuesta nativo de Instagram posicionado en el centro. Texto secundario en blanco, tipografía pequeña y delgada, pegado al tercio inferior. Sin filtros sobre ningún elemento de marca. Sin logo deformado ni recortado. Estética limpia, directa, sin elementos decorativos innecesarios.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaPicante",
+    "#DomingoBestial",
+    "#PicanteColombiano",
+    "#SalsaArtesanal"
+  ]
+}

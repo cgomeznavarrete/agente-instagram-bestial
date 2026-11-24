@@ -1,0 +1,231 @@
+{
+  "semana": "2026-W48",
+  "fecha_inicio": "2026-11-23",
+  "fecha_fin": "2026-11-29",
+  "fecha_generacion": "2026-11-24T01:25:52.182126",
+  "estado": "borrador",
+  "campana_activa": null,
+  "entradas": [
+    {
+      "id": "cal-2a4790",
+      "dia": "lunes",
+      "fecha": "2026-11-23",
+      "hora_publicacion": "12:00",
+      "tipo_contenido": "reel",
+      "pilar": "humor_picante",
+      "objetivo": "entretenimiento",
+      "concepto": "Reel animado o con texto cinético sobre 'los niveles de tolerancia al picante en una familia colombiana'. Escena 1: el abuelo que dice que todo está soso. Escena 2: la mamá que aguanta pero llora en silencio. Escena 3: el primo que presumió y terminó con leche. Hook de apertura en pantalla: 'Tu familia tiene uno de cada tipo.' Audio trending latinoamericano de fondo. Copy del caption: 'El que dice que no le pica... miente. Y en su casa lo saben. 🌶️ ¿Cuál eres tú en la reunión familiar?' — sin bullets, tono coloquial, máximo 3 emojis.",
+      "material_sugerido": [
+        "agente/generar/animacion_tipos_picante_familia.mp4"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-68df01",
+      "dia": "lunes",
+      "fecha": "2026-11-23",
+      "hora_publicacion": "19:00",
+      "tipo_contenido": "story",
+      "pilar": "como_comprar",
+      "objetivo": "ventas",
+      "concepto": "Story de texto con diseño minimalista sobre fondo negro y tipografía blanca/roja de marca. Mensaje directo: 'Si llevas rato mirando la salsa... ya sabes qué hacer.' Con sticker de enlace directo a WhatsApp (https://wa.me/573005864523) y sticker de encuesta: '¿Ya la probaste? / Todavía no (pero quiero)'. Tono: como un mensaje de WhatsApp de un amigo que te está esperando.",
+      "material_sugerido": [
+        "agente/generar/story_cta_whatsapp_texto.png"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-f053a3",
+      "dia": "martes",
+      "fecha": "2026-11-24",
+      "hora_publicacion": "19:00",
+      "tipo_contenido": "carrusel",
+      "pilar": "educacion_sobre_salsas",
+      "objetivo": "educacion",
+      "concepto": "Carrusel de 6 slides titulado internamente 'Por qué una salsa tatemada no es lo mismo que cualquier salsa'. Slide 1 (portada): frase hook en tipografía grande — 'No todas las salsas pasan por el fuego. La tuya sí.' Slide 2: qué significa tatemar y por qué cambia el sabor (lenguaje simple, sin tecnicismos). Slide 3: el ahumado como técnica ancestral mexicana adoptada en cocinas colombianas. Slide 4: diferencia entre salsa industrial vs salsa tatemada artesanal. Slide 5: cómo ese proceso se refleja en Salsa Tatemada Ahumada de Bestial. Slide 6 (cierre): CTA — 'Ahora que sabes lo que hay detrás, ¿la quieres probar? Link en bio.' Diseño oscuro, tipografía bold, sin filtros sobre producto. Copy caption: 'Hay salsas que se mezclan. Y hay salsas que se construyen — con fuego, con tiempo, con intención. Esta es de las segundas.'",
+      "material_sugerido": [
+        "agente/generar/carrusel_educacion_tatemada_6slides.png"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-2c70df",
+      "dia": "martes",
+      "fecha": "2026-11-24",
+      "hora_publicacion": "20:30",
+      "tipo_contenido": "story",
+      "pilar": "educacion_sobre_salsas",
+      "objetivo": "educacion",
+      "concepto": "Story de apoyo al carrusel del día. Pregunta interactiva con sticker de quiz: '¿Qué significa tatemar un ingrediente?' con opciones A) Freírlo en aceite / B) Asarlo directo al fuego / C) Marinarlo en vinagre. Respuesta correcta revelada en story siguiente. Tono didáctico pero casual. Fondo con textura de carbón o negro quemado generado por agente.",
+      "material_sugerido": [
+        "agente/generar/story_quiz_tatemar.png"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-13dc91",
+      "dia": "miercoles",
+      "fecha": "2026-11-25",
+      "hora_publicacion": "12:00",
+      "tipo_contenido": "reel",
+      "pilar": "recetas_y_maridajes",
+      "objetivo": "engagement",
+      "concepto": "Reel de receta rápida (formato 30-45 segundos) con texto en pantalla paso a paso: 'Aguacate con Salsa Tatemada Ahumada Bestial — el maridaje que no sabías que necesitabas'. Pasos en texto animado: aguacate partido, sal de mar, limón, chorrito de Bestial directo del frasco, opcional: totopos. Hook de apertura: 'Esto no es guacamole. Es otra cosa.' Audio: sonido ASMR de fondo o trending de cocina. Sin mostrar producto físico si no hay archivo — usar texto descriptivo y color de marca en pantalla. Copy caption: 'Aguacate + Bestial. No hay más que explicar... o sí, ¿quieres la receta completa? 👇'",
+      "material_sugerido": [
+        "agente/generar/reel_receta_aguacate_bestial_animado.mp4"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-682912",
+      "dia": "jueves",
+      "fecha": "2026-11-26",
+      "hora_publicacion": "12:00",
+      "tipo_contenido": "story",
+      "pilar": "testimonios_y_ugc",
+      "objetivo": "comunidad",
+      "concepto": "Story de reshare de las mejores respuestas de la pregunta del miércoles. Formato: fondo oscuro con la respuesta del usuario en tipografía grande, atribuida con @ si aplica, y reacción de la marca en texto pequeño abajo (ej: 'Esta persona entiende.' / 'No lo habíamos pensado pero... funciona.'). Si no hay respuestas reales aún, usar respuestas ficticias verosímiles como placeholder marcadas como 'ejemplo'. Tono: la marca como curador de buen gusto picante.",
+      "material_sugerido": [
+        "agente/generar/story_reshare_respuestas_comunidad.png"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-912303",
+      "dia": "jueves",
+      "fecha": "2026-11-26",
+      "hora_publicacion": "19:00",
+      "tipo_contenido": "post",
+      "pilar": "beneficios_del_producto",
+      "objetivo": "awareness",
+      "concepto": "Post estático con diseño tipográfico fuerte. Fondo negro, texto en blanco y rojo. Frase central: 'Ahumada. Tatemada. Sin conservantes raros. Sin sabores artificiales. Solo lo que tiene que tener.' Subtexto pequeño: 'Salsa Tatemada Ahumada — Salsas Bestial.' Sin bullets, sin lista de ingredientes, sin promesas de salud. Solo actitud y autenticidad. Copy caption: 'Hay productos que te explican todo lo que tienen. Nosotros preferimos que lo pruebes y lo notes tú mismo.'",
+      "material_sugerido": [
+        "agente/generar/post_tipografico_beneficios_producto.png"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-26b045",
+      "dia": "viernes",
+      "fecha": "2026-11-27",
+      "hora_publicacion": "12:00",
+      "tipo_contenido": "post",
+      "pilar": "retos_y_pruebas_de_picante",
+      "objetivo": "entretenimiento",
+      "concepto": "Post de imagen tipográfica con concepto de reto. Texto: 'El reto Bestial: pon la salsa en algo que normalmente no pondrías. Foto. Etiquétanos. Lo que pase después es tu responsabilidad.' Diseño audaz, fondo con textura de llamas sutil generada por agente, logo de Salsas Bestial en esquina inferior sin modificar. Copy caption: 'Alguien lo va a hacer con cereal. Lo sabemos. Y cuando pase... queremos verlo. 🔥 Etiquétanos con #RetoBestial'",
+      "material_sugerido": [
+        "agente/generar/post_reto_bestial_tipografico_llamas.png"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-ef5fc3",
+      "dia": "viernes",
+      "fecha": "2026-11-27",
+      "hora_publicacion": "19:00",
+      "tipo_contenido": "post",
+      "pilar": "promociones_y_lanzamientos",
+      "objetivo": "ventas",
+      "concepto": "Post de conversión directa. Diseño limpio con fondo oscuro y texto contundente: 'Si llegaste hasta acá en el feed... ya sabes que esto es para ti.' CTA claro debajo: 'Pídela por WhatsApp o por el link en bio.' Sin descuentos inventados, sin promesas de precio. Solo fricción cero para comprar. Copy caption: 'No hay código de descuento. No hay oferta por tiempo limitado. Solo una salsa que vale lo que cuesta — y tú lo sabes. Link en bio o escríbenos directo.' Incluir URL de WhatsApp en caption: https://wa.me/573005864523",
+      "material_sugerido": [
+        "agente/generar/post_conversion_venta_tipografico.png"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-ee1a8e",
+      "dia": "sabado",
+      "fecha": "2026-11-28",
+      "hora_publicacion": "12:00",
+      "tipo_contenido": "story",
+      "pilar": "behind_the_scenes",
+      "objetivo": "awareness",
+      "concepto": "Story de texto narrativo estilo 'mensaje de WhatsApp' contando brevemente el origen de la Salsa Tatemada Ahumada. Formato: burbujas de texto simuladas sobre fondo blanco o gris, como si fuera una conversación. Texto: 'Oye, ¿sabes cómo nació esto? / Fue una tarde con brasas, un par de chiles y la pregunta: ¿y si le metemos más humo? / Eso fue todo. / Lo demás lo hace el fuego.' Termina con sticker de enlace a bio. Tono íntimo, sin exagerar el storytelling corporativo.",
+      "material_sugerido": [
+        "agente/generar/story_bts_origen_salsa_whatsapp_format.png"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    },
+    {
+      "id": "cal-2162e5",
+      "dia": "domingo",
+      "fecha": "2026-11-29",
+      "hora_publicacion": "12:00",
+      "tipo_contenido": "story",
+      "pilar": "lifestyle_y_comunidad",
+      "objetivo": "comunidad",
+      "concepto": "Story de cierre de semana con encuesta de preferencia. Fondo rojo Bestial, texto blanco bold: '¿Cómo terminas tu domingo?' Sticker de encuesta con opciones: 'Con algo asado 🍖' vs 'Con algo picante 🌶️'. Texto pequeño abajo: 'Spoiler: la respuesta correcta incluye Bestial.' Tono ligero, para cerrar la semana con engagement bajo y sin presión de compra.",
+      "material_sugerido": [
+        "agente/generar/story_encuesta_domingo_lifestyle.png"
+      ],
+      "contenido_copy": null,
+      "brief_capcut_path": null,
+      "video_generado_path": null,
+      "imagen_compuesta_path": null,
+      "imagenes_carrusel_paths": [],
+      "estado": "pendiente",
+      "publicacion_id": null
+    }
+  ],
+  "notas_estrategia": "Sin material visual disponible, toda la semana se trabaja con contenido generado por el agente: texto, diseño tipográfico, ilustraciones y video animado. Con engagement en 3.36% y cero seguidores nuevos la semana anterior, la estrategia prioriza: (1) Reels al inicio y mitad de semana para empujar alcance orgánico, (2) Carrusel educativo para retención y guardados, (3) Alternar pilares cada día para no saturar un solo tema, (4) Al menos una pieza de conversión directa a WhatsApp. Se evitan pilares repetidos en días consecutivos. Horarios concentrados en 12:00, 19:00 y 20:00 hora Colombia. Máximo 2 piezas por día para no forzar el límite de 4 y mantener calidad sobre cantidad dado el volumen de contenido a generar desde cero."
+}

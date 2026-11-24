@@ -1,0 +1,17 @@
+{
+  "texto_principal": "¿Sabes qué significa tatemar?",
+  "texto_secundario": "No adivines. Demuéstralo.",
+  "cta": "Toca y responde — la respuesta llega en la siguiente story",
+  "elemento_interactivo": {
+    "tipo": "encuesta",
+    "contenido": "¿Qué significa tatemar un ingrediente? | A) Freírlo en aceite | B) Asarlo directo al fuego | C) Marinarlo en vinagre — Respuesta correcta: B"
+  },
+  "descripcion_visual": "Fondo con textura de carbón negro quemado, con vetas grises y efecto de brasa apagada. Sin filtros sobre ningún producto. Texto en tipografía bold blanca centrada, con ligero efecto de humo difuminado detrás de las letras. Sin fotografía del frasco en esta pieza. El sticker del quiz de Instagram ubicado en el tercio inferior de la pantalla. Paleta: negro profundo #1a1a1a con destellos gris ceniza #4a4a4a.",
+  "hashtags_ocultos": [
+    "#SalsasBestial",
+    "#SalsaTatemada",
+    "#PicanteEducado",
+    "#CocinaConFuego",
+    "#SalsaArtesanal"
+  ]
+}
